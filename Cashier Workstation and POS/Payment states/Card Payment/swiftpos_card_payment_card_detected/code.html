@@ -1,0 +1,393 @@
+<!DOCTYPE html><html lang="en" class="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "surface-variant": "#dce2f3",
+                        "on-tertiary-fixed": "#191c1d",
+                        "outline": "#737686",
+                        "tertiary": "#525556",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#434655",
+                        "surface-dim": "#d3daea",
+                        "surface": "#f9f9ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#00714d",
+                        "surface-container": "#e7eefe",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-fixed": "#00174b",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f0f3ff",
+                        "secondary-container": "#6cf8bb",
+                        "on-secondary-fixed-variant": "#005236",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "secondary-fixed-dim": "#4edea3",
+                        "secondary": "#006c49",
+                        "surface-bright": "#f9f9ff",
+                        "surface-tint": "#0053db",
+                        "on-primary-container": "#eeefff",
+                        "outline-variant": "#c3c6d7",
+                        "tertiary-container": "#6b6d6e",
+                        "tertiary-fixed": "#e1e3e4",
+                        "primary-container": "#2563eb",
+                        "surface-container-highest": "#dce2f3",
+                        "on-background": "#151c27",
+                        "inverse-on-surface": "#ebf1ff",
+                        "surface-container-high": "#e2e8f8",
+                        "background": "#f9f9ff",
+                        "secondary-fixed": "#6ffbbe",
+                        "primary": "#004ac6",
+                        "on-secondary-fixed": "#002113",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-surface": "#151c27",
+                        "inverse-surface": "#2a313d",
+                        "on-tertiary-container": "#eff0f1",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "inverse-primary": "#b4c5ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-page": "24px",
+                        "stack-lg": "24px",
+                        "gutter": "16px",
+                        "touch-target-min": "48px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "numeral-xl": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-price": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "numeral-xl": ["24px", {"lineHeight": "32px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "display-price": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    }catch(_e){}</script><meta charset="utf-8"></head><body class="bg-surface text-on-surface font-body-md overflow-hidden h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant flex justify-between items-center w-full px-margin-page h-touch-target-min z-30">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer text-on-surface">menu</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;" data-original-icon="shopping_basket">shopping_basket</span>
+<span class="text-headline-md font-headline-md font-extrabold text-primary dark:text-inverse-primary">SuperPOS Premium</span>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-stack-md text-label-md font-label-md">
+<span class="text-on-surface-variant">Good morning, Jane</span>
+<span class="text-outline">•</span>
+<span class="text-on-surface-variant font-bold">Till 2</span>
+<div class="flex items-center gap-2 px-3 py-1 bg-secondary-container/20 rounded-full">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-secondary font-bold">Online</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:bg-surface-container-high p-2 rounded-full transition-colors">wifi</span>
+<span class="material-symbols-outlined cursor-pointer hover:bg-surface-container-high p-2 rounded-full transition-colors">battery_full</span>
+<span class="material-symbols-outlined cursor-pointer hover:bg-surface-container-high p-2 rounded-full transition-colors">sync</span>
+</div>
+<div class="flex items-center gap-3 border-l pl-4 border-outline-variant">
+<span class="material-symbols-outlined cursor-pointer relative">
+                    notifications
+                    <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</span>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-label-md shadow-sm">
+                    JM
+                </div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden relative">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-full w-64 bg-surface border-r border-outline-variant p-4 gap-stack-md shrink-0">
+<div class="flex flex-col gap-1 mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-high rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">store</span>
+</div>
+<div class="">
+<div class="text-label-md font-bold text-on-surface">Main Branch</div>
+<div class="text-[12px] text-on-surface-variant">Terminal #01</div>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<div class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container-low px-4 py-3 cursor-pointer rounded-lg transition-all active:scale-95">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</div>
+<div class="flex items-center gap-4 bg-secondary-container text-on-secondary-container rounded-lg px-4 py-3 cursor-pointer shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">point_of_sale</span>
+<span class="text-label-md font-label-md font-bold">Register</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container-low px-4 py-3 cursor-pointer rounded-lg transition-all active:scale-95">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-label-md font-label-md">Inventory</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container-low px-4 py-3 cursor-pointer rounded-lg transition-all active:scale-95">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-label-md font-label-md">Sales</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant hover:bg-surface-container-low px-4 py-3 cursor-pointer rounded-lg transition-all active:scale-95 mt-auto">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</div>
+</nav>
+<button class="mt-4 bg-primary text-on-primary font-bold py-4 rounded-xl shadow-md hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                New Transaction
+            </button>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 bg-surface-dim/30 flex overflow-hidden">
+<!-- Product Section -->
+<div class="flex-1 flex flex-col p-6 overflow-y-auto hide-scrollbar">
+<!-- Search -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant flex items-center px-4 h-14 mb-6 shadow-sm focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+<span class="material-symbols-outlined text-outline">search</span>
+<input type="text" placeholder="Search product, SKU, or scan barcode..." class="bg-transparent border-none focus:ring-0 w-full px-3 text-body-md">
+<span class="material-symbols-outlined text-primary cursor-pointer">barcode_scanner</span>
+</div>
+<!-- Frequent Items -->
+<div class="mb-8">
+<h2 class="text-label-md font-bold uppercase tracking-wider text-on-surface-variant mb-4">Frequent Items</h2>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant flex flex-col items-center gap-2 cursor-pointer hover:border-primary hover:shadow-md transition-all active:scale-95">
+<img class="w-16 h-16 object-contain" data-alt="A professional product shot of a 500ml Coca-Cola bottle against a clean studio background, captured in high-key light mode with vibrant red and sharp contrast for a modern POS catalog aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh7W4fzc3RjJkSJOm3PZTQuFuREHTW3uxFxYuSuZ9e3Dj7iErapLPm2c57phveyU6WC8E6pcoKbOny5rsYmgtLyDjHwuGfnCtE9_-J15ydlh0JOx9VsaNrMO6BPcrCZ_nx_NNu-MNlLcFgoMazLI7MPW119NtxdnWJz8zVVz73kUdhTBfDDYc1PM_eUn1x9JAUKGwo652AaNmb7p4rga85aQHMIgxm0bg62giWEnU3kBfrmNN8WY39R3xr4ElOp8USEnQBKH1gLWM">
+<span class="text-label-md font-bold text-center">Coca Cola 500ml</span>
+<span class="text-primary font-bold">KES 80</span>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant flex flex-col items-center gap-2 cursor-pointer hover:border-primary hover:shadow-md transition-all active:scale-95">
+<img class="w-16 h-16 object-contain" data-alt="A pack of fresh 400g sliced white bread shown in a minimalist transparent packaging with professional studio lighting, emphasizing freshness and retail appeal for a high-end supermarket checkout system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzoUhQ6HSo9uXZv4q6_tBq44dOyfwvX4SXxYxnWYttc4PVag-Uq13FfFmGHLUWkOOhavND6v-OVhwwu3hRCItuoNpQTrQHfu67jAbV_RPht9J6ED78U55hSn5kxtxJD0tPiKILwBYg5QFWI6lhbBHxmivJvKRfoV3JkKC9Ell2WXEl9B73_fU4MyUuTxEDUvZfOQui9l8vCHT5wWhP48nW8AIyh7z2C2bJxHUvk8dHKeH_F7QcGnBxmduHOF9bE83ADAG-r5eXjXw">
+<span class="text-label-md font-bold text-center">Bread 400g</span>
+<span class="text-primary font-bold">KES 70</span>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant flex flex-col items-center gap-2 cursor-pointer hover:border-primary hover:shadow-md transition-all active:scale-95">
+<img class="w-16 h-16 object-contain" data-alt="A carton of 500ml fresh whole milk with clean typography and blue accents on a white background, lit with soft diffused light to suggest quality and dairy freshness in a professional inventory view." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVpA8M-l_y2xzkx2fk5vqfQhc4n70spQgChiApc_vwh8YJbwfrs6GBNjjNSCuInBPtWP2EmNM3e1-vOwy3Wt-pZOPvqbGN9-tMNQlI4UT0Fx2PGs4smTKFIjyd1fPW2J6YDZ_RLvaOcxSy7lKzEi1AfAkSPclK4VG8Rqm-pzALLEUI6YcxANLKVof_gQ5SNT4wNUzbVl72UgY6KDAV81huJgQ_XBK8UeMI7Idju6NShSyg0WPLbG-CPR72T0ewLanKm3NGcsxsQ5I">
+<span class="text-label-md font-bold text-center">Milk 500ml</span>
+<span class="text-primary font-bold">KES 90</span>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-primary text-3xl">grid_view</span>
+<span class="text-label-md font-bold">View all</span>
+</div>
+</div>
+</div>
+<!-- Cart Table -->
+<div class="bg-surface-container-lowest rounded-2xl border border-outline-variant overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-low/50">
+<h2 class="text-headline-md font-headline-md">Shopping Cart <span class="text-on-surface-variant font-normal text-body-md ml-2">(6 items)</span></h2>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface text-on-surface-variant text-[11px] uppercase tracking-widest font-bold">
+<tr>
+<th class="px-6 py-3">Item</th>
+<th class="px-6 py-3 text-center">Qty</th>
+<th class="px-6 py-3 text-right">Price</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-bold">Milk 500ml</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-center bg-surface-container px-3 py-1 rounded-lg w-fit mx-auto text-label-md">2</div>
+</td>
+<td class="px-6 py-4 text-right font-numeral-xl text-label-md">KES 180.00</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-bold">Bread 400g</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-center bg-surface-container px-3 py-1 rounded-lg w-fit mx-auto text-label-md">1</div>
+</td>
+<td class="px-6 py-4 text-right font-numeral-xl text-label-md">KES 70.00</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-bold">Sugar 1kg</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-center bg-surface-container px-3 py-1 rounded-lg w-fit mx-auto text-label-md">3</div>
+</td>
+<td class="px-6 py-4 text-right font-numeral-xl text-label-md">KES 360.00</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-bold">Cooking Oil 2L</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-center bg-surface-container px-3 py-1 rounded-lg w-fit mx-auto text-label-md">1</div>
+</td>
+<td class="px-6 py-4 text-right font-numeral-xl text-label-md">KES 670.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Footer Stats -->
+<div class="mt-auto pt-6 flex items-center justify-between text-label-md text-on-surface-variant">
+<div class="flex gap-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">history</span> Last sale: 10:42 AM</span>
+<span class="flex items-center gap-1 text-secondary font-bold"><span class="material-symbols-outlined text-[18px]">check_circle</span> Receipt printed</span>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-6 py-3 border border-outline-variant rounded-xl hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">pause_circle</span> Hold sale
+                        </button>
+<button class="flex items-center gap-2 px-6 py-3 border border-outline-variant rounded-xl hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">play_circle</span> Resume held
+                        </button>
+</div>
+</div>
+</div>
+<!-- Summary Sidebar -->
+<aside class="w-[400px] bg-surface-container-lowest border-l border-outline-variant p-6 flex flex-col gap-6">
+<div class="">
+<h2 class="text-label-md font-bold uppercase tracking-wider text-on-surface-variant mb-3">Customer</h2>
+<div class="relative">
+<button class="w-full flex items-center justify-between px-4 h-14 border border-outline-variant rounded-xl hover:bg-surface-container-low transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">person</span>
+<span class="font-bold">Walk-in customer</span>
+</div>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+<div class="space-y-3 py-6 border-y border-outline-variant/30">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="">Subtotal (6 items)</span>
+<span class="font-bold">KES 1,540.00</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="">VAT (16%)</span>
+<span class="font-bold">KES 246.40</span>
+</div>
+</div>
+<div class="py-2">
+<span class="text-label-md font-bold uppercase text-on-surface-variant">Total Due</span>
+<div class="text-display-price font-display-price text-primary">KES 1,786.40</div>
+</div>
+<div>
+<h2 class="text-label-md font-bold uppercase tracking-wider text-on-surface-variant mb-3">Payment Method</h2>
+<div class="grid grid-cols-1 gap-2">
+<div class="flex items-center gap-4 p-4 border border-outline-variant rounded-xl cursor-pointer hover:border-primary transition-all">
+<span class="material-symbols-outlined text-secondary">payments</span>
+<span class="font-bold">Cash</span>
+</div>
+<div class="flex items-center gap-4 p-4 border border-outline-variant rounded-xl cursor-pointer hover:border-primary transition-all">
+<span class="material-symbols-outlined text-[#00E676]">smartphone</span>
+<span class="font-bold">M-Pesa</span>
+</div>
+<div class="flex items-center gap-4 p-4 border-2 border-primary bg-primary/5 rounded-xl cursor-pointer">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">credit_card</span>
+<span class="font-bold text-primary">Card</span>
+</div>
+<div class="flex items-center gap-4 p-4 border border-outline-variant rounded-xl cursor-pointer hover:border-primary transition-all">
+<span class="material-symbols-outlined text-outline">account_balance_wallet</span>
+<span class="font-bold">Split Payment</span>
+</div>
+</div>
+</div>
+<button class="mt-auto w-full bg-primary text-on-primary h-16 rounded-xl font-bold text-body-lg shadow-lg hover:brightness-110 active:scale-95 transition-all">
+                    Proceed to Payment
+                </button>
+</aside>
+</main>
+</div>
+<!-- Payment Modal Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-on-background/60 backdrop-blur-sm p-4">
+<div class="bg-surface w-full max-w-lg rounded-[28px] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+<!-- Modal Header -->
+<div class="px-8 pt-8 pb-4 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">credit_card</span>
+<h3 class="text-headline-md font-headline-md">Card Payment</h3>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Modal Content -->
+<div class="p-8 flex flex-col items-center text-center">
+<!-- Terminal Illustration -->
+<div class="relative w-56 h-56 mb-8 flex items-center justify-center">
+<!-- Rotating backdrop ring -->
+<div class="absolute inset-0 rounded-full border-4 border-primary/10 border-t-primary animate-spin"></div>
+<div class="absolute inset-4 rounded-full bg-surface-container-high/50 flex items-center justify-center">
+<img class="w-40 h-40 object-contain drop-shadow-xl" data-alt="A hyper-realistic 3D render of a modern black wireless card terminal with a digital display showing a processing loop. Next to it, a blue credit card with a contactless wave icon is being tapped, illuminated by soft cinematic studio lighting on a pristine minimalist surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDH1JwH4TCL2GPRHl2x46KFPL1yXppkOikKkfFWuWV8_MnQWJrw2yW5GWhVjgZA2XI_UUg8SmWI8VXluRxx5Ak7hf7aWKGeoucB6p7Nlsz69Xqn_2TR4YDNKjgZJgjmN2_KwBqc8TrBGx5lm3A1CwNVFtN1_d2i35z6Ka4ZguoW5y5RihlvJQgipNZlZ7fQdMAr2j1XV_iqsxYJjGEwAlNl3xgzuYpeeLijCIBWTdANSaIKhX7RP9_ixpvhDV72aNJLhnvfMXa9aYw">
+</div>
+</div>
+<div class="space-y-2 mb-8">
+<h4 class="text-headline-md font-headline-md font-bold">Processing Payment</h4>
+<p class="text-on-surface-variant text-body-md px-4">Please wait while we process the payment on the card terminal.</p>
+</div>
+<!-- Animated Dots -->
+<div class="flex gap-2 mb-10">
+<div class="w-3 h-3 bg-primary rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+<div class="w-3 h-3 bg-primary rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+<div class="w-3 h-3 bg-primary/40 rounded-full animate-bounce"></div>
+<div class="w-3 h-3 bg-primary/20 rounded-full"></div>
+</div>
+<!-- Status Card -->
+<div class="w-full bg-surface-container-low border border-outline-variant rounded-2xl p-6 text-left">
+<div class="flex justify-between items-center mb-6">
+<span class="text-[11px] uppercase tracking-widest font-bold text-on-surface-variant">Terminal Status</span>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_rgba(0,108,73,0.5)]"></div>
+<span class="text-secondary font-bold text-label-md">Connected</span>
+</div>
+</div>
+<div class="space-y-1">
+<span class="text-[11px] uppercase tracking-widest font-bold text-on-surface-variant">Status</span>
+<div class="text-secondary font-bold text-body-md flex items-center gap-2"><span class="material-symbols-outlined text-[20px]">check_circle</span>Card detected</div>
+<p class="text-[13px] text-on-surface-variant mt-1 italic">Do not remove or tap card again.</p>
+</div>
+</div>
+<button class="mt-8 w-full border-2 border-primary text-primary font-bold h-14 rounded-xl hover:bg-primary/5 active:scale-95 transition-all">
+                    Cancel Payment
+                </button>
+</div>
+</div>
+</div>
+<!-- JavaScript for micro-interactions -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Simple animation loop for the "Card detected" state if desired
+            const statusText = document.querySelector('.text-primary.font-bold.text-body-md');
+            if (statusText) {
+                let dots = 0;
+                setInterval(() => {
+                    dots = (dots + 1) % 4;
+                    const base = "Authorizing payment";
+                    statusText.innerHTML = `<span class="material-symbols-outlined text-[20px] animate-pulse">lock</span> ${base}${'.'.repeat(dots)}`;
+                }, 500);
+            }
+        });
+    </script>
+
+</body></html>

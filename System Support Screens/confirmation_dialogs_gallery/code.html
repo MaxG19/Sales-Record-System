@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BMS Retail - Confirmation Dialogs Gallery</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Hanken Grotesk -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#673d00",
+                        "inverse-surface": "#31312b",
+                        "outline-variant": "#c2c8c2",
+                        "primary-container": "#344e41",
+                        "tertiary-fixed": "#dae8be",
+                        "on-tertiary-container": "#afbd96",
+                        "background": "#fcf9f1",
+                        "secondary-fixed": "#ffdcbb",
+                        "outline": "#727974",
+                        "on-primary-fixed-variant": "#324c3f",
+                        "surface-container-highest": "#e5e2da",
+                        "primary": "#1e372b",
+                        "on-tertiary-fixed-variant": "#3f4b2c",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fcf9f1",
+                        "on-secondary-fixed": "#2b1700",
+                        "tertiary-fixed-dim": "#becca3",
+                        "surface": "#fcf9f1",
+                        "surface-tint": "#4a6456",
+                        "primary-fixed": "#ccead8",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#ebe8e0",
+                        "surface-dim": "#dcdad2",
+                        "on-primary-fixed": "#062015",
+                        "surface-container": "#f1eee6",
+                        "on-secondary-container": "#784a0d",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#faba75",
+                        "tertiary-container": "#414d2e",
+                        "on-surface-variant": "#424844",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f6f3eb",
+                        "inverse-primary": "#b0cdbc",
+                        "on-primary-container": "#a1beae",
+                        "surface-variant": "#e5e2da",
+                        "tertiary": "#2b3619",
+                        "secondary": "#835418",
+                        "secondary-container": "#fdbd77",
+                        "on-background": "#1c1c17",
+                        "primary-fixed-dim": "#b0cdbc",
+                        "inverse-on-surface": "#f3f1e9",
+                        "on-surface": "#1c1c17",
+                        "on-tertiary-fixed": "#141f05",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "margin-desktop": "32px",
+                        "xs": "4px",
+                        "xl": "40px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "display-lg-mobile": ["Hanken Grotesk"],
+                        "title-lg": ["Hanken Grotesk"],
+                        "overline-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "overline-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .dialog-backdrop {
+            backdrop-filter: blur(8px);
+            background-color: rgba(28, 28, 23, 0.4);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex">
+<!-- Sidebar Navigation Shell -->
+<aside class="hidden md:flex flex-col h-screen w-64 docked left-0 bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant dark:border-outline py-lg px-md space-y-sm fixed z-30">
+<div class="mb-xl px-sm">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">BMS Retail</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Main Branch</p>
+</div>
+<nav class="flex-1 space-y-xs">
+<div class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container rounded-lg font-bold cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</div>
+<div class="flex items-center gap-md px-md py-sm text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Inventory</span>
+</div>
+<div class="flex items-center gap-md px-md py-sm text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined">payments</span>
+<span>Sales</span>
+</div>
+<div class="flex items-center gap-md px-md py-sm text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined">local_shipping</span>
+<span>Suppliers</span>
+</div>
+<div class="flex items-center gap-md px-md py-sm text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined">analytics</span>
+<span>Reports</span>
+</div>
+</nav>
+<div class="pt-lg border-t border-outline-variant mt-auto space-y-xs">
+<div class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">help</span>
+<span>Support</span>
+</div>
+<div class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">check_circle</span>
+<span>System Status</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 relative min-h-screen overflow-hidden">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-full px-margin-desktop py-md max-w-full z-20 sticky top-0 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-lg flex-1">
+<div class="bg-surface-container-high rounded-full px-md py-sm flex items-center gap-sm max-w-md w-full">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-full" placeholder="Search system components..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm hover:bg-surface-container-high rounded-full transition-colors relative">
+<span class="material-symbols-outlined text-primary">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-secondary rounded-full"></span>
+</button>
+<button class="p-sm hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-primary">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center text-white ml-sm overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a Kenyan male store manager in a clean white business shirt, smiling confidently against a warm, softly blurred retail shop background. High-quality lighting emphasizes clear skin and professional demeanor. The style is warm, modern, and trustworthy, perfectly fitting a premium SME retail application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGvYJwLedxIVLyjSGKiono-qPKJh800uEEgFdQr45S81VNcSvpmT4TgVjHSFw0fCMz3P2O0nQa2simeJ7sRk022LumKF3UU3jsD8WyvCUAHOatEFRYXUi0LDp-i1fcqqAKxvnSYBc-8TKRiHH7p_LmHc65yJK4_jjmvk2qkBrygQ6pavgkLfSdGb1ZTedwMG2HaocsXa4HZxMYZ0QQpyuE59tsFxB5_-C1-Dw4zwAakPLlbFrROQtbwjBp6UQwHcc588-NftgdOet1"/>
+</div>
+</div>
+</header>
+<!-- Background Content (Simulating a real dashboard) -->
+<div class="p-margin-desktop space-y-xl opacity-20 pointer-events-none select-none">
+<section>
+<h2 class="font-headline-md text-headline-md text-primary mb-lg">Branch Overview</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl">
+<p class="font-overline-sm text-overline-sm text-on-surface-variant uppercase mb-xs">Daily Revenue</p>
+<p class="font-display-lg text-display-lg text-primary">KSh 42,500</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl">
+<p class="font-overline-sm text-overline-sm text-on-surface-variant uppercase mb-xs">Active Orders</p>
+<p class="font-display-lg text-display-lg text-primary">18</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl">
+<p class="font-overline-sm text-overline-sm text-on-surface-variant uppercase mb-xs">Stock Alerts</p>
+<p class="font-display-lg text-display-lg text-secondary">3 Low</p>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="px-lg py-md border-b border-outline-variant bg-surface-container-low">
+<h3 class="font-title-lg text-title-lg">Recent Transactions</h3>
+</div>
+<div class="divide-y divide-outline-variant">
+<div class="p-md flex justify-between items-center bg-white">
+<div>
+<p class="font-body-lg text-body-lg font-bold">INV-98234</p>
+<p class="text-on-surface-variant text-label-md">2 minutes ago</p>
+</div>
+<span class="px-sm py-xs bg-tertiary-fixed text-on-tertiary-fixed rounded-full text-overline-sm">COMPLETED</span>
+</div>
+<div class="p-md flex justify-between items-center bg-surface-container-lowest">
+<div>
+<p class="font-body-lg text-body-lg font-bold">INV-98235</p>
+<p class="text-on-surface-variant text-label-md">15 minutes ago</p>
+</div>
+<span class="px-sm py-xs bg-secondary-fixed text-on-secondary-fixed rounded-full text-overline-sm">PENDING</span>
+</div>
+</div>
+</section>
+</div>
+<!-- DIALOGS GALLERY OVERLAY (Active UI Layer) -->
+<div class="absolute inset-0 dialog-backdrop z-50 flex flex-col items-center justify-center p-md overflow-y-auto overflow-x-hidden space-y-xl py-24">
+<div class="text-center mb-xl max-w-2xl px-md">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-sm">Dialog System Gallery</h2>
+<p class="font-body-lg text-body-lg text-white/80">Demonstrating consistent modal patterns for destructive, neutral, warning, and high-security actions within the BMS Retail ecosystem.</p>
+</div>
+<!-- 1. Delete Product (Destructive) -->
+<div class="w-full max-w-md bg-white rounded-xl p-lg shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-300">
+<div class="flex items-center gap-md mb-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">delete_forever</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface">Delete Product</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">
+                    Are you sure you want to permanently delete this product? This action cannot be undone.
+                </p>
+<div class="flex gap-md justify-end">
+<button class="px-lg py-md rounded-lg font-label-md text-label-md text-on-surface-variant bg-surface-container-high hover:bg-surface-variant transition-colors active:scale-95">
+                        Cancel
+                    </button>
+<button class="px-lg py-md rounded-lg font-label-md text-label-md text-white bg-secondary hover:brightness-110 shadow-sm transition-all active:scale-95">
+                        Delete
+                    </button>
+</div>
+</div>
+<!-- 2. Logout (Neutral) -->
+<div class="w-full max-w-md bg-white rounded-xl p-lg shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-500">
+<div class="flex items-center gap-md mb-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">logout</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface">Logout</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">
+                    Are you sure you want to end your session?
+                </p>
+<div class="flex gap-md justify-end">
+<button class="px-lg py-md rounded-lg font-label-md text-label-md text-on-surface-variant border border-outline-variant hover:bg-surface-container-low transition-colors active:scale-95">
+                        Stay Logged In
+                    </button>
+<button class="px-lg py-md rounded-lg font-label-md text-label-md text-white bg-primary hover:bg-primary-container transition-all active:scale-95">
+                        Logout
+                    </button>
+</div>
+</div>
+<!-- 3. Discard Changes (Warning) -->
+<div class="w-full max-w-md bg-white rounded-xl p-lg shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-700">
+<div class="flex items-center gap-md mb-md">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface">Discard Changes</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">
+                    You have unsaved changes. Leaving now will discard them.
+                </p>
+<div class="flex gap-md justify-end">
+<button class="px-lg py-md rounded-lg font-label-md text-label-md text-primary font-bold hover:bg-primary-fixed transition-colors active:scale-95">
+                        Continue Editing
+                    </button>
+<button class="px-lg py-md rounded-lg font-label-md text-label-md text-on-error bg-error hover:bg-error/90 transition-all active:scale-95">
+                        Discard Changes
+                    </button>
+</div>
+</div>
+<!-- 4. Void Sale (Manager Authorization) -->
+<div class="w-full max-w-md bg-white rounded-xl p-lg shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-1000">
+<div class="flex items-center gap-md mb-md">
+<div class="w-10 h-10 rounded-full bg-outline-variant flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface">Void Sale</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">
+                    Voiding a completed sale requires manager approval. Enter manager credentials to continue.
+                </p>
+<div class="mb-lg space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant">Manager PIN/password</label>
+<div class="relative">
+<input class="w-full h-12 rounded-lg border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-lg px-md tracking-widest" placeholder="••••" type="password"/>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-outline cursor-pointer">visibility</span>
+</div>
+</div>
+<div class="flex gap-md justify-end">
+<button class="px-lg py-md rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95">
+                        Cancel
+                    </button>
+<button class="px-lg py-md rounded-lg font-label-md text-label-md text-white bg-primary hover:bg-primary-container shadow-md transition-all active:scale-95">
+                        Authorize &amp; Void
+                    </button>
+</div>
+</div>
+</div>
+<!-- Footer Shell (Beneath Backdrop) -->
+<footer class="flex justify-between items-center w-full px-margin-desktop py-md bg-surface dark:bg-surface-dim border-t border-outline-variant dark:border-outline fixed bottom-0 md:left-64 md:w-[calc(100%-16rem)] opacity-30">
+<div class="font-label-md text-label-md font-bold text-on-surface">BMS Retail</div>
+<div class="font-overline-sm text-overline-sm text-secondary dark:text-secondary-fixed">
+                © 2024 BMS Kenya Retail. All rights reserved.
+            </div>
+<div class="flex gap-md">
+<span class="font-overline-sm text-overline-sm text-on-surface-variant">System Status</span>
+<span class="font-overline-sm text-overline-sm text-on-surface-variant">Legal</span>
+<span class="font-overline-sm text-overline-sm text-on-surface-variant">Privacy Policy</span>
+</div>
+</footer>
+</main>
+<!-- Micro-interaction script -->
+<script>
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Simple ripple-like effect placeholder
+                btn.classList.add('opacity-80');
+                setTimeout(() => btn.classList.remove('opacity-80'), 150);
+            });
+        });
+
+        // Add visibility toggle functionality for the PIN field
+        const visibilityBtn = document.querySelector('.material-symbols-outlined.absolute');
+        const pinInput = document.querySelector('input[type="password"]');
+        if(visibilityBtn && pinInput) {
+            visibilityBtn.addEventListener('click', () => {
+                const isPassword = pinInput.getAttribute('type') === 'password';
+                pinInput.setAttribute('type', isPassword ? 'text' : 'password');
+                visibilityBtn.textContent = isPassword ? 'visibility_off' : 'visibility';
+            });
+        }
+    </script>
+</body></html>

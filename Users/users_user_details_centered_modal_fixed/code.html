@@ -1,0 +1,383 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BMS Access - User Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff8f3;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d7e5bb;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#faf2ec",
+                        "on-secondary-fixed": "#141f05",
+                        "surface-tint": "#4a6456",
+                        "tertiary-container": "#6a3f01",
+                        "primary-fixed-dim": "#b0cdbc",
+                        "inverse-surface": "#33302c",
+                        "primary-container": "#344e41",
+                        "tertiary-fixed": "#ffdcbb",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#b0cdbc",
+                        "on-surface-variant": "#424844",
+                        "primary-fixed": "#ccead8",
+                        "outline": "#727974",
+                        "on-secondary-container": "#5a6745",
+                        "tertiary-fixed-dim": "#faba75",
+                        "surface": "#fff8f3",
+                        "on-tertiary-container": "#eaac68",
+                        "surface-variant": "#e8e1db",
+                        "background": "#fff8f3",
+                        "on-primary-fixed-variant": "#324c3f",
+                        "surface-container": "#f4ede6",
+                        "secondary-fixed-dim": "#becca3",
+                        "on-primary-fixed": "#062015",
+                        "tertiary": "#4b2b00",
+                        "on-background": "#1e1b17",
+                        "outline-variant": "#c2c8c2",
+                        "primary": "#1e372b",
+                        "on-surface": "#1e1b17",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f7efe9",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "on-primary-container": "#a1beae",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#d7e5bb",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#eee7e1",
+                        "secondary": "#566342",
+                        "surface-dim": "#e0d9d3",
+                        "surface-bright": "#fff8f3",
+                        "on-tertiary-fixed": "#2b1700",
+                        "secondary-fixed": "#dae8be",
+                        "on-secondary-fixed-variant": "#3f4b2c",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e8e1db",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "base": "8px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "margin-desktop": "32px",
+                        "3xl": "64px",
+                        "gutter": "24px",
+                        "md": "16px",
+                        "2xl": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Sidebar (As per Shared Components JSON) -->
+<aside class="hidden md:flex flex-col h-full py-lg border-r border-outline-variant w-60 h-screen fixed left-0 top-0 bg-surface-container-low transition-all duration-200 ease-in-out">
+<div class="px-md mb-xl">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary">inventory_2</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-black text-primary">BMS Pro</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Enterprise Suite</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-xs px-xs">
+<div class="px-md py-sm flex items-center gap-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all cursor-pointer rounded-lg">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</div>
+<div class="px-md py-sm flex items-center gap-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all cursor-pointer rounded-lg">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Products</span>
+</div>
+<div class="px-md py-sm flex items-center gap-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all cursor-pointer rounded-lg">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Sales</span>
+</div>
+<div class="px-md py-sm flex items-center gap-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all cursor-pointer rounded-lg">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</div>
+<div class="px-md py-sm flex items-center gap-md border-l-4 border-primary text-primary font-bold bg-surface-container-high transition-all cursor-pointer rounded-r-lg">
+<span class="material-symbols-outlined">manage_accounts</span>
+<span class="font-label-md text-label-md">Users</span>
+</div>
+</nav>
+<div class="px-md mt-auto pt-lg space-y-xs border-t border-outline-variant">
+<div class="px-md py-sm flex items-center gap-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all cursor-pointer rounded-lg">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Help</span>
+</div>
+<div class="px-md py-sm flex items-center gap-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all cursor-pointer rounded-lg text-error">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area (Background for Drawer) -->
+<main class="md:ml-60 min-h-screen">
+<!-- Top Bar (As per Shared Components JSON) -->
+<header class="w-full h-16 border-b border-outline-variant bg-surface flex justify-between items-center px-lg">
+<div class="flex items-center gap-md">
+<div class="bg-surface-container-high px-md py-base rounded-full flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm font-body-sm w-64" placeholder="Search users..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">settings</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a corporate manager in a clean, modern studio setting with soft lighting and a neutral beige background that reflects a methodical and architectural design aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMEEy8GBHJYW03P-RYiorpc9rWNJisuHo43XR6JusjsHYe9L7c6yxdTWys5ieNbiMuaG94GWUpQyyJXB_vwsDYlnCY7YG-rLsijCKrmQqNwRayhOQlDMVQZxyIdGR4idtRN4ro8-bF21HYyiwt4g1YJ236c3KmkW5lWDnsswS3POZGiRKRcakm2IKrSSOM0ieliX4WQ_ZCoKyhj34VwgjsUdVfK1SojD2U0FNy92E3cZk6fDST6Zp63g">
+</div>
+</div>
+</header>
+<!-- Mock User Table Content -->
+<div class="p-xl">
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Users</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage organization access and permissions</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Full Name</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Role</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Status</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Last Login</th>
+<th class="px-lg py-md"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container transition-colors cursor-pointer" onclick="toggleDrawer()">
+<td class="px-lg py-md flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center font-bold text-on-secondary-container">JS</div>
+<div>
+<p class="font-body-md text-body-md font-semibold">Jonathan Smith</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">j.smith@bmsaccess.com</p>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs bg-primary-fixed text-on-primary-fixed-variant rounded-md text-label-sm font-label-sm">Branch Manager</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-xs text-green-700">
+<span class="w-2 h-2 rounded-full bg-current"></span>
+<span class="text-label-sm font-label-sm">Active</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-sm text-body-sm text-on-surface-variant">2 hours ago</td>
+<td class="px-lg py-md text-right">
+<span class="material-symbols-outlined text-outline cursor-pointer">chevron_right</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- Overlay Back-drop -->
+<div class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 transition-opacity duration-300 opacity-100" id="drawerOverlay" onclick="toggleDrawer()"></div>
+<!-- User Details Modal (Drawer) -->
+<div class="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:w-[600px] max-h-[90vh] bg-surface-container-lowest z-50 transform transition-all duration-300 ease-in-out shadow-2xl flex flex-col border border-outline-variant rounded-xl overflow-hidden" id="userDrawer">
+<!-- Drawer Header -->
+<div class="px-lg py-lg border-b border-outline-variant flex items-center justify-between bg-surface-container-low"><div class="flex items-center gap-md"><h3 class="font-headline-sm text-headline-sm text-primary">User Details</h3><span class="px-sm py-xs bg-secondary-container text-on-secondary-container rounded-md text-label-sm font-label-sm">ID: BMS-4092</span></div><button class="p-base rounded-full hover:bg-surface-container-high transition-all active:scale-90" onclick="toggleDrawer()"><span class="material-symbols-outlined text-on-surface-variant">close</span></button></div>
+<!-- Drawer Content Scrollable -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-lg space-y-2xl">
+<!-- Identity Section -->
+<section class="space-y-lg">
+<div class="flex items-start gap-xl">
+<div class="relative">
+<div class="w-24 h-24 rounded-2xl bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-variant shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a professional male employee with a warm, confident expression. The lighting is soft and architectural, with subtle green and beige tones reflecting the BMS brand identity and modern corporate minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDai17Z0gsBa6gZsZzMThJOd0dL70yws3kddr7t737jaLSc-971DxH33IF1HKh_XUG_4p-rQ5mCKHH2nDfMyxAe0m2AzvvCM60zHVBOqAsWXc65cy1xhtIC5YclmnUPAo6W_zvaiegxCJ6qrZ-h-n2XezoVpPhsJKfIVeM3FBbzTPAKd3Af3qhY4XYPhjZgw74sLWFRy9n7-NtYD-GEl5dtTZGLfA0sM0IKMLXM6JTnj08tpABzwG0boA">
+</div>
+<div class="absolute -bottom-1 -right-1 bg-green-500 border-4 border-surface-container-lowest w-6 h-6 rounded-full shadow-sm" title="Online"></div>
+</div>
+<div class="flex-1 pt-base">
+<h4 class="font-headline-md text-headline-md text-on-surface">Jonathan Smith</h4>
+<div class="flex items-center gap-sm mt-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">verified</span>
+<p class="font-body-md text-body-md text-on-surface-variant">Verified Employee</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-lg bg-surface-container-low/50 p-lg rounded-xl border border-outline-variant/30"><div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-xs">Email</p>
+<p class="font-body-md text-body-md font-semibold text-primary">j.smith@bmsaccess.com</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-xs">Phone</p>
+<p class="font-body-md text-body-md font-semibold text-on-surface">+1 (555) 012-3456</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-xs">Role</p>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Branch Manager</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-xs">Assigned Branch</p>
+<p class="font-body-md text-body-md font-semibold text-on-surface">North Sector Office</p>
+</div></div>
+</section>
+<!-- Access Summary Section -->
+<section class="space-y-md">
+<h5 class="font-label-md text-label-md font-bold text-primary uppercase tracking-widest border-b border-outline-variant pb-xs">Access Summary</h5>
+<div class="grid grid-cols-1 gap-base"><div class="flex items-center justify-between p-md bg-secondary-container/20 rounded-lg border border-secondary-container/30">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-secondary-container text-[20px]">point_of_sale</span>
+<span class="font-body-md text-body-md font-medium text-on-secondary-container">Can access POS</span>
+</div>
+<span class="material-symbols-outlined text-on-secondary-container text-[18px]">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-md bg-secondary-container/20 rounded-lg border border-secondary-container/30">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-secondary-container text-[20px]">inventory</span>
+<span class="font-body-md text-body-md font-medium text-on-secondary-container">Can manage Inventory</span>
+</div>
+<span class="material-symbols-outlined text-on-secondary-container text-[18px]">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-md bg-surface-container-high rounded-lg border border-outline-variant/30 opacity-60">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">group_off</span>
+<span class="font-body-md text-body-md font-medium text-on-surface-variant">Cannot manage Users</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">cancel</span>
+</div></div>
+</section>
+<!-- Recent Activity Section -->
+<section class="space-y-md">
+<h5 class="font-label-md text-label-md font-bold text-primary uppercase tracking-widest border-b border-outline-variant pb-xs">Recent Activity</h5>
+<div class="space-y-lg relative before:content-[''] before:absolute before:left-[11px] before:top-4 before:bottom-4 before:w-[2px] before:bg-outline-variant">
+<div class="relative pl-xl">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-surface-container-high border-2 border-primary flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div>
+<p class="font-body-md text-body-md font-medium">Logged in today</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">10:24 AM via Chrome Desktop (OS X)</p>
+</div>
+</div>
+<div class="relative pl-xl">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-surface-container-high border-2 border-outline flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+</div>
+<div>
+<p class="font-body-md text-body-md font-medium">Created Purchase Order #PO-9921</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Yesterday, 04:45 PM</p>
+</div>
+</div>
+<div class="relative pl-xl">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-surface-container-high border-2 border-outline flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+</div>
+<div>
+<p class="font-body-md text-body-md font-medium">Updated Inventory Stock (Widget A)</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Oct 24, 09:12 AM</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Drawer Footer -->
+<div class="p-lg border-t border-outline-variant bg-surface-container-low flex flex-col gap-md"><button class="w-full bg-primary text-on-primary h-12 rounded-xl font-label-md text-label-md flex items-center justify-center gap-sm hover:brightness-110 transition-all active:scale-95 shadow-sm">
+<span class="material-symbols-outlined">edit</span>
+Edit User Details
+</button>
+<div class="grid grid-cols-2 gap-md">
+<button class="border border-outline text-on-surface h-10 rounded-xl font-label-md text-label-md flex items-center justify-center gap-sm hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">lock_reset</span>
+Reset Password
+</button>
+<button class="bg-error-container/10 border border-error text-error h-10 rounded-xl font-label-md text-label-md flex items-center justify-center gap-sm hover:bg-error-container/20 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">person_off</span>
+Deactivate User
+</button>
+</div></div>
+</div>
+<script>
+        function toggleDrawer() {
+            const drawer = document.getElementById('userDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            
+            if (drawer.classList.contains('hidden')) {
+                drawer.classList.remove('hidden', 'opacity-0');
+                overlay.classList.remove('hidden');
+                setTimeout(() => {
+                    overlay.classList.add('opacity-100');
+                    drawer.classList.add('opacity-100');
+                }, 10);
+            } else {
+                drawer.classList.add('opacity-0');
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => {
+                    drawer.classList.add('hidden');
+                    overlay.classList.add('hidden');
+                }, 300);
+            }
+        }
+    </script>
+</body></html>

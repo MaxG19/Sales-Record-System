@@ -1,0 +1,345 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Digital Sanctuary BMS - Secure Account</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-background": "#1e1b17",
+            "secondary-fixed-dim": "#becca3",
+            "on-tertiary": "#ffffff",
+            "surface-dim": "#e0d9d3",
+            "on-secondary-fixed": "#141f05",
+            "surface-container": "#f4ede6",
+            "tertiary-container": "#6a3f01",
+            "tertiary": "#4b2b00",
+            "surface-tint": "#4a6456",
+            "outline": "#727974",
+            "on-tertiary-fixed": "#2b1700",
+            "on-secondary-fixed-variant": "#3f4b2c",
+            "status-success": "#344E41",
+            "on-tertiary-fixed-variant": "#673d00",
+            "primary": "#1e372b",
+            "on-surface": "#1e1b17",
+            "secondary-fixed": "#dae8be",
+            "border-subtle": "#E5E2DA",
+            "inverse-on-surface": "#f7efe9",
+            "surface-container-low": "#faf2ec",
+            "on-primary": "#ffffff",
+            "secondary": "#566342",
+            "on-error": "#ffffff",
+            "surface": "#FFFFFF",
+            "inverse-primary": "#b0cdbc",
+            "tertiary-fixed": "#ffdcbb",
+            "surface-container-highest": "#e8e1db",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#5a6745",
+            "secondary-container": "#d7e5bb",
+            "on-error-container": "#93000a",
+            "surface-variant": "#e8e1db",
+            "surface-bright": "#fff8f3",
+            "primary-fixed": "#ccead8",
+            "on-surface-variant": "#424844",
+            "surface-bright": "#fff8f3",
+            "outline-variant": "#c2c8c2",
+            "error-container": "#ffdad6",
+            "primary-fixed-dim": "#b0cdbc",
+            "primary-container": "#344e41",
+            "on-primary-container": "#a1beae",
+            "error": "#ba1a1a",
+            "inverse-surface": "#33302c",
+            "status-warning": "#DDA15E",
+            "on-primary-fixed-variant": "#324c3f",
+            "on-tertiary-container": "#eaac68",
+            "on-primary-fixed": "#062015",
+            "background": "#F7F4EC",
+            "tertiary-fixed-dim": "#faba75"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "xl": "32px",
+            "base": "8px",
+            "sm": "8px",
+            "lg": "24px",
+            "gutter": "24px",
+            "md": "16px",
+            "margin-desktop": "48px",
+            "margin-mobile": "16px",
+            "xs": "4px"
+          },
+          "fontFamily": {
+            "label-md": ["Inter"],
+            "headline-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "body-lg": ["Inter"],
+            "headline-xl": ["Inter"],
+            "body-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-sm": ["Inter"]
+          },
+          "fontSize": {
+            "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #F7F4EC;
+      font-family: 'Inter', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .strength-bar {
+      height: 4px;
+      transition: width 0.3s ease, background-color 0.3s ease;
+    }
+    .pin-input::-webkit-outer-spin-button,
+    .pin-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .shadow-soft {
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex overflow-hidden">
+<!-- Left Side: Hero Image Section -->
+
+<!-- Right Side: Authentication Canvas -->
+<main class="w-full flex items-center justify-center bg-background p-margin-mobile md:p-margin-desktop overflow-y-auto">
+<div class="w-full max-w-md fade-in">
+<!-- Header Section -->
+<header class="mb-xl text-center lg:text-left">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs tracking-tight">Secure Your Account</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Create a password and a security PIN to complete your account setup.</p>
+</header>
+<!-- Security Form Card -->
+<div class="bg-surface border border-border-subtle rounded-xl p-lg shadow-soft">
+<form class="space-y-xl" id="setupForm">
+<!-- Password Section -->
+<section class="space-y-md">
+<h2 class="font-label-md text-label-md text-secondary tracking-wider uppercase border-b border-border-subtle pb-xs">Password Strength</h2>
+<div class="space-y-lg">
+<div class="relative">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs" for="new-password">New Password</label>
+<div class="relative">
+<input class="w-full h-12 px-md pr-12 bg-surface border border-border-subtle rounded-lg text-body-md focus:ring-2 focus:ring-secondary-fixed focus:border-secondary-fixed transition-all outline-none" id="new-password" placeholder="••••••••" type="password">
+<button class="absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors toggle-pass" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<div class="relative">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs" for="confirm-password">Confirm Password</label>
+<div class="relative">
+<input class="w-full h-12 px-md pr-12 bg-surface border border-border-subtle rounded-lg text-body-md focus:ring-2 focus:ring-secondary-fixed focus:border-secondary-fixed transition-all outline-none" id="confirm-password" placeholder="••••••••" type="password">
+<button class="absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors toggle-pass" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Strength Indicator -->
+<div class="space-y-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Strength: <span class="text-error font-bold" id="strength-label">Weak</span></span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1">
+<div class="strength-bar bg-error rounded-full" id="strength-meter" style="width: 25%;"></div>
+</div>
+</div>
+<!-- Checklist -->
+<ul class="grid grid-cols-2 gap-y-sm">
+<li class="flex items-center gap-xs font-body-sm text-body-sm text-on-surface-variant" id="check-length">
+<span class="material-symbols-outlined text-[16px]">circle</span> 8+ characters
+                </li>
+<li class="flex items-center gap-xs font-body-sm text-body-sm text-on-surface-variant" id="check-upper">
+<span class="material-symbols-outlined text-[16px]">circle</span> Uppercase
+                </li>
+<li class="flex items-center gap-xs font-body-sm text-body-sm text-on-surface-variant" id="check-lower">
+<span class="material-symbols-outlined text-[16px]">circle</span> Lowercase
+                </li>
+<li class="flex items-center gap-xs font-body-sm text-body-sm text-on-surface-variant" id="check-number">
+<span class="material-symbols-outlined text-[16px]">circle</span> Number
+                </li>
+<li class="flex items-center gap-xs font-body-sm text-body-sm text-on-surface-variant col-span-2" id="check-special">
+<span class="material-symbols-outlined text-[16px]">circle</span> Special character (@,$,!,%,*,?,&amp;)
+                </li>
+</ul>
+</div>
+</section>
+<!-- Security PIN Section -->
+<section class="space-y-md pt-lg">
+<h2 class="font-label-md text-label-md text-secondary tracking-wider uppercase border-b border-border-subtle pb-xs">Security PIN</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your security PIN is used for quick authentication on mobile and transaction verification.</p>
+<div class="flex justify-center gap-md py-sm">
+<input class="pin-box w-12 h-16 text-center text-headline-md font-bold bg-surface border-2 border-border-subtle rounded-lg focus:border-secondary focus:ring-0 transition-all pin-input" data-index="1" maxlength="1" type="password">
+<input class="pin-box w-12 h-16 text-center text-headline-md font-bold bg-surface border-2 border-border-subtle rounded-lg focus:border-secondary focus:ring-0 transition-all pin-input" data-index="2" maxlength="1" type="password">
+<input class="pin-box w-12 h-16 text-center text-headline-md font-bold bg-surface border-2 border-border-subtle rounded-lg focus:border-secondary focus:ring-0 transition-all pin-input" data-index="3" maxlength="1" type="password">
+<input class="pin-box w-12 h-16 text-center text-headline-md font-bold bg-surface border-2 border-border-subtle rounded-lg focus:border-secondary focus:ring-0 transition-all pin-input" data-index="4" maxlength="1" type="password">
+</div>
+</section>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-sm pt-xl">
+<button class="w-full py-md bg-primary text-white font-label-md text-label-md rounded-lg opacity-50 cursor-not-allowed hover:bg-on-primary-fixed transition-all duration-200" disabled="" id="activateBtn" type="submit">
+              Activate Account
+            </button>
+<button class="w-full py-md border border-primary text-primary font-label-md text-label-md rounded-lg hover:bg-primary-fixed-dim transition-all duration-200" type="button">
+              Back
+            </button>
+</div>
+</form>
+</div>
+<!-- Support Link -->
+<footer class="mt-lg text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Having trouble? <a class="text-primary font-bold hover:underline" href="#">Contact Support</a>
+</p>
+</footer>
+</div>
+</main>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const passwordInput = document.getElementById('new-password');
+      const confirmInput = document.getElementById('confirm-password');
+      const meter = document.getElementById('strength-meter');
+      const label = document.getElementById('strength-label');
+      const activateBtn = document.getElementById('activateBtn');
+      const pinBoxes = document.querySelectorAll('.pin-box');
+      
+      const checks = {
+        length: document.getElementById('check-length'),
+        upper: document.getElementById('check-upper'),
+        lower: document.getElementById('check-lower'),
+        number: document.getElementById('check-number'),
+        special: document.getElementById('check-special')
+      };
+
+      const togglePassBtns = document.querySelectorAll('.toggle-pass');
+      togglePassBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const input = e.currentTarget.previousElementSibling;
+          const icon = e.currentTarget.querySelector('span');
+          if (input.type === 'password') {
+            input.type = 'text';
+            icon.innerText = 'visibility_off';
+          } else {
+            input.type = 'password';
+            icon.innerText = 'visibility';
+          }
+        });
+      });
+
+      function updateCheck(el, condition) {
+        const icon = el.querySelector('span');
+        if (condition) {
+          el.classList.replace('text-on-surface-variant', 'text-status-success');
+          icon.innerText = 'check_circle';
+          icon.style.fontVariationSettings = "'FILL' 1";
+        } else {
+          el.classList.replace('text-status-success', 'text-on-surface-variant');
+          icon.innerText = 'circle';
+          icon.style.fontVariationSettings = "'FILL' 0";
+        }
+      }
+
+      passwordInput.addEventListener('input', (e) => {
+        const val = e.target.value;
+        let score = 0;
+
+        const hasLength = val.length >= 8;
+        const hasUpper = /[A-Z]/.test(val);
+        const hasLower = /[a-z]/.test(val);
+        const hasNumber = /[0-9]/.test(val);
+        const hasSpecial = /[@$!%*?&]/.test(val);
+
+        updateCheck(checks.length, hasLength);
+        updateCheck(checks.upper, hasUpper);
+        updateCheck(checks.lower, hasLower);
+        updateCheck(checks.number, hasNumber);
+        updateCheck(checks.special, hasSpecial);
+
+        if (hasLength) score++;
+        if (hasUpper && hasLower) score++;
+        if (hasNumber) score++;
+        if (hasSpecial) score++;
+
+        const levels = [
+          { label: 'Weak', color: 'bg-error', text: 'text-error', width: '25%' },
+          { label: 'Fair', color: 'bg-status-warning', text: 'text-status-warning', width: '50%' },
+          { label: 'Good', color: 'bg-secondary', text: 'text-secondary', width: '75%' },
+          { label: 'Strong', color: 'bg-status-success', text: 'text-status-success', width: '100%' }
+        ];
+
+        const state = levels[Math.max(0, score - 1)];
+        meter.className = `strength-bar rounded-full ${state.color}`;
+        meter.style.width = state.width;
+        label.innerText = state.label;
+        label.className = `font-bold ${state.text}`;
+
+        validateAll();
+      });
+
+      pinBoxes.forEach((box, i) => {
+        box.addEventListener('input', (e) => {
+          if (e.target.value && i < 3) pinBoxes[i + 1].focus();
+          validateAll();
+        });
+        box.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !e.target.value && i > 0) pinBoxes[i - 1].focus();
+        });
+      });
+
+      confirmInput.addEventListener('input', validateAll);
+
+      function validateAll() {
+        const passMatch = passwordInput.value === confirmInput.value && passwordInput.value !== '';
+        const passStrong = passwordInput.value.length >= 8;
+        const pinFilled = Array.from(pinBoxes).every(b => b.value !== '');
+
+        if (passMatch && passStrong && pinFilled) {
+          activateBtn.disabled = false;
+          activateBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        } else {
+          activateBtn.disabled = true;
+          activateBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+      }
+    });
+  </script>
+
+
+</body></html>

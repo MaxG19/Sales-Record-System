@@ -1,0 +1,264 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Ethos BMS - Create New Purchase Order</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "#344e41",
+                      "surface-variant": "#e8e1db",
+                      "surface-tint": "#4a6456",
+                      "background": "#fff8f3",
+                      "surface-dim": "#e0d9d3",
+                      "primary-fixed-dim": "#b0cdbc",
+                      "outline-variant": "#c2c8c2",
+                      "on-primary-container": "#a1beae",
+                      "on-surface": "#1e1b17",
+                      "on-secondary-fixed-variant": "#3f4b2c",
+                      "on-secondary": "#ffffff",
+                      "primary": "#1e372b",
+                      "on-primary-fixed-variant": "#324c3f",
+                      "inverse-on-surface": "#f7efe9",
+                      "secondary-container": "#d7e5bb",
+                      "on-tertiary-container": "#eaac68",
+                      "on-secondary-fixed": "#141f05",
+                      "on-error-container": "#93000a",
+                      "surface-bright": "#fff8f3",
+                      "secondary-fixed": "#dae8be",
+                      "secondary": "#566342",
+                      "on-primary": "#ffffff",
+                      "on-background": "#1e1b17",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-fixed-dim": "#faba75",
+                      "tertiary-container": "#6a3f01",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "tertiary-fixed": "#ffdcbb",
+                      "on-error": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-surface-variant": "#424844",
+                      "inverse-surface": "#33302c",
+                      "surface-container-highest": "#e8e1db",
+                      "outline": "#727974",
+                      "inverse-primary": "#b0cdbc",
+                      "error": "#ba1a1a",
+                      "surface": "#fff8f3",
+                      "on-secondary-container": "#5a6745",
+                      "tertiary": "#4b2b00",
+                      "on-primary-fixed": "#062015",
+                      "surface-container-high": "#eee7e1",
+                      "surface-container": "#f4ede6",
+                      "on-tertiary-fixed": "#2b1700",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#faf2ec",
+                      "secondary-fixed-dim": "#becca3",
+                      "primary-fixed": "#ccead8"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "12px",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "2xl": "48px",
+                      "sm": "8px",
+                      "margin-mobile": "16px",
+                      "base": "8px",
+                      "md": "16px",
+                      "gutter": "24px",
+                      "xs": "4px",
+                      "lg": "24px",
+                      "xl": "32px",
+                      "margin-desktop": "32px",
+                      "3xl": "64px"
+              },
+              "fontFamily": {
+                      "body-sm": ["Inter"],
+                      "display": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-sm": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                      "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #F7F4EC;
+            color: #1e1b17;
+            font-family: 'Inter', sans-serif;
+        }
+        .stepper-line {
+            height: 2px;
+            flex-grow: 1;
+            background-color: #DDE2D9;
+        }
+        .stepper-line.active {
+            background-color: #344E41;
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-hidden">
+<!-- Backdrop -->
+<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-50 flex items-center justify-center p-md">
+<!-- Modal Dialog -->
+<div class="bg-surface w-full max-w-[800px] max-h-[90vh] flex flex-col rounded-lg shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+<!-- Modal Header / Title Bar -->
+<div class="px-xl py-lg border-b border-outline-variant/30 flex justify-between items-center bg-white">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-lg font-bold text-primary">Ethos BMS</span>
+<div class="h-5 w-[1px] bg-outline-variant/50"></div>
+<h1 class="font-headline-sm text-base text-on-surface">Create New Purchase Order</h1>
+</div>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Stepper (Within Modal) -->
+<div class="px-xl py-lg bg-surface-container-lowest border-b border-outline-variant/20">
+<div class="flex items-center justify-between">
+<!-- Step 1: Active -->
+<div class="flex items-center gap-sm">
+<div class="w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center text-[13px] font-bold">1</div>
+<span class="font-label-md text-primary font-bold">Choose Supplier</span>
+</div>
+<div class="stepper-line mx-md active"></div>
+<!-- Step 2: Inactive -->
+<div class="flex items-center gap-sm opacity-50">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-[13px] font-bold">2</div>
+<span class="font-label-md text-on-surface-variant">Add Products</span>
+</div>
+<div class="stepper-line mx-md"></div>
+<!-- Step 3: Inactive -->
+<div class="flex items-center gap-sm opacity-50">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-[13px] font-bold">3</div>
+<span class="font-label-md text-on-surface-variant">Review &amp; Save</span>
+</div>
+</div>
+</div>
+<!-- Modal Content: Scrollable Area -->
+<div class="flex-1 overflow-y-auto p-xl">
+<div class="mb-xl">
+<h2 class="font-headline-md text-headline-md mb-xs text-on-surface">Select a Supplier</h2>
+<p class="font-body-md text-on-surface-variant">Choose the supplier for this purchase order. Search by name, ID, or category.</p>
+</div>
+<div class="space-y-lg">
+<!-- Supplier Search -->
+<div class="space-y-xs">
+<label class="font-label-md text-on-surface-variant ml-1">Supplier Name or ID</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full pl-xl pr-md py-md bg-surface-container-low border border-outline-variant/50 rounded-lg font-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" id="supplier-input" placeholder="Type to search suppliers..." type="text">
+<div class="absolute inset-y-0 right-0 pr-md flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Quick Selection Links -->
+<div class="flex items-center justify-between">
+<a class="inline-flex items-center gap-xs font-label-md text-primary hover:underline group" href="#">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                        Add New Supplier
+                    </a>
+<span class="text-on-surface-variant font-body-sm italic">Recently used: Global Logics, Terra Nova Inc.</span>
+</div>
+<!-- Recent Suppliers Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md pt-lg border-t border-outline-variant/20">
+<div class="p-md bg-white border border-outline-variant/30 rounded-lg cursor-pointer hover:border-primary/50 hover:bg-primary/5 transition-all group supplier-card">
+<div class="flex justify-between items-start mb-sm">
+<div class="w-10 h-10 rounded bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-weight="fill">factory</span>
+</div>
+<span class="text-label-sm px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-full">Preferred</span>
+</div>
+<h3 class="font-headline-sm text-sm font-semibold text-on-surface">Global Logics Ltd.</h3>
+<p class="font-body-sm text-on-surface-variant">Hardware, Networking</p>
+</div>
+<div class="p-md bg-white border border-outline-variant/30 rounded-lg cursor-pointer hover:border-primary/50 hover:bg-primary/5 transition-all group supplier-card">
+<div class="flex justify-between items-start mb-sm">
+<div class="w-10 h-10 rounded bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-weight="fill">inventory_2</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-sm font-semibold text-on-surface">Terra Nova Inc.</h3>
+<p class="font-body-sm text-on-surface-variant">Raw Materials, Logistics</p>
+</div>
+</div>
+<!-- Supplier Verification (Integrated) -->
+<div class="mt-xl p-lg bg-primary-container/10 border border-primary/20 rounded-lg flex items-start gap-md">
+<span class="material-symbols-outlined text-primary">info</span>
+<div>
+<p class="font-label-md mb-xs font-bold text-primary">Supplier Verification</p>
+<p class="font-body-sm text-on-primary-fixed-variant/90 leading-relaxed">Suppliers must be verified in the Master Vendor List before a PO can be finalized. New suppliers will trigger an approval workflow.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="px-xl py-lg border-t border-outline-variant/30 flex items-center justify-between bg-surface-container-low">
+<button class="px-xl py-md font-label-md text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors active:scale-95">
+                Cancel
+            </button>
+<button class="px-xl py-md bg-[#344E41] text-white font-label-md rounded-lg flex items-center gap-sm hover:bg-[#2A3E34] transition-all active:scale-95 shadow-sm">
+                Next: Add Products
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const supplierCards = document.querySelectorAll('.supplier-card');
+        const searchInput = document.getElementById('supplier-input');
+
+        supplierCards.forEach(card => {
+            card.addEventListener('click', () => {
+                supplierCards.forEach(c => {
+                    c.classList.remove('border-primary', 'bg-primary/5', 'ring-1', 'ring-primary/20');
+                });
+                card.classList.add('border-primary', 'bg-primary/5', 'ring-1', 'ring-primary/20');
+                
+                const name = card.querySelector('h3').textContent;
+                searchInput.value = name;
+            });
+        });
+        
+        // Modal close button logic (placeholder)
+        const closeBtn = document.querySelector('button .material-symbols-outlined:contains("close")');
+        if(closeBtn) {
+            closeBtn.parentElement.addEventListener('click', () => {
+               // In a real app, this would trigger closing the modal
+               console.log("Modal closed");
+            });
+        }
+    });
+</script>
+</body></html>

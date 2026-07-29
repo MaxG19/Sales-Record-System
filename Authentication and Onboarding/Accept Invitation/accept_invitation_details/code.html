@@ -1,0 +1,234 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Accept Invitation - Digital Sanctuary BMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-background": "#1e1b17",
+                      "secondary-fixed-dim": "#becca3",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#e0d9d3",
+                      "on-secondary-fixed": "#141f05",
+                      "surface-container": "#f4ede6",
+                      "tertiary-container": "#6a3f01",
+                      "tertiary": "#4b2b00",
+                      "surface-tint": "#4a6456",
+                      "outline": "#727974",
+                      "on-tertiary-fixed": "#2b1700",
+                      "on-secondary-fixed-variant": "#3f4b2c",
+                      "status-success": "#344E41",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "primary": "#1e372b",
+                      "on-surface": "#1e1b17",
+                      "secondary-fixed": "#dae8be",
+                      "border-subtle": "#E5E2DA",
+                      "inverse-on-surface": "#f7efe9",
+                      "surface-container-low": "#faf2ec",
+                      "on-primary": "#ffffff",
+                      "secondary": "#566342",
+                      "on-error": "#ffffff",
+                      "surface": "#FFFFFF",
+                      "inverse-primary": "#b0cdbc",
+                      "tertiary-fixed": "#ffdcbb",
+                      "surface-container-highest": "#e8e1db",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#5a6745",
+                      "secondary-container": "#d7e5bb",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#e8e1db",
+                      "surface-bright": "#fff8f3",
+                      "primary-fixed": "#ccead8",
+                      "on-surface-variant": "#424844",
+                      "surface-bright": "#fff8f3",
+                      "surface-container-high": "#eee7e1",
+                      "outline-variant": "#c2c8c2",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#b0cdbc",
+                      "primary-container": "#344e41",
+                      "on-primary-container": "#a1beae",
+                      "error": "#ba1a1a",
+                      "inverse-surface": "#33302c",
+                      "status-warning": "#DDA15E",
+                      "on-primary-fixed-variant": "#324c3f",
+                      "on-tertiary-container": "#eaac68",
+                      "on-primary-fixed": "#062015",
+                      "background": "#F7F4EC",
+                      "tertiary-fixed-dim": "#faba75"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xl": "32px",
+                      "base": "8px",
+                      "sm": "8px",
+                      "lg": "24px",
+                      "gutter": "24px",
+                      "md": "16px",
+                      "margin-desktop": "48px",
+                      "margin-mobile": "16px",
+                      "xs": "4px"
+              },
+              "fontFamily": {
+                      "label-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-xl": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "headline-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #F7F4EC;
+            color: #1e1b17;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1px solid #E5E2DA;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .illustration-container {
+            background: linear-gradient(135deg, #1e372b 0%, #344e41 100%);
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- Top Navigation Bar (Branding only for login-ish screens) -->
+<header class="w-full top-0 left-0 absolute flex justify-between items-center px-margin-desktop py-md z-50">
+<div class="font-headline-md text-headline-md font-bold text-primary">Digital Sanctuary BMS</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+</div>
+</header>
+<main class="flex w-full min-h-screen">
+<!-- Left Side: Brand Illustration -->
+
+<!-- Right Side: Centered Invitation Card -->
+<section class="w-full flex items-center justify-center p-margin-mobile md:p-margin-desktop bg-background">
+<div class="w-full max-w-md glass-card rounded-xl p-lg md:p-xl space-y-lg relative">
+<!-- Invitation Header -->
+<div class="text-center">
+<div class="inline-flex items-center justify-center w-16 h-16 bg-secondary-container text-primary rounded-full mb-md shadow-sm">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'wght' 600;">mail</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">You're Invited!</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm">You've been invited to join an existing business on the Business Management System.</p>
+</div>
+<!-- Invitation Summary Card -->
+<div class="bg-surface-container-low rounded-xl p-md border border-border-subtle space-y-md">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Business</span>
+<span class="font-label-md text-label-md text-primary font-bold">Green Valley Supermarket</span>
+</div>
+<div class="h-px bg-border-subtle w-full"></div>
+<div class="grid grid-cols-2 gap-md">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Branch</p>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Westlands Branch</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Role</p>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Cashier</p>
+</div>
+</div>
+<div class="h-px bg-border-subtle w-full"></div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Invited By</p>
+<div class="flex items-center gap-sm mt-xs">
+<div class="w-6 h-6 rounded-full bg-primary-fixed flex items-center justify-center text-[10px] font-bold text-on-primary-fixed">JW</div>
+<p class="font-body-sm text-body-sm text-on-surface">Jane Wanjiku <span class="text-on-surface-variant opacity-60">· james@example.com</span></p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-sm">
+<div class="flex items-center gap-xs text-status-warning">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="font-label-sm text-label-sm">Expires in 5 days</span>
+</div>
+</div>
+</div>
+<!-- Info Message -->
+<div class="flex items-start gap-sm bg-primary-container bg-opacity-5 p-md rounded-lg border border-primary border-opacity-10">
+<span class="material-symbols-outlined text-primary text-md">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        Accepting this invitation will link your account to this business. Your existing profile data will be shared with the administrators of Green Valley Supermarket.
+                    </p>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-md pt-md">
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md py-lg rounded-xl shadow-md transition-all active:scale-[0.98] flex items-center justify-center gap-sm">
+                        Accept Invitation
+                    </button>
+<button class="w-full border border-outline text-on-surface font-label-md text-label-md py-lg rounded-xl hover:bg-surface-variant transition-colors active:bg-surface-container-high">
+                        Decline
+                    </button>
+<div class="text-center pt-md">
+<a class="font-label-md text-label-md text-primary hover:underline transition-all" href="#">Back to Login</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Micro-interaction for hover effects and feedback
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                // Subtle feedback on hover
+            });
+        });
+        
+        // Mobile layout responsiveness tweak if needed via JS
+        const checkMobile = () => {
+            if (window.innerWidth < 1024) {
+                // Adjust if necessary
+            }
+        };
+        window.addEventListener('resize', checkMobile);
+        checkMobile();
+    </script>
+
+
+</body></html>

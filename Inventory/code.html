@@ -1,0 +1,498 @@
+<!DOCTYPE html><html class="light" lang="en" style="width: 1280px; height: 1422px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Inventory | BMS Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#eaac68",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#faba75",
+                    "surface-variant": "#e8e1db",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#2b1700",
+                    "surface-container-low": "#faf2ec",
+                    "on-primary-fixed-variant": "#324c3f",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#673d00",
+                    "inverse-primary": "#b0cdbc",
+                    "surface-bright": "#fff8f3",
+                    "surface-tint": "#4a6456",
+                    "on-secondary-container": "#5a6745",
+                    "background": "#fff8f3",
+                    "tertiary-fixed": "#ffdcbb",
+                    "on-surface-variant": "#424844",
+                    "primary-fixed": "#ccead8",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1e1b17",
+                    "tertiary-container": "#6a3f01",
+                    "inverse-on-surface": "#f7efe9",
+                    "surface-container": "#f4ede6",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#1e1b17",
+                    "surface": "#fff8f3",
+                    "primary": "#1e372b",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e8e1db",
+                    "secondary-fixed": "#dae8be",
+                    "outline-variant": "#c2c8c2",
+                    "on-primary-fixed": "#062015",
+                    "tertiary": "#4b2b00",
+                    "on-primary-container": "#a1beae",
+                    "inverse-surface": "#33302c",
+                    "secondary-fixed-dim": "#becca3",
+                    "on-error": "#ffffff",
+                    "secondary": "#566342",
+                    "primary-container": "#344e41",
+                    "surface-container-high": "#eee7e1",
+                    "secondary-container": "#d7e5bb",
+                    "surface-dim": "#e0d9d3",
+                    "on-secondary-fixed-variant": "#3f4b2c",
+                    "primary-fixed-dim": "#b0cdbc",
+                    "on-secondary-fixed": "#141f05",
+                    "on-primary": "#ffffff",
+                    "outline": "#727974"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "12px",
+                    "xl": "16px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "md": "16px",
+                    "base": "8px",
+                    "lg": "24px",
+                    "2xl": "48px",
+                    "sm": "8px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "32px",
+                    "3xl": "64px",
+                    "xs": "4px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F7F4EC;
+            color: #1e1b17;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #DDE2D9;
+            border-radius: 10px;
+        }
+        .table-row-selected {
+            background-color: #F4EDE6 !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+<!-- Side Navigation Shell -->
+<aside class="w-64 h-full fixed left-0 top-0 bg-surface-container-low dark:bg-surface-dim flex flex-col py-lg z-50">
+<div class="px-lg mb-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed-dim">BMS Pro</h1>
+<p class="font-body-sm text-on-surface-variant opacity-70">Enterprise Suite</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Products</span>
+</a><div class="pl-6 flex flex-col space-y-1">
+  <a class="flex items-center gap-3 px-4 py-2 text-primary dark:text-primary-fixed-dim font-semibold border-l-4 border-primary dark:border-primary-fixed-dim bg-surface-container dark:bg-surface-container-highest" href="#">
+    <span class="material-symbols-outlined">warehouse</span>
+    <span class="font-body-md text-body-md">Inventory</span>
+  </a>
+</div>
+<!-- Active State Navigation -->
+
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md text-body-md">Sales</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Top App Bar Shell -->
+<header class="flex justify-between items-center h-16 ml-64 px-lg w-[calc(100%-256px)] bg-surface dark:bg-surface sticky top-0 border-b border-outline-variant z-40">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="font-label-md text-label-md">Inventory</span>
+</div>
+<div class="flex items-center gap-4">
+
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-variant/50 p-2 rounded-lg transition-all duration-200">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-variant/50 p-2 rounded-lg transition-all duration-200">account_circle</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 p-xl max-w-7xl mx-auto">
+<!-- Title & Primary Toolbar -->
+<div class="flex justify-between items-end mb-xl">
+<div>
+<nav aria-label="Breadcrumb" class="flex mb-1">
+<ol class="inline-flex items-center space-x-1 font-label-md text-label-md text-outline">
+<li class="">Inventory</li>
+</ol>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Inventory</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">See your current stock and keep it up to date.</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="bg-primary-container text-on-primary-container px-lg py-2.5 rounded-lg font-label-md text-label-md flex items-center gap-2 hover:brightness-110 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+                    Adjust Stock
+                </button>
+<button class="border border-outline-variant text-on-surface px-lg py-2.5 rounded-lg font-label-md text-label-md flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-[18px]">move_item</span>
+                    Move Stock
+                </button>
+<button class="border border-outline-variant text-on-surface px-lg py-2.5 rounded-lg font-label-md text-label-md flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-[18px]">inventory</span>
+                    Stock Count
+                </button>
+<button class="border border-outline-variant text-on-surface px-lg py-2.5 rounded-lg font-label-md text-label-md flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                    Export
+                </button>
+<div class="relative group">
+<button class="p-2.5 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container-low">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+<!-- Overflow Menu -->
+<div class="hidden group-hover:block absolute right-0 top-full mt-1 w-48 bg-surface rounded-xl shadow-lg border border-outline-variant py-2 z-50">
+<a class="block px-4 py-2 font-body-sm text-body-sm text-on-surface hover:bg-surface-container" href="#">Import Stock</a>
+<a class="block px-4 py-2 font-body-sm text-body-sm text-on-surface hover:bg-surface-container" href="#">Print Labels</a>
+<div class="border-t border-outline-variant my-1"></div>
+<a class="block px-4 py-2 font-body-sm text-body-sm text-on-surface hover:bg-surface-container" href="#">Inventory Settings</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Stock Summary Cards -->
+<div class="grid grid-cols-4 gap-lg mb-xl">
+<div class="bg-surface rounded-lg p-lg border border-outline-variant flex items-center justify-between shadow-sm">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Healthy</p>
+<p class="font-headline-md text-headline-md text-primary">245 <span class="font-body-md text-body-md text-on-surface-variant font-normal">Products</span></p>
+</div>
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container">check_circle</span>
+</div>
+</div>
+<div class="bg-surface rounded-lg p-lg border border-outline-variant flex items-center justify-between shadow-sm">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Low Stock</p>
+<p class="font-headline-md text-headline-md text-on-tertiary-fixed-variant">12 <span class="font-body-md text-body-md text-on-surface-variant font-normal">Products</span></p>
+</div>
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">warning</span>
+</div>
+</div>
+<div class="bg-surface rounded-lg p-lg border border-outline-variant flex items-center justify-between shadow-sm">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Out of Stock</p>
+<p class="font-headline-md text-headline-md text-error">5 <span class="font-body-md text-body-md text-on-surface-variant font-normal">Products</span></p>
+</div>
+<div class="w-10 h-10 rounded-full bg-error-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-error">error</span>
+</div>
+</div>
+<div class="bg-surface rounded-lg p-lg border border-outline-variant flex items-center justify-between shadow-sm">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Transfers</p>
+<p class="font-headline-md text-headline-md text-on-surface">3 <span class="font-body-md text-body-md text-on-surface-variant font-normal">Pending</span></p>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">swap_horiz</span>
+</div>
+</div>
+</div>
+<!-- Filters Row -->
+<div class="flex items-center gap-md mb-lg bg-surface p-md rounded-lg border border-outline-variant">
+<div class="relative flex-1">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg font-body-sm text-body-sm focus:ring-2 focus:ring-primary" placeholder="Search products..." type="text">
+</div>
+<div class="flex items-center gap-2">
+<select class="bg-surface border-outline-variant rounded-lg font-body-sm text-body-sm py-2 px-3 focus:ring-primary min-w-[140px]">
+<option>Category</option>
+</select>
+<select class="bg-surface border-outline-variant rounded-lg font-body-sm text-body-sm py-2 px-3 focus:ring-primary min-w-[140px]">
+<option>Branch</option>
+</select>
+<select class="bg-surface border-outline-variant rounded-lg font-body-sm text-body-sm py-2 px-3 focus:ring-primary min-w-[140px]">
+<option>Supplier</option>
+</select>
+<select class="bg-surface border-outline-variant rounded-lg font-body-sm text-body-sm py-2 px-3 focus:ring-primary min-w-[140px]">
+<option>Stock Status</option>
+</select>
+<div class="h-6 w-px bg-outline-variant mx-1"></div>
+<select class="bg-surface border-outline-variant rounded-lg font-body-sm text-body-sm py-2 px-3 focus:ring-primary min-w-[160px]">
+<option>Newest Updated</option>
+<option>Oldest Updated</option>
+<option>Stock: High to Low</option>
+<option>Stock: Low to High</option>
+</select>
+</div>
+</div>
+<!-- Inventory Table -->
+<div class="bg-surface rounded-lg border border-outline-variant overflow-hidden shadow-sm relative">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="py-3 px-4 border-b border-outline-variant w-10">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" id="selectAll" type="checkbox">
+</th>
+<th class="py-3 px-4 border-b border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Product</th>
+<th class="py-3 px-4 border-b border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">SKU</th>
+<th class="py-3 px-4 border-b border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Available</th>
+<th class="py-3 px-4 border-b border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Reserved</th>
+<th class="py-3 px-4 border-b border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">On Order</th>
+<th class="py-3 px-4 border-b border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Branch</th>
+<th class="py-3 px-4 border-b border-outline-variant font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="py-3 px-4 border-b border-outline-variant w-10"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="py-4 px-4"><input class="row-checkbox rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"></td>
+<td class="py-4 px-4 font-body-md text-body-md font-semibold text-on-surface">Cooking Oil 2L</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">CO-201</td>
+<td class="py-4 px-4 font-body-md text-body-md text-on-surface">54</td>
+<td class="py-4 px-4 font-body-md text-body-md text-on-surface-variant">2</td>
+<td class="py-4 px-4 font-body-md text-body-md text-on-surface">120</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">Main Store</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary mr-2"></span> Healthy
+                            </span>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" onclick="toggleRowMenu(event, this)">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="py-4 px-4"><input class="row-checkbox rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"></td>
+<td class="py-4 px-4 font-body-md text-body-md font-semibold text-on-surface">Sugar 1kg</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">SG-102</td>
+<td class="py-4 px-4 font-body-md text-body-md text-on-surface">8</td>
+<td class="py-4 px-4 font-body-md text-body-md text-on-surface-variant">0</td>
+<td class="py-4 px-4 font-body-md text-body-md text-on-surface">60</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">Main Store</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary mr-2"></span> Low Stock
+                            </span>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" onclick="toggleRowMenu(event, this)">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="py-4 px-4"><input class="row-checkbox rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"></td>
+<td class="py-4 px-4 font-body-md text-body-md font-semibold text-on-surface">Bread White</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">BR-201</td>
+<td class="py-4 px-4 font-body-md text-body-md text-on-surface">0</td>
+<td class="py-4 px-4 font-body-md text-body-md text-on-surface-variant">0</td>
+<td class="py-4 px-4 font-body-md text-body-md text-on-surface">0</td>
+<td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">Westlands</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-error mr-2"></span> Out of Stock
+                            </span>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" onclick="toggleRowMenu(event, this)">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors group"><td class="py-4 px-4"><input class="row-checkbox rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"></td><td class="py-4 px-4 font-body-md text-body-md font-semibold text-on-surface">Salt 1kg</td><td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">SL-101</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface">45</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface-variant">0</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface">100</td><td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">Main Store</td><td class="py-4 px-4"><span class="inline-flex items-center px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-secondary mr-2"></span> Healthy</span></td><td class="py-4 px-4 text-right"><button class="p-1 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" onclick="toggleRowMenu(event, this)"><span class="material-symbols-outlined">more_horiz</span></button></td></tr><tr class="hover:bg-surface-container transition-colors group"><td class="py-4 px-4"><input class="row-checkbox rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"></td><td class="py-4 px-4 font-body-md text-body-md font-semibold text-on-surface">Flour 2kg</td><td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">FL-202</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface">12</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface-variant">5</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface">50</td><td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">Main Store</td><td class="py-4 px-4"><span class="inline-flex items-center px-2 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-tertiary mr-2"></span> Low Stock</span></td><td class="py-4 px-4 text-right"><button class="p-1 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" onclick="toggleRowMenu(event, this)"><span class="material-symbols-outlined">more_horiz</span></button></td></tr><tr class="hover:bg-surface-container transition-colors group"><td class="py-4 px-4"><input class="row-checkbox rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"></td><td class="py-4 px-4 font-body-md text-body-md font-semibold text-on-surface">Milk 1L</td><td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">MK-101</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface">0</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface-variant">0</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface">200</td><td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">Westlands</td><td class="py-4 px-4"><span class="inline-flex items-center px-2 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-error mr-2"></span> Out of Stock</span></td><td class="py-4 px-4 text-right"><button class="p-1 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" onclick="toggleRowMenu(event, this)"><span class="material-symbols-outlined">more_horiz</span></button></td></tr><tr class="hover:bg-surface-container transition-colors group"><td class="py-4 px-4"><input class="row-checkbox rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"></td><td class="py-4 px-4 font-body-md text-body-md font-semibold text-on-surface">Coffee 250g</td><td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">CF-250</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface">32</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface-variant">0</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface">40</td><td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">Main Store</td><td class="py-4 px-4"><span class="inline-flex items-center px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-secondary mr-2"></span> Healthy</span></td><td class="py-4 px-4 text-right"><button class="p-1 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" onclick="toggleRowMenu(event, this)"><span class="material-symbols-outlined">more_horiz</span></button></td></tr><tr class="hover:bg-surface-container transition-colors group"><td class="py-4 px-4"><input class="row-checkbox rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"></td><td class="py-4 px-4 font-body-md text-body-md font-semibold text-on-surface">Tea Bags 100s</td><td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">TB-100</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface">15</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface-variant">2</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface">80</td><td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">Main Store</td><td class="py-4 px-4"><span class="inline-flex items-center px-2 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-tertiary mr-2"></span> Low Stock</span></td><td class="py-4 px-4 text-right"><button class="p-1 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" onclick="toggleRowMenu(event, this)"><span class="material-symbols-outlined">more_horiz</span></button></td></tr><tr class="hover:bg-surface-container transition-colors group"><td class="py-4 px-4"><input class="row-checkbox rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"></td><td class="py-4 px-4 font-body-md text-body-md font-semibold text-on-surface">Pasta 500g</td><td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">PS-500</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface">68</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface-variant">0</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface">150</td><td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">Main Store</td><td class="py-4 px-4"><span class="inline-flex items-center px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-secondary mr-2"></span> Healthy</span></td><td class="py-4 px-4 text-right"><button class="p-1 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" onclick="toggleRowMenu(event, this)"><span class="material-symbols-outlined">more_horiz</span></button></td></tr><tr class="hover:bg-surface-container transition-colors group"><td class="py-4 px-4"><input class="row-checkbox rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"></td><td class="py-4 px-4 font-body-md text-body-md font-semibold text-on-surface">Rice 5kg</td><td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">RC-505</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface">24</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface-variant">10</td><td class="py-4 px-4 font-body-md text-body-md text-on-surface">100</td><td class="py-4 px-4 font-body-sm text-body-sm text-on-surface-variant">Main Store</td><td class="py-4 px-4"><span class="inline-flex items-center px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-secondary mr-2"></span> Healthy</span></td><td class="py-4 px-4 text-right"><button class="p-1 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" onclick="toggleRowMenu(event, this)"><span class="material-symbols-outlined">more_horiz</span></button></td></tr></tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="mt-lg flex justify-between items-center px-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Showing 1 to 10 of 262 entries</p>
+<div class="flex items-center gap-1">
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="px-4 py-2 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md">1</button>
+<button class="px-4 py-2 border border-outline-variant rounded-lg font-label-md text-label-md hover:bg-surface-container transition-all">2</button>
+<button class="px-4 py-2 border border-outline-variant rounded-lg font-label-md text-label-md hover:bg-surface-container transition-all">3</button>
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Floating Batch Action Toolbar -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-lg py-3 rounded-xl shadow-2xl flex items-center gap-lg transition-all duration-300 transform translate-y-24 opacity-0 z-[60]" id="floatingBatchToolbar">
+<div class="flex items-center gap-3 pr-lg border-r border-outline/30">
+<span class="material-symbols-outlined text-primary-fixed">check_circle</span>
+<span class="font-label-md text-label-md font-semibold" id="selectedCountText">0 items selected</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-md py-1.5 font-label-md text-label-md hover:bg-white/10 rounded-lg transition-all">Adjust Stock</button>
+<button class="px-md py-1.5 font-label-md text-label-md hover:bg-white/10 rounded-lg transition-all">Move Stock</button>
+<button class="px-md py-1.5 font-label-md text-label-md hover:bg-white/10 rounded-lg transition-all">Export</button>
+<button class="ml-2 text-outline-variant hover:text-white transition-all" id="cancelSelection">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+<!-- Row Context Menu (Hidden by default) -->
+<div class="hidden fixed bg-surface rounded-xl shadow-lg border border-outline-variant py-2 w-48 z-[70]" id="rowContextMenu">
+<button class="w-full text-left px-4 py-2 font-body-sm text-body-sm text-on-surface hover:bg-surface-container flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px]">edit_note</span> Adjust Stock
+        </button>
+<button class="w-full text-left px-4 py-2 font-body-sm text-body-sm text-on-surface hover:bg-surface-container flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px]">move_item</span> Move Stock
+        </button>
+<button class="w-full text-left px-4 py-2 font-body-sm text-body-sm text-on-surface hover:bg-surface-container flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px]">visibility</span> View Product
+        </button>
+<div class="border-t border-outline-variant my-1"></div>
+<button class="w-full text-left px-4 py-2 font-body-sm text-body-sm text-on-surface hover:bg-surface-container flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px]">history</span> View History
+        </button>
+</div>
+<script>
+        // Row selection logic
+        const checkboxes = document.querySelectorAll('.row-checkbox');
+        const selectAll = document.getElementById('selectAll');
+        const floatingToolbar = document.getElementById('floatingBatchToolbar');
+        const countText = document.getElementById('selectedCountText');
+        const cancelBtn = document.getElementById('cancelSelection');
+
+        function updateSelection() {
+            const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+            
+            if (checkedCount > 0) {
+                floatingToolbar.classList.remove('translate-y-24', 'opacity-0');
+                floatingToolbar.classList.add('translate-y-0', 'opacity-100');
+                countText.textContent = `${checkedCount} items selected`;
+            } else {
+                floatingToolbar.classList.add('translate-y-24', 'opacity-0');
+                floatingToolbar.classList.remove('translate-y-0', 'opacity-100');
+            }
+
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    cb.closest('tr').classList.add('table-row-selected');
+                } else {
+                    cb.closest('tr').classList.remove('table-row-selected');
+                }
+            });
+        }
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', updateSelection);
+        });
+
+        selectAll.addEventListener('change', (e) => {
+            checkboxes.forEach(cb => {
+                cb.checked = e.target.checked;
+            });
+            updateSelection();
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            checkboxes.forEach(cb => cb.checked = false);
+            selectAll.checked = false;
+            updateSelection();
+        });
+
+        // Context Menu Logic
+        const menu = document.getElementById('rowContextMenu');
+        
+        function toggleRowMenu(e, btn) {
+            e.stopPropagation();
+            const rect = btn.getBoundingClientRect();
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.style.top = `${rect.bottom + window.scrollY + 8}px`;
+                menu.style.left = `${rect.right - 192}px`;
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+
+        window.addEventListener('click', () => {
+            menu.classList.add('hidden');
+        });
+
+        // Micro-interactions for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.98)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+
+
+</body></html>

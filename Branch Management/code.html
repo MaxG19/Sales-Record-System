@@ -1,0 +1,459 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BMS Branches - Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff8f3;
+        }
+        .glass-overlay {
+            background: rgba(30, 27, 23, 0.4);
+            backdrop-filter: blur(4px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c2c8c2;
+            border-radius: 10px;
+        }
+        [data-modal].hidden, [data-drawer].translate-x-full {
+            display: none !important;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#1e372b",
+                        "on-tertiary-fixed": "#2b1700",
+                        "tertiary-container": "#6a3f01",
+                        "surface-container-low": "#faf2ec",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "surface-dim": "#e0d9d3",
+                        "on-secondary-fixed-variant": "#3f4b2c",
+                        "tertiary-fixed-dim": "#faba75",
+                        "inverse-surface": "#33302c",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "primary-container": "#344e41",
+                        "primary-fixed-dim": "#b0cdbc",
+                        "on-secondary-container": "#5a6745",
+                        "on-background": "#1e1b17",
+                        "on-primary-container": "#a1beae",
+                        "surface-variant": "#e8e1db",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#324c3f",
+                        "secondary-fixed": "#dae8be",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#4a6456",
+                        "outline-variant": "#c2c8c2",
+                        "outline": "#727974",
+                        "on-surface-variant": "#424844",
+                        "on-surface": "#1e1b17",
+                        "secondary": "#566342",
+                        "inverse-on-surface": "#f7efe9",
+                        "surface-container-highest": "#e8e1db",
+                        "on-secondary-fixed": "#141f05",
+                        "surface-container-high": "#eee7e1",
+                        "surface-container": "#f4ede6",
+                        "background": "#fff8f3",
+                        "primary-fixed": "#ccead8",
+                        "tertiary": "#4b2b00",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b0cdbc",
+                        "surface": "#fff8f3",
+                        "tertiary-fixed": "#ffdcbb",
+                        "secondary-fixed-dim": "#becca3",
+                        "secondary-container": "#d7e5bb",
+                        "surface-bright": "#fff8f3",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#062015",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#eaac68"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "3xl": "64px",
+                        "xs": "4px",
+                        "margin-desktop": "32px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "2xl": "48px",
+                        "md": "16px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="text-on-surface bg-background">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 h-16 z-40 flex justify-between items-center px-lg bg-surface border-b border-surface-variant">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">BMS Branches</span>
+</div>
+<div class="flex items-center gap-lg">
+<div class="hidden md:flex gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary py-xs px-xs rounded transition-colors" href="#">Dashboard</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low transition-colors py-xs px-xs rounded" href="#">Inventory</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low transition-colors py-xs px-xs rounded" href="#">Reports</a>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-primary cursor-pointer active:opacity-80 p-xs rounded-full hover:bg-surface-container-low">notifications</button>
+<button class="material-symbols-outlined text-primary cursor-pointer active:opacity-80 p-xs rounded-full hover:bg-surface-container-low">settings</button>
+<div class="w-8 h-8 rounded-full overflow-hidden ml-sm border border-outline-variant">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAplunnxJBk86DV2IclLR7y8Q-faNxb-7me44qrUegYCCpemD3xElFdVYErElYMNJ6HB913fHHL1AKxcgKBO3bp_rc5ZUAVEN0QNAqO2awpXAETfBQ1YAyMqopE_Jt5TcUO_RcGxsvP1dKw32zQH1bS_6Zwe1Upv474Nhq9MybeN4xDgROMuhIQCb8TVtXA-2GgwvEplmqYO8CA08ATyXBszn6OO6UJFVuKN5IRmqksactLFvrextPwlg">
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Refined from SCREEN_2) -->
+<aside class="fixed left-0 top-0 bottom-0 flex flex-col pt-16 z-30 w-64 bg-surface-container-low border-r border-surface-variant hidden md:flex">
+<div class="px-lg py-lg flex flex-col gap-xs">
+<div class="flex items-center gap-sm mb-lg">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">corporate_fare</span>
+</div>
+<div>
+<p class="font-headline-sm text-[16px] text-primary font-bold">Workspace</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Management Suite</p>
+</div>
+</div>
+<nav class="flex flex-col">
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-sm hover:bg-surface-container-high transition-all cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-sm hover:bg-surface-container-high transition-all cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Products</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-sm hover:bg-surface-container-high transition-all cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Sales</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-sm hover:bg-surface-container-high transition-all cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-sm hover:bg-surface-container-high transition-all cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Users</span>
+</a>
+<a class="flex items-center gap-md text-primary font-bold border-l-4 border-primary px-lg py-sm hover:bg-surface-container-high transition-all cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-label-md text-label-md">Branches</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto px-lg pb-lg flex flex-col gap-sm">
+<hr class="border-surface-variant my-sm">
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-xs hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-xs hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="font-label-md text-label-md">Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="pt-16 md:pl-64 min-h-screen">
+<div class="p-lg md:p-xl max-w-[1280px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-xl gap-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary">Branches</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage and monitor all active business locations.</p>
+</div>
+<div class="flex gap-sm w-full md:w-auto">
+<div class="relative flex-1 md:w-64">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-xl pr-md py-sm bg-surface-container-low border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all font-body-md" placeholder="Search branches..." type="text">
+</div>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-xl font-label-md text-label-md flex items-center gap-sm active:scale-95 transition-transform" onclick="openModal('branchFormModal')">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                        New Branch
+                    </button>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl">
+<div class="p-lg bg-surface border border-outline-variant rounded-xl">
+<div class="flex justify-between items-start mb-md">
+<span class="material-symbols-outlined text-primary p-sm bg-primary-fixed rounded-lg">storefront</span>
+<span class="text-on-tertiary-fixed-variant font-label-sm text-label-sm bg-tertiary-fixed px-sm py-xs rounded-full">+2 this month</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Total Branches</p>
+<h2 class="font-display text-display text-primary">24</h2>
+</div>
+<div class="p-lg bg-surface border border-outline-variant rounded-xl">
+<div class="flex justify-between items-start mb-md">
+<span class="material-symbols-outlined text-primary p-sm bg-primary-fixed rounded-lg">trending_up</span>
+<span class="text-on-secondary-fixed-variant font-label-sm text-label-sm bg-secondary-fixed px-sm py-xs rounded-full">↑ 12%</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Active Operations</p>
+<h2 class="font-display text-display text-primary">21</h2>
+</div>
+<div class="p-lg bg-surface border border-outline-variant rounded-xl">
+<div class="flex justify-between items-start mb-md">
+<span class="material-symbols-outlined text-primary p-sm bg-primary-fixed rounded-lg">groups</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Regional Managers</p>
+<h2 class="font-display text-display text-primary">06</h2>
+</div>
+</div>
+<!-- Table -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container border-b border-outline-variant">
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Branch Details</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Code</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Location</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Manager</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Status</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group" onclick="toggleDrawer(true)">
+<td class="px-lg py-md">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-bold text-primary group-hover:underline">Downtown Flagship</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">contact@downtown-bms.com</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md">DF-001</td>
+<td class="px-lg py-md font-body-md text-body-md">New York, NY</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center text-[10px]">JD</div>
+<span class="font-body-md text-body-md">Jane Doe</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs px-sm py-xs bg-primary-fixed text-primary rounded-full font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span> Active
+                                    </span>
+</td>
+<td class="px-lg py-md text-right" onclick="event.stopPropagation()">
+<div class="relative inline-block text-left">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary p-xs rounded hover:bg-surface-container" onclick="this.nextElementSibling.classList.toggle('hidden')">more_vert</button>
+<div class="hidden absolute right-0 mt-2 w-48 bg-white border border-outline-variant rounded-lg shadow-xl z-20 overflow-hidden">
+<button class="w-full text-left px-lg py-sm font-body-md hover:bg-surface-container-low flex items-center gap-sm" onclick="openModal('branchFormModal')">
+<span class="material-symbols-outlined text-[18px]">edit</span> Edit
+                                            </button>
+<button class="w-full text-left px-lg py-sm font-body-md hover:bg-error-container text-error flex items-center gap-sm" onclick="openModal('deactivateModal')">
+<span class="material-symbols-outlined text-[18px]">block</span> Deactivate
+                                            </button>
+</div>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group" onclick="toggleDrawer(true)">
+<td class="px-lg py-md">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-bold text-primary group-hover:underline">Northside Logistics Hub</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">support@north-bms.com</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md">NH-024</td>
+<td class="px-lg py-md font-body-md text-body-md">Chicago, IL</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-tertiary-fixed flex items-center justify-center text-[10px]">MS</div>
+<span class="font-body-md text-body-md">Marcus Smith</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs px-sm py-xs bg-primary-fixed text-primary rounded-full font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span> Active
+                                    </span>
+</td>
+<td class="px-lg py-md text-right" onclick="event.stopPropagation()">
+<div class="relative inline-block text-left">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary p-xs rounded hover:bg-surface-container" onclick="this.nextElementSibling.classList.toggle('hidden')">more_vert</button>
+<div class="hidden absolute right-0 mt-2 w-48 bg-white border border-outline-variant rounded-lg shadow-xl z-20 overflow-hidden">
+<button class="w-full text-left px-lg py-sm font-body-md hover:bg-surface-container-low flex items-center gap-sm" onclick="openModal('branchFormModal')">
+<span class="material-symbols-outlined text-[18px]">edit</span> Edit
+                                            </button>
+<button class="w-full text-left px-lg py-sm font-body-md hover:bg-error-container text-error flex items-center gap-sm" onclick="openModal('deactivateModal')">
+<span class="material-symbols-outlined text-[18px]">block</span> Deactivate
+                                            </button>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Branch Form Modal (Create/Edit) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center hidden" data-modal="" id="branchFormModal">
+<div class="absolute inset-0 glass-overlay" onclick="closeModal('branchFormModal')"></div>
+<div class="relative bg-surface w-full max-w-2xl mx-md rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] border border-outline-variant">
+<div class="px-lg py-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low"><div><h2 class="font-headline-md text-headline-md text-primary">New Branch</h2><p class="font-body-sm text-body-sm text-on-surface-variant">Register a new physical location to the workspace.</p></div><button class="material-symbols-outlined p-sm hover:bg-surface-container rounded-full text-on-surface-variant" onclick="closeModal('branchFormModal')">close</button></div>
+<div class="p-lg overflow-y-auto custom-scrollbar flex flex-col gap-xl"><section class="flex flex-col gap-md"><div class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-[20px]">info</span><h3 class="font-label-md text-label-md text-primary uppercase">Basic Info</h3></div><div class="grid grid-cols-1 md:grid-cols-2 gap-md"><div class="flex flex-col gap-xs"><label class="font-label-sm text-label-sm text-on-surface-variant">Branch Name</label><input class="w-full bg-surface-container-low border border-outline-variant rounded px-md py-sm font-body-md" placeholder="e.g. West Coast Distribution" type="text"></div><div class="flex flex-col gap-xs"><label class="font-label-sm text-label-sm text-on-surface-variant">Branch Code</label><input class="w-full bg-surface-container-low border border-outline-variant rounded px-md py-sm font-body-md" placeholder="e.g. WC-01" type="text"></div><div class="flex flex-col gap-xs"><label class="font-label-sm text-label-sm text-on-surface-variant">Phone</label><input class="w-full bg-surface-container-low border border-outline-variant rounded px-md py-sm font-body-md" placeholder="+1 (555) 000-0000" type="tel"></div><div class="flex flex-col gap-xs"><label class="font-label-sm text-label-sm text-on-surface-variant">Email</label><input class="w-full bg-surface-container-low border border-outline-variant rounded px-md py-sm font-body-md" placeholder="branch@company.com" type="email"></div></div></section><section class="flex flex-col gap-md"><div class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-[20px]">location_on</span><h3 class="font-label-md text-label-md text-primary uppercase">Location</h3></div><div class="grid grid-cols-1 md:grid-cols-3 gap-md"><div class="flex flex-col gap-xs"><label class="font-label-sm text-label-sm text-on-surface-variant">Country</label><select class="w-full bg-surface-container-low border border-outline-variant rounded px-md py-sm font-body-md"><option selected="">United States</option></select></div><div class="flex flex-col gap-xs"><label class="font-label-sm text-label-sm text-on-surface-variant">County/State</label><input class="w-full bg-surface-container-low border border-outline-variant rounded px-md py-sm font-body-md" placeholder="e.g. California" type="text"></div><div class="flex flex-col gap-xs"><label class="font-label-sm text-label-sm text-on-surface-variant">City</label><input class="w-full bg-surface-container-low border border-outline-variant rounded px-md py-sm font-body-md" placeholder="e.g. Los Angeles" type="text"></div></div><div class="flex flex-col gap-xs"><label class="font-label-sm text-label-sm text-on-surface-variant">Physical Address</label><textarea class="w-full bg-surface-container-low border border-outline-variant rounded px-md py-sm font-body-md h-20" placeholder="Full street address and unit number"></textarea></div></section><section class="flex flex-col gap-md"><div class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-[20px]">badge</span><h3 class="font-label-md text-label-md text-primary uppercase">Management</h3></div><div class="grid grid-cols-1 md:grid-cols-2 gap-md"><div class="flex flex-col gap-xs"><label class="font-label-sm text-label-sm text-on-surface-variant">Branch Manager</label><select class="w-full bg-surface-container-low border border-outline-variant rounded px-md py-sm font-body-md"><option selected="">Unassigned</option></select></div><div class="flex flex-col gap-xs"><label class="font-label-sm text-label-sm text-on-surface-variant">Business Hours</label><input class="w-full bg-surface-container-low border border-outline-variant rounded px-md py-sm font-body-md" placeholder="e.g. 09:00 - 18:00 Mon-Fri" type="text"></div></div></section><div class="flex justify-between items-center p-md bg-surface-container-low rounded-lg border border-outline-variant"><div><p class="font-label-md text-label-md text-primary">Initial Status</p><p class="font-body-sm text-body-sm text-on-surface-variant">Set whether the branch is active immediately</p></div><div class="flex items-center gap-sm"><span class="font-label-md text-label-md">Active</span><button class="w-10 h-6 bg-primary rounded-full relative flex items-center px-xs"><div class="w-4 h-4 bg-white rounded-full absolute right-1"></div></button></div></div></div>
+<div class="px-lg py-md border-t border-outline-variant flex justify-end gap-md bg-surface-container-low"><button class="px-lg py-sm font-label-md text-primary border border-outline rounded" onclick="closeModal('branchFormModal')">Cancel</button><button class="px-lg py-sm font-label-md bg-primary text-on-primary rounded shadow-lg" onclick="closeModal('branchFormModal')">Create Branch</button></div>
+</div>
+</div>
+<!-- Deactivate Confirmation Modal (SCREEN_3) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center hidden" data-modal="" id="deactivateModal">
+<div class="absolute inset-0 glass-overlay" onclick="closeModal('deactivateModal')"></div>
+<div class="relative bg-surface w-full max-w-md mx-md p-2xl rounded-lg border border-outline-variant shadow-2xl flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-error-container rounded-full flex items-center justify-center mb-lg">
+<span class="material-symbols-outlined text-error text-[32px]">warning</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary mb-md">Deactivate this branch?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-2xl">
+                Users assigned to this branch will no longer be able to process new transactions until the branch is reactivated.
+            </p>
+<div class="flex flex-col sm:flex-row gap-md w-full">
+<button class="flex-1 border border-primary text-primary px-lg py-sm rounded-lg font-label-md hover:bg-surface-container-low transition-colors" onclick="closeModal('deactivateModal')">Cancel</button>
+<button class="flex-1 bg-error text-on-error px-lg py-sm rounded-lg font-label-md hover:brightness-110 shadow-md transition-all" onclick="closeModal('deactivateModal')">Deactivate</button>
+</div>
+</div>
+</div>
+<!-- Right-side Drawer (SCREEN_5) -->
+<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300" id="branchDrawerOverlay" onclick="toggleDrawer(false)"></div>
+<div class="fixed top-0 right-0 h-full w-full max-w-lg bg-white z-[60] translate-x-full transition-transform duration-300 ease-out shadow-2xl flex flex-col" data-drawer="" id="branchDrawer">
+<div class="px-lg py-lg flex justify-between items-center border-b border-surface-variant">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Branch Details</h2>
+<p class="text-on-surface-variant font-body-sm">Overview and statistics for DF-001</p>
+</div>
+<button class="material-symbols-outlined p-2 hover:bg-surface-container rounded-full text-on-surface-variant" onclick="toggleDrawer(false)">close</button>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-lg space-y-xl">
+<div class="relative w-full h-40 bg-surface-container rounded-xl overflow-hidden mb-lg">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-C8sq4adgLuSCGIgqcZBiAHbBd6SoKtKGOiFlcGD8ouoNqi-UUzrXa-omPamSGu0vzEIrUlNkuqvC3ngMDvakc_Dh-b2ItbWZmuYulyg4qLYrQLnwcpvATdvjSa_Lo5Zf-5q8lDlza_rI2LF3sho0y4UPIQAULPq2jSnUflc9G5WcAqGzKwWgR0-LUKFXwFNPk_x43C_PX3_4ZNO42Uo1qmOn1xtSqplc3HDsUf6cnzgLKXwnJxWU4A')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/40 to-transparent"></div>
+<div class="absolute bottom-md left-md flex items-center gap-xs text-white">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="font-label-md">124 Business Plaza, New York</span>
+</div>
+</div>
+<section class="space-y-md">
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-wide">Status</span>
+<span class="flex items-center gap-xs px-sm py-xs bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm rounded-full">
+<span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span> Active
+                    </span>
+</div>
+<div class="grid grid-cols-2 gap-y-lg gap-x-md">
+<div>
+<p class="text-on-surface-variant font-label-sm uppercase opacity-60 mb-xs">Branch Name</p>
+<p class="font-body-md font-semibold text-on-surface">Downtown Flagship</p>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm uppercase opacity-60 mb-xs">Branch Code</p>
+<p class="font-body-md font-semibold text-on-surface">DF-001</p>
+</div>
+</div>
+</section>
+<hr class="border-surface-variant/50">
+<section class="space-y-lg">
+<h3 class="font-label-md font-bold text-primary flex items-center gap-sm">
+<span class="material-symbols-outlined text-md">contact_page</span> Contact &amp; Operations
+                </h3>
+<div class="space-y-md">
+<div class="flex gap-md items-start">
+<span class="material-symbols-outlined text-on-surface-variant text-md">call</span>
+<div><p class="text-on-surface-variant font-label-sm opacity-60">Phone</p><p class="font-body-md text-on-surface">+1 (555) 012-3456</p></div>
+</div>
+</div>
+</section>
+</div>
+<div class="p-lg border-t border-surface-variant bg-surface-container-lowest flex flex-col gap-sm">
+<button class="w-full py-md rounded-xl border-2 border-primary text-primary font-label-md font-bold hover:bg-primary/5 transition-colors" onclick="openModal('branchFormModal')">Edit Branch</button>
+<div class="grid grid-cols-2 gap-sm">
+<button class="w-full py-sm rounded-xl text-primary font-label-md hover:bg-primary/5 flex items-center justify-center gap-xs"><span class="material-symbols-outlined text-sm">inventory_2</span> Inventory</button>
+<button class="w-full py-sm rounded-xl text-primary font-label-md hover:bg-primary/5 flex items-center justify-center gap-xs"><span class="material-symbols-outlined text-sm">group</span> Users</button>
+</div>
+</div>
+</div>
+<script>
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function toggleDrawer(show) {
+            const drawer = document.getElementById('branchDrawer');
+            const overlay = document.getElementById('branchDrawerOverlay');
+            if (show) {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+            }
+        }
+
+        // Close dropdowns when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.material-symbols-outlined')) {
+                const dropdowns = document.querySelectorAll('.absolute.right-0');
+                dropdowns.forEach(d => d.classList.add('hidden'));
+            }
+        }
+    </script>
+</body></html>

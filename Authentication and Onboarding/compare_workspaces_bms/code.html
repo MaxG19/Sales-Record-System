@@ -1,0 +1,359 @@
+<!DOCTYPE html><html lang="en" class="light" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#f4f0ea",
+                        "primary": "#03271a",
+                        "on-secondary-container": "#785b44",
+                        "on-tertiary-fixed": "#311210",
+                        "on-secondary-fixed": "#2b1705",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e5e2dc",
+                        "primary-fixed-dim": "#aacfbb",
+                        "on-tertiary-fixed-variant": "#633c39",
+                        "on-primary-container": "#84a895",
+                        "on-secondary-fixed-variant": "#5b412c",
+                        "background": "#fdf9f3",
+                        "surface-bright": "#fdf9f3",
+                        "surface-container": "#f1ede8",
+                        "tertiary-fixed": "#ffdad6",
+                        "surface": "#fdf9f3",
+                        "outline-variant": "#c1c8c2",
+                        "on-primary-fixed": "#002115",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#1c1c18",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#31302d",
+                        "primary-container": "#1b3d2f",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#e5bfa3",
+                        "tertiary-fixed-dim": "#f0b9b4",
+                        "on-background": "#1c1c18",
+                        "surface-dim": "#dddad4",
+                        "tertiary-container": "#512d2a",
+                        "on-tertiary-container": "#c6948f",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#c5ebd7",
+                        "surface-tint": "#436556",
+                        "surface-container-highest": "#e5e2dc",
+                        "on-surface-variant": "#414844",
+                        "secondary-container": "#fdd5b8",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#381816",
+                        "secondary-fixed": "#ffdcc2",
+                        "surface-container-high": "#ebe8e2",
+                        "secondary": "#755841",
+                        "on-primary-fixed-variant": "#2c4d3f",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#aacfbb",
+                        "error-container": "#ffdad6",
+                        "outline": "#727974",
+                        "surface-container-low": "#f7f3ed"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "stack-sm": "12px",
+                        "container-max": "1280px",
+                        "stack-md": "24px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "margin-desktop": "48px",
+                        "stack-lg": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    }catch(_e){}</script><meta charset="utf-8"></head><body class="antialiased">
+<!-- TopNavBar (Shared Component Strategy) -->
+<header class="bg-background dark:bg-background shadow-sm docked full-width top-0 fixed z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-stack-md">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">BMS Enterprise</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a href="#" class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md transition-all duration-200 ease-in-out">Return to Workspace Selection</a>
+<div class="flex items-center gap-4 border-l border-outline-variant pl-8">
+<span class="text-on-surface-variant font-medium font-body-md text-body-md hover:text-primary transition-colors cursor-pointer">Support</span>
+<button class="text-primary"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-primary"><span class="material-symbols-outlined">settings</span></button>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a corporate executive in high-end business attire, set against a warm, minimalist office background. The lighting is soft and natural, reflecting a premium enterprise management environment with a sophisticated digital atelier aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfcRdM6XA8TIVpW9-KPo6poO_efPPYxwSJ1avHDYtTz0E6Iz5FdHzUkWylh6lUIVDp-gFu4Qu4BxkBonkS_6mW2nMSSeWY3wpt44a0chPlTpPn0a2H8Ul90hVFTm4XlpM2FmxfuWDNun3JUCadN8mondoRYrwqlKn0pfNvurefXNE16hEzNLYGIct3diL5bwiap6LVUfF8pVaLGI9uh1Tw0iGxpXU6TG3Ji-Xn_ISmUi15UfaeL1-k4_VueCMezIc91JyVlYzNX12f">
+</div>
+</div>
+</nav>
+</div>
+</header>
+<main class="pt-32 pb-stack-lg max-w-container-max mx-auto px-margin-desktop">
+<!-- Header Section-->
+<section class="mb-stack-lg">
+<h1 class="font-display-lg text-display-lg text-primary mb-2">Compare Workspaces</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                Compare what each workspace includes and choose the one that best matches your business. 
+                Our tiered structure ensures you only pay for the precision you need.
+            </p>
+</section>
+<!-- Summary Cards Bento-ish Grid -->
+<div class="grid grid-cols-1 md:grid-cols-5 gap-gutter mb-stack-lg">
+<!-- Essentials -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl card-shadow flex flex-col justify-between transition-transform hover:-translate-y-1">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-2 block">STARTER</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Essentials</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Simple operations for growing businesses.</p>
+<div class="flex items-baseline gap-1 mb-8">
+<span class="font-headline-lg text-headline-lg text-primary">8</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Capabilities</span>
+</div>
+</div>
+<button class="w-full py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg inner-shine hover:opacity-90 transition-all active:scale-95">Choose Workspace</button>
+</div>
+<!-- Retail Pro -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl card-shadow flex flex-col justify-between transition-transform hover:-translate-y-1">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-2 block">GROWTH</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Retail Pro</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Designed for businesses managing inventory, suppliers and repeat customers.</p>
+<div class="flex items-baseline gap-1 mb-8">
+<span class="font-headline-lg text-headline-lg text-primary">24</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Capabilities</span>
+</div>
+</div>
+<button class="w-full py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg inner-shine hover:opacity-90 transition-all active:scale-95">Choose Workspace</button>
+</div>
+<!-- Multi-Branch (Featured) -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl card-shadow flex flex-col justify-between transition-transform hover:-translate-y-1">
+<div><span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-2 block">SCALABLE</span>
+
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Multi-Branch</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Manage multiple outlets with centralized control and deep reporting.</p>
+<div class="flex items-baseline gap-1 mb-8">
+<span class="font-headline-lg text-headline-lg text-primary">42</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Capabilities</span>
+</div>
+</div>
+<button class="w-full py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg inner-shine hover:opacity-90 transition-all active:scale-95">Choose Workspace</button>
+</div>
+<!-- Everything -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl card-shadow flex flex-col justify-between transition-transform hover:-translate-y-1">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-2 block">Enterprise</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Everything</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Full enterprise power with no limits and priority support.</p>
+<div class="flex items-baseline gap-1 mb-8">
+<span class="font-headline-lg text-headline-lg text-primary">All</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Included</span>
+</div>
+</div>
+<button class="w-full py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg inner-shine hover:opacity-90 transition-all active:scale-95">Choose Workspace</button>
+</div>
+<!-- Build Your Own -->
+<div class="bg-surface-container-low border border-dashed border-outline p-stack-md rounded-xl flex flex-col justify-between transition-transform hover:-translate-y-1">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-2 block">Modular</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Build Your Own</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Custom-tailored workspace for unique needs and scaling.</p>
+<div class="flex items-baseline gap-1 mb-8">
+<span class="material-symbols-outlined text-4xl text-primary">auto_fix_high</span>
+</div>
+</div>
+<button class="w-full py-3 bg-white border border-primary text-primary font-label-md text-label-md rounded-lg inner-shine hover:bg-surface-container-low transition-all active:scale-95">Choose Workspace</button>
+</div>
+</div>
+<!-- Comparison Table Section -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden card-shadow">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="sticky-table-header border-b border-outline-variant">
+<tr class="bg-surface-container-low">
+<th class="p-stack-md font-label-md text-label-md text-primary w-1/4">Capabilities</th>
+<th class="p-stack-md font-label-md text-label-md text-primary text-center">Essentials</th>
+<th class="p-stack-md font-label-md text-label-md text-primary text-center">Retail Pro</th>
+<th class="p-stack-md font-label-md text-label-md text-primary text-center">Multi-Branch</th>
+<th class="p-stack-md font-label-md text-label-md text-primary text-center">Everything</th>
+<th class="p-stack-md font-label-md text-label-md text-primary text-center">Build Your Own</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Category: Selling -->
+<tr class="bg-surface-container-low/30">
+<td class="px-stack-md py-4" colspan="6">
+<details class="group" open="">
+<summary class="flex items-center gap-2 cursor-pointer">
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
+<span class="font-label-md text-label-md text-primary uppercase tracking-wider">Selling</span>
+</summary>
+<div class="mt-4 space-y-0">
+<!-- Sub-features would go here in a real implementation -->
+</div>
+</details>
+</td>
+</tr>
+<tr>
+<td class="p-stack-md font-body-sm text-body-sm text-on-surface">Point of Sale (POS)</td>
+<td class="p-stack-md text-center"><span class="material-symbols-outlined text-primary">check_circle</span></td>
+<td class="p-stack-md text-center"><span class="material-symbols-outlined text-primary">check_circle</span></td>
+<td class="p-stack-md text-center"><span class="material-symbols-outlined text-primary">check_circle</span></td>
+<td class="p-stack-md text-center"><span class="material-symbols-outlined text-primary">check_circle</span></td>
+<td class="p-stack-md text-center font-label-sm text-label-sm text-secondary">Optional</td>
+</tr>
+<tr>
+<td class="p-stack-md font-body-sm text-body-sm text-on-surface">Omnichannel Sync</td>
+<td class="p-stack-md text-center font-body-sm text-on-surface-variant">—</td>
+<td class="p-stack-md text-center"><span class="material-symbols-outlined text-primary">check_circle</span></td>
+<td class="p-stack-md text-center"><span class="material-symbols-outlined text-primary">check_circle</span></td>
+<td class="p-stack-md text-center"><span class="material-symbols-outlined text-primary">check_circle</span></td>
+<td class="p-stack-md text-center font-label-sm text-label-sm text-secondary">Optional</td>
+</tr>
+<!-- Category: Products -->
+<tr class="bg-surface-container-low/30">
+<td class="px-stack-md py-4" colspan="6">
+<details class="group">
+<summary class="flex items-center gap-2 cursor-pointer">
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
+<span class="font-label-md text-label-md text-primary uppercase tracking-wider">Products</span>
+</summary>
+<!-- Visual placeholder for expansion -->
+<div class="bg-white/50 p-stack-sm rounded-lg mt-4 border border-outline-variant/20 ml-8 space-y-2">
+<div class="flex justify-between items-center text-on-surface-variant text-sm border-b pb-1"><span class="">Product Catalogue</span> <span class="material-symbols-outlined text-xs">check</span></div>
+<div class="flex justify-between items-center text-on-surface-variant text-sm border-b pb-1"><span class="">Variants &amp; Attributes</span> <span class="material-symbols-outlined text-xs">check</span></div>
+<div class="flex justify-between items-center text-on-surface-variant text-sm border-b pb-1"><span class="">Category Management</span> <span class="material-symbols-outlined text-xs">check</span></div>
+</div>
+</details>
+</td>
+</tr>
+<tr>
+<td class="p-stack-md font-body-sm text-body-sm text-on-surface">Unlimited SKU Management</td>
+<td class="p-stack-md text-center font-body-sm text-on-surface-variant">—</td>
+<td class="p-stack-md text-center"><span class="material-symbols-outlined text-primary">check_circle</span></td>
+<td class="p-stack-md text-center"><span class="material-symbols-outlined text-primary">check_circle</span></td>
+<td class="p-stack-md text-center"><span class="material-symbols-outlined text-primary">check_circle</span></td>
+<td class="p-stack-md text-center font-label-sm text-label-sm text-secondary">Optional</td>
+</tr>
+<!-- Category: Reports -->
+<tr class="bg-surface-container-low/30">
+<td class="px-stack-md py-4" colspan="6">
+<details class="group">
+<summary class="flex items-center gap-2 cursor-pointer">
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
+<span class="font-label-md text-label-md text-primary uppercase tracking-wider">Reports</span>
+</summary>
+</details>
+</td>
+</tr>
+<tr>
+<td class="p-stack-md font-body-sm text-body-sm text-on-surface">Consolidated Enterprise Analytics</td>
+<td class="p-stack-md text-center font-body-sm text-on-surface-variant">—</td>
+<td class="p-stack-md text-center font-body-sm text-on-surface-variant">—</td>
+<td class="p-stack-md text-center font-body-sm text-body-sm text-primary font-bold">Automatic</td>
+<td class="p-stack-md text-center font-body-sm text-body-sm text-primary font-bold">Automatic</td>
+<td class="p-stack-md text-center font-label-sm text-label-sm text-secondary">Optional</td>
+</tr>
+<!-- Multi-Location row explicitly -->
+<tr class="bg-surface-container-low/30">
+<td class="px-stack-md py-4" colspan="6">
+<details class="group">
+<summary class="flex items-center gap-2 cursor-pointer">
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
+<span class="font-label-md text-label-md text-primary uppercase tracking-wider">Multi-Location</span>
+</summary>
+</details>
+</td>
+</tr>
+<tr>
+<td class="p-stack-md font-body-sm text-body-sm text-on-surface">Inter-branch Stock Transfer</td>
+<td class="p-stack-md text-center font-body-sm text-on-surface-variant">—</td>
+<td class="p-stack-md text-center font-body-sm text-on-surface-variant">—</td>
+<td class="p-stack-md text-center"><span class="material-symbols-outlined text-primary">check_circle</span></td>
+<td class="p-stack-md text-center"><span class="material-symbols-outlined text-primary">check_circle</span></td>
+<td class="p-stack-md text-center font-label-sm text-label-sm text-secondary">Optional</td>
+</tr>
+<!-- Extra Categories placeholders for visual fullness -->
+<tr class="bg-surface-container-low/30">
+<td class="px-stack-md py-4 text-on-surface-variant font-label-sm uppercase opacity-50" colspan="6">Suppliers, Customers, Employees, Administration...</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Call to Action Footer -->
+<div class="mt-stack-lg flex flex-col items-center gap-4 text-center">
+<p class="font-headline-md text-headline-md text-primary">Need more detail?</p>
+<a class="inline-flex items-center gap-2 font-label-md text-label-md text-primary hover:gap-4 transition-all duration-300" href="#">
+                Explore All Capabilities 
+                <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</main>
+<!-- Footer (Shared Component Strategy) -->
+<footer class="bg-surface-container-highest dark:bg-surface-container-highest border-t border-outline-variant w-full py-stack-lg">
+<div class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-stack-md">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-label-md text-label-md text-primary">BMS Enterprise Solutions</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 BMS Enterprise Solutions. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-gutter">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Explore all capabilities</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Security</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for table expand/collapse
+        document.querySelectorAll('details').forEach((detail) => {
+            detail.addEventListener('toggle', () => {
+                if (detail.open) {
+                    detail.closest('tr').classList.add('bg-primary/5');
+                } else {
+                    detail.closest('tr').classList.remove('bg-primary/5');
+                }
+            });
+        });
+
+        // Simple smooth scroll reveal or interaction feedback
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.classList.add('absolute', 'bg-white/30', 'rounded-full', 'animate-ping');
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.left = `${e.offsetX}px`;
+                ripple.style.top = `${e.offsetY}px`;
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 500);
+            });
+        });
+    </script>
+
+</body></html>

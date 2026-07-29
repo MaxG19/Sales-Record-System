@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resume Held Sales - Supermarket POS</title>
+<!-- Google Fonts: Inter for the professional corporate aesthetic -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols for icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Hide scrollbar for clean POS look */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#151c27",
+                        "surface-dim": "#d3daea",
+                        "on-secondary-fixed": "#002113",
+                        "surface-container-highest": "#dce2f3",
+                        "background": "#f9f9ff",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "on-tertiary-fixed": "#191c1d",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#4edea3",
+                        "secondary-fixed": "#6ffbbe",
+                        "secondary": "#006c49",
+                        "on-surface-variant": "#434655",
+                        "on-primary-container": "#eeefff",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#6b6d6e",
+                        "surface-container": "#e7eefe",
+                        "outline": "#737686",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#005236",
+                        "surface-tint": "#0053db",
+                        "primary-container": "#2563eb",
+                        "surface": "#f9f9ff",
+                        "on-secondary-container": "#00714d",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "primary-fixed": "#dbe1ff",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "tertiary-fixed": "#e1e3e4",
+                        "surface-bright": "#f9f9ff",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e2e8f8",
+                        "surface-variant": "#dce2f3",
+                        "on-tertiary-container": "#eff0f1",
+                        "inverse-surface": "#2a313d",
+                        "inverse-primary": "#b4c5ff",
+                        "tertiary": "#525556",
+                        "primary": "#004ac6",
+                        "on-primary-fixed": "#00174b",
+                        "secondary-container": "#6cf8bb",
+                        "on-surface": "#151c27",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c3c6d7",
+                        "inverse-on-surface": "#ebf1ff",
+                        "surface-container-low": "#f0f3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "margin-page": "24px",
+                        "gutter": "16px",
+                        "stack-lg": "24px",
+                        "touch-target-min": "48px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "numeral-xl": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "numeral-xl": ["24px", {"lineHeight": "32px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface-dim flex h-screen w-screen overflow-hidden">
+<!-- App Shell (Blurred background representing the POS) -->
+<div class="flex flex-1 flex-col opacity-40 grayscale pointer-events-none">
+<!-- TopAppBar Placeholder -->
+<header class="bg-surface-container-highest border-b border-outline-variant flex justify-between items-center w-full px-margin-page h-touch-target-min">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface">menu</span>
+<h1 class="text-headline-md font-headline-md font-bold text-on-surface">Supermarket POS</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">notifications</span>
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold">JM</div>
+</div>
+</header>
+<main class="flex-1 flex overflow-hidden">
+<!-- SideNavBar Placeholder -->
+<nav class="w-64 border-r border-outline-variant bg-surface flex flex-col py-stack-lg">
+<div class="px-margin-page mb-stack-lg">
+<p class="font-bold text-on-surface">Jane Mwangi</p>
+<p class="text-sm text-on-surface-variant">Till 2 - Shift Active</p>
+</div>
+<div class="space-y-1">
+<div class="bg-secondary-container text-on-secondary-container rounded-lg mx-2 px-4 py-3 flex items-center gap-3">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</div>
+<div class="text-on-surface-variant mx-2 px-4 py-3 flex items-center gap-3">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Sales</span>
+</div>
+</div>
+</nav>
+<!-- Grid Placeholder -->
+<div class="flex-1 p-gutter grid grid-cols-4 gap-4">
+<div class="col-span-3 bg-white rounded-xl shadow-sm"></div>
+<div class="col-span-1 bg-white rounded-xl shadow-sm"></div>
+</div>
+</main>
+</div>
+<!-- MODAL OVERLAY -->
+<div class="fixed inset-0 bg-on-background/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+<!-- Resume Held Sales Modal Container -->
+<div class="bg-surface rounded-xl shadow-2xl w-full max-w-2xl max-h-[921px] flex flex-col overflow-hidden border border-outline-variant">
+<!-- Modal Header -->
+<div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant bg-surface-container-low">
+<h2 class="text-headline-md font-headline-md text-on-surface">Resume Held Sales</h2>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-dim transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</div>
+<!-- Search & Filter Bar -->
+<div class="p-4 flex gap-3 items-center border-b border-outline-variant bg-white">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">search</span>
+<input class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded-lg bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:border-primary text-body-md font-body-md outline-none transition-all" placeholder="Search held sales..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-colors text-label-md font-label-md text-on-surface">
+<span class="material-symbols-outlined text-lg">sort</span>
+                    Sort
+                </button>
+</div>
+<!-- Held Sales List Area -->
+<div class="flex-1 overflow-y-auto no-scrollbar p-4 space-y-3 bg-surface-container-low">
+<!-- Item 1: Walk-in Customer -->
+<div class="bg-white border border-outline-variant rounded-xl p-4 flex items-center justify-between hover:border-primary transition-all group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container">shopping_cart</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-body-md font-bold text-on-surface">Walk-in Customer</h3>
+<span class="material-symbols-outlined text-[10px] text-outline-variant">fiber_manual_record</span>
+<span class="text-numeral-xl font-numeral-xl text-secondary">KES 2,580.00</span>
+</div>
+<div class="flex items-center gap-x-2 text-label-md font-label-md text-on-surface-variant mt-1">
+<span>6 items</span>
+<span>•</span>
+<span>Held by <span class="font-semibold text-on-surface">Jane Wanjiku</span></span>
+</div>
+<div class="text-[12px] text-outline mt-0.5">17 May 2025 • 10:43 AM • Till 2</div>
+</div>
+</div>
+<button class="bg-white border-2 border-secondary text-secondary px-6 py-2 rounded-lg font-bold hover:bg-secondary hover:text-white transition-all transform active:scale-95">
+                        Resume
+                    </button>
+</div>
+<!-- Item 2: John Kamau -->
+<div class="bg-white border border-outline-variant rounded-xl p-4 flex items-center justify-between hover:border-primary transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-body-md font-bold text-on-surface">John Kamau</h3>
+<span class="material-symbols-outlined text-[10px] text-outline-variant">fiber_manual_record</span>
+<span class="text-numeral-xl font-numeral-xl text-secondary">KES 8,420.00</span>
+</div>
+<div class="flex items-center gap-x-2 text-label-md font-label-md text-on-surface-variant mt-1">
+<span>12 items</span>
+<span>•</span>
+<span>Held by <span class="font-semibold text-on-surface">Peter Mwangi</span></span>
+</div>
+<div class="text-[12px] text-outline mt-0.5">17 May 2025 • 10:38 AM • Till 1</div>
+</div>
+</div>
+<button class="bg-white border-2 border-secondary text-secondary px-6 py-2 rounded-lg font-bold hover:bg-secondary hover:text-white transition-all transform active:scale-95">
+                        Resume
+                    </button>
+</div>
+<!-- Item 3: Mary Wanjiru -->
+<div class="bg-white border border-outline-variant rounded-xl p-4 flex items-center justify-between hover:border-primary transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-body-md font-bold text-on-surface">Mary Wanjiru</h3>
+<span class="material-symbols-outlined text-[10px] text-outline-variant">fiber_manual_record</span>
+<span class="text-numeral-xl font-numeral-xl text-secondary">KES 980.00</span>
+</div>
+<div class="flex items-center gap-x-2 text-label-md font-label-md text-on-surface-variant mt-1">
+<span>3 items</span>
+<span>•</span>
+<span>Held by <span class="font-semibold text-on-surface">Jane Wanjiku</span></span>
+</div>
+<div class="text-[12px] text-outline mt-0.5">17 May 2025 • 10:30 AM • Till 2</div>
+</div>
+</div>
+<button class="bg-white border-2 border-secondary text-secondary px-6 py-2 rounded-lg font-bold hover:bg-secondary hover:text-white transition-all transform active:scale-95">
+                        Resume
+                    </button>
+</div>
+<!-- Item 4: Walk-in Customer (Secondary) -->
+<div class="bg-white border border-outline-variant rounded-xl p-4 flex items-center justify-between hover:border-primary transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container">shopping_cart</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-body-md font-bold text-on-surface">Walk-in Customer</h3>
+<span class="material-symbols-outlined text-[10px] text-outline-variant">fiber_manual_record</span>
+<span class="text-numeral-xl font-numeral-xl text-secondary">KES 4,150.00</span>
+</div>
+<div class="flex items-center gap-x-2 text-label-md font-label-md text-on-surface-variant mt-1">
+<span>9 items</span>
+<span>•</span>
+<span>Held by <span class="font-semibold text-on-surface">Peter Mwangi</span></span>
+</div>
+<div class="text-[12px] text-outline mt-0.5">17 May 2025 • 09:50 AM • Till 1</div>
+</div>
+</div>
+<button class="bg-white border-2 border-secondary text-secondary px-6 py-2 rounded-lg font-bold hover:bg-secondary hover:text-white transition-all transform active:scale-95">
+                        Resume
+                    </button>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between pt-4 pb-2 border-t border-outline-variant">
+<button class="flex items-center gap-1 text-on-surface-variant text-label-md font-label-md hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+                        Previous
+                    </button>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 rounded bg-secondary-container text-on-secondary-container font-bold text-label-md">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-dim transition-colors text-label-md">2</button>
+</div>
+<button class="flex items-center gap-1 text-on-surface-variant text-label-md font-label-md hover:text-primary transition-colors">
+                        Next
+                        <span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-6 bg-white border-t border-outline-variant space-y-3">
+<button class="w-full py-4 border-2 border-secondary text-secondary flex items-center justify-center gap-2 rounded-xl font-bold hover:bg-secondary/5 transition-all transform active:scale-[0.98]">
+<span class="material-symbols-outlined">add_circle</span>
+                    Start New Sale
+                </button>
+<button class="w-full py-4 border-2 border-outline text-on-surface-variant flex items-center justify-center rounded-xl font-bold hover:bg-surface-dim transition-all transform active:scale-[0.98]">
+                    Close
+                </button>
+</div>
+</div>
+</div>
+<!-- PERSISTENT FOOTER BAR (POS STYLE) -->
+<footer class="fixed bottom-0 left-0 right-0 bg-surface-container-low border-t border-outline-variant flex justify-between items-center px-margin-page py-stack-sm w-full z-10 pointer-events-none opacity-50">
+<div class="text-label-md font-label-md text-on-surface-variant">
+            Last sale: 10:42 AM • Receipt printed
+        </div>
+<div class="flex items-center gap-4">
+<span class="text-label-md font-label-md text-secondary">Help Center</span>
+<span class="text-label-md font-label-md text-secondary">Support</span>
+<button class="bg-secondary text-on-secondary px-8 py-3 rounded-lg font-bold">Proceed to Payment</button>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for list item hover
+        document.querySelectorAll('.group').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                // Future expansion for tooltips or details
+            });
+        });
+
+        // Close modal logic (mock)
+        const closeBtn = document.querySelector('button span[data-icon="close"]')?.parentElement;
+        if (closeBtn) {
+            closeBtn.onclick = () => {
+                alert('Closing resume sales modal.');
+            };
+        }
+    </script>
+</body></html>
