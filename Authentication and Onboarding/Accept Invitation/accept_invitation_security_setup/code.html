@@ -231,6 +231,10 @@
 </footer>
 </div>
 </main>
+<!-- Prototype Interaction Scripts -->
+<script src="../../prototype/js/navigation.js"></script>
+<script src="../../prototype/js/validation.js"></script>
+<script src="../../prototype/js/loading.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
       const passwordInput = document.getElementById('new-password');
@@ -239,7 +243,7 @@
       const label = document.getElementById('strength-label');
       const activateBtn = document.getElementById('activateBtn');
       const pinBoxes = document.querySelectorAll('.pin-box');
-      
+
       const checks = {
         length: document.getElementById('check-length'),
         upper: document.getElementById('check-upper'),
@@ -248,17 +252,15 @@
         special: document.getElementById('check-special')
       };
 
-      const togglePassBtns = document.querySelectorAll('.toggle-pass');
-      togglePassBtns.forEach(btn => {
+      // ── Password visibility toggles ──
+      document.querySelectorAll('.toggle-pass').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const input = e.currentTarget.previousElementSibling;
           const icon = e.currentTarget.querySelector('span');
           if (input.type === 'password') {
-            input.type = 'text';
-            icon.innerText = 'visibility_off';
+            input.type = 'text'; icon.innerText = 'visibility_off';
           } else {
-            input.type = 'password';
-            icon.innerText = 'visibility';
+            input.type = 'password'; icon.innerText = 'visibility';
           }
         });
       });
@@ -266,11 +268,11 @@
       function updateCheck(el, condition) {
         const icon = el.querySelector('span');
         if (condition) {
-          el.classList.replace('text-on-surface-variant', 'text-status-success');
+          el.style.color = '#344E41';
           icon.innerText = 'check_circle';
           icon.style.fontVariationSettings = "'FILL' 1";
         } else {
-          el.classList.replace('text-status-success', 'text-on-surface-variant');
+          el.style.color = '#727974';
           icon.innerText = 'circle';
           icon.style.fontVariationSettings = "'FILL' 0";
         }
@@ -279,7 +281,6 @@
       passwordInput.addEventListener('input', (e) => {
         const val = e.target.value;
         let score = 0;
-
         const hasLength = val.length >= 8;
         const hasUpper = /[A-Z]/.test(val);
         const hasLower = /[a-z]/.test(val);
@@ -298,21 +299,20 @@
         if (hasSpecial) score++;
 
         const levels = [
-          { label: 'Weak', color: 'bg-error', text: 'text-error', width: '25%' },
-          { label: 'Fair', color: 'bg-status-warning', text: 'text-status-warning', width: '50%' },
-          { label: 'Good', color: 'bg-secondary', text: 'text-secondary', width: '75%' },
+          { label: 'Weak',   color: 'bg-error',          text: 'text-error',          width: '25%' },
+          { label: 'Fair',   color: 'bg-status-warning', text: 'text-status-warning', width: '50%' },
+          { label: 'Good',   color: 'bg-secondary',      text: 'text-secondary',      width: '75%' },
           { label: 'Strong', color: 'bg-status-success', text: 'text-status-success', width: '100%' }
         ];
-
         const state = levels[Math.max(0, score - 1)];
         meter.className = `strength-bar rounded-full ${state.color}`;
         meter.style.width = state.width;
         label.innerText = state.label;
         label.className = `font-bold ${state.text}`;
-
         validateAll();
       });
 
+      // ── PIN auto-advance ──
       pinBoxes.forEach((box, i) => {
         box.addEventListener('input', (e) => {
           if (e.target.value && i < 3) pinBoxes[i + 1].focus();
@@ -329,7 +329,6 @@
         const passMatch = passwordInput.value === confirmInput.value && passwordInput.value !== '';
         const passStrong = passwordInput.value.length >= 8;
         const pinFilled = Array.from(pinBoxes).every(b => b.value !== '');
-
         if (passMatch && passStrong && pinFilled) {
           activateBtn.disabled = false;
           activateBtn.classList.remove('opacity-50', 'cursor-not-allowed');
@@ -338,6 +337,40 @@
           activateBtn.classList.add('opacity-50', 'cursor-not-allowed');
         }
       }
+
+      // ── Activate Account ──
+      document.getElementById('setupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (activateBtn.disabled) return;
+
+        const passErr = Validation.password(passwordInput.value);
+        const confirmErr = Validation.confirmPassword(passwordInput.value, confirmInput.value);
+        const pinDigits = Array.from(pinBoxes).map(b => b.value);
+        const pinErr = Validation.pin(pinDigits);
+
+        if (passErr || confirmErr || pinErr) {
+          if (passErr || confirmErr) Toast.show(passErr || confirmErr, 'error');
+          if (pinErr) Toast.show(pinErr, 'error');
+          return;
+        }
+
+        Loading.setButton(activateBtn, 'Activating...');
+        setTimeout(() => {
+          navigateTo(Routes.INVITATION_SUCCESS);
+        }, 1400);
+      });
+
+      // ── Back button ──
+      document.querySelectorAll('button[type="button"]').forEach(btn => {
+        if (btn.textContent.trim() === 'Back') {
+          btn.addEventListener('click', () => navigateTo(Routes.INVITATION_DETAILS));
+        }
+      });
+
+      // ── Support link ──
+      document.querySelectorAll('a[href="#"]').forEach(a => {
+        a.addEventListener('click', e => e.preventDefault());
+      });
     });
   </script>
 

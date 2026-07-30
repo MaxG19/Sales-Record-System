@@ -329,8 +329,11 @@
 </div>
 </div>
 </footer>
+<!-- Prototype Interaction Scripts -->
+<script src="../prototype/js/navigation.js"></script>
+<script src="../prototype/js/loading.js"></script>
 <script>
-        // Micro-interactions for table expand/collapse
+        // ── Table expand/collapse ──
         document.querySelectorAll('details').forEach((detail) => {
             detail.addEventListener('toggle', () => {
                 if (detail.open) {
@@ -341,18 +344,24 @@
             });
         });
 
-        // Simple smooth scroll reveal or interaction feedback
+        // ── Choose Workspace buttons ──
         document.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const ripple = document.createElement('span');
-                ripple.classList.add('absolute', 'bg-white/30', 'rounded-full', 'animate-ping');
-                ripple.style.width = '20px';
-                ripple.style.height = '20px';
-                ripple.style.left = `${e.offsetX}px`;
-                ripple.style.top = `${e.offsetY}px`;
-                this.appendChild(ripple);
-                setTimeout(() => ripple.remove(), 500);
-            });
+            if (btn.textContent.trim() === 'Choose Workspace') {
+                btn.addEventListener('click', function() {
+                    Loading.setButton(btn, 'Loading...');
+                    setTimeout(() => navigateTo(Routes.WORKSPACE_SELECTION), 900);
+                });
+            }
+        });
+
+        // ── Return to Workspace Selection nav link ──
+        document.querySelectorAll('a').forEach(a => {
+            if (a.textContent.includes('Return to Workspace Selection')) {
+                a.addEventListener('click', e => { e.preventDefault(); navigateTo(Routes.WORKSPACE_SELECTION); });
+            }
+            if (a.textContent.includes('Explore All Capabilities')) {
+                a.addEventListener('click', e => { e.preventDefault(); navigateTo(Routes.CAPABILITY_EXPLORER); });
+            }
         });
     </script>
 

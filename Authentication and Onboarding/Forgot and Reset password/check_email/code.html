@@ -191,15 +191,17 @@
 </div>
 </div>
 </main>
-<!-- Micro-interaction Script -->
+<!-- Prototype Interaction Scripts -->
+<script src="../../prototype/js/navigation.js"></script>
+<script src="../../prototype/js/loading.js"></script>
 <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // ── Resend countdown ──
             let timeLeft = 60;
             const timerCount = document.getElementById('timer-count');
             const resendBtn = document.getElementById('resend-btn');
             const timerText = document.getElementById('timer-text');
 
-            // Initially disable resend
             resendBtn.disabled = true;
             resendBtn.style.opacity = '0.5';
             resendBtn.style.cursor = 'not-allowed';
@@ -208,7 +210,6 @@
                 timeLeft--;
                 const seconds = timeLeft < 10 ? `0${timeLeft}` : timeLeft;
                 timerCount.textContent = `00:${seconds}`;
-
                 if (timeLeft <= 0) {
                     clearInterval(countdown);
                     timerText.classList.add('opacity-0');
@@ -218,15 +219,28 @@
                 }
             }, 1000);
 
-            // Button Interaction
+            // ── Resend button ──
             resendBtn.addEventListener('click', () => {
-                if(!resendBtn.disabled) {
-                    resendBtn.innerHTML = '<span class="material-symbols-outlined animate-spin mr-2" data-icon="sync">sync</span> Sending...';
+                if (!resendBtn.disabled) {
+                    Loading.setButton(resendBtn, 'Sending...');
                     setTimeout(() => {
-                        resendBtn.innerHTML = 'Resend Email';
-                        alert('Reset instructions resent successfully.');
-                    }, 1500);
+                        Loading.resetButton(resendBtn);
+                        Toast.show('Reset instructions resent successfully.', 'success');
+                    }, 1200);
                 }
+            });
+
+            // ── Open Email App ──
+            document.querySelector('button:first-of-type') &&
+            document.querySelectorAll('button')[0].addEventListener('click', () => {
+                // Simulate proceeding to create new password
+                navigateTo(Routes.CREATE_PASSWORD, 300);
+            });
+
+            // ── Back to Login ──
+            document.querySelector('a[href="#"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                navigateTo(Routes.LOGIN);
             });
         });
     </script>

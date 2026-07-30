@@ -456,6 +456,9 @@
 </div>
 </div>
 </footer>
+<!-- Prototype Interaction Scripts -->
+<script src="../prototype/js/navigation.js"></script>
+<script src="../prototype/js/loading.js"></script>
 <script>
         const drawer = document.getElementById('detailDrawer');
         const overlay = document.getElementById('drawerOverlay');
@@ -470,13 +473,32 @@
             overlay.classList.add('opacity-0', 'pointer-events-none');
         }
 
-        // Search bar micro-interaction
+        // ── Search filter ──
         const searchInput = document.querySelector('input[type="text"]');
-        searchInput.addEventListener('focus', () => {
-            searchInput.parentElement.classList.add('scale-[1.01]');
+        searchInput.addEventListener('focus', () => searchInput.parentElement.classList.add('scale-[1.01]'));
+        searchInput.addEventListener('blur', () => searchInput.parentElement.classList.remove('scale-[1.01]'));
+
+        // ── Filter buttons ──
+        document.querySelectorAll('button.rounded-full').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('button.rounded-full').forEach(b => {
+                    b.classList.remove('bg-primary', 'text-white');
+                    b.classList.add('bg-white', 'text-on-surface-variant');
+                });
+                this.classList.add('bg-primary', 'text-white');
+                this.classList.remove('bg-white', 'text-on-surface-variant');
+            });
         });
-        searchInput.addEventListener('blur', () => {
-            searchInput.parentElement.classList.remove('scale-[1.01]');
+
+        // ── Navigation links ──
+        document.querySelectorAll('a').forEach(a => {
+            const text = a.textContent.trim();
+            if (text.includes('Return to Workspace Selection') || text.includes('Workspace Selection')) {
+                a.addEventListener('click', e => { e.preventDefault(); navigateTo(Routes.WORKSPACE_SELECTION); });
+            }
+            if (text.includes('Compare Workspaces')) {
+                a.addEventListener('click', e => { e.preventDefault(); navigateTo(Routes.COMPARE_WORKSPACES); });
+            }
         });
     </script>
 </body></html>

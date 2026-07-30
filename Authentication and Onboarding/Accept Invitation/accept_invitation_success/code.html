@@ -199,24 +199,39 @@
 </div>
 </div>
 </main>
+<!-- Prototype Interaction Scripts -->
+<script src="../../prototype/js/navigation.js"></script>
+<script src="../../prototype/js/loading.js"></script>
 <script>
-        // Micro-interaction for the "Continue to Login" button hover effect
+        // ── Continue to Login ──
         const loginBtn = document.querySelector('button:first-of-type');
+        loginBtn.addEventListener('click', () => {
+            navigateTo(Routes.LOGIN);
+        });
         loginBtn.addEventListener('mouseenter', () => {
-            loginBtn.querySelector('.material-symbols-outlined').style.transform = 'translateX(4px)';
+            const icon = loginBtn.querySelector('.material-symbols-outlined');
+            if (icon) icon.style.transform = 'translateX(4px)';
         });
         loginBtn.addEventListener('mouseleave', () => {
-            loginBtn.querySelector('.material-symbols-outlined').style.transform = 'translateX(0)';
+            const icon = loginBtn.querySelector('.material-symbols-outlined');
+            if (icon) icon.style.transform = 'translateX(0)';
         });
 
-        // Add subtle transition for the checkmark
+        // ── Return to Invitation ──
+        document.querySelectorAll('button')[1].addEventListener('click', () => {
+            navigateTo(Routes.INVITATION_DETAILS);
+        });
+
+        // ── Entry animation ──
         window.addEventListener('DOMContentLoaded', () => {
             const check = document.querySelector('.animate-check');
-            check.style.opacity = '0';
-            setTimeout(() => {
-                check.style.opacity = '1';
-                check.style.transition = 'opacity 0.3s ease-out';
-            }, 100);
+            if (check) {
+                check.style.opacity = '0';
+                setTimeout(() => {
+                    check.style.opacity = '1';
+                    check.style.transition = 'opacity 0.3s ease-out';
+                }, 100);
+            }
         });
     </script>
 

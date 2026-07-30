@@ -255,6 +255,61 @@
 <span class="text-xl font-medium">?</span>
 </div>
 </div>
+<!-- Prototype Interaction Scripts -->
+<script src="../prototype/js/navigation.js"></script>
+<script src="../prototype/js/loading.js"></script>
+<script>
+    // ── Card selection ──
+    const cards = document.querySelectorAll('.workspace-card');
+    let selectedCard = document.querySelector('.selected-card');
+
+    cards.forEach(card => {
+        card.addEventListener('click', function() {
+            // Remove selection from all
+            cards.forEach(c => {
+                c.classList.remove('selected-card');
+                const dot = c.querySelector('.selection-dot');
+                if (dot) dot.remove();
+            });
+            // Select clicked
+            this.classList.add('selected-card');
+            selectedCard = this;
+            const dot = document.createElement('div');
+            dot.className = 'selection-dot';
+            dot.innerHTML = '<svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path></svg>';
+            this.appendChild(dot);
+        });
+    });
+
+    // ── Compare Workspaces link ──
+    document.querySelectorAll('a').forEach(a => {
+        if (a.textContent.includes('Compare Workspaces')) {
+            a.addEventListener('click', e => { e.preventDefault(); navigateTo(Routes.COMPARE_WORKSPACES); });
+        }
+        if (a.textContent.includes('Explore All Capabilities') || a.textContent.includes('Explore All')) {
+            a.addEventListener('click', e => { e.preventDefault(); navigateTo(Routes.CAPABILITY_EXPLORER); });
+        }
+    });
+
+    // ── Continue button ──
+    const continueBtn = document.querySelector('button.bg-brand-brown');
+    if (continueBtn) {
+        continueBtn.addEventListener('click', function() {
+            if (!selectedCard) {
+                Toast.show('Please select a workspace to continue.', 'warning');
+                return;
+            }
+            Loading.setButton(continueBtn, 'Loading Workspace...');
+            setTimeout(() => {
+                Toast.show('Workspace loaded successfully! Redirecting to application...', 'success', 2000);
+            }, 1200);
+        });
+    }
+
+    // ── Help bubble ──
+    const helpBubble = document.querySelector('[data-purpose="help-trigger"] div');
+    if (helpBubble) helpBubble.addEventListener('click', () => Toast.show('Need help? Contact support@bms.co.ke', 'info'));
+</script>
 
 
 </body></html>

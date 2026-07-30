@@ -212,22 +212,30 @@
 </div>
 </section>
 </main>
+<!-- Prototype Interaction Scripts -->
+<script src="../../prototype/js/navigation.js"></script>
+<script src="../../prototype/js/loading.js"></script>
 <script>
-        // Micro-interaction for hover effects and feedback
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('mouseenter', () => {
-                // Subtle feedback on hover
-            });
+        // ── Accept Invitation ──
+        const acceptBtn = document.querySelectorAll('button')[0];
+        acceptBtn.addEventListener('click', function() {
+            Loading.setButton(acceptBtn, 'Processing...');
+            setTimeout(() => {
+                navigateTo(Routes.INVITATION_SETUP);
+            }, 1000);
         });
-        
-        // Mobile layout responsiveness tweak if needed via JS
-        const checkMobile = () => {
-            if (window.innerWidth < 1024) {
-                // Adjust if necessary
-            }
-        };
-        window.addEventListener('resize', checkMobile);
-        checkMobile();
+
+        // ── Decline ──
+        const declineBtn = document.querySelectorAll('button')[1];
+        declineBtn.addEventListener('click', function() {
+            navigateTo(Routes.LOGIN);
+        });
+
+        // ── Back to Login ──
+        document.querySelector('a[href="#"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo(Routes.LOGIN);
+        });
     </script>
 
 

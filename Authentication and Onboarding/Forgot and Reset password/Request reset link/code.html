@@ -216,39 +216,68 @@
 </div>
 </section>
 </main>
-<!-- Micro-interaction Script -->
+<!-- Prototype Interaction Scripts -->
+<script src="../../prototype/js/navigation.js"></script>
+<script src="../../prototype/js/validation.js"></script>
+<script src="../../prototype/js/loading.js"></script>
 <script>
-        // Simple input focus effects and button press simulation
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('focus', () => {
-                input.parentElement.classList.add('scale-[1.01]');
-            });
-            input.addEventListener('blur', () => {
-                input.parentElement.classList.remove('scale-[1.01]');
-            });
+        // ── Back to Login ──
+        document.querySelector('a[href="#"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo(Routes.LOGIN);
         });
 
-        // Prevent form submission for demo purposes
-        document.querySelector('form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Sending...';
-            btn.classList.add('opacity-80');
-            btn.disabled = true;
+        // ── Form submission ──
+        const form = document.querySelector('form');
+        const submitBtn = form.querySelector('button[type="submit"]');
 
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailVal = document.getElementById('email').value;
+            const err = Validation.email(emailVal);
+
+            // Show inline error if invalid
+            const errorEl = document.querySelector('.space-y-xs .relative + *') ||
+                            form.querySelector('[id$="-error"]');
+
+            if (err) {
+                // Inline error display
+                let errDiv = document.getElementById('email-inline-error');
+                if (!errDiv) {
+                    errDiv = document.createElement('p');
+                    errDiv.id = 'email-inline-error';
+                    errDiv.style.cssText = 'color:#ba1a1a;font-size:12px;margin-top:4px;font-family:Inter,sans-serif;';
+                    document.querySelector('.space-y-xs').appendChild(errDiv);
+                }
+                errDiv.textContent = err;
+                return;
+            }
+
+            // Clear error
+            const existingErr = document.getElementById('email-inline-error');
+            if (existingErr) existingErr.remove();
+
+            Loading.setButton(submitBtn, 'Sending...');
             setTimeout(() => {
-                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Link Sent';
-                btn.classList.remove('bg-primary-container');
-                btn.classList.add('bg-status-success');
-                
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.classList.remove('bg-status-success', 'opacity-80');
-                    btn.classList.add('bg-primary-container');
-                    btn.disabled = false;
-                }, 3000);
-            }, 1500);
+                navigateTo(Routes.CHECK_EMAIL);
+            }, 1400);
+        });
+
+        // ── Blur validation ──
+        document.getElementById('email').addEventListener('blur', function() {
+            const err = Validation.email(this.value);
+            let errDiv = document.getElementById('email-inline-error');
+            if (err) {
+                if (!errDiv) {
+                    errDiv = document.createElement('p');
+                    errDiv.id = 'email-inline-error';
+                    errDiv.style.cssText = 'color:#ba1a1a;font-size:12px;margin-top:4px;font-family:Inter,sans-serif;';
+                    document.querySelector('.space-y-xs').appendChild(errDiv);
+                }
+                errDiv.textContent = err;
+            } else if (errDiv) {
+                errDiv.remove();
+            }
         });
     </script>
 </body></html>

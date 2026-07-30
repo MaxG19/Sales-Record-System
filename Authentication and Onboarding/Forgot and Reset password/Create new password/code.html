@@ -226,6 +226,10 @@
 </div>
 </section>
 </main>
+<!-- Prototype Interaction Scripts -->
+<script src="../../prototype/js/navigation.js"></script>
+<script src="../../prototype/js/validation.js"></script>
+<script src="../../prototype/js/loading.js"></script>
 <script>
         function togglePassword(fieldId) {
             const field = document.getElementById(fieldId);
@@ -239,15 +243,100 @@
             }
         }
 
-        // Minimalist interactive feedback
-        const inputs = document.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                input.parentElement.classList.add('shadow-md');
+        // ── Live password strength ──
+        document.getElementById('new_password').addEventListener('input', function() {
+            const val = this.value;
+            const bars = document.querySelectorAll('.h-1\.5 > div');
+            const label = document.querySelector('.text-status-success.font-bold');
+
+            const checks = [
+                val.length >= 8,
+                /[A-Z]/.test(val),
+                /[a-z]/.test(val),
+                /[0-9]/.test(val),
+                /[@$!%*?&]/.test(val)
+            ];
+            const score = checks.filter(Boolean).length;
+
+            const levels = [
+                { text: 'Weak',      color: '#ba1a1a', width: '20%' },
+                { text: 'Fair',      color: '#DDA15E', width: '40%' },
+                { text: 'Good',      color: '#566342', width: '60%' },
+                { text: 'Strong',    color: '#344E41', width: '80%' },
+                { text: 'Very Strong', color: '#1e372b', width: '100%' }
+            ];
+            const level = levels[Math.max(0, score - 1)];
+
+            // Update all 4 bar segments
+            bars.forEach((bar, i) => {
+                bar.style.backgroundColor = i < score ? level.color : '#e8e1db';
             });
-            input.addEventListener('blur', () => {
-                input.parentElement.classList.remove('shadow-md');
+            if (label) { label.textContent = level.text; label.style.color = level.color; }
+
+            // Update checklist icons
+            const ids = ['check-length','check-upper','check-lower','check-number','check-special'];
+            ids.forEach((id, i) => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                const icon = el.querySelector('span');
+                if (checks[i]) {
+                    el.style.color = '#344E41';
+                    if (icon) { icon.textContent = 'check_circle'; icon.style.fontVariationSettings = "'FILL' 1"; }
+                } else {
+                    el.style.color = '#727974';
+                    if (icon) { icon.textContent = 'circle'; icon.style.fontVariationSettings = "'FILL' 0"; }
+                }
             });
+        });
+
+        // ── Back to sign in ──
+        document.querySelector('a[href="#"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo(Routes.LOGIN);
+        });
+
+        // ── Form submission ──
+        const form = document.getElementById('resetForm');
+        const submitBtn = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newPass = document.getElementById('new_password').value;
+            const confirmPass = document.getElementById('confirm_password').value;
+
+            const passErr = Validation.password(newPass);
+            const confirmErr = Validation.confirmPassword(newPass, confirmPass);
+
+            // Show inline errors
+            let hasError = false;
+            ['new_password_err', 'confirm_password_err'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.remove();
+            });
+
+            if (passErr) {
+                const errEl = document.createElement('p');
+                errEl.id = 'new_password_err';
+                errEl.style.cssText = 'color:#ba1a1a;font-size:12px;margin-top:4px;font-family:Inter,sans-serif;';
+                errEl.textContent = passErr;
+                document.getElementById('new_password').parentElement.parentElement.appendChild(errEl);
+                hasError = true;
+            }
+            if (confirmErr) {
+                const errEl = document.createElement('p');
+                errEl.id = 'confirm_password_err';
+                errEl.style.cssText = 'color:#ba1a1a;font-size:12px;margin-top:4px;font-family:Inter,sans-serif;';
+                errEl.textContent = confirmErr;
+                document.getElementById('confirm_password').parentElement.parentElement.appendChild(errEl);
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            Loading.setButton(submitBtn, 'Resetting...');
+            setTimeout(() => {
+                navigateTo(Routes.PASSWORD_SUCCESS);
+            }, 1200);
         });
     </script>
 </body></html>

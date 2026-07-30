@@ -198,8 +198,12 @@
 </footer>
 </div>
 </main>
-<!-- Interactive Scripts -->
+<!-- Prototype Interaction Scripts -->
+<script src="../prototype/js/navigation.js"></script>
+<script src="../prototype/js/validation.js"></script>
+<script src="../prototype/js/loading.js"></script>
 <script>
+        // ── Password visibility toggle ──
         function togglePassword() {
             const passInput = document.getElementById('password');
             const icon = document.getElementById('pass-icon');
@@ -212,23 +216,75 @@
             }
         }
 
-        // Simple form focus interaction
-        const inputs = document.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                input.parentElement.querySelector('label')?.classList.add('text-primary-container');
-            });
-            input.addEventListener('blur', () => {
-                input.parentElement.querySelector('label')?.classList.remove('text-primary-container');
-            });
+        // ── Forgot Password link ──
+        document.querySelector('a[href="#"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo(Routes.FORGOT_PASSWORD);
         });
 
-        // Atmospheric Micro-interaction (Background mouse trail)
+        // ── Create Business link ──
+        document.querySelector('footer a[href="#"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo(Routes.WORKSPACE_SELECTION);
+        });
+
+        // ── Sign In form submission ──
+        const form = document.querySelector('form');
+        const signInBtn = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailVal = document.getElementById('email').value;
+            const passVal  = document.getElementById('password').value;
+
+            let valid = true;
+
+            const emailErr = Validation.email(emailVal);
+            if (emailErr) {
+                Validation.showError('email', emailErr);
+                valid = false;
+            } else {
+                Validation.clearError('email');
+            }
+
+            if (!passVal || passVal.trim() === '') {
+                Validation.showError('password', 'Password is required.');
+                valid = false;
+            } else {
+                Validation.clearError('password');
+            }
+
+            if (!valid) return;
+
+            // Simulate loading then navigate
+            Loading.setButton(signInBtn, 'Signing In...');
+            setTimeout(() => {
+                navigateTo(Routes.WORKSPACE_SELECTION);
+            }, 1200);
+        });
+
+        // ── Inline validation on blur ──
+        document.getElementById('email').addEventListener('blur', function() {
+            const err = Validation.email(this.value);
+            if (err) Validation.showError('email', err);
+            else Validation.clearError('email');
+        });
+
+        document.getElementById('password').addEventListener('blur', function() {
+            if (!this.value) Validation.showError('password', 'Password is required.');
+            else Validation.clearError('password');
+        });
+
+        // ── Keyboard: Enter submits ──
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') form.dispatchEvent(new Event('submit'));
+        });
+
+        // ── Atmospheric background ──
         document.addEventListener('mousemove', (e) => {
-            const body = document.body;
             const x = (e.clientX / window.innerWidth) * 100;
             const y = (e.clientY / window.innerHeight) * 100;
-            body.style.backgroundImage = `radial-gradient(circle at ${x}% ${y}%, rgba(52, 78, 65, 0.08) 0%, transparent 60%)`;
+            document.body.style.backgroundImage = `radial-gradient(circle at ${x}% ${y}%, rgba(52,78,65,0.08) 0%, transparent 60%)`;
         });
     </script>
 
