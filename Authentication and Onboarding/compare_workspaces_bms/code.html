@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" class="light" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+<!DOCTYPE html><html lang="en" class="light" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -94,35 +94,35 @@
             }
         }
     }catch(_e){}</script><meta charset="utf-8"></head><body class="antialiased">
-<!-- TopNavBar (Shared Component Strategy) -->
+<!-- TopNavBar -->
 <header class="bg-background dark:bg-background shadow-sm docked full-width top-0 fixed z-50">
 <div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
 <div class="flex items-center gap-stack-md">
 <span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">BMS Enterprise</span>
 </div>
 <nav class="hidden md:flex items-center gap-8">
-<a href="#" class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md transition-all duration-200 ease-in-out">Return to Workspace Selection</a>
+<a data-action="return-to-selection" href="#" class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md transition-all duration-200 ease-in-out">Return to Workspace Selection</a>
 <div class="flex items-center gap-4 border-l border-outline-variant pl-8">
 <span class="text-on-surface-variant font-medium font-body-md text-body-md hover:text-primary transition-colors cursor-pointer">Support</span>
 <button class="text-primary"><span class="material-symbols-outlined">notifications</span></button>
 <button class="text-primary"><span class="material-symbols-outlined">settings</span></button>
 <div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-outline-variant">
-<img class="w-full h-full object-cover" data-alt="A professional headshot of a corporate executive in high-end business attire, set against a warm, minimalist office background. The lighting is soft and natural, reflecting a premium enterprise management environment with a sophisticated digital atelier aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfcRdM6XA8TIVpW9-KPo6poO_efPPYxwSJ1avHDYtTz0E6Iz5FdHzUkWylh6lUIVDp-gFu4Qu4BxkBonkS_6mW2nMSSeWY3wpt44a0chPlTpPn0a2H8Ul90hVFTm4XlpM2FmxfuWDNun3JUCadN8mondoRYrwqlKn0pfNvurefXNE16hEzNLYGIct3diL5bwiap6LVUfF8pVaLGI9uh1Tw0iGxpXU6TG3Ji-Xn_ISmUi15UfaeL1-k4_VueCMezIc91JyVlYzNX12f">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfcRdM6XA8TIVpW9-KPo6poO_efPPYxwSJ1avHDYtTz0E6Iz5FdHzUkWylh6lUIVDp-gFu4Qu4BxkBonkS_6mW2nMSSeWY3wpt44a0chPlTpPn0a2H8Ul90hVFTm4XlpM2FmxfuWDNun3JUCadN8mondoRYrwqlKn0pfNvurefXNE16hEzNLYGIct3diL5bwiap6LVUfF8pVaLGI9uh1Tw0iGxpXU6TG3Ji-Xn_ISmUi15UfaeL1-k4_VueCMezIc91JyVlYzNX12f">
 </div>
 </div>
 </nav>
 </div>
 </header>
 <main class="pt-32 pb-stack-lg max-w-container-max mx-auto px-margin-desktop">
-<!-- Header Section-->
+<!-- Header Section -->
 <section class="mb-stack-lg">
 <h1 class="font-display-lg text-display-lg text-primary mb-2">Compare Workspaces</h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
-                Compare what each workspace includes and choose the one that best matches your business. 
+                Compare what each workspace includes and choose the one that best matches your business.
                 Our tiered structure ensures you only pay for the precision you need.
             </p>
 </section>
-<!-- Summary Cards Bento-ish Grid -->
+<!-- Summary Cards Grid -->
 <div class="grid grid-cols-1 md:grid-cols-5 gap-gutter mb-stack-lg">
 <!-- Essentials -->
 <div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl card-shadow flex flex-col justify-between transition-transform hover:-translate-y-1">
@@ -135,7 +135,7 @@
 <span class="font-label-md text-label-md text-on-surface-variant">Capabilities</span>
 </div>
 </div>
-<button class="w-full py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg inner-shine hover:opacity-90 transition-all active:scale-95">Choose Workspace</button>
+<button data-action="choose-workspace" class="w-full py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg inner-shine hover:opacity-90 transition-all active:scale-95">Choose Workspace</button>
 </div>
 <!-- Retail Pro -->
 <div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl card-shadow flex flex-col justify-between transition-transform hover:-translate-y-1">
@@ -148,12 +148,12 @@
 <span class="font-label-md text-label-md text-on-surface-variant">Capabilities</span>
 </div>
 </div>
-<button class="w-full py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg inner-shine hover:opacity-90 transition-all active:scale-95">Choose Workspace</button>
+<button data-action="choose-workspace" class="w-full py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg inner-shine hover:opacity-90 transition-all active:scale-95">Choose Workspace</button>
 </div>
-<!-- Multi-Branch (Featured) -->
+<!-- Multi-Branch -->
 <div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl card-shadow flex flex-col justify-between transition-transform hover:-translate-y-1">
-<div><span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-2 block">SCALABLE</span>
-
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-2 block">SCALABLE</span>
 <h3 class="font-headline-md text-headline-md text-primary mb-2">Multi-Branch</h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Manage multiple outlets with centralized control and deep reporting.</p>
 <div class="flex items-baseline gap-1 mb-8">
@@ -161,7 +161,7 @@
 <span class="font-label-md text-label-md text-on-surface-variant">Capabilities</span>
 </div>
 </div>
-<button class="w-full py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg inner-shine hover:opacity-90 transition-all active:scale-95">Choose Workspace</button>
+<button data-action="choose-workspace" class="w-full py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg inner-shine hover:opacity-90 transition-all active:scale-95">Choose Workspace</button>
 </div>
 <!-- Everything -->
 <div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl card-shadow flex flex-col justify-between transition-transform hover:-translate-y-1">
@@ -174,7 +174,7 @@
 <span class="font-label-md text-label-md text-on-surface-variant">Included</span>
 </div>
 </div>
-<button class="w-full py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg inner-shine hover:opacity-90 transition-all active:scale-95">Choose Workspace</button>
+<button data-action="choose-workspace" class="w-full py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg inner-shine hover:opacity-90 transition-all active:scale-95">Choose Workspace</button>
 </div>
 <!-- Build Your Own -->
 <div class="bg-surface-container-low border border-dashed border-outline p-stack-md rounded-xl flex flex-col justify-between transition-transform hover:-translate-y-1">
@@ -186,7 +186,7 @@
 <span class="material-symbols-outlined text-4xl text-primary">auto_fix_high</span>
 </div>
 </div>
-<button class="w-full py-3 bg-white border border-primary text-primary font-label-md text-label-md rounded-lg inner-shine hover:bg-surface-container-low transition-all active:scale-95">Choose Workspace</button>
+<button data-action="choose-workspace" class="w-full py-3 bg-white border border-primary text-primary font-label-md text-label-md rounded-lg inner-shine hover:bg-surface-container-low transition-all active:scale-95">Choose Workspace</button>
 </div>
 </div>
 <!-- Comparison Table Section -->
@@ -212,9 +212,7 @@
 <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
 <span class="font-label-md text-label-md text-primary uppercase tracking-wider">Selling</span>
 </summary>
-<div class="mt-4 space-y-0">
-<!-- Sub-features would go here in a real implementation -->
-</div>
+<div class="mt-4 space-y-0"></div>
 </details>
 </td>
 </tr>
@@ -242,11 +240,10 @@
 <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
 <span class="font-label-md text-label-md text-primary uppercase tracking-wider">Products</span>
 </summary>
-<!-- Visual placeholder for expansion -->
 <div class="bg-white/50 p-stack-sm rounded-lg mt-4 border border-outline-variant/20 ml-8 space-y-2">
-<div class="flex justify-between items-center text-on-surface-variant text-sm border-b pb-1"><span class="">Product Catalogue</span> <span class="material-symbols-outlined text-xs">check</span></div>
-<div class="flex justify-between items-center text-on-surface-variant text-sm border-b pb-1"><span class="">Variants &amp; Attributes</span> <span class="material-symbols-outlined text-xs">check</span></div>
-<div class="flex justify-between items-center text-on-surface-variant text-sm border-b pb-1"><span class="">Category Management</span> <span class="material-symbols-outlined text-xs">check</span></div>
+<div class="flex justify-between items-center text-on-surface-variant text-sm border-b pb-1"><span>Product Catalogue</span> <span class="material-symbols-outlined text-xs">check</span></div>
+<div class="flex justify-between items-center text-on-surface-variant text-sm border-b pb-1"><span>Variants &amp; Attributes</span> <span class="material-symbols-outlined text-xs">check</span></div>
+<div class="flex justify-between items-center text-on-surface-variant text-sm border-b pb-1"><span>Category Management</span> <span class="material-symbols-outlined text-xs">check</span></div>
 </div>
 </details>
 </td>
@@ -278,7 +275,7 @@
 <td class="p-stack-md text-center font-body-sm text-body-sm text-primary font-bold">Automatic</td>
 <td class="p-stack-md text-center font-label-sm text-label-sm text-secondary">Optional</td>
 </tr>
-<!-- Multi-Location row explicitly -->
+<!-- Category: Multi-Location -->
 <tr class="bg-surface-container-low/30">
 <td class="px-stack-md py-4" colspan="6">
 <details class="group">
@@ -297,7 +294,6 @@
 <td class="p-stack-md text-center"><span class="material-symbols-outlined text-primary">check_circle</span></td>
 <td class="p-stack-md text-center font-label-sm text-label-sm text-secondary">Optional</td>
 </tr>
-<!-- Extra Categories placeholders for visual fullness -->
 <tr class="bg-surface-container-low/30">
 <td class="px-stack-md py-4 text-on-surface-variant font-label-sm uppercase opacity-50" colspan="6">Suppliers, Customers, Employees, Administration...</td>
 </tr>
@@ -309,12 +305,12 @@
 <div class="mt-stack-lg flex flex-col items-center gap-4 text-center">
 <p class="font-headline-md text-headline-md text-primary">Need more detail?</p>
 <a class="inline-flex items-center gap-2 font-label-md text-label-md text-primary hover:gap-4 transition-all duration-300" href="#">
-                Explore All Capabilities 
+                Explore All Capabilities
                 <span class="material-symbols-outlined">arrow_forward</span>
 </a>
 </div>
 </main>
-<!-- Footer (Shared Component Strategy) -->
+<!-- Footer -->
 <footer class="bg-surface-container-highest dark:bg-surface-container-highest border-t border-outline-variant w-full py-stack-lg">
 <div class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-stack-md">
 <div class="flex flex-col items-center md:items-start gap-2">
@@ -329,40 +325,7 @@
 </div>
 </div>
 </footer>
-<!-- Prototype Interaction Scripts -->
-<script src="../prototype/js/navigation.js"></script>
-<script src="../prototype/js/loading.js"></script>
-<script>
-        // ── Table expand/collapse ──
-        document.querySelectorAll('details').forEach((detail) => {
-            detail.addEventListener('toggle', () => {
-                if (detail.open) {
-                    detail.closest('tr').classList.add('bg-primary/5');
-                } else {
-                    detail.closest('tr').classList.remove('bg-primary/5');
-                }
-            });
-        });
-
-        // ── Choose Workspace buttons ──
-        document.querySelectorAll('button').forEach(btn => {
-            if (btn.textContent.trim() === 'Choose Workspace') {
-                btn.addEventListener('click', function() {
-                    Loading.setButton(btn, 'Loading...');
-                    setTimeout(() => navigateTo(Routes.WORKSPACE_SELECTION), 900);
-                });
-            }
-        });
-
-        // ── Return to Workspace Selection nav link ──
-        document.querySelectorAll('a').forEach(a => {
-            if (a.textContent.includes('Return to Workspace Selection')) {
-                a.addEventListener('click', e => { e.preventDefault(); navigateTo(Routes.WORKSPACE_SELECTION); });
-            }
-            if (a.textContent.includes('Explore All Capabilities')) {
-                a.addEventListener('click', e => { e.preventDefault(); navigateTo(Routes.CAPABILITY_EXPLORER); });
-            }
-        });
-    </script>
-
+<script src="../../js/routes.js"></script>
+<script src="../../js/prototype.js"></script>
+<script src="../Controllers/compare-workspaces.js"></script>
 </body></html>

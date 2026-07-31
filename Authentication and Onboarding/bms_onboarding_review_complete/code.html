@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BMS - Review &amp; Complete Setup</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="../../css/components/onboarding-stepper.css" rel="stylesheet"/>
+<link href="../../css/components/onboarding-header.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#4b2b00",
+                        "primary-fixed-dim": "#b0cdbc",
+                        "on-primary-fixed-variant": "#324c3f",
+                        "on-tertiary-container": "#eaac68",
+                        "inverse-primary": "#b0cdbc",
+                        "surface-variant": "#e5e2dd",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f6f3ee",
+                        "surface": "#fcf9f4",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#faba75",
+                        "primary-fixed": "#ccead8",
+                        "outline": "#727974",
+                        "on-primary-fixed": "#062015",
+                        "on-surface-variant": "#424844",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#c2c8c2",
+                        "error": "#ba1a1a",
+                        "on-background": "#1c1c19",
+                        "inverse-surface": "#31302d",
+                        "primary": "#1e372b",
+                        "tertiary-container": "#6a3f01",
+                        "background": "#fcf9f4",
+                        "inverse-on-surface": "#f3f0eb",
+                        "surface-bright": "#fcf9f4",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#4a6456",
+                        "on-primary-container": "#a1beae",
+                        "surface-container-high": "#eae8e3",
+                        "secondary-fixed-dim": "#becca3",
+                        "secondary-fixed": "#dae8be",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#2b1700",
+                        "surface-container-highest": "#e5e2dd",
+                        "on-secondary-fixed-variant": "#3f4b2c",
+                        "on-secondary-container": "#5a6745",
+                        "secondary-container": "#d7e5bb",
+                        "primary-container": "#344e41",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "surface-dim": "#dcdad5",
+                        "secondary": "#566342",
+                        "surface-container": "#f0ede9",
+                        "tertiary-fixed": "#ffdcbb",
+                        "on-surface": "#1c1c19",
+                        "on-secondary-fixed": "#141f05",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "base": "4px",
+                        "md": "16px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "2xl": "48px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "margin-desktop": "32px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #F7F4EC;
+            font-family: 'Inter', sans-serif;
+            color: #1c1c19;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .transition-all-slow { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        @keyframes spinner {
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-fast {
+            animation: spinner 0.8s linear infinite;
+        }
+
+        /* Glassmorphism subtle effect for headers on scroll if needed */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<header id="onboarding-header"></header>
+<div class="onboarding-stepper-bar">
+<nav class="onboarding-stepper" aria-label="Onboarding progress">
+<div class="stepper-step" data-step="businessDetails"><span class="stepper-circle">1</span><span class="stepper-label">Business Details</span></div>
+<div class="stepper-connector"></div>
+<div class="stepper-step" data-step="workspaceSelection"><span class="stepper-circle">2</span><span class="stepper-label">Workspace</span></div>
+<div class="stepper-connector"></div>
+<div class="stepper-step" data-step="reviewSetup"><span class="stepper-circle">3</span><span class="stepper-label">Complete</span></div>
+</nav>
+</div>
+<!-- Onboarding Container -->
+<div class="w-full max-w-[820px] mx-auto px-margin-mobile md:px-0 py-xl animate-in fade-in duration-700" id="onboarding-canvas">
+<!-- Page Title -->
+<div class="mb-xl text-center">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-sm">Review &amp; Complete Setup</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mx-auto">Double-check your information before we finalize your enterprise workspace. You can always adjust these settings later.</p>
+</div>
+<!-- Main Content Area -->
+<main class="space-y-lg" id="main-flow">
+<!-- Summary Cards Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Business Details Card -->
+<section class="bg-white border border-[#D8D3C4] rounded-xl p-lg flex flex-col">
+<div class="flex justify-between items-start mb-md">
+<h2 class="font-title-md text-title-md text-primary">Business Details</h2>
+<button id="edit-business-btn" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">edit</span> Edit
+                        </button>
+</div>
+<div class="space-y-sm flex-grow">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Entity Name</p>
+<p class="font-body-md text-body-md text-on-surface font-medium" id="review-business-name">—</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Industry</p>
+<p class="font-body-md text-body-md text-on-surface font-medium" id="review-business-type">—</p>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Country</p>
+<p class="font-body-md text-body-md text-on-surface font-medium" id="review-country">—</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Initial Branch</p>
+<p class="font-body-md text-body-md text-on-surface font-medium" id="review-branch">—</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Workspace Card -->
+<section class="bg-white border border-[#D8D3C4] rounded-xl p-lg flex flex-col">
+<div class="flex justify-between items-start mb-md">
+<h2 class="font-title-md text-title-md text-primary">Workspace</h2>
+<button id="edit-workspace-btn" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">edit</span> Edit
+                        </button>
+</div>
+<div class="space-y-sm flex-grow">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Selected Plan</p>
+<div class="flex items-center gap-sm mt-xs">
+<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded font-label-sm text-label-sm" id="review-workspace">—</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant italic" id="review-workspace-desc"></p>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Capabilities</p>
+<p class="font-body-md text-body-md text-on-surface font-medium" id="review-capabilities">—</p>
+</div>
+<div class="pt-sm space-y-xs">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-[#A3B18A] text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Unlimited SKU Items</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-[#A3B18A] text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Real-time Analytics</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- What Happens Next Panel -->
+<section class="bg-white border border-[#D8D3C4] rounded-xl p-lg">
+<div class="flex items-center gap-md mb-md">
+<div class="w-10 h-10 bg-secondary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<div>
+<h2 class="font-title-md text-title-md text-primary">What happens next?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Automated initialization of your environment.</p>
+</div>
+</div>
+<ul class="grid grid-cols-1 md:grid-cols-2 gap-x-lg gap-y-sm">
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-outline-variant mt-xs text-[18px]">done_all</span>
+<span class="font-body-md text-body-md text-on-surface" id="next-business-name">—</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-outline-variant mt-xs text-[18px]">done_all</span>
+<span class="font-body-md text-body-md text-on-surface">API endpoint generation for Main Branch</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-outline-variant mt-xs text-[18px]">done_all</span>
+<span class="font-body-md text-body-md text-on-surface">Initial tax configuration (Kenya Standard)</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-outline-variant mt-xs text-[18px]">done_all</span>
+<span class="font-body-md text-body-md text-on-surface">Email verification link dispatch</span>
+</li>
+</ul>
+</section>
+<!-- Advanced Setup (Accordion) -->
+<section class="border border-[#D8D3C4] rounded-xl overflow-hidden bg-surface-container">
+<button id="accordion-btn" class="w-full px-lg py-md flex items-center justify-between hover:bg-surface-container-high transition-colors text-left">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">settings_suggest</span>
+<span class="font-title-md text-title-md text-primary">Advanced Configuration (Optional)</span>
+</div>
+<span class="material-symbols-outlined transition-transform duration-300" id="accordion-icon">expand_more</span>
+</button>
+<div class="hidden px-lg pb-lg space-y-md border-t border-[#D8D3C4] pt-md animate-in slide-in-from-top-4" id="accordion-content">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<input class="rounded border-[#D8D3C4] text-primary focus:ring-primary w-5 h-5" id="import-prod" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface" for="import-prod">Automatically prompt to import products</label>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Recommended</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<input class="rounded border-[#D8D3C4] text-primary focus:ring-primary w-5 h-5" id="invite-emp" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface" for="invite-emp">Send invitation to team members now</label>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<input class="rounded border-[#D8D3C4] text-primary focus:ring-primary w-5 h-5" id="demo-data" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface" for="demo-data">Enable demo data for sandbox training</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Action Bar -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-md pt-lg">
+<button id="back-btn" class="w-full sm:w-auto px-lg py-sm font-title-md text-title-md text-[#6B6B63] hover:text-primary transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span> Back
+                </button>
+<button id="cta-complete" class="w-full sm:w-auto px-2xl py-md bg-primary text-white font-title-md text-title-md rounded-xl hover:bg-primary-container transition-all active:scale-[0.98] shadow-sm flex items-center justify-center gap-sm">
+                    Create My Business
+                </button>
+</div>
+</main>
+<!-- Loading State (Hidden by default) -->
+<div class="hidden flex flex-col items-center justify-center py-2xl space-y-lg animate-in zoom-in-95 duration-500" id="loading-state">
+<div class="relative flex items-center justify-center">
+<div class="w-20 h-20 border-4 border-outline-variant rounded-full"></div>
+<div class="absolute w-20 h-20 border-4 border-primary border-t-transparent rounded-full animate-spin-fast"></div>
+</div>
+<div class="text-center">
+<h2 class="font-headline-md text-headline-md text-primary mb-xs">Creating your business...</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Allocating secure resources and generating your workspace.</p>
+</div>
+</div>
+<!-- Success State (Hidden by default) -->
+<div class="hidden flex flex-col items-center justify-center py-2xl space-y-xl animate-in zoom-in-95 duration-700" id="success-state">
+<div class="w-24 h-24 bg-[#A3B18A] text-white rounded-full flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="text-center">
+<h2 class="font-display-lg text-display-lg text-primary mb-sm">Welcome to BMS!</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md mx-auto">Your business environment for <span class="font-bold text-on-surface" id="success-business-name">—</span> is ready. You've been logged in as the primary administrator.</p>
+</div>
+<div class="flex flex-col items-center gap-md w-full max-w-xs">
+<button id="go-to-dashboard-btn" class="w-full py-md bg-primary text-white text-center font-title-md text-title-md rounded-xl hover:bg-primary-container transition-all active:scale-[0.98] shadow-sm">
+                    Go to Dashboard
+                </button>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors underline underline-offset-4" href="#">
+                    View Business Settings
+                </a>
+</div>
+</div>
+</div>
+<script src="../../js/routes.js"></script>
+<script src="../../js/prototype.js"></script>
+<script src="../../js/onboarding.js"></script>
+<script src="../../js/components/onboarding-header.js"></script>
+<script src="../../js/components/onboarding-stepper.js"></script>
+<script src="../Controllers/review-setup.js"></script>
+</body></html>

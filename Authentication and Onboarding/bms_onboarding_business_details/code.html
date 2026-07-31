@@ -5,7 +5,8 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="../../css/components/onboarding-stepper.css" rel="stylesheet">
+<link href="../../css/components/onboarding-header.css" rel="stylesheet">
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -126,32 +127,16 @@
     </style>
 </head>
 <body class="min-h-screen text-on-surface">
-<!-- Top Navigation Bar -->
-<header class="bg-background border-b border-outline-variant sticky top-0 z-50">
-<div class="flex justify-between items-center w-full px-margin-desktop py-md max-w-full mx-auto h-16">
-<div class="font-headline-md text-headline-md font-bold text-primary">BMS</div>
-<div class="hidden md:flex items-center gap-xl">
-<div class="flex items-center gap-xs text-primary font-bold">
-<span class="w-6 h-6 rounded-full bg-primary-container text-white flex items-center justify-center text-[10px]">1</span>
-<span class="font-label-md text-label-md">Business Details</span>
+<header id="onboarding-header"></header>
+<div class="onboarding-stepper-bar">
+<nav class="onboarding-stepper" aria-label="Onboarding progress">
+<div class="stepper-step" data-step="businessDetails"><span class="stepper-circle">1</span><span class="stepper-label">Business Details</span></div>
+<div class="stepper-connector"></div>
+<div class="stepper-step" data-step="workspaceSelection"><span class="stepper-circle">2</span><span class="stepper-label">Workspace</span></div>
+<div class="stepper-connector"></div>
+<div class="stepper-step" data-step="reviewSetup"><span class="stepper-circle">3</span><span class="stepper-label">Complete</span></div>
+</nav>
 </div>
-<div class="h-[1px] w-8 bg-outline-variant"></div>
-<div class="flex items-center gap-xs text-on-surface-variant opacity-60">
-<span class="w-6 h-6 rounded-full border border-outline-variant flex items-center justify-center text-[10px]">2</span>
-<span class="font-label-md text-label-md">Workspace</span>
-</div>
-<div class="h-[1px] w-8 bg-outline-variant"></div>
-<div class="flex items-center gap-xs text-on-surface-variant opacity-60">
-<span class="w-6 h-6 rounded-full border border-outline-variant flex items-center justify-center text-[10px]">3</span>
-<span class="font-label-md text-label-md">Complete</span>
-</div>
-</div>
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-low p-2 rounded-full transition-colors">help</span>
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-low p-2 rounded-full transition-colors">account_circle</span>
-</div>
-</div>
-</header>
 <main class="max-w-[760px] mx-auto px-margin-mobile md:px-0 pt-xl pb-2xl">
 <!-- Header Section -->
 <section class="mb-lg">
@@ -163,18 +148,18 @@
 <!-- Main Card -->
 <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg mb-lg">
 <h2 class="font-title-md text-title-md text-primary mb-lg border-b border-outline-variant pb-md">Business Information</h2>
-<form class="space-y-lg">
+<form id="business-form" class="space-y-lg">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
 <!-- Business Name  -->
 <div class="space-y-xs">
 <label class="font-label-md text-label-md text-on-surface-variant block">Business Name</label>
-<input class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input" placeholder="Acme Hardware" type="text">
+<input id="business-name" class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input" placeholder="Acme Hardware" type="text">
 </div>
 <!-- Business Type -->
 <div class="space-y-xs">
 <label class="font-label-md text-label-md text-on-surface-variant block">Business Type</label>
 <div class="relative">
-<select class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input appearance-none">
+<select id="business-type"  class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input appearance-none">
 <option disabled="" selected="" value="">Select Type</option>
 <option>Retail</option>
 <option>Manufacturing</option>
@@ -188,7 +173,7 @@
 <div class="space-y-xs">
 <label class="font-label-md text-label-md text-on-surface-variant block">Country</label>
 <div class="relative">
-<select class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input appearance-none">
+<select id="country" class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input appearance-none">
 <option selected="">Kenya 🇰🇪</option>
 <option>Uganda 🇺🇬</option>
 <option>Tanzania 🇹🇿</option>
@@ -202,26 +187,24 @@
 <label class="font-label-md text-label-md text-on-surface-variant block">Business Phone</label>
 <div class="flex">
 <span class="inline-flex items-center px-md border border-r-0 border-outline-variant bg-surface-container-low rounded-l-lg text-on-surface-variant font-label-md">+254</span>
-<input class="w-full bg-white border border-outline-variant rounded-r-lg p-md font-body-md text-body-md custom-input" type="tel">
+<input id="business-phone" class="w-full bg-white border border-outline-variant rounded-r-lg p-md font-body-md text-body-md custom-input" type="tel">
 </div>
 </div>
 <!-- Business Email -->
 <div class="space-y-xs">
 <label class="font-label-md text-label-md text-on-surface-variant block">Business Email</label>
-<input class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input" placeholder="contact@acme.com" type="email">
+<input id="business-email" class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input" placeholder="contact@acme.com" type="email">
 </div>
 <!-- Branch Name -->
 <div class="space-y-xs">
 <label class="font-label-md text-label-md text-on-surface-variant block">Branch Name</label>
-<input class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input" type="text" value="Main Branch">
+<input id="branch-name" class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input" type="text" value="Main Branch">
 </div>
 </div>
 <!-- Business Address -->
 <div class="space-y-xs">
 <label class="font-label-md text-label-md text-on-surface-variant block">Business Address <span class="text-on-surface-variant/50 font-normal italic">(optional)</span></label>
-<textarea class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input resize-none" placeholder="Enter physical address..." rows="3"></textarea>
-</div>
-</form>
+<textarea id="business-address" class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input resize-none" placeholder="Enter physical address..." rows="3"></textarea>
 </div>
 <!-- Help Panel -->
 <div class="bg-surface-container border border-outline-variant/50 rounded-xl p-lg flex gap-lg">
@@ -248,14 +231,16 @@
 </div>
 <!-- Action Bar -->
 <div class="mt-2xl flex justify-between items-center">
-<button  id="back-btn" class="flex items-center gap-sm px-xl py-md font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-all duration-200 rounded-lg group">
+<button  id="back-btn" type="button" class="flex items-center gap-sm px-xl py-md font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-all duration-200 rounded-lg group">
 <span class="material-symbols-outlined transition-transform group-hover:-translate-x-1">arrow_back</span>
                 Back
             </button>
-<button id="continue-btn" class="flex items-center gap-sm px-xl py-md font-label-md text-label-md bg-primary-container text-white hover:bg-primary transition-all duration-200 rounded-lg group shadow-sm active:scale-[0.98]">
+<button id="continue-btn" type="submit" class="flex items-center gap-sm px-xl py-md font-label-md text-label-md bg-primary-container text-white hover:bg-primary transition-all duration-200 rounded-lg group shadow-sm active:scale-[0.98]">
                 Continue to Workspace
                 <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
 </button>
+</div>
+</form>
 </div>
 </main>
 <!-- Footer -->
@@ -285,6 +270,8 @@
     </script>
     <script src="../../js/routes.js"></script>
 <script src="../../js/prototype.js"></script>
-
-<script src="./business-details.js"></script>
+<script src="../../js/onboarding.js"></script>
+<script src="../../js/components/onboarding-header.js"></script>
+<script src="../../js/components/onboarding-stepper.js"></script>
+<script src="../Controllers/business-details.js"></script>
 </body></html>
