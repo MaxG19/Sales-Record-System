@@ -1,0 +1,290 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BMS - Business Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#eaac68",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#324c3f",
+                    "on-primary-container": "#a1beae",
+                    "inverse-on-surface": "#f3f0eb",
+                    "surface-variant": "#e5e2dd",
+                    "primary": "#1e372b",
+                    "outline": "#727974",
+                    "primary-fixed": "#ccead8",
+                    "tertiary-container": "#6a3f01",
+                    "surface-tint": "#4a6456",
+                    "surface-container-highest": "#e5e2dd",
+                    "on-background": "#1c1c19",
+                    "tertiary-fixed-dim": "#faba75",
+                    "secondary": "#566342",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#b0cdbc",
+                    "outline-variant": "#c2c8c2",
+                    "on-tertiary-fixed-variant": "#673d00",
+                    "on-tertiary-fixed": "#2b1700",
+                    "tertiary": "#4b2b00",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#344e41",
+                    "on-secondary-fixed-variant": "#3f4b2c",
+                    "on-secondary-container": "#5a6745",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#fcf9f4",
+                    "secondary-fixed": "#dae8be",
+                    "secondary-container": "#d7e5bb",
+                    "surface": "#fcf9f4",
+                    "inverse-surface": "#31302d",
+                    "on-surface-variant": "#424844",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#dcdad5",
+                    "surface-container-high": "#eae8e3",
+                    "surface-container": "#f0ede9",
+                    "on-secondary-fixed": "#141f05",
+                    "on-primary-fixed": "#062015",
+                    "background": "#fcf9f4",
+                    "on-surface": "#1c1c19",
+                    "secondary-fixed-dim": "#becca3",
+                    "tertiary-fixed": "#ffdcbb",
+                    "primary-fixed-dim": "#b0cdbc",
+                    "surface-container-low": "#f6f3ee",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "2xl": "48px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "margin-desktop": "32px",
+                    "gutter": "24px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "margin-mobile": "16px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background: radial-gradient(circle at top, #ffffff 0%, #F7F4EC 100%);
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-input {
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .custom-input:focus {
+            outline: none;
+            border-color: #344E41;
+            box-shadow: 0 0 0 2px rgba(52, 78, 65, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="bg-background border-b border-outline-variant sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop py-md max-w-full mx-auto h-16">
+<div class="font-headline-md text-headline-md font-bold text-primary">BMS</div>
+<div class="hidden md:flex items-center gap-xl">
+<div class="flex items-center gap-xs text-primary font-bold">
+<span class="w-6 h-6 rounded-full bg-primary-container text-white flex items-center justify-center text-[10px]">1</span>
+<span class="font-label-md text-label-md">Business Details</span>
+</div>
+<div class="h-[1px] w-8 bg-outline-variant"></div>
+<div class="flex items-center gap-xs text-on-surface-variant opacity-60">
+<span class="w-6 h-6 rounded-full border border-outline-variant flex items-center justify-center text-[10px]">2</span>
+<span class="font-label-md text-label-md">Workspace</span>
+</div>
+<div class="h-[1px] w-8 bg-outline-variant"></div>
+<div class="flex items-center gap-xs text-on-surface-variant opacity-60">
+<span class="w-6 h-6 rounded-full border border-outline-variant flex items-center justify-center text-[10px]">3</span>
+<span class="font-label-md text-label-md">Complete</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-low p-2 rounded-full transition-colors">help</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-low p-2 rounded-full transition-colors">account_circle</span>
+</div>
+</div>
+</header>
+<main class="max-w-[760px] mx-auto px-margin-mobile md:px-0 pt-xl pb-2xl">
+<!-- Header Section -->
+<section class="mb-lg">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-xs">Create Your Business</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">
+                Let's set up your business. You can change most of these details later from Business Settings.
+            </p>
+</section>
+<!-- Main Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg mb-lg">
+<h2 class="font-title-md text-title-md text-primary mb-lg border-b border-outline-variant pb-md">Business Information</h2>
+<form class="space-y-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Business Name  -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block">Business Name</label>
+<input class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input" placeholder="Acme Hardware" type="text">
+</div>
+<!-- Business Type -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block">Business Type</label>
+<div class="relative">
+<select class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input appearance-none">
+<option disabled="" selected="" value="">Select Type</option>
+<option>Retail</option>
+<option>Manufacturing</option>
+<option>Professional Services</option>
+<option>Hospitality</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<!-- Country -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block">Country</label>
+<div class="relative">
+<select class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input appearance-none">
+<option selected="">Kenya 🇰🇪</option>
+<option>Uganda 🇺🇬</option>
+<option>Tanzania 🇹🇿</option>
+<option>Rwanda 🇷🇼</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<!-- Phone Number -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block">Business Phone</label>
+<div class="flex">
+<span class="inline-flex items-center px-md border border-r-0 border-outline-variant bg-surface-container-low rounded-l-lg text-on-surface-variant font-label-md">+254</span>
+<input class="w-full bg-white border border-outline-variant rounded-r-lg p-md font-body-md text-body-md custom-input" type="tel">
+</div>
+</div>
+<!-- Business Email -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block">Business Email</label>
+<input class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input" placeholder="contact@acme.com" type="email">
+</div>
+<!-- Branch Name -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block">Branch Name</label>
+<input class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input" type="text" value="Main Branch">
+</div>
+</div>
+<!-- Business Address -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block">Business Address <span class="text-on-surface-variant/50 font-normal italic">(optional)</span></label>
+<textarea class="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md custom-input resize-none" placeholder="Enter physical address..." rows="3"></textarea>
+</div>
+</form>
+</div>
+<!-- Help Panel -->
+<div class="bg-surface-container border border-outline-variant/50 rounded-xl p-lg flex gap-lg">
+<div class="w-12 h-12 bg-primary-container rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">info</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-primary mb-sm">What happens next?</h3>
+<ul class="space-y-sm">
+<li class="flex items-center gap-md text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                        Choose a workspace template
+                    </li>
+<li class="flex items-center gap-md text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                        Configure business capabilities
+                    </li>
+<li class="flex items-center gap-md text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+                        Start using BMS
+                    </li>
+</ul>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="mt-2xl flex justify-between items-center">
+<button  id="back-btn" class="flex items-center gap-sm px-xl py-md font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-all duration-200 rounded-lg group">
+<span class="material-symbols-outlined transition-transform group-hover:-translate-x-1">arrow_back</span>
+                Back
+            </button>
+<button id="continue-btn" class="flex items-center gap-sm px-xl py-md font-label-md text-label-md bg-primary-container text-white hover:bg-primary transition-all duration-200 rounded-lg group shadow-sm active:scale-[0.98]">
+                Continue to Workspace
+                <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface border-t border-outline-variant mt-auto">
+<div class="flex justify-between items-center px-margin-desktop py-lg w-full max-w-full mx-auto">
+<div class="font-label-md text-label-md font-black text-on-surface">BMS</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">
+                © 2024 BMS Enterprise Systems. All rights reserved.
+            </div>
+<nav class="flex gap-lg">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all duration-200" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all duration-200" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all duration-200" href="#">Support</a>
+</nav>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for the form fields
+        document.querySelectorAll('.custom-input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('label')?.classList.add('text-primary');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.querySelector('label')?.classList.remove('text-primary');
+            });
+        });
+    </script>
+    <script src="../../js/routes.js"></script>
+<script src="../../js/prototype.js"></script>
+
+<script src="./business-details.js"></script>
+</body></html>
