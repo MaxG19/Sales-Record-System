@@ -34,7 +34,64 @@ const ROUTES = {
         "/Authentication%20and%20Onboarding/Forgot%20and%20Reset%20password/Reset_password_success/code.html",
 
     dashboard:
-        "/Dashboards/Manager%20Dashboard/code.html"
+        "/Dashboards/Manager%20Dashboard/code.html",
+
+    products:
+        "/Products/products/code.html",
+
+    inventory:
+        "/Inventory/code.html",
+
+    purchaseOrders:
+        "/Purchase/purchases_workspace_finalized_layout/code.html",
+
+    suppliers:
+        "/Supplier/suppliers_workspace/code.html",
+
+    customers:
+        "/Customer%20Management/customer_management_list_view/code.html",
+
+    sales:
+        "/Sales/sales_workspace/code.html",
+
+    reports:
+        "/Sales/reports_overview_workspace/code.html",
+
+    employees:
+        "/Users/users_workspace/code.html",
+
+    notifications:
+        "/Business%20Settings/Settings_notifications/code.html",
+
+    help:
+        "/System%20Support%20Screens/empty_states_library/code.html",
+
+    profile:
+        "/Profile_management/my_profile_profile_tab/code.html",
+
+    addProduct:
+        "/Products/products/code.html",
+
+    receiveGoods:
+        "/Purchase/purchases_workspace_finalized_layout/code.html",
+
+    createPurchaseOrder:
+        "/Purchase/purchases_new_purchase_order_centered_modal_refined/code.html",
+
+    stockCount:
+        "/Inventory/code.html",
+
+    adjustStock:
+        "/Inventory/code.html",
+
+    processReturns:
+        "/Sales/sales_process_refund_modal/code.html",
+
+    branchSelection:
+        "/Branch%20Management/code.html",
+
+    search:
+        "/System%20Support%20Screens/empty_states_library/code.html"
 
 };
 
