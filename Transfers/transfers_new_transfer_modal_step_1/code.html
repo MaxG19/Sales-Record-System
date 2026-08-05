@@ -1,0 +1,342 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Ethos BMS - New Transfer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .modal-overlay {
+            background-color: rgba(30, 27, 23, 0.6);
+            backdrop-filter: blur(4px);
+        }
+        .stepper-line {
+            height: 2px;
+            background: #E8ECE4;
+            flex-grow: 1;
+            margin: 0 12px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e8e1db",
+                        "surface": "#fff8f3",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#becca3",
+                        "outline-variant": "#c2c8c2",
+                        "on-secondary-container": "#5a6745",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "surface-dim": "#e0d9d3",
+                        "primary-container": "#344e41",
+                        "tertiary-fixed-dim": "#faba75",
+                        "surface-container": "#f4ede6",
+                        "inverse-surface": "#33302c",
+                        "inverse-on-surface": "#f7efe9",
+                        "primary-fixed-dim": "#b0cdbc",
+                        "background": "#fff8f3",
+                        "secondary": "#566342",
+                        "on-surface-variant": "#424844",
+                        "on-surface": "#1e1b17",
+                        "surface-container-high": "#eee7e1",
+                        "primary": "#1e372b",
+                        "on-tertiary-fixed": "#2b1700",
+                        "on-secondary-fixed": "#141f05",
+                        "tertiary-fixed": "#ffdcbb",
+                        "surface-bright": "#fff8f3",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#4b2b00",
+                        "surface-variant": "#e8e1db",
+                        "secondary-fixed": "#dae8be",
+                        "on-background": "#1e1b17",
+                        "surface-tint": "#4a6456",
+                        "secondary-container": "#d7e5bb",
+                        "on-primary-fixed": "#062015",
+                        "on-secondary-fixed-variant": "#3f4b2c",
+                        "on-primary-fixed-variant": "#324c3f",
+                        "primary-fixed": "#ccead8",
+                        "outline": "#727974",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b0cdbc",
+                        "tertiary-container": "#6a3f01",
+                        "surface-container-low": "#faf2ec",
+                        "on-primary-container": "#a1beae",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#eaac68"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "12px",
+                        "xl": "16px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "lg": "24px",
+                        "3xl": "64px",
+                        "2xl": "48px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "display": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen">
+<!-- Sidebar Shell (Anchored as per JSON) -->
+<aside class="hidden md:flex flex-col h-full py-xl gap-sm border-r border-surface-container-highest bg-surface-container w-[240px] fixed left-0 top-0">
+<div class="px-md mb-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Ethos Workspace</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Business Manager</p>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer duration-200 ease-in-out">
+<span class="material-symbols-outlined mr-md">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer duration-200 ease-in-out">
+<span class="material-symbols-outlined mr-md">inventory_2</span>
+<span class="font-label-md text-label-md">Products</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer duration-200 ease-in-out">
+<span class="material-symbols-outlined mr-md">payments</span>
+<span class="font-label-md text-label-md">Sales</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer duration-200 ease-in-out">
+<span class="material-symbols-outlined mr-md">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer duration-200 ease-in-out">
+<span class="material-symbols-outlined mr-md">group</span>
+<span class="font-label-md text-label-md">Users</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer duration-200 ease-in-out">
+<span class="material-symbols-outlined mr-md">location_city</span>
+<span class="font-label-md text-label-md">Branches</span>
+</div>
+<!-- Active State: Transfers -->
+<div class="relative flex items-center bg-transparent text-primary font-bold before:absolute before:left-0 before:w-1 before:h-8 before:bg-primary before:rounded-r-full px-md py-sm cursor-pointer">
+<span class="material-symbols-outlined mr-md">swap_horiz</span>
+<span class="font-label-md text-label-md">Transfers</span>
+</div>
+</nav>
+<div class="mt-auto pt-xl space-y-1">
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer duration-200 ease-in-out">
+<span class="material-symbols-outlined mr-md">support_agent</span>
+<span class="font-label-md text-label-md">Support</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer duration-200 ease-in-out">
+<span class="material-symbols-outlined mr-md">logout</span>
+<span class="font-label-md text-label-md">Sign Out</span>
+</div>
+</div>
+</aside>
+<!-- Top Navigation (Shell) -->
+<header class="flex justify-between items-center px-margin-desktop w-full ml-auto md:pl-[240px] h-16 bg-surface border-b border-surface-container-highest fixed top-0 z-20">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined md:hidden text-primary">menu</span>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary w-64 transition-all" placeholder="Search transfers..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">help</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-sm cursor-pointer group">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Professional headshot of a female logistics manager in a modern office, soft natural lighting, high-end corporate photography style with warm neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjSCO4aNcQH_XCjsh8qF6js2Q_vymiVxGiLmxhpQbU5qgLMKa8qtst8o9-XdGXuPKUlcpgo5JSQPBpAEBiKTHnt4AcGdct-q1kIt-Z9N-H7uBWy3Mbjs__MtvwhG64ZlO8uel12rKtbyFWO-HPXKagLQryXOwhNyEGqMNEuwfRTBdqIKSjrdmy6BFWRlHlYvlp_cYLhu-vCpXRXviCOa6cqCqNmNfvF5C2asU2kAZ2_tfbDzF6rMalLg">
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary transition-colors">Admin Settings</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas (Background behind modal) -->
+<main class="pt-24 pb-12 px-margin-desktop md:ml-[240px] min-h-screen">
+<div class="max-w-6xl mx-auto opacity-40 select-none pointer-events-none">
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Transfer Logs</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage and track inter-branch inventory movement.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl">
+<div class="bg-surface border border-outline-variant p-lg rounded-xl">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">PENDING TRANSFERS</p>
+<p class="font-headline-md text-headline-md text-primary">12</p>
+</div>
+<div class="bg-surface border border-outline-variant p-lg rounded-xl">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">IN TRANSIT</p>
+<p class="font-headline-md text-headline-md text-primary">24</p>
+</div>
+<div class="bg-surface border border-outline-variant p-lg rounded-xl">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">COMPLETED TODAY</p>
+<p class="font-headline-md text-headline-md text-primary">08</p>
+</div>
+</div>
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden">
+<table class="w-full text-left">
+<thead class="bg-surface-container text-on-surface-variant">
+<tr>
+<th class="px-md py-sm font-label-md">Transfer ID</th>
+<th class="px-md py-sm font-label-md">Source</th>
+<th class="px-md py-sm font-label-md">Destination</th>
+<th class="px-md py-sm font-label-md">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-highest">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-md py-md font-body-md">#TRF-2024-001</td>
+<td class="px-md py-md font-body-md">Central Hub</td>
+<td class="px-md py-md font-body-md">North Branch</td>
+<td class="px-md py-md"><span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded text-label-sm">In Transit</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center modal-overlay p-margin-mobile">
+<!-- Modal Container -->
+<div class="bg-surface w-full max-w-xl rounded-xl shadow-xl overflow-hidden border border-outline-variant animate-in fade-in zoom-in duration-300">
+<!-- Modal Header -->
+<div class="px-xl py-lg border-b border-surface-container-highest">
+<div class="flex justify-between items-start mb-lg">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">New Transfer</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Fill in the primary details to start a new inventory move.</p>
+</div>
+<button class="text-on-surface-variant hover:bg-surface-container-highest p-1 rounded-full transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Stepper -->
+<div class="flex items-center justify-between">
+<div class="flex flex-col items-center gap-1 group">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-label-md">1</div>
+<span class="font-label-sm text-label-sm text-primary">Info</span>
+</div>
+<div class="stepper-line"></div>
+<div class="flex flex-col items-center gap-1 group">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold text-label-md">2</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Products</span>
+</div>
+<div class="stepper-line"></div>
+<div class="flex flex-col items-center gap-1 group">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold text-label-md">3</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Review</span>
+</div>
+</div>
+</div>
+<!-- Modal Body (Form) -->
+<form class="p-xl space-y-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- From Branch -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface">From Branch</label>
+<div class="relative">
+<select class="w-full bg-surface-container appearance-none border-none rounded-lg px-md py-sm font-body-md text-on-surface focus:ring-2 focus:ring-primary transition-all pr-10 cursor-pointer">
+<option disabled="" selected="" value="">Select origin</option>
+<option value="central">Central Warehouse</option>
+<option value="north">North Regional Office</option>
+<option value="south">South Logistics Center</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+</div>
+</div>
+<!-- To Branch -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface">To Branch</label>
+<div class="relative">
+<select class="w-full bg-surface-container appearance-none border-none rounded-lg px-md py-sm font-body-md text-on-surface focus:ring-2 focus:ring-primary transition-all pr-10 cursor-pointer">
+<option disabled="" selected="" value="">Select destination</option>
+<option value="central">Central Warehouse</option>
+<option value="north">North Regional Office</option>
+<option value="south">South Logistics Center</option>
+<option value="west">West Coast Branch</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Expected Arrival -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface">Expected Arrival</label>
+<div class="relative">
+<input class="w-full bg-surface-container border-none rounded-lg px-md py-sm font-body-md text-on-surface focus:ring-2 focus:ring-primary transition-all" type="date">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">calendar_today</span>
+</div>
+</div>
+<!-- Notes -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface">Notes (Optional)</label>
+<textarea class="w-full bg-surface-container border-none rounded-lg px-md py-sm font-body-md text-on-surface focus:ring-2 focus:ring-primary transition-all resize-none" placeholder="Add any special handling instructions or context for this transfer..." rows="4"></textarea>
+</div>
+</form>
+<!-- Modal Footer -->
+<div class="px-xl py-lg bg-surface-container border-t border-surface-container-highest flex justify-end gap-md">
+<button class="px-lg py-sm rounded-lg border border-primary text-primary font-label-md hover:bg-primary/5 transition-colors" type="button">
+                    Cancel
+                </button>
+<button class="px-lg py-sm rounded-lg bg-primary text-on-primary font-label-md hover:opacity-90 shadow-sm transition-all flex items-center gap-2" type="button">
+                    Next Step
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        // Simple interactive feedback for inputs
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+            el.addEventListener('focus', () => {
+                el.parentElement.querySelector('label')?.classList.add('text-primary');
+            });
+            el.addEventListener('blur', () => {
+                el.parentElement.querySelector('label')?.classList.remove('text-primary');
+            });
+        });
+
+        // Close modal logic (simplified for demo)
+        document.querySelector('.modal-overlay').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                // In a real app, this would trigger a close animation
+                console.log('Closing modal');
+            }
+        });
+    </script>
+</body></html>

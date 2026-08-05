@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Supermarket POS - Resume Held Sale</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#151c27",
+                        "surface-dim": "#d3daea",
+                        "on-secondary-fixed": "#002113",
+                        "surface-container-highest": "#dce2f3",
+                        "background": "#f9f9ff",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "on-tertiary-fixed": "#191c1d",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#4edea3",
+                        "secondary-fixed": "#6ffbbe",
+                        "secondary": "#006c49",
+                        "on-surface-variant": "#434655",
+                        "on-primary-container": "#eeefff",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#6b6d6e",
+                        "surface-container": "#e7eefe",
+                        "outline": "#737686",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#005236",
+                        "surface-tint": "#0053db",
+                        "primary-container": "#2563eb",
+                        "surface": "#f9f9ff",
+                        "on-secondary-container": "#00714d",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "primary-fixed": "#dbe1ff",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "tertiary-fixed": "#e1e3e4",
+                        "surface-bright": "#f9f9ff",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e2e8f8",
+                        "surface-variant": "#dce2f3",
+                        "on-tertiary-container": "#eff0f1",
+                        "inverse-surface": "#2a313d",
+                        "inverse-primary": "#b4c5ff",
+                        "tertiary": "#525556",
+                        "primary": "#004ac6",
+                        "on-primary-fixed": "#00174b",
+                        "secondary-container": "#6cf8bb",
+                        "on-surface": "#151c27",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c3c6d7",
+                        "inverse-on-surface": "#ebf1ff",
+                        "surface-container-low": "#f0f3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "margin-page": "24px",
+                        "gutter": "16px",
+                        "stack-lg": "24px",
+                        "touch-target-min": "48px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "numeral-xl": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-price": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "numeral-xl": ["24px", {"lineHeight": "32px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "display-price": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-overlay {
+            backdrop-filter: blur(8px);
+            background: rgba(21, 28, 39, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface h-screen overflow-hidden">
+<!-- Blurred Background Mockup Content (The POS Workstation) -->
+<div class="fixed inset-0 flex flex-col h-full">
+<!-- TopAppBar (Shared Component Source) -->
+<header class="flex justify-between items-center w-full px-margin-page h-touch-target-min bg-surface-container-highest border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface">menu</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="shopping_basket">shopping_basket</span>
+<span class="text-headline-md font-headline-md font-bold text-on-surface">Supermarket POS</span>
+</div>
+</div>
+<!-- Search Bar Mock -->
+<div class="flex-1 max-w-xl mx-8">
+<div class="relative bg-surface rounded-lg border border-outline-variant px-4 py-2 flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">search</span>
+<span class="text-label-md text-outline">Search product, SKU, or scan barcode...</span>
+<span class="ml-auto material-symbols-outlined text-outline">barcode_scanner</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold text-label-md">JM</div>
+<span class="text-label-md font-bold">Jane Mwangi</span>
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</header>
+<main class="flex flex-1 overflow-hidden">
+<!-- SideNavBar (Shared Component Source) -->
+<aside class="flex flex-col h-full py-stack-lg border-r border-outline-variant bg-surface w-64">
+<nav class="flex-1 px-2 space-y-1">
+<div class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-md text-label-md">Sales</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</div>
+</nav>
+</aside>
+<!-- Main Canvas Area (Empty POS grid background) -->
+<section class="flex-1 p-margin-page grid grid-cols-12 gap-gutter bg-surface-container-low">
+<div class="col-span-8 bg-surface rounded-xl border border-outline-variant h-full p-8 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-[64px] text-surface-dim mb-4" data-icon="add_shopping_cart">add_shopping_cart</span>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Search or scan products to begin a sale</p>
+</div>
+<div class="col-span-4 flex flex-col gap-4">
+<div class="bg-surface rounded-xl border border-outline-variant flex-1 p-4">
+<h3 class="text-headline-md font-headline-md mb-4">Current Cart</h3>
+<div class="flex-1 flex flex-col items-center justify-center text-center opacity-40 py-20">
+<span class="material-symbols-outlined text-4xl mb-2">shopping_bag</span>
+<p class="text-label-md">Cart is empty</p>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl border border-outline-variant p-4 space-y-4">
+<div class="flex justify-between text-headline-md font-bold">
+<span>Total</span>
+<span>KES 0.00</span>
+</div>
+<button class="w-full h-[56px] bg-secondary text-white rounded-[12px] font-bold text-body-md opacity-50 cursor-not-allowed">Proceed to Payment</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component Source) -->
+<footer class="flex justify-between items-center px-margin-page py-stack-sm w-full bg-surface-container-low border-t border-outline-variant">
+<span class="font-label-md text-label-md text-on-surface-variant">Last sale: 10:42 AM • Receipt printed</span>
+<div class="flex gap-4">
+<span class="font-label-md text-label-md text-on-surface-variant hover:text-primary cursor-pointer transition-colors">Help Center</span>
+<span class="font-label-md text-label-md text-on-surface-variant hover:text-primary cursor-pointer transition-colors">Support</span>
+</div>
+</footer>
+</div>
+<!-- RESUME HELD SALE MODAL (Empty State) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center glass-overlay transition-opacity duration-300">
+<div class="bg-surface-container-lowest w-full max-w-[500px] rounded-xl border border-outline-variant shadow-2xl overflow-hidden transform scale-100 transition-transform duration-300">
+<!-- Modal Header -->
+<div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant">
+<h2 class="text-headline-md font-headline-md text-on-surface">Resume Held Sale</h2>
+<button aria-label="Close modal" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-on-surface">close</span>
+</button>
+</div>
+<!-- Modal Content (Empty State Illustration) -->
+<div class="px-8 py-12 flex flex-col items-center text-center">
+<!-- Large Centered Illustration Container -->
+<div class="relative w-40 h-40 rounded-full bg-surface-container-low flex items-center justify-center mb-8">
+<div class="absolute inset-0 border-4 border-dashed border-outline-variant opacity-20 rounded-full"></div>
+<div class="relative">
+<span class="material-symbols-outlined text-[80px] text-outline-variant opacity-60" data-icon="shopping_cart">shopping_cart</span>
+<div class="absolute top-0 right-0 bg-surface-container-lowest border-2 border-surface-container-low rounded-full w-8 h-8 flex items-center justify-center">
+<span class="material-symbols-outlined text-lg text-error" data-icon="close">close</span>
+</div>
+</div>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-2">No held sales</h3>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-[300px]">
+                    There are no held sales at the moment. You can start a new sale.
+                </p>
+</div>
+<!-- Modal Footer (Actions) -->
+<div class="px-8 pb-8 space-y-3">
+<button class="w-full h-[56px] bg-secondary hover:bg-on-secondary-fixed-variant text-white rounded-[12px] font-bold text-body-md flex items-center justify-center gap-2 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+                    Start New Sale
+                </button>
+<button class="w-full h-[56px] bg-white border border-outline-variant text-on-surface hover:bg-surface-container-low rounded-[12px] font-bold text-body-md flex items-center justify-center active:scale-[0.98] transition-all">
+                    Close
+                </button>
+</div>
+</div>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if(btn.innerText.includes('Close') || btn.querySelector('span[data-icon="close"]')) {
+                    const modal = document.querySelector('.glass-overlay');
+                    modal.style.opacity = '0';
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    </script>
+</body></html>

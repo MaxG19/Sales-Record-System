@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ethos BMS - New Transfer Review</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F7F4EC; /* Design System Level 0 */
+        }
+        .modal-overlay {
+            background-color: rgba(30, 27, 23, 0.4);
+            backdrop-filter: blur(4px);
+        }
+        /* Custom scrollbar for high-density tables */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #E8ECE4;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #727974;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#ffffff",
+                      "primary-fixed": "#ccead8",
+                      "primary-container": "#344e41",
+                      "on-surface": "#1e1b17",
+                      "on-primary": "#ffffff",
+                      "on-secondary-container": "#5a6745",
+                      "tertiary-fixed-dim": "#faba75",
+                      "on-secondary-fixed-variant": "#3f4b2c",
+                      "on-primary-fixed": "#062015",
+                      "surface-bright": "#fff8f3",
+                      "inverse-on-surface": "#f7efe9",
+                      "on-error-container": "#93000a",
+                      "error-container": "#ffdad6",
+                      "surface-dim": "#e0d9d3",
+                      "error": "#ba1a1a",
+                      "on-background": "#1e1b17",
+                      "surface-container-highest": "#e8e1db",
+                      "inverse-primary": "#b0cdbc",
+                      "on-surface-variant": "#424844",
+                      "secondary-fixed-dim": "#becca3",
+                      "outline-variant": "#c2c8c2",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "on-tertiary-container": "#eaac68",
+                      "on-tertiary": "#ffffff",
+                      "surface-tint": "#4a6456",
+                      "surface-container": "#f4ede6",
+                      "surface": "#fff8f3",
+                      "on-primary-fixed-variant": "#324c3f",
+                      "on-error": "#ffffff",
+                      "primary": "#1e372b",
+                      "surface-variant": "#e8e1db",
+                      "primary-fixed-dim": "#b0cdbc",
+                      "surface-container-low": "#faf2ec",
+                      "secondary-container": "#d7e5bb",
+                      "secondary": "#566342",
+                      "on-tertiary-fixed": "#2b1700",
+                      "surface-container-high": "#eee7e1",
+                      "secondary-fixed": "#dae8be",
+                      "background": "#fff8f3",
+                      "tertiary-container": "#6a3f01",
+                      "tertiary": "#4b2b00",
+                      "outline": "#727974",
+                      "inverse-surface": "#33302c",
+                      "tertiary-fixed": "#ffdcbb",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed": "#141f05",
+                      "on-primary-container": "#a1beae"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "base": "8px",
+                      "3xl": "64px",
+                      "lg": "24px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "xs": "4px",
+                      "xl": "32px",
+                      "2xl": "48px",
+                      "margin-desktop": "32px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-sm": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "display": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Sidebar Navigation (Mockup background context) -->
+<aside class="w-[240px] h-screen fixed left-0 top-0 bg-surface-container border-r border-surface-container-highest hidden md:flex flex-col py-xl gap-sm">
+<div class="px-md mb-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Ethos Workspace</h1>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70">Business Manager</p>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer">
+<span class="material-symbols-outlined mr-md" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</div>
+<!-- Transfers Active -->
+<div class="relative flex items-center bg-transparent text-primary font-bold before:absolute before:left-0 before:w-1 before:h-8 before:bg-primary before:rounded-r-full px-md py-sm">
+<span class="material-symbols-outlined mr-md" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-label-md text-label-md">Transfers</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer">
+<span class="material-symbols-outlined mr-md" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-md text-label-md">Products</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer">
+<span class="material-symbols-outlined mr-md" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md">Sales</span>
+</div>
+</nav>
+</aside>
+<!-- Main Dashboard Content Mockup -->
+<main class="ml-[240px] p-xl">
+<header class="flex justify-between items-center mb-xl">
+<h2 class="font-headline-md text-headline-md text-primary">Inventory Transfers</h2>
+<button class="bg-primary-container text-on-primary font-label-md text-label-md px-lg py-sm rounded-xl hover:opacity-90 transition-opacity">
+                New Entry
+            </button>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl">
+<div class="bg-surface border border-outline-variant p-lg rounded-xl h-32 flex flex-col justify-center">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Active Transfers</span>
+<span class="font-headline-lg text-headline-lg text-primary mt-xs">12</span>
+</div>
+<div class="bg-surface border border-outline-variant p-lg rounded-xl h-32 flex flex-col justify-center">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Incoming Today</span>
+<span class="font-headline-lg text-headline-lg text-primary mt-xs">04</span>
+</div>
+<div class="bg-surface border border-outline-variant p-lg rounded-xl h-32 flex flex-col justify-center">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Pending Review</span>
+<span class="font-headline-lg text-headline-lg text-primary mt-xs">07</span>
+</div>
+</div>
+</main>
+<!-- STEP 3: REVIEW MODAL -->
+<div class="fixed inset-0 z-50 modal-overlay flex items-center justify-center p-md">
+<div class="bg-surface w-full max-w-4xl max-h-[921px] overflow-hidden rounded-xl shadow-2xl flex flex-col border border-outline-variant">
+<!-- Modal Header -->
+<div class="px-xl py-lg border-b border-surface-container-highest flex justify-between items-center bg-surface-container-low">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Review New Transfer</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Verify details before dispatching products.</p>
+</div>
+<button class="text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Stepper Component -->
+<div class="px-xl py-md bg-surface-container-lowest border-b border-surface-container-highest">
+<div class="flex items-center justify-center max-w-lg mx-auto py-sm">
+<!-- Step 1: Info (Completed) -->
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary">Info</span>
+</div>
+<div class="w-16 h-px bg-primary-container mx-2 mb-4"></div>
+<!-- Step 2: Products (Completed) -->
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary">Products</span>
+</div>
+<div class="w-16 h-px bg-primary-container mx-2 mb-4"></div>
+<!-- Step 3: Review (Active) -->
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-primary border-2 border-primary flex items-center justify-center mb-1">
+<div class="w-2 h-2 rounded-full bg-primary-fixed"></div>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-primary">Review</span>
+</div>
+</div>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto custom-scrollbar px-xl py-lg space-y-lg">
+<!-- Transfer Summary Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Basic Info Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-lg space-y-sm">
+<div class="flex items-center gap-xs text-primary mb-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="route">route</span>
+<span class="font-label-md text-label-md font-bold uppercase tracking-wide">Logistics Detail</span>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Source Branch</p>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Head Office</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Destination</p>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Westlands</p>
+</div>
+<div class="col-span-2">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Expected Arrival</p>
+<div class="flex items-center gap-xs text-secondary font-body-md text-body-md font-semibold">
+<span class="material-symbols-outlined text-[16px]" data-icon="event">event</span>
+<span>Oct 28, 2023</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Notes Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-lg space-y-sm flex flex-col">
+<div class="flex items-center gap-xs text-primary mb-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="sticky_note_2">sticky_note_2</span>
+<span class="font-label-md text-label-md font-bold uppercase tracking-wide">Internal Notes</span>
+</div>
+<div class="bg-surface-container p-sm rounded-md flex-1 italic text-on-surface-variant font-body-sm text-body-sm leading-relaxed">
+                            "Stock replenishment for the upcoming holiday weekend. Ensure fragile electronics are packed in the center of the crate."
+                        </div>
+</div>
+</div>
+<!-- Selected Products List -->
+<div class="space-y-sm">
+<div class="flex justify-between items-end">
+<div class="flex items-center gap-xs text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-md text-label-md font-bold uppercase tracking-wide">Items to Dispatch (5)</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Total Quantity: 142 units</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container border-b border-outline-variant">
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant font-semibold">SKU / PRODUCT NAME</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant font-semibold text-center">CURRENT STOCK</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant font-semibold text-right">TRANSFER QTY</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-highest">
+<tr>
+<td class="px-md py-sm">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded bg-surface-container-high border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Product photography of a sleek wireless mechanical keyboard with high contrast lighting on a dark desk, showing minimalist design and dark green keycaps, professional clean commercial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGImlE7-xJZd2FuXidRJeiF1VnQGakKuSF3cqjBAoLS1Y_0qi_2bO02Twpz9Ve3nDbmhr459kpkqbyUoj_pQWllgp4cQLMaKOeR_t7Xmk_cwS30MPTm8ku6k7GiRK73u2kcZ_SbRgkIwXt8za_xhl7DSNhunSsRUifPyP2QUfzc8ZtAnZpSco91MfPUUe5rpZFFCZ7rNxD8XBgdPVK1CXSlgMsbttooBGArQ7AsM6_tYXyPxkZ0XuZKQ"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">KBD-789-GRN</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Mechanical Keyboard Pro - Moss Green</p>
+</div>
+</div>
+</td>
+<td class="px-md py-sm text-center font-body-md text-body-md text-on-surface-variant">420 units</td>
+<td class="px-md py-sm text-right">
+<span class="bg-secondary-container text-on-secondary-fixed-variant font-body-md text-body-md font-bold px-sm py-xs rounded">15</span>
+</td>
+</tr>
+<tr>
+<td class="px-md py-sm">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded bg-surface-container-high border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up high-resolution product shot of a premium ergonomic aluminum laptop stand, matte silver finish, soft studio lighting on neutral background, minimalist professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Py-LHe7znB55XaiVQmhh-CUi_XDYV27EBeSyLt23Jp3R4lQPhs7QVkGt-uokhXw4cGoph2rhLSJcWJaXiDnLYn6Kd-jZu1y9kQ8DhR_YAjkwt83AtUfnAcBr3w1QCX3dLAsrxK5tYF8ykBTMKTKDBjHVgChwu40lt5MBuRzRf971mdEUVexmoy0Oc7pv7dn6-f7gzwaiBU5fb7JQM2MiNslNHo48ToAbh843lREY1zyRhZrFtFGfcg"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">ACC-LST-SLV</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ergo Aluminum Laptop Stand</p>
+</div>
+</div>
+</td>
+<td class="px-md py-sm text-center font-body-md text-body-md text-on-surface-variant">104 units</td>
+<td class="px-md py-sm text-right">
+<span class="bg-secondary-container text-on-secondary-fixed-variant font-body-md text-body-md font-bold px-sm py-xs rounded">25</span>
+</td>
+</tr>
+<tr>
+<td class="px-md py-sm">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded bg-surface-container-high border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A pack of premium quality braided USB-C cables coiled neatly, deep forest green and charcoal colors, high detail textures, soft directional light, clean minimalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClRJVLQScU5nYxYjpZ9yPgo1s30GYT1BvswrRTk9HzaY6zjeRKorumKQKVqdisgZpG_BRpqLxOimGoPc_9fgNZyGDFC0ze6fL-fwy6z8IDCUMJ6jWdCtldofzUd9yDc3h2C79Mk70UWbImgAyrncqKke9A1jx0d2zASHLjhQC2KuDlGp6yklW-Iw024Bvar0UaTK3oZuHqWa1BQ_1EY5B1DPEWq11cPZci5bitvvMJmvQS8xdkOPAF6w"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">CAB-USB-2MT</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Braided USB-C Cable (2m)</p>
+</div>
+</div>
+</td>
+<td class="px-md py-sm text-center font-body-md text-body-md text-on-surface-variant">890 units</td>
+<td class="px-md py-sm text-right">
+<span class="bg-secondary-container text-on-secondary-fixed-variant font-body-md text-body-md font-bold px-sm py-xs rounded">100</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Modal Footer / Actions -->
+<div class="px-xl py-lg border-t border-surface-container-highest bg-surface-container-low flex items-center justify-between">
+<button class="flex items-center gap-xs text-on-surface-variant hover:text-primary font-label-md text-label-md transition-colors group">
+<span class="material-symbols-outlined transition-transform group-hover:-translate-x-1" data-icon="arrow_back">arrow_back</span>
+                    Back
+                </button>
+<div class="flex items-center gap-md">
+<button class="border border-primary text-primary font-label-md text-label-md px-lg py-sm rounded-xl hover:bg-primary-fixed transition-colors">
+                        Save Draft
+                    </button>
+<button class="bg-primary-container text-on-primary font-label-md text-label-md px-xl py-sm rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-primary-container/20">
+                        Dispatch Now
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Button hover effect simulations
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.addEventListener('mousedown', () => btn.classList.add('scale-[0.98]'));
+                btn.addEventListener('mouseup', () => btn.classList.remove('scale-[0.98]'));
+                btn.addEventListener('mouseleave', () => btn.classList.remove('scale-[0.98]'));
+            });
+        });
+    </script>
+</body></html>

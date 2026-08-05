@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BMS Portal - User Profile Activity</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#082217",
+                        "outline-variant": "#c2c8c2",
+                        "secondary": "#835418",
+                        "surface-container-low": "#f4f3f1",
+                        "on-tertiary-container": "#929f7a",
+                        "surface-container": "#efeeeb",
+                        "on-secondary-fixed-variant": "#673d00",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#424844",
+                        "surface-tint": "#4a6456",
+                        "on-tertiary-fixed": "#151f05",
+                        "inverse-primary": "#b1cdbc",
+                        "on-primary-container": "#85a091",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#1e372b",
+                        "on-primary-fixed-variant": "#334c3f",
+                        "primary-fixed-dim": "#b1cdbc",
+                        "surface-container-highest": "#e3e2e0",
+                        "secondary-container": "#ffc07b",
+                        "secondary-fixed-dim": "#f9ba75",
+                        "tertiary": "#2b3619",
+                        "surface-dim": "#dcdad2",
+                        "tertiary-container": "#2b3619",
+                        "on-surface": "#1a1c1b",
+                        "on-error": "#ffffff",
+                        "background": "#faf9f7",
+                        "on-secondary-fixed": "#2b1700",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fcf9f1",
+                        "surface-bright": "#faf9f7",
+                        "surface-variant": "#e3e2e0",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f1f1ee",
+                        "on-tertiary-fixed-variant": "#3f4b2c",
+                        "inverse-surface": "#2f312f",
+                        "secondary-fixed": "#ffddbb",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1a1c1b",
+                        "on-primary-fixed": "#062015",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#dae8be",
+                        "tertiary-fixed-dim": "#becca3",
+                        "on-secondary-container": "#794c10",
+                        "outline": "#727974",
+                        "primary-fixed": "#cce9d8",
+                        "surface-container-high": "#e9e8e6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px",
+                        "xl": "40px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "title-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-md": ["Hanken Grotesk"],
+                        "display-lg-mobile": ["Hanken Grotesk"],
+                        "overline-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "overline-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab {
+            font-weight: 700;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f4f3f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c2c8c2;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #727974;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md flex min-h-screen">
+<!-- SideNavBar (Predicted Component) -->
+<aside class="hidden md:flex flex-col h-screen bg-surface-container docked left-0 w-64 shrink-0 py-lg sticky top-0">
+<div class="flex items-center gap-sm mb-lg px-lg">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary">admin_panel_settings</span>
+</div>
+<div>
+<h2 class="text-title-lg font-bold text-primary">Global Ops</h2>
+<p class="text-label-md font-label-md text-on-surface-variant uppercase tracking-widest opacity-80">Admin Console</p>
+</div>
+</div>
+<nav class="flex flex-col gap-xs flex-grow">
+<a class="flex items-center gap-md px-md py-sm mx-2 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors transition-transform scale-95 active:scale-100 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm mx-2 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors transition-transform scale-95 active:scale-100 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">settings_input_component</span>
+<span>Operations</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm mx-2 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors transition-transform scale-95 active:scale-100 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm mx-2 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors transition-transform scale-95 active:scale-100 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Reports</span>
+</a>
+</nav>
+<div class="mt-auto px-lg flex flex-col gap-md">
+<button class="w-full py-sm bg-primary-container text-white rounded-lg font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">New Report</button>
+<div class="flex items-center gap-sm p-sm bg-surface-container-low rounded-xl">
+<img alt="User profile" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuagm6Ntk-Z5oJ1pvNLg_9KhRbyN0C71IlvBVefQstPq5PtkjzvXxmjZFY1qE7ORP4exaBBpDx-hOWBGJCBdr8NRf_TuE0R1eGgrpfmiAZaW5jsovue8M-9mIvuNe7hcBGcnjk6_YtpW0YJAHRzAZ4lWwHqv0HXxyW39awZ5THz0J6dr99juOUN1mGs0055D8FOiWXPSJJRnEa_TwivhspRBlNmbOdjXI11qfcZC7htjrVuLWs9HsV6vga4JexGu0kezE8j_7700s"/>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md text-on-surface truncate">Alex Chen</p>
+<p class="text-[10px] text-on-surface-variant truncate">Senior Ops Manager</p>
+</div>
+</div>
+<nav class="flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-xs text-on-surface-variant hover:bg-surface-container-highest rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-sm">help</span>
+<span>Help</span>
+</a>
+<a class="flex items-center gap-md px-md py-xs text-on-surface-variant hover:bg-surface-container-highest rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span>Logout</span>
+</a>
+</nav>
+</div>
+</aside>
+<main class="flex-grow flex flex-col min-w-0 bg-surface">
+<!-- TopNavBar (Predicted Component) -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-16 bg-surface-container-high docked full-width top-0 z-10 sticky">
+<div class="flex items-center gap-lg">
+<span class="font-headline-md text-headline-md font-bold text-primary">BMS Portal</span>
+<nav class="hidden md:flex gap-md font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Overview</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Reports</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 transition-all duration-200 ease-in-out cursor-pointer" href="#">User Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="pl-10 pr-4 py-1.5 rounded-full border border-outline-variant bg-surface-container-lowest focus:ring-1 focus:ring-primary-container focus:border-primary-container text-body-md w-64 outline-none" placeholder="Global search..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-primary hover:bg-primary/5 p-2 rounded-full transition-all duration-200 ease-in-out" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-primary hover:bg-primary/5 p-2 rounded-full transition-all duration-200 ease-in-out" data-icon="settings">settings</button>
+</div>
+</header>
+<!-- Profile Top Bar -->
+<section class="flex flex-col px-margin-desktop pt-xl gap-lg bg-surface-container-low w-full">
+<div class="flex flex-col gap-xs">
+<h1 class="text-display-lg-mobile md:text-display-lg text-primary font-bold">My Profile</h1>
+<p class="text-on-surface-variant text-body-lg">Manage your account settings and track your system activity.</p>
+</div>
+<nav class="flex gap-lg overflow-x-auto no-scrollbar">
+<a class="text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer pb-md font-headline-md" href="#">Profile</a>
+<a class="text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer pb-md font-headline-md" href="#">Security</a>
+<a class="text-on-surface-variant hover:text-primary-container transition-colors cursor-pointer pb-md font-headline-md" href="#">Preferences</a>
+<a class="text-primary-container border-b-2 border-primary-container font-bold pb-md font-headline-md" href="#">Activity</a>
+</nav>
+</section>
+<!-- Main Content Canvas -->
+<div class="px-margin-desktop py-xl flex flex-col gap-lg max-w-[1200px]">
+<!-- Filters & Stats Row -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md">
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest border border-outline-variant px-md py-sm pr-10 rounded-xl text-body-md font-medium text-on-surface-variant focus:ring-2 focus:ring-primary-container focus:border-transparent outline-none cursor-pointer min-w-[180px]">
+<option>All Activity</option>
+<option>Logins</option>
+<option>Security Updates</option>
+<option>System Actions</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="text-label-md font-label-md text-outline uppercase tracking-wider">Export as</span>
+<button class="px-md py-base border border-outline-variant bg-surface-container-lowest rounded-lg text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors">CSV</button>
+<button class="px-md py-base border border-outline-variant bg-surface-container-lowest rounded-lg text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors">PDF</button>
+</div>
+</div>
+<!-- Activity Timeline Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<div class="p-md border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h3 class="text-headline-md font-bold text-primary">Recent Timeline</h3>
+<p class="text-label-md font-label-md text-outline">Last 30 days</p>
+</div>
+<div class="p-xl">
+<div class="space-y-0 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant/30">
+<!-- Timeline Item 1 -->
+<div class="relative pl-12 pb-xl group">
+<div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center z-10 border-2 border-white transition-transform duration-200">
+<span class="material-symbols-outlined text-primary-container text-[20px]">login</span>
+</div>
+<div class="flex flex-col sm:flex-row justify-between sm:items-start gap-xs">
+<div>
+<h4 class="font-headline-md text-on-surface leading-snug">Logged in from Nairobi</h4>
+<p class="text-body-md text-on-surface-variant mt-1">Session started via Chrome on Windows 11. IP Address: 197.232.122.XX</p>
+</div>
+<span class="text-label-md font-label-md text-outline whitespace-nowrap bg-surface-container-low px-sm py-xs rounded">Today, 09:14 AM</span>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative pl-12 pb-xl group">
+<div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center z-10 border-2 border-white transition-transform duration-200">
+<span class="material-symbols-outlined text-secondary text-[20px]">shield</span>
+</div>
+<div class="flex flex-col sm:flex-row justify-between sm:items-start gap-xs">
+<div>
+<h4 class="font-headline-md text-on-surface leading-snug">Changed password</h4>
+<p class="text-body-md text-on-surface-variant mt-1">Your account password was successfully updated. MFA was verified during this action.</p>
+</div>
+<span class="text-label-md font-label-md text-outline whitespace-nowrap bg-surface-container-low px-sm py-xs rounded">Yesterday, 04:30 PM</span>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative pl-12 pb-xl group">
+<div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-tertiary-fixed-dim/20 flex items-center justify-center z-10 border-2 border-white transition-transform duration-200">
+<span class="material-symbols-outlined text-tertiary text-[20px]">sell</span>
+</div>
+<div class="flex flex-col sm:flex-row justify-between sm:items-start gap-xs">
+<div>
+<h4 class="font-headline-md text-on-surface leading-snug">Updated product price</h4>
+<p class="text-body-md text-on-surface-variant mt-1">Batch update completed for <span class="font-semibold">Electronic Category (12 items)</span>. Price increment of 5% applied.</p>
+<div class="mt-sm flex gap-xs">
+<span class="px-sm py-xs bg-primary-container/5 text-primary-container font-label-md text-[10px] rounded border border-primary-container/20">SKU-2930</span>
+<span class="px-sm py-xs bg-primary-container/5 text-primary-container font-label-md text-[10px] rounded border border-primary-container/20">SKU-4412</span>
+</div>
+</div>
+<span class="text-label-md font-label-md text-outline whitespace-nowrap bg-surface-container-low px-sm py-xs rounded">Oct 24, 11:20 AM</span>
+</div>
+</div>
+<!-- Timeline Item 4 -->
+<div class="relative pl-12 pb-xl group">
+<div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center z-10 border-2 border-white transition-transform duration-200">
+<span class="material-symbols-outlined text-primary-container text-[20px]">group_add</span>
+</div>
+<div class="flex flex-col sm:flex-row justify-between sm:items-start gap-xs">
+<div>
+<h4 class="font-headline-md text-on-surface leading-snug">Added new staff member</h4>
+<p class="text-body-md text-on-surface-variant mt-1">Onboarded <span class="font-semibold">Sarah Jenkins</span> to the Sales department as a Junior Associate.</p>
+</div>
+<span class="text-label-md font-label-md text-outline whitespace-nowrap bg-surface-container-low px-sm py-xs rounded">Oct 22, 02:45 PM</span>
+</div>
+</div>
+<!-- Timeline Item 5 (End) -->
+<div class="relative pl-12 group">
+<div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-error-container/20 flex items-center justify-center z-10 border-2 border-white transition-transform duration-200">
+<span class="material-symbols-outlined text-error text-[20px]">error</span>
+</div>
+<div class="flex flex-col sm:flex-row justify-between sm:items-start gap-xs">
+<div>
+<h4 class="font-headline-md text-on-surface leading-snug">Failed login attempt</h4>
+<p class="text-body-md text-on-surface-variant mt-1">An unsuccessful login attempt was made from an unrecognized device in Frankfurt, DE.</p>
+</div>
+<span class="text-label-md font-label-md text-outline whitespace-nowrap bg-surface-container-low px-sm py-xs rounded">Oct 20, 08:12 PM</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-md bg-surface-container-low border-t border-outline-variant flex justify-center">
+<button class="text-primary-container font-bold text-label-md flex items-center gap-xs hover:underline cursor-pointer active:scale-95 transition-transform">
+                        Load More Activity
+                        <span class="material-symbols-outlined text-sm">arrow_downward</span>
+</button>
+</div>
+</div>
+<!-- Footer Meta Info -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="p-lg bg-surface-container-lowest rounded-xl border border-outline-variant flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container">history</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-outline uppercase">Total Actions</p>
+<p class="text-headline-md font-bold text-on-surface">1,248</p>
+</div>
+</div>
+<div class="p-lg bg-surface-container-lowest rounded-xl border border-outline-variant flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container">schedule</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-outline uppercase">Avg. Session</p>
+<p class="text-headline-md font-bold text-on-surface">42m 15s</p>
+</div>
+</div>
+<div class="p-lg bg-surface-container-lowest rounded-xl border border-outline-variant flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container">verified_user</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-outline uppercase">Security Score</p>
+<p class="text-headline-md font-bold text-on-surface">Excellent</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Hover animations for timeline items
+        const timelineItems = document.querySelectorAll('.group');
+        timelineItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const iconContainer = item.querySelector('.z-10');
+                if (iconContainer) {
+                    iconContainer.classList.add('scale-110');
+                }
+            });
+            item.addEventListener('mouseleave', () => {
+                const iconContainer = item.querySelector('.z-10');
+                if (iconContainer) {
+                    iconContainer.classList.remove('scale-110');
+                }
+            });
+        });
+    </script>
+</body></html>

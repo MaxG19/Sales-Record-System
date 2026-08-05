@@ -1,0 +1,406 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>New Purchase Order | BMS Manager Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#b0cdbc",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dadad8",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#dae8be",
+                        "on-background": "#1a1c1b",
+                        "surface-container": "#efeeeb",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1a1c1b",
+                        "tertiary": "#482a29",
+                        "outline": "#727974",
+                        "on-secondary-fixed": "#141f05",
+                        "primary-container": "#344e41",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e3e2e0",
+                        "outline-variant": "#c2c8c2",
+                        "on-tertiary-fixed-variant": "#5f3e3d",
+                        "surface-variant": "#e3e2e0",
+                        "tertiary-fixed-dim": "#e9bbba",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2f312f",
+                        "background": "#faf9f7",
+                        "tertiary-container": "#61403f",
+                        "on-primary-fixed": "#062015",
+                        "on-tertiary-fixed": "#2e1414",
+                        "on-primary-container": "#a1beae",
+                        "secondary": "#566342",
+                        "surface-tint": "#4a6456",
+                        "on-primary-fixed-variant": "#324c3f",
+                        "inverse-primary": "#b0cdbc",
+                        "surface-container-low": "#f4f3f1",
+                        "secondary-fixed-dim": "#becca3",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#ccead8",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-bright": "#faf9f7",
+                        "primary": "#1e372b",
+                        "surface-container-high": "#e9e8e6",
+                        "inverse-on-surface": "#f1f1ee",
+                        "on-secondary-container": "#5a6745",
+                        "surface": "#faf9f7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#daadab",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#424844",
+                        "on-secondary-fixed-variant": "#3f4b2c",
+                        "secondary-container": "#d7e5bb"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "sm": "16px",
+                        "xs": "8px",
+                        "md": "24px",
+                        "margin-mobile": "16px",
+                        "base": "4px",
+                        "lg": "40px",
+                        "gutter": "24px",
+                        "xl": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .modal-blur {
+            backdrop-filter: blur(8px);
+            background-color: rgba(26, 28, 27, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background overflow-hidden">
+<!-- Sidebar Navigation Shell -->
+<aside class="fixed h-full w-[280px] left-0 top-0 bg-white border-r border-outline-variant flex flex-col py-md z-40">
+<div class="px-md mb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Manager Workspace</h1>
+<p class="font-label-md text-label-md text-on-surface-variant/60">Business Management</p>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container transition-colors mx-sm px-md py-sm">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container transition-colors mx-sm px-md py-sm">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-md text-label-md">Products</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container transition-colors mx-sm px-md py-sm">
+<span class="material-symbols-outlined" data-icon="warehouse">warehouse</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</div>
+<!-- ACTIVE TAB: Purchase Orders -->
+<div class="flex items-center gap-md bg-surface-container text-on-surface-variant rounded-lg mx-sm px-md py-sm border-l-4 border-l-primary transition-transform scale-[0.98]">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-label-md text-label-md font-medium">Purchase Orders</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container transition-colors mx-sm px-md py-sm">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Suppliers</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container transition-colors mx-sm px-md py-sm">
+<span class="material-symbols-outlined" data-icon="person_search">person_search</span>
+<span class="font-label-md text-label-md">Customers</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container transition-colors mx-sm px-md py-sm">
+<span class="material-symbols-outlined" data-icon="assignment_return">assignment_return</span>
+<span class="font-label-md text-label-md">Sales &amp; Returns</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container transition-colors mx-sm px-md py-sm">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="font-label-md text-label-md">Reports</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container transition-colors mx-sm px-md py-sm">
+<span class="material-symbols-outlined" data-icon="badge">badge</span>
+<span class="font-label-md text-label-md">Employees</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container transition-colors mx-sm px-md py-sm">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label-md text-label-md">My Profile</span>
+</div>
+</nav>
+<div class="mt-auto px-sm">
+<button class="w-full flex items-center gap-md text-error hover:bg-error-container/20 transition-colors px-md py-sm">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Sign Out</span>
+</button>
+</div>
+</aside>
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-desktop z-30">
+<div class="flex items-center gap-md">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-low border border-outline-variant rounded-full pl-10 pr-4 py-1.5 text-body-sm w-80 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Search orders, suppliers..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex gap-md">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors relative">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="help">help</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="sync">sync</span>
+</button>
+</div>
+<div class="flex items-center gap-sm cursor-pointer border-l border-outline-variant pl-md">
+<div class="text-right">
+<p class="font-label-md text-label-md text-on-surface font-bold">Alex Sterling</p>
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant">Warehouse Manager</p>
+</div>
+<img class="w-10 h-10 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a warehouse manager in his 40s, wearing a modern charcoal polo shirt. The lighting is crisp and corporate, with a soft-focus background of an organized, high-tech distribution center. The visual style is premium and sharp, matching a modern enterprise software aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu5bZdxvOUxfj4gQSK1U8G8K6nasoLxlX6A7JcRXHSdyngdEdgBQvMLJF7gSua55f12MK04BvUNdoMkSfYnhinvrY8bJcm50Y-4-L7Nd7UVhu2rtcTYfnVgwLsn2PtinUAK5lBUEGa3vrY5LnBlQWs2X_7fXxJNy7K23b-nua5y1wLe73uJS0haXyoBCUmzZBWnZq5dHDtn5tRSKmLXQIKqpkPSCDd0M7xfdtW8UyZMH8cGKvz3fHc9g">
+</div>
+</div>
+</header>
+<!-- Main Background Content (Mocked) -->
+{{DATA:SCREEN:SCREEN_5}}
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center modal-blur overflow-y-auto py-xl bg-on-background/40">
+<!-- New Purchase Order Modal -->
+<div class="bg-surface-container-lowest w-full max-w-[1000px] rounded-xl shadow-2xl border border-outline-variant flex flex-col relative mx-margin-mobile">
+<!-- Modal Header -->
+<div class="px-md py-md border-b border-outline-variant flex justify-between items-center bg-white sticky top-0 rounded-t-xl z-10">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">New Purchase Order</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Create a formal request for products or services from a supplier.</p>
+</div>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Modal Content -->
+<div class="p-md space-y-lg overflow-y-auto max-h-[716px]">
+<!-- Supplier Info & Order Details (Grid) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+<!-- Section: Supplier Information -->
+<div class="space-y-md">
+<div class="flex items-center gap-xs text-primary font-bold mb-xs border-b border-outline-variant pb-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="business">business</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Supplier Information</span>
+</div>
+<div class="space-y-sm">
+<div class="relative group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Search Supplier *</label>
+<div class="relative">
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-md py-2 text-body-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none" type="text" value="Apex Electronics Ltd">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant">keyboard_arrow_down</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Contact Person</label>
+<input class="w-full bg-surface-container border border-outline-variant rounded-lg px-md py-2 text-body-md text-on-surface-variant cursor-not-allowed" readonly="" type="text" value="Sarah Jenkins">
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Phone Number</label>
+<input class="w-full bg-surface-container border border-outline-variant rounded-lg px-md py-2 text-body-md text-on-surface-variant cursor-not-allowed" readonly="" type="text" value="+1 (555) 012-3456">
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Order Details -->
+<div class="space-y-md">
+<div class="flex items-center gap-xs text-primary font-bold mb-xs border-b border-outline-variant pb-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Order Specifics</span>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Order Date</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-md py-2 text-body-md focus:ring-2 focus:ring-primary outline-none" type="date" value="2023-10-25">
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Exp. Delivery</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-md py-2 text-body-md focus:ring-2 focus:ring-primary outline-none" type="date">
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Priority</label>
+<select class="w-full bg-surface border border-outline-variant rounded-lg px-md py-2 text-body-md focus:ring-2 focus:ring-primary outline-none">
+<option>Low</option>
+<option selected="">Normal</option>
+<option>High</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Reference No.</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-md py-2 text-body-md focus:ring-2 focus:ring-primary outline-none" placeholder="e.g. PO-7721" type="text">
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Item Selection -->
+<div class="space-y-md pt-md">
+<div class="flex justify-between items-center mb-xs border-b border-outline-variant pb-xs">
+<div class="flex items-center gap-xs text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]" data-icon="list_alt">list_alt</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Order Items</span>
+</div>
+<button class="flex items-center gap-xs text-primary font-bold hover:underline transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="add_circle">add_circle</span>
+<span class="text-label-sm">Add Item</span>
+</button>
+</div>
+<div class="rounded-lg border border-outline-variant overflow-hidden">
+<table class="w-full">
+<thead class="bg-surface-container-low text-label-sm text-on-surface-variant">
+<tr>
+<th class="px-md py-3 text-left">PRODUCT NAME / SKU</th>
+<th class="px-md py-3 text-left w-32">UNIT PRICE</th>
+<th class="px-md py-3 text-left w-24">QUANTITY</th>
+<th class="px-md py-3 text-right w-32">SUBTOTAL</th>
+<th class="px-md py-3 text-center w-12"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant text-body-md">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-md py-sm">
+<div class="text-on-surface font-medium">Enterprise SSD 2TB</div>
+<div class="text-[10px] text-on-surface-variant uppercase tracking-tighter">SKU: HD-SSD-2TB-NX</div>
+</td>
+<td class="px-md py-sm">
+<div class="relative">
+<span class="absolute left-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-xs">$</span>
+<input class="w-full bg-surface-container-low border border-transparent rounded px-5 py-1 text-right focus:bg-white focus:border-primary focus:ring-0 outline-none transition-all" type="number" value="185.00">
+</div>
+</td>
+<td class="px-md py-sm">
+<input class="w-full bg-surface-container-low border border-transparent rounded px-2 py-1 text-center focus:bg-white focus:border-primary focus:ring-0 outline-none transition-all" type="number" value="10">
+</td>
+<td class="px-md py-sm text-right font-medium text-primary">
+                                        $1,850.00
+                                    </td>
+<td class="px-md py-sm text-center">
+<button class="p-1.5 text-on-error hover:bg-error-container/20 rounded-md transition-colors opacity-0">
+<span class="material-symbols-outlined text-error" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-md py-sm">
+<div class="text-on-surface font-medium">Network Rack Chassis 42U</div>
+<div class="text-[10px] text-on-surface-variant uppercase tracking-tighter">SKU: SR-42U-ST</div>
+</td>
+<td class="px-md py-sm">
+<div class="relative">
+<span class="absolute left-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-xs">$</span>
+<input class="w-full bg-surface-container-low border border-transparent rounded px-5 py-1 text-right focus:bg-white focus:border-primary focus:ring-0 outline-none transition-all" type="number" value="450.00">
+</div>
+</td>
+<td class="px-md py-sm">
+<input class="w-full bg-surface-container-low border border-transparent rounded px-2 py-1 text-center focus:bg-white focus:border-primary focus:ring-0 outline-none transition-all" type="number" value="2">
+</td>
+<td class="px-md py-sm text-right font-medium text-primary">
+                                        $900.00
+                                    </td>
+<td class="px-md py-sm text-center">
+<button class="p-1.5 text-on-error hover:bg-error-container/20 rounded-md transition-colors opacity-0">
+<span class="material-symbols-outlined text-error" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Summary & Footer Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl pt-md">
+<!-- Notes/Internal Comments -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Internal Notes</label>
+<textarea class="w-full bg-surface border border-outline-variant rounded-lg px-md py-2 text-body-sm h-24 focus:ring-2 focus:ring-primary outline-none resize-none" placeholder="Add any specific instructions for receiving team..."></textarea>
+</div>
+<!-- Calculations -->
+<div class="bg-surface-container-low rounded-lg p-md space-y-sm">
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Subtotal</span>
+<span class="font-medium">$2,750.00</span>
+</div>
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">VAT (16%)</span>
+<span class="font-medium">$440.00</span>
+</div>
+<div class="flex justify-between items-center pt-sm border-t border-outline-variant">
+<span class="font-bold text-primary">Total Cost</span>
+<span class="text-headline-sm font-bold text-primary">$3,190.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Footer Actions -->
+<div class="px-md py-md border-t border-outline-variant flex justify-end gap-md bg-surface-container-lowest rounded-b-xl sticky bottom-0">
+<button class="px-lg py-sm rounded-lg font-label-md text-label-md text-primary border border-primary hover:bg-primary/5 transition-all">
+                    Cancel
+                </button>
+<!-- Disabled state demo: removed 'opacity-50 cursor-not-allowed' for prompt visualization but logic would normally apply -->
+<button class="px-xl py-sm rounded-lg font-label-md text-label-md bg-primary text-on-primary hover:opacity-90 shadow-md transition-all active:scale-95">
+                    Create Purchase Order
+                </button>
+</div>
+<!-- Atmospheric Subtle Badge (Executive Detail) -->
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-on-secondary px-4 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase shadow-lg z-20">
+                Procurement Hub
+            </div>
+</div>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Simple micro-interaction for rows
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.querySelector('button')?.classList.remove('opacity-0');
+            });
+            row.addEventListener('mouseleave', () => {
+                row.querySelector('button')?.classList.add('opacity-0');
+            });
+        });
+
+        // Search highlight mock
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput?.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.01]');
+            searchInput.parentElement.classList.add('transition-transform');
+        });
+        searchInput?.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.01]');
+        });
+    </script>
+
+
+</body></html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Digital Sanctuary BMS - Check Your Email</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#3f4b2c",
+                        "on-primary-container": "#a1beae",
+                        "inverse-primary": "#b0cdbc",
+                        "inverse-surface": "#33302c",
+                        "surface-variant": "#e8e1db",
+                        "tertiary": "#4b2b00",
+                        "on-surface-variant": "#424844",
+                        "tertiary-fixed-dim": "#faba75",
+                        "on-background": "#1e1b17",
+                        "on-primary-fixed": "#062015",
+                        "status-success": "#344E41",
+                        "border-subtle": "#E5E2DA",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f7efe9",
+                        "on-tertiary-container": "#eaac68",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#141f05",
+                        "on-surface": "#1e1b17",
+                        "surface-container-high": "#eee7e1",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#6a3f01",
+                        "surface-container-low": "#faf2ec",
+                        "on-secondary-container": "#5a6745",
+                        "surface-container": "#f4ede6",
+                        "surface-dim": "#e0d9d3",
+                        "surface-bright": "#fff8f3",
+                        "status-warning": "#DDA15E",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "primary": "#1e372b",
+                        "secondary-fixed-dim": "#becca3",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdcbb",
+                        "background": "#F7F4EC",
+                        "primary-container": "#344e41",
+                        "surface": "#FFFFFF",
+                        "primary-fixed-dim": "#b0cdbc",
+                        "outline-variant": "#c2c8c2",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#2b1700",
+                        "error-container": "#ffdad6",
+                        "outline": "#727974",
+                        "secondary": "#566342",
+                        "primary-fixed": "#ccead8",
+                        "surface-tint": "#4a6456",
+                        "on-primary-fixed-variant": "#324c3f",
+                        "secondary-fixed": "#dae8be",
+                        "secondary-container": "#d7e5bb",
+                        "surface-container-highest": "#e8e1db"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "12px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "lg": "24px",
+                        "margin-desktop": "48px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F7F4EC;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 48;
+            vertical-align: middle;
+        }
+        .card-shadow {
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .transition-soft {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col overflow-x-hidden">
+<!-- TopAppBar Fragment (Hidden for auth flow as per "Task-Focused" suppression rule) -->
+<!-- However, we use the product name from JSON for identity in the corner -->
+<div class="fixed top-8 left-8 z-50 pointer-events-none">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">Digital Sanctuary BMS</span>
+</div>
+<main class="flex-grow flex flex-col lg:flex-row h-screen w-full">
+<!-- Left Side: Abstract Brand Visual (Based on provided image pattern) -->
+<div class="hidden lg:flex lg:w-1/2 h-full bg-surface-container relative overflow-hidden items-center justify-center p-xl">
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#344E41 1px, transparent 1px); background-size: 32px 32px;"></div>
+<div class="relative w-full max-w-lg aspect-square">
+<!-- Abstract visual representation of the provided circuit pattern -->
+<img class="w-full h-full object-contain mix-blend-multiply opacity-90" data-alt="A modern abstract digital artwork with a clean white background. The piece features a complex network of rounded organic nodes and interconnected circuit-like lines. Colors consist of deep forest green, sage green, and light olive, mirroring a professional BMS aesthetic. The composition is balanced and minimalist, emphasizing structure, connectivity, and calm sophistication through soft shadows and geometric precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtqWGiBuN2EbspJJmFj9_j9h2fBvSMMeMO7l-L4xqfb-sxSQvDEI6c0ni9_ODMmX3jhOUP1hUEOn4m-2tbISnE0USLGNeJGr_JB_8GL8gjczkBAzGJB9DYk0Ix_1n_v0dMp0sEGf57L7dILJ611lT6RMtarfDIxMdVmGwHvgb389IS30m3Yq9uGhuxPT52T8EdamVUE8HO_nMGWa3ttHR_F6JHS5k_TAH6mEKAxE72Uu9bETJegfcoUw"/>
+</div>
+<!-- Floating Brand Reinforcement -->
+<div class="absolute bottom-12 left-12 max-w-sm">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Enterprise security for the modern workspace.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Your operations, secured and organized with a Digital Sanctuary approach.</p>
+</div>
+</div>
+<!-- Right Side: Authentication Canvas -->
+<div class="w-full lg:w-1/2 h-full flex items-center justify-center bg-background px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Auth Card -->
+<div class="w-full max-w-md bg-surface border border-border-subtle rounded-xl p-xl card-shadow flex flex-col items-center text-center space-y-lg animate-fade-in">
+<!-- Success Icon Wrapper -->
+<div class="w-20 h-20 rounded-full flex items-center justify-center bg-secondary-container bg-opacity-30 mb-md">
+<span class="material-symbols-outlined text-secondary text-[48px]" data-icon="mail">mail</span>
+</div>
+<!-- Content Header -->
+<div class="space-y-sm">
+<h1 class="font-headline-md text-headline-md text-on-background">Check your email</h1>
+<p class="font-body-md text-body-md text-on-surface-variant px-md">
+                        If an account exists for your email address, we’ve sent instructions to reset your password.
+                    </p>
+</div>
+<!-- Identity Confirmation -->
+<div class="flex items-center space-x-sm px-md py-sm bg-surface-container-low rounded-lg border border-border-subtle w-fit">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="alternate_email">alternate_email</span>
+<span class="font-label-md text-label-md text-primary">j***@company.com</span>
+</div>
+<!-- Primary Actions -->
+<div class="w-full space-y-md pt-md">
+<button class="w-full h-[48px] bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:opacity-90 active:scale-[0.98] transition-soft flex items-center justify-center space-x-base">
+<span>Open Email App</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="open_in_new">open_in_new</span>
+</button>
+<button class="w-full h-[48px] border border-primary text-primary rounded-lg font-label-md text-label-md hover:bg-surface-variant transition-soft flex items-center justify-center" id="resend-btn">
+                        Resend Email
+                    </button>
+</div>
+<!-- Footer & Timer -->
+<div class="flex flex-col items-center space-y-md pt-lg">
+<p class="font-label-sm text-label-sm text-outline flex items-center space-x-xs" id="timer-text">
+<span class="material-symbols-outlined text-[14px]" data-icon="schedule">schedule</span>
+<span>Resend available in <span id="timer-count">00:60</span></span>
+</p>
+<a class="font-label-md text-label-md text-primary hover:underline flex items-center space-x-xs" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_back">arrow_back</span>
+<span>Back to Login</span>
+</a>
+</div>
+</div>
+</div>
+</main>
+<!-- Prototype Interaction Scripts -->
+<script src="../../prototype/js/navigation.js"></script>
+<script src="../../prototype/js/loading.js"></script>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ── Resend countdown ──
+            let timeLeft = 60;
+            const timerCount = document.getElementById('timer-count');
+            const resendBtn = document.getElementById('resend-btn');
+            const timerText = document.getElementById('timer-text');
+
+            resendBtn.disabled = true;
+            resendBtn.style.opacity = '0.5';
+            resendBtn.style.cursor = 'not-allowed';
+
+            const countdown = setInterval(() => {
+                timeLeft--;
+                const seconds = timeLeft < 10 ? `0${timeLeft}` : timeLeft;
+                timerCount.textContent = `00:${seconds}`;
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    timerText.classList.add('opacity-0');
+                    resendBtn.disabled = false;
+                    resendBtn.style.opacity = '1';
+                    resendBtn.style.cursor = 'pointer';
+                }
+            }, 1000);
+
+            // ── Resend button ──
+            resendBtn.addEventListener('click', () => {
+                if (!resendBtn.disabled) {
+                    Loading.setButton(resendBtn, 'Sending...');
+                    setTimeout(() => {
+                        Loading.resetButton(resendBtn);
+                        Toast.show('Reset instructions resent successfully.', 'success');
+                    }, 1200);
+                }
+            });
+
+            // ── Open Email App ──
+            document.querySelector('button:first-of-type') &&
+            document.querySelectorAll('button')[0].addEventListener('click', () => {
+                // Simulate proceeding to create new password
+                navigateTo(Routes.CREATE_PASSWORD, 300);
+            });
+
+            // ── Back to Login ──
+            document.querySelector('a[href="#"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                navigateTo(Routes.LOGIN);
+            });
+        });
+    </script>
+<style>
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fade-in 0.6s ease-out forwards;
+        }
+    </style>
+</body></html>

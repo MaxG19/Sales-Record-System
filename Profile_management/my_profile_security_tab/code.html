@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Profile - Security | BMS Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#082217",
+                      "outline-variant": "#c2c8c2",
+                      "secondary": "#835418",
+                      "surface-container-low": "#f4f3f1",
+                      "on-tertiary-container": "#929f7a",
+                      "surface-container": "#efeeeb",
+                      "on-secondary-fixed-variant": "#673d00",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#424844",
+                      "surface-tint": "#4a6456",
+                      "on-tertiary-fixed": "#151f05",
+                      "inverse-primary": "#b1cdbc",
+                      "on-primary-container": "#85a091",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-container": "#1e372b",
+                      "on-primary-fixed-variant": "#334c3f",
+                      "primary-fixed-dim": "#b1cdbc",
+                      "surface-container-highest": "#e3e2e0",
+                      "secondary-container": "#ffc07b",
+                      "secondary-fixed-dim": "#f9ba75",
+                      "tertiary": "#2b3619",
+                      "surface-dim": "#dcdad2",
+                      "tertiary-container": "#2b3619",
+                      "on-surface": "#1a1c1b",
+                      "on-error": "#ffffff",
+                      "background": "#faf9f7",
+                      "on-secondary-fixed": "#2b1700",
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "surface": "#fcf9f1",
+                      "surface-bright": "#faf9f7",
+                      "surface-variant": "#e3e2e0",
+                      "on-primary": "#ffffff",
+                      "inverse-on-surface": "#f1f1ee",
+                      "on-tertiary-fixed-variant": "#3f4b2c",
+                      "inverse-surface": "#2f312f",
+                      "secondary-fixed": "#ffddbb",
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#1a1c1b",
+                      "on-primary-fixed": "#062015",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed": "#dae8be",
+                      "tertiary-fixed-dim": "#becca3",
+                      "on-secondary-container": "#794c10",
+                      "outline": "#727974",
+                      "primary-fixed": "#cce9d8",
+                      "surface-container-high": "#e9e8e6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.75rem",
+                      "xl": "1rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "margin-desktop": "32px",
+                      "margin-mobile": "16px",
+                      "xl": "40px",
+                      "md": "16px",
+                      "xs": "4px",
+                      "sm": "8px",
+                      "base": "4px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "body-md": ["Hanken Grotesk"],
+                      "title-lg": ["Hanken Grotesk"],
+                      "body-lg": ["Hanken Grotesk"],
+                      "display-lg": ["Hanken Grotesk"],
+                      "headline-md": ["Hanken Grotesk"],
+                      "label-md": ["Hanken Grotesk"],
+                      "display-lg-mobile": ["Hanken Grotesk"],
+                      "overline-sm": ["Hanken Grotesk"]
+              },
+              "fontSize": {
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "overline-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex">
+<!-- SideNavBar (Predicted Shared Component COMPONENT_9) -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 z-50 bg-surface-container py-lg border-r border-outline-variant">
+<div class="px-md mb-lg">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-white font-bold">GO</div>
+<div>
+<div class="text-title-lg font-title-lg font-bold text-primary">Global Ops</div>
+<div class="text-label-md font-label-md text-on-surface-variant">Admin Console</div>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-xs overflow-y-auto px-2">
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined">settings_input_component</span>
+<span class="font-label-md text-label-md">Operations</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<div class="pt-lg pb-base">
+<a class="flex items-center gap-md p-md rounded-lg bg-secondary-container text-on-secondary-container active:scale-95 font-bold" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+</nav>
+<div class="mt-auto px-2 space-y-xs border-t border-outline-variant pt-lg">
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Help</span>
+</a>
+<div class="p-md mt-sm flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full overflow-hidden">
+<img alt="Alex Morgan" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY9LCsGu2ieUt3_U7UipNEYddBtjzebKrMY3Ie0aB2uNZk14TZFmWp4T2RzcQ1IzeffZeS3FkQ8UJ6M3kQ-aGbKHIZ_j-kpMehjvYed9ABoX96GrzHHZG7IsHnQpKU-co0rxH1QOhpNBEZ9UmBVoBvx0uUQGlNxxg2iHqo7VVLw0c4LRZ3aOtlGElGte-ruLCAqDwlVX8tWzk-e-xYACn3JgCM8kYEFXaYUT2s18Z30GYUOyZmJxQshXlRbJruFR5-rQR-mLcVEu8"/>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="text-label-md font-bold truncate">Alex Morgan</p>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors">logout</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 min-h-screen">
+<!-- TopNavBar (Predicted Shared Component COMPONENT_9) -->
+<header class="w-full bg-surface-container-high h-16 flex justify-between items-center px-margin-desktop sticky top-0 z-40 border-b border-outline-variant">
+<div class="flex items-center gap-xl h-full">
+<span class="font-headline-md text-headline-md font-bold text-primary">BMS Portal</span>
+<nav class="flex gap-lg h-full">
+<a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors px-1" href="#">Profile</a>
+<a class="h-full flex items-center font-body-md text-body-md text-primary font-bold border-b-2 border-primary transition-colors px-1" href="#">Security</a>
+<a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors px-1" href="#">Preferences</a>
+<a class="h-full flex items-center font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors px-1" href="#">Activity</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">settings</button>
+</div>
+</header>
+<!-- Page Grid -->
+<div class="px-margin-desktop py-xl">
+<div class="flex justify-between items-center mb-xl">
+<h1 class="text-[32px] font-bold text-primary">My Profile</h1>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Primary Security Actions (8 cols) -->
+<div class="lg:col-span-8 space-y-gutter">
+<!-- Change Password Card -->
+<section class="bg-white rounded-xl border border-outline-variant overflow-hidden">
+<div class="px-lg py-md border-b border-outline-variant bg-surface-container-low">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-container">lock_reset</span>
+                                Change Password
+                            </h2>
+</div>
+<div class="p-lg">
+<form class="space-y-lg max-w-xl">
+<div class="grid grid-cols-1 gap-md">
+<div class="space-y-xs">
+<label class="block font-label-md text-label-md text-on-surface-variant">Current Password</label>
+<input class="w-full px-md py-sm rounded-lg border border-outline-variant focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all" placeholder="••••••••••••" type="password"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="space-y-xs">
+<label class="block font-label-md text-label-md text-on-surface-variant">New Password</label>
+<input class="w-full px-md py-sm rounded-lg border border-outline-variant focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all" placeholder="Min. 12 characters" type="password"/>
+</div>
+<div class="space-y-xs">
+<label class="block font-label-md text-label-md text-on-surface-variant">Confirm New Password</label>
+<input class="w-full px-md py-sm rounded-lg border border-outline-variant focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all" placeholder="Re-type password" type="password"/>
+</div>
+</div>
+</div>
+<div class="pt-sm">
+<button class="bg-primary-container text-white px-lg py-sm rounded-lg font-body-md hover:opacity-90 active:scale-95 transition-all" type="submit">Update Password</button>
+</div>
+</form>
+</div>
+</section>
+<!-- Active Sessions Card -->
+<section class="bg-white rounded-xl border border-outline-variant overflow-hidden">
+<div class="px-lg py-md border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-container">devices</span>
+                                Active Sessions
+                            </h2>
+<button class="text-primary-container font-label-md text-label-md hover:underline">Log out all other sessions</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
+<tr>
+<th class="px-lg py-sm font-semibold">Device</th>
+<th class="px-lg py-sm font-semibold">Location</th>
+<th class="px-lg py-sm font-semibold">Last Active</th>
+<th class="px-lg py-sm font-semibold text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">desktop_mac</span>
+<div>
+<p class="font-body-md font-semibold">MacBook Pro 16"</p>
+<p class="text-label-md text-outline">Chrome · macOS</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md text-body-md">London, UK</td>
+<td class="px-lg py-md text-body-md">
+<span class="flex items-center gap-xs text-primary-container font-medium">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span> Active Now
+                                            </span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant border border-outline-variant px-md py-xs rounded-lg hover:bg-error-container hover:text-error hover:border-error-container transition-all text-label-md">Log Out</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">phone_iphone</span>
+<div>
+<p class="font-body-md font-semibold">iPhone 15 Pro</p>
+<p class="text-label-md text-outline">Safari · iOS</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md text-body-md">London, UK</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">2 hours ago</td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant border border-outline-variant px-md py-xs rounded-lg hover:bg-error-container hover:text-error hover:border-error-container transition-all text-label-md">Log Out</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">laptop</span>
+<div>
+<p class="font-body-md font-semibold">Windows Surface Laptop</p>
+<p class="text-label-md text-outline">Edge · Windows 11</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md text-body-md">New York, US</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">Yesterday, 14:20</td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant border border-outline-variant px-md py-xs rounded-lg hover:bg-error-container hover:text-error hover:border-error-container transition-all text-label-md">Log Out</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Right Column: Info & Status (4 cols) -->
+<div class="lg:col-span-4 space-y-gutter">
+<!-- Last Login Card -->
+<section class="bg-white rounded-xl border border-outline-variant p-lg">
+<h3 class="font-label-md text-label-md text-outline uppercase tracking-wider mb-md">Last Login Details</h3>
+<div class="space-y-lg">
+<div class="flex items-start gap-md">
+<div class="bg-surface-container-low rounded-lg p-sm">
+<span class="material-symbols-outlined text-primary-container">history</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Timestamp</p>
+<p class="font-body-md font-semibold">Oct 24, 2023 · 09:42 AM</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<div class="bg-surface-container-low rounded-lg p-sm">
+<span class="material-symbols-outlined text-primary-container">location_on</span>
+</div>
+<div class="w-full">
+<p class="text-label-md text-on-surface-variant">Location</p>
+<p class="font-body-md font-semibold">London, UK</p>
+<div class="mt-sm h-24 w-full rounded-lg bg-surface-variant overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD32MmIp5k1nONl9KroISBU_Rn5eGZFP1so1W1oozVjHayMtZ48ht04N9k0KL7dgqU0r-7zHj8ciQx_z4pO0LHQhatf6ArBKDwVBwyne_1FTaE3cFWj61TzfUY4cRfmsiI_RFJcCUCyM6mryewXmnBZd1ge-MteeNhTQAH4C5DNZIVq5570Rbd9X2zsY-0ce34ScdcN08xifIChX8Rl5Ei6wICEO3RvDiJdzjpgE5MxB6tJFHrh7kQ85ltxcYxFiqZpRPIR81yVu-s')"></div>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<div class="bg-surface-container-low rounded-lg p-sm">
+<span class="material-symbols-outlined text-primary-container">computer</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Device</p>
+<p class="font-body-md font-semibold">MacBook Pro (Chrome)</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Two-Factor Authentication Card -->
+<section class="bg-surface-container-low rounded-xl border border-outline-variant p-lg border-dashed relative">
+<div class="absolute -top-3 right-4 bg-tertiary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Coming Soon</div>
+<div class="flex items-center justify-between mb-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">verified_user</span>
+<h3 class="font-headline-md text-headline-md text-outline">2FA Security</h3>
+</div>
+<div class="w-10 h-5 bg-outline-variant rounded-full p-0.5 flex items-center cursor-not-allowed">
+<div class="w-4 h-4 bg-white rounded-full"></div>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant">Enhance your account security by requiring a verification code from your mobile device upon login.</p>
+</section>
+<!-- Security Recommendation -->
+<section class="bg-primary-container/5 rounded-xl border border-primary-container/20 p-lg">
+<h3 class="font-label-md text-label-md text-primary-container font-bold uppercase tracking-wider mb-sm">Security Recommendation</h3>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-primary-container text-3xl">info</span>
+<p class="text-body-md text-on-surface-variant">Your password was last changed <span class="font-bold">142 days ago</span>. We recommend updating it every 90 days.</p>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('input[type="password"]');
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    const label = input.parentElement.querySelector('label');
+                    if (label) label.classList.add('text-primary-container');
+                });
+                input.addEventListener('blur', () => {
+                    const label = input.parentElement.querySelector('label');
+                    if (label) label.classList.remove('text-primary-container');
+                });
+            });
+        });
+    </script>
+</body></html>

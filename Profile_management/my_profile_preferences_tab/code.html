@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BMS Portal - User Profile Preferences</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #fcf9f1;
+        }
+        /* Custom Toggles */
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #1e372b;
+        }
+        .toggle-checkbox:checked + .toggle-label .toggle-dot {
+            transform: translateX(100%);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#082217",
+                        "outline-variant": "#c2c8c2",
+                        "secondary": "#835418",
+                        "surface-container-low": "#f4f3f1",
+                        "on-tertiary-container": "#929f7a",
+                        "surface-container": "#efeeeb",
+                        "on-secondary-fixed-variant": "#673d00",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#424844",
+                        "surface-tint": "#4a6456",
+                        "on-tertiary-fixed": "#151f05",
+                        "inverse-primary": "#b1cdbc",
+                        "on-primary-container": "#85a091",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#1e372b",
+                        "on-primary-fixed-variant": "#334c3f",
+                        "primary-fixed-dim": "#b1cdbc",
+                        "surface-container-highest": "#e3e2e0",
+                        "secondary-container": "#ffc07b",
+                        "secondary-fixed-dim": "#f9ba75",
+                        "tertiary": "#2b3619",
+                        "surface-dim": "#dcdad2",
+                        "tertiary-container": "#2b3619",
+                        "on-surface": "#1a1c1b",
+                        "on-error": "#ffffff",
+                        "background": "#fcf9f1",
+                        "on-secondary-fixed": "#2b1700",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fcf9f1",
+                        "surface-bright": "#fcf9f1",
+                        "surface-variant": "#e3e2e0",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f1f1ee",
+                        "on-tertiary-fixed-variant": "#3f4b2c",
+                        "inverse-surface": "#2f312f",
+                        "secondary-fixed": "#ffddbb",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1a1c1b",
+                        "on-primary-fixed": "#062015",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#dae8be",
+                        "tertiary-fixed-dim": "#becca3",
+                        "on-secondary-container": "#794c10",
+                        "outline": "#727974",
+                        "primary-fixed": "#cce9d8",
+                        "surface-container-high": "#e9e8e6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px",
+                        "xl": "40px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "title-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-md": ["Hanken Grotesk"],
+                        "display-lg-mobile": ["Hanken Grotesk"],
+                        "overline-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "overline-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface">
+<div class="flex min-h-screen">
+<!-- SideNavBar (Authority: COMPONENTS_9) -->
+<aside class="hidden md:flex flex-col h-screen w-64 bg-surface-container dark:bg-primary-container docked left-0 py-lg shrink-0">
+<div class="flex items-center gap-sm px-lg mb-lg">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<div>
+<h1 class="text-title-lg font-title-lg font-bold text-primary leading-tight">Global Ops</h1>
+<p class="text-label-md font-label-md text-on-surface-variant">Admin Console</p>
+</div>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<div class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors cursor-pointer group scale-95 active:scale-100 transition-transform">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</div>
+<div class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors cursor-pointer scale-95 active:scale-100 transition-transform">
+<span class="material-symbols-outlined">settings_input_component</span>
+<span class="text-label-md font-label-md">Operations</span>
+</div>
+<div class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors cursor-pointer scale-95 active:scale-100 transition-transform">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-label-md font-label-md">Inventory</span>
+</div>
+<div class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors cursor-pointer scale-95 active:scale-100 transition-transform">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-label-md font-label-md">Reports</span>
+</div>
+<div class="mt-4 border-t border-outline-variant pt-4">
+<div class="flex items-center gap-md p-sm bg-secondary-container text-on-secondary-container rounded-lg font-bold cursor-pointer scale-95 active:scale-100 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</div>
+</div>
+</nav>
+<div class="mt-auto px-4 space-y-1">
+<div class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors cursor-pointer scale-95 active:scale-100 transition-transform">
+<span class="material-symbols-outlined">help</span>
+<span class="text-label-md font-label-md">Help</span>
+</div>
+<div class="flex items-center gap-sm mt-4 p-2">
+<img alt="User profile" class="w-10 h-10 rounded-full border-2 border-primary-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIlWcqL7s0muTIQ8XKfg25o_n8Yv4JEKvk69B-g9NGxuh_LyvGnvKZ1JLicsHUfWZPFLeRv59Q9sEy4GXPHQQHF-Sk0FelBwIyk0ZhV3vrQrwWeCMdCBtj2ySmBJ2V8-22p9luZSrWL0FcLMKZaoI0cIC2A41wYz8v7AI4fEyMz3PQ87-l-zdlJD0wxb3PyTeCNYeXr_KBSsfDTG9XpWp3lIw6Qs2EZN-7fZQhVao4DCyc0ALV0M5uv04-DKXwj2PCNPcPeaSJwUI"/>
+<div class="overflow-hidden">
+<p class="text-label-md font-bold truncate">Alex Morgan</p>
+<p class="text-[10px] text-on-surface-variant truncate">alex.m@bmsportal.com</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- TopNavBar (Authority: COMPONENTS_9) -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-16 bg-surface-container-high dark:bg-surface-container-high docked full-width top-0 z-10">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">BMS Portal</span>
+</div>
+<div class="flex items-center gap-lg">
+<div class="hidden md:flex relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full font-body-md text-body-md w-64 focus:ring-2 focus:ring-primary-container outline-none transition-all" placeholder="Global search..." type="text"/>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer" data-icon="settings">settings</span>
+</div>
+</div>
+</header>
+<!-- Page Header & Tab Bar -->
+<div class="flex flex-col px-margin-desktop pt-xl gap-lg bg-surface w-full">
+<h2 class="text-display-lg font-display-lg text-primary">My Profile</h2>
+<div class="flex gap-lg overflow-x-auto no-scrollbar border-b border-outline-variant">
+<div class="text-on-surface-variant font-body-md hover:text-primary transition-colors cursor-pointer pb-2">Profile</div>
+<div class="text-on-surface-variant font-body-md hover:text-primary transition-colors cursor-pointer pb-2">Security</div>
+<div class="text-primary border-b-2 border-primary-container font-bold font-body-md cursor-pointer pb-2">Preferences</div>
+<div class="text-on-surface-variant font-body-md hover:text-primary transition-colors cursor-pointer pb-2">Activity</div>
+</div>
+</div>
+<!-- Profile Content Area -->
+<div class="px-margin-desktop py-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter max-w-[1440px]">
+<!-- Theme & Language (Left Column) -->
+<div class="lg:col-span-5 space-y-gutter">
+<!-- Theme Selector Card -->
+<div class="bg-white rounded-2xl border border-outline-variant p-lg">
+<h3 class="text-headline-md font-headline-md text-on-surface mb-md">Appearance</h3>
+<p class="text-body-md text-on-surface-variant mb-lg">Select how you want the portal interface to look.</p>
+<div class="grid grid-cols-3 gap-sm p-1 bg-surface-container-low rounded-xl">
+<button class="flex flex-col items-center gap-xs py-md rounded-lg bg-white border border-outline-variant transition-all hover:border-primary-container">
+<span class="material-symbols-outlined text-primary-container">light_mode</span>
+<span class="text-label-md font-label-md">Light</span>
+</button>
+<button class="flex flex-col items-center gap-xs py-md rounded-lg hover:bg-white/50 transition-all">
+<span class="material-symbols-outlined text-outline">dark_mode</span>
+<span class="text-label-md font-label-md text-outline">Dark</span>
+</button>
+<button class="flex flex-col items-center gap-xs py-md rounded-lg hover:bg-white/50 transition-all">
+<span class="material-symbols-outlined text-outline">desktop_windows</span>
+<span class="text-label-md font-label-md text-outline">System</span>
+</button>
+</div>
+</div>
+<!-- Language Dropdown Card -->
+<div class="bg-white rounded-2xl border border-outline-variant p-lg">
+<h3 class="text-headline-md font-headline-md text-on-surface mb-md">Localization</h3>
+<label class="block text-label-sm font-label-md text-outline uppercase tracking-wider mb-sm">Interface Language</label>
+<div class="relative">
+<select class="w-full appearance-none bg-white border border-outline-variant rounded-lg px-md py-sm font-body-md text-body-md text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none cursor-pointer">
+<option>English (United States)</option>
+<option>Spanish (ES)</option>
+<option>French (FR)</option>
+<option>German (DE)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+</div>
+<p class="mt-md text-label-md text-on-surface-variant italic">Dates and currencies will be formatted based on this selection.</p>
+</div>
+</div>
+<!-- Notification Preferences (Right Column) -->
+<div class="lg:col-span-7">
+<div class="bg-white rounded-2xl border border-outline-variant h-full overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex items-center justify-between">
+<h3 class="text-headline-md font-headline-md text-on-surface">Notifications</h3>
+<button class="text-primary-container font-bold text-label-md hover:underline transition-all">Enable All</button>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Item 1 -->
+<div class="p-lg flex items-start justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container">mail</span>
+</div>
+<div>
+<p class="font-bold text-body-lg text-on-surface">Email Alerts</p>
+<p class="text-body-md text-on-surface-variant">Receive daily summaries and critical account changes via email.</p>
+</div>
+</div>
+<div class="flex items-center">
+<input checked="" class="hidden toggle-checkbox" id="email-toggle" type="checkbox"/>
+<label class="toggle-label relative inline-block w-12 h-6 rounded-full bg-outline-variant cursor-pointer transition-colors" for="email-toggle">
+<span class="toggle-dot absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-200"></span>
+</label>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-lg flex items-start justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary">warning</span>
+</div>
+<div>
+<p class="font-bold text-body-lg text-on-surface">Low Stock Alerts</p>
+<p class="text-body-md text-on-surface-variant">Real-time push notifications when inventory items fall below thresholds.</p>
+</div>
+</div>
+<div class="flex items-center">
+<input checked="" class="hidden toggle-checkbox" id="stock-toggle" type="checkbox"/>
+<label class="toggle-label relative inline-block w-12 h-6 rounded-full bg-outline-variant cursor-pointer transition-colors" for="stock-toggle">
+<span class="toggle-dot absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-200"></span>
+</label>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-lg flex items-start justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex gap-md">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary">shopping_cart</span>
+</div>
+<div>
+<p class="font-bold text-body-lg text-on-surface">Order Updates</p>
+<p class="text-body-md text-on-surface-variant">Get notified when a new order is received or a status changes.</p>
+</div>
+</div>
+<div class="flex items-center">
+<input class="hidden toggle-checkbox" id="order-toggle" type="checkbox"/>
+<label class="toggle-label relative inline-block w-12 h-6 rounded-full bg-outline-variant cursor-pointer transition-colors" for="order-toggle">
+<span class="toggle-dot absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-200"></span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Keyboard Shortcuts Table (Full Width) -->
+<div class="lg:col-span-12">
+<div class="bg-white rounded-2xl border border-outline-variant overflow-hidden">
+<div class="p-lg bg-surface-container-low border-b border-outline-variant">
+<h3 class="text-headline-md font-headline-md text-on-surface">Keyboard Shortcuts</h3>
+<p class="text-body-md text-on-surface-variant">Boost your productivity with these platform-wide hotkeys.</p>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-bright border-b border-outline-variant">
+<th class="px-lg py-md text-label-md font-label-md text-outline uppercase tracking-wider">Shortcut Key</th>
+<th class="px-lg py-md text-label-md font-label-md text-outline uppercase tracking-wider">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md">
+<div class="flex gap-xs">
+<kbd class="px-2 py-1 bg-surface-container-high rounded text-label-md font-mono border-b-2 border-outline-variant">CMD</kbd>
+<span class="text-outline font-bold self-center">+</span>
+<kbd class="px-2 py-1 bg-surface-container-high rounded text-label-md font-mono border-b-2 border-outline-variant">K</kbd>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface">Global Search / Command Palette</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md">
+<div class="flex gap-xs">
+<kbd class="px-2 py-1 bg-surface-container-high rounded text-label-md font-mono border-b-2 border-outline-variant">G</kbd>
+<span class="text-outline font-bold self-center">then</span>
+<kbd class="px-2 py-1 bg-surface-container-high rounded text-label-md font-mono border-b-2 border-outline-variant">I</kbd>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface">Go to Inventory Dashboard</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md">
+<div class="flex gap-xs">
+<kbd class="px-2 py-1 bg-surface-container-high rounded text-label-md font-mono border-b-2 border-outline-variant">N</kbd>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface">Create New Purchase Order</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="mt-xl flex justify-end items-center gap-md">
+<button class="px-lg py-sm rounded-lg border-2 border-primary-container text-primary-container font-bold text-body-md hover:bg-surface-container-low transition-all active:scale-95">Reset to Defaults</button>
+<button class="px-lg py-sm rounded-lg bg-primary-container text-white font-bold text-body-md hover:opacity-90 transition-all active:scale-95">Save Preferences</button>
+</div>
+</div>
+</main>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Theme selector visual toggle simulation
+        const themeButtons = document.querySelectorAll('.grid-cols-3 button');
+        themeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                themeButtons.forEach(b => {
+                    b.classList.remove('bg-white', 'border', 'border-outline-variant');
+                    b.classList.add('hover:bg-white/50');
+                    const icon = b.querySelector('.material-symbols-outlined');
+                    const text = b.querySelector('.text-label-md');
+                    icon.classList.remove('text-primary-container');
+                    icon.classList.add('text-outline');
+                    text.classList.remove('text-on-surface');
+                    text.classList.add('text-outline');
+                });
+                
+                btn.classList.add('bg-white', 'border', 'border-outline-variant');
+                btn.classList.remove('hover:bg-white/50');
+                const activeIcon = btn.querySelector('.material-symbols-outlined');
+                const activeText = btn.querySelector('.text-label-md');
+                activeIcon.classList.remove('text-outline');
+                activeIcon.classList.add('text-primary-container');
+                activeText.classList.remove('text-outline');
+                activeText.classList.add('text-on-surface');
+            });
+        });
+
+        // Tab navigation active state simulation
+        const navLinks = document.querySelectorAll('.overflow-x-auto .pb-2');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.forEach(l => {
+                    l.classList.remove('text-primary', 'border-b-2', 'border-primary-container', 'font-bold');
+                    l.classList.add('text-on-surface-variant');
+                });
+                link.classList.add('text-primary', 'border-b-2', 'border-primary-container', 'font-bold');
+                link.classList.remove('text-on-surface-variant');
+            });
+        });
+    });
+</script>
+</body></html>

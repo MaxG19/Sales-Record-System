@@ -1,0 +1,407 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Ethos BMS - Transfer Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e8e1db",
+                    "surface": "#fff8f3",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#becca3",
+                    "outline-variant": "#c2c8c2",
+                    "on-secondary-container": "#5a6745",
+                    "on-tertiary-fixed-variant": "#673d00",
+                    "surface-dim": "#e0d9d3",
+                    "primary-container": "#344e41",
+                    "tertiary-fixed-dim": "#faba75",
+                    "surface-container": "#f4ede6",
+                    "inverse-surface": "#33302c",
+                    "inverse-on-surface": "#f7efe9",
+                    "primary-fixed-dim": "#b0cdbc",
+                    "background": "#fff8f3",
+                    "secondary": "#566342",
+                    "on-surface-variant": "#424844",
+                    "on-surface": "#1e1b17",
+                    "surface-container-high": "#eee7e1",
+                    "primary": "#1e372b",
+                    "on-tertiary-fixed": "#2b1700",
+                    "on-secondary-fixed": "#141f05",
+                    "tertiary-fixed": "#ffdcbb",
+                    "surface-bright": "#fff8f3",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#4b2b00",
+                    "surface-variant": "#e8e1db",
+                    "secondary-fixed": "#dae8be",
+                    "on-background": "#1e1b17",
+                    "surface-tint": "#4a6456",
+                    "secondary-container": "#d7e5bb",
+                    "on-primary-fixed": "#062015",
+                    "on-secondary-fixed-variant": "#3f4b2c",
+                    "on-primary-fixed-variant": "#324c3f",
+                    "primary-fixed": "#ccead8",
+                    "outline": "#727974",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#b0cdbc",
+                    "tertiary-container": "#6a3f01",
+                    "surface-container-low": "#faf2ec",
+                    "on-primary-container": "#a1beae",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#eaac68"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "32px",
+                    "gutter": "24px",
+                    "base": "8px",
+                    "lg": "24px",
+                    "3xl": "64px",
+                    "2xl": "48px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "display": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .drawer-slide-in {
+            animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased overflow-hidden">
+<!-- Shell Container -->
+<div class="flex h-screen w-full relative">
+<!-- SideNavBar (Mandatory Shell) -->
+<aside class="hidden md:flex flex-col h-full py-xl gap-sm border-r border-surface-container-highest bg-surface-container w-[240px] fixed left-0 top-0">
+<div class="px-md mb-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Ethos Workspace</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Business Manager</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Determining Active: Transfers is the intent for this page -->
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer group">
+<span class="material-symbols-outlined mr-md">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer group">
+<span class="material-symbols-outlined mr-md">inventory_2</span>
+<span class="font-label-md text-label-md">Products</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer group">
+<span class="material-symbols-outlined mr-md">payments</span>
+<span class="font-label-md text-label-md">Sales</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer group">
+<span class="material-symbols-outlined mr-md">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer group">
+<span class="material-symbols-outlined mr-md">group</span>
+<span class="font-label-md text-label-md">Users</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer group">
+<span class="material-symbols-outlined mr-md">location_city</span>
+<span class="font-label-md text-label-md">Branches</span>
+</div>
+<!-- ACTIVE TAB: Transfers -->
+<div class="relative flex items-center bg-transparent text-primary font-bold before:absolute before:left-0 before:w-1 before:h-8 before:bg-primary before:rounded-r-full px-md py-sm">
+<span class="material-symbols-outlined mr-md">swap_horiz</span>
+<span class="font-label-md text-label-md">Transfers</span>
+</div>
+</nav>
+<div class="px-md mt-auto pt-xl border-t border-surface-container-highest">
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer mb-xs">
+<span class="material-symbols-outlined mr-md">support_agent</span>
+<span class="font-label-md text-label-md">Support</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer">
+<span class="material-symbols-outlined mr-md">logout</span>
+<span class="font-label-md text-label-md">Sign Out</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-[240px] h-screen overflow-y-auto">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-margin-desktop w-full h-16 bg-surface border-b border-surface-container-highest sticky top-0 z-10">
+<div class="flex items-center gap-xl">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-container-low border-none rounded-lg pl-10 pr-md py-2 text-body-md w-64 focus:ring-2 focus:ring-primary-container transition-all" placeholder="Search transfers..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-xs cursor-pointer hover:bg-surface-container-low p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="notifications">notifications</span>
+</div>
+<div class="flex items-center gap-xs cursor-pointer hover:bg-surface-container-low p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="help">help</span>
+</div>
+<div class="h-8 w-px bg-surface-container-highest mx-xs"></div>
+<span class="font-body-md text-body-md text-primary cursor-pointer hover:underline">Settings</span>
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional user profile portrait of a mid-career logistics manager in a modern office environment. The lighting is bright and architectural, reflecting a clean light-mode aesthetic with soft shadows. The manager has a composed and methodical expression, wearing professional attire that fits a corporate minimalism brand identity. The background is slightly blurred with neutral beige and white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAFc7xy9YFFNzxhBrPmQzPXmxVRpcAPU8r3f1Gi9PqqGaqHkQFJZ5B-JvoOTgWOem_-PEIkSav8ZDyDHQ3-aSHC6POxk9abhk6M5Hr6Q9Q7DVQjPA5d12WhxnQWegHMOVRNbPy-Lt0QfELpLVKr_kJsoN1C3K-DNDZdmg0D511D6RLUxqkhpt6FV-SuwiCbytdhpL9Cf91YNgqcIQZEYdNgEayjeQoA7fSfCTbBCQag2lw1y1BnZjCTg">
+</div>
+</div>
+</header>
+<!-- Background Content (Simulating a list view) -->
+<div class="p-margin-desktop space-y-lg opacity-40 select-none">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-primary">Inventory Transfers</h2>
+<button class="bg-primary text-on-primary px-xl py-2 rounded-xl font-label-md text-label-md hover:opacity-90 transition-opacity">New Transfer</button>
+</div>
+<div class="grid grid-cols-1 gap-md">
+<div class="h-20 bg-surface-container-lowest border border-outline-variant rounded-xl"></div>
+<div class="h-20 bg-surface-container-lowest border border-outline-variant rounded-xl"></div>
+<div class="h-20 bg-primary-fixed border border-primary-container rounded-xl"></div>
+<div class="h-20 bg-surface-container-lowest border border-outline-variant rounded-xl"></div>
+</div>
+</div>
+</main>
+<!-- Right Side Drawer Overlay -->
+<div class="fixed inset-0 bg-inverse-surface/20 backdrop-blur-sm z-40 transition-opacity duration-300" id="drawer-overlay"></div>
+<!-- Transfer Details Drawer -->
+<section class="fixed top-0 right-0 h-full w-full md:w-[600px] bg-surface shadow-2xl z-50 flex flex-col drawer-slide-in" id="transfer-drawer">
+<!-- Drawer Header -->
+<div class="p-lg border-b border-surface-container-highest flex justify-between items-center bg-surface">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Transfer Details</h3>
+<p class="font-label-md text-label-md text-outline">Reference: TR-10026</p>
+</div>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors" onclick="toggleDrawer()">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto scrollbar-hide px-lg py-xl space-y-xl">
+<!-- Progress Tracker -->
+<div class="w-full">
+<div class="flex items-center justify-between relative mb-md">
+<!-- Progress Line Background -->
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-surface-container-highest -translate-y-1/2 -z-10"></div>
+<!-- Active Progress Line -->
+<div class="absolute top-1/2 left-0 w-[75%] h-[2px] bg-primary -translate-y-1/2 -z-10"></div>
+<!-- Tracker Steps -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center text-[18px]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary">Draft</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center text-[18px]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary">Ready</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-primary-container border-4 border-surface text-on-primary flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold">In Transit</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-outline flex items-center justify-center text-[18px]">
+<span class="material-symbols-outlined">circle</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Received</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-outline flex items-center justify-center text-[18px]">
+<span class="material-symbols-outlined">circle</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Completed</span>
+</div>
+</div>
+</div>
+<!-- Transfer Information Grid -->
+<div class="grid grid-cols-2 gap-y-lg gap-x-xl p-xl bg-surface-container-low rounded-2xl border border-surface-container-highest">
+<div>
+<p class="font-label-sm text-label-sm text-outline mb-1 uppercase tracking-wider">Transfer Number</p>
+<p class="font-body-lg text-body-lg text-on-surface font-semibold">TR-10026</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-outline mb-1 uppercase tracking-wider">Status</p>
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full font-label-md text-label-md">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                            In Transit
+                        </div>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-outline mb-1 uppercase tracking-wider">From Location</p>
+<p class="font-body-md text-body-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-lg">store</span> CBD Warehouse
+                        </p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-outline mb-1 uppercase tracking-wider">To Location</p>
+<p class="font-body-md text-body-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-lg">location_on</span> Karen Branch
+                        </p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-outline mb-1 uppercase tracking-wider">Created By</p>
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary-fixed text-primary flex items-center justify-center text-[10px] font-bold">A</div>
+<p class="font-body-md text-body-md text-on-surface">Admin</p>
+</div>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-outline mb-1 uppercase tracking-wider">Date Created</p>
+<p class="font-body-md text-body-md text-on-surface">Oct 24, 2023 • 14:30</p>
+</div>
+</div>
+<!-- Items Table -->
+<div class="space-y-md">
+<h4 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">inventory</span>
+                        Transferred Items
+                    </h4>
+<div class="border border-outline-variant rounded-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container text-on-surface-variant font-label-md text-label-md">
+<tr>
+<th class="px-md py-3 font-semibold">Product</th>
+<th class="px-md py-3 font-semibold text-right">Sent</th>
+<th class="px-md py-3 font-semibold text-right">Received</th>
+<th class="px-md py-3 font-semibold text-right">Remaining</th>
+</tr>
+</thead>
+<tbody class="text-body-md text-on-surface divide-y divide-surface-container-highest">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-md py-4">
+<p class="font-semibold">Cooking Oil</p>
+<p class="text-label-sm text-outline">SKU: CO-500ML</p>
+</td>
+<td class="px-md py-4 text-right">50</td>
+<td class="px-md py-4 text-right">50</td>
+<td class="px-md py-4 text-right">
+<span class="inline-flex items-center gap-1 text-on-secondary-fixed-variant font-bold">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                                            Complete
+                                        </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-md py-4">
+<p class="font-semibold">Premium Rice</p>
+<p class="text-label-sm text-outline">SKU: RICE-02KG</p>
+</td>
+<td class="px-md py-4 text-right">100</td>
+<td class="px-md py-4 text-right">60</td>
+<td class="px-md py-4 text-right text-error font-bold">40 remaining</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Logistics Meta Card -->
+<div class="p-md bg-tertiary-fixed/30 rounded-xl border border-tertiary-fixed-dim/50 flex gap-md">
+<span class="material-symbols-outlined text-tertiary-container">info</span>
+<div>
+<p class="font-label-md text-label-md text-tertiary-fixed-variant font-bold">Logistics Note</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">The shipment is currently being handled by Fleet Group A. Estimated arrival at Karen Branch: 17:45 today.</p>
+</div>
+</div>
+</div>
+<!-- Drawer Footer (Buttons) -->
+<div class="p-lg border-t border-surface-container-highest bg-surface flex flex-col sm:flex-row gap-sm">
+<button class="flex-1 px-xl py-3 rounded-xl border-2 border-primary-container text-primary-container font-label-md text-label-md hover:bg-surface-container-low transition-colors active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+                    Edit Transfer
+                </button>
+<button class="flex-1 px-xl py-3 rounded-xl bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">send</span>
+                    Dispatch
+                </button>
+<button class="flex-1 px-xl py-3 rounded-xl bg-primary-container text-on-primary font-label-md text-label-md hover:opacity-90 shadow-lg shadow-primary-container/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                    Receive Stock
+                </button>
+</div>
+</section>
+</div>
+<script>
+        function toggleDrawer() {
+            const drawer = document.getElementById('transfer-drawer');
+            const overlay = document.getElementById('drawer-overlay');
+            
+            if (drawer.classList.contains('translate-x-0')) {
+                // Close
+                drawer.style.transform = 'translateX(100%)';
+                drawer.classList.remove('translate-x-0');
+                overlay.classList.add('opacity-0');
+                overlay.style.pointerEvents = 'none';
+            } else {
+                // Open
+                drawer.style.transform = 'translateX(0)';
+                drawer.classList.add('translate-x-0');
+                overlay.classList.remove('opacity-0');
+                overlay.style.pointerEvents = 'auto';
+            }
+        }
+
+        // Handle overlay click
+        document.getElementById('drawer-overlay').addEventListener('click', toggleDrawer);
+
+        // Micro-interaction for table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mousedown', () => row.classList.add('scale-[0.995]', 'bg-surface-container-low'));
+            row.addEventListener('mouseup', () => row.classList.remove('scale-[0.995]'));
+        });
+    </script>
+</body></html>

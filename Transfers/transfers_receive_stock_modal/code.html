@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ethos BMS - Receive Stock</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e8e1db",
+                    "surface": "#fff8f3",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#becca3",
+                    "outline-variant": "#c2c8c2",
+                    "on-secondary-container": "#5a6745",
+                    "on-tertiary-fixed-variant": "#673d00",
+                    "surface-dim": "#e0d9d3",
+                    "primary-container": "#344e41",
+                    "tertiary-fixed-dim": "#faba75",
+                    "surface-container": "#f4ede6",
+                    "inverse-surface": "#33302c",
+                    "inverse-on-surface": "#f7efe9",
+                    "primary-fixed-dim": "#b0cdbc",
+                    "background": "#fff8f3",
+                    "secondary": "#566342",
+                    "on-surface-variant": "#424844",
+                    "on-surface": "#1e1b17",
+                    "surface-container-high": "#eee7e1",
+                    "primary": "#1e372b",
+                    "on-tertiary-fixed": "#2b1700",
+                    "on-secondary-fixed": "#141f05",
+                    "tertiary-fixed": "#ffdcbb",
+                    "surface-bright": "#fff8f3",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#4b2b00",
+                    "surface-variant": "#e8e1db",
+                    "secondary-fixed": "#dae8be",
+                    "on-background": "#1e1b17",
+                    "surface-tint": "#4a6456",
+                    "secondary-container": "#d7e5bb",
+                    "on-primary-fixed": "#062015",
+                    "on-secondary-fixed-variant": "#3f4b2c",
+                    "on-primary-fixed-variant": "#324c3f",
+                    "primary-fixed": "#ccead8",
+                    "outline": "#727974",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#b0cdbc",
+                    "tertiary-container": "#6a3f01",
+                    "surface-container-low": "#faf2ec",
+                    "on-primary-container": "#a1beae",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#eaac68"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "32px",
+                    "gutter": "24px",
+                    "base": "8px",
+                    "lg": "24px",
+                    "3xl": "64px",
+                    "2xl": "48px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "display": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F7F4EC; /* Brand Level 0 Background */
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        /* Custom scrollbar for data-heavy table */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #E8ECE4;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #DDE2D9;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Sidebar (Shared Component Anchor) -->
+<nav class="w-[240px] h-screen fixed left-0 top-0 bg-surface-container flex flex-col py-xl gap-sm border-r border-surface-container-highest">
+<div class="px-md mb-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Ethos Workspace</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Business Manager</p>
+</div>
+<div class="flex-1 space-y-xs overflow-y-auto px-xs">
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer rounded-lg group">
+<span class="material-symbols-outlined mr-md group-hover:text-primary" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</div>
+<!-- Transfers is active -->
+<div class="relative flex items-center bg-transparent text-primary font-bold before:absolute before:left-0 before:w-1 before:h-8 before:bg-primary before:rounded-r-full px-md py-sm cursor-default">
+<span class="material-symbols-outlined mr-md" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-label-md text-label-md">Transfers</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer rounded-lg group">
+<span class="material-symbols-outlined mr-md group-hover:text-primary" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-md text-label-md">Products</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer rounded-lg group">
+<span class="material-symbols-outlined mr-md group-hover:text-primary" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md">Sales</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer rounded-lg group">
+<span class="material-symbols-outlined mr-md group-hover:text-primary" data-icon="assessment">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer rounded-lg group">
+<span class="material-symbols-outlined mr-md group-hover:text-primary" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Users</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer rounded-lg group">
+<span class="material-symbols-outlined mr-md group-hover:text-primary" data-icon="location_city">location_city</span>
+<span class="font-label-md text-label-md">Branches</span>
+</div>
+</div>
+<div class="px-md mt-auto pt-md border-t border-surface-container-highest">
+<div class="flex items-center text-on-surface-variant px-sm py-xs hover:bg-surface-container-highest transition-all cursor-pointer rounded-lg mb-xs">
+<span class="material-symbols-outlined mr-md" data-icon="support_agent">support_agent</span>
+<span class="font-label-md text-label-md">Support</span>
+</div>
+<div class="flex items-center text-on-surface-variant px-sm py-xs hover:bg-surface-container-highest transition-all cursor-pointer rounded-lg">
+<span class="material-symbols-outlined mr-md" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Sign Out</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-[240px] p-xl min-h-screen">
+<!-- Top Bar -->
+<header class="flex justify-between items-center mb-xl">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Inventory Management</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Reviewing pending stock transfers</p>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="bg-surface-container border-none rounded-xl pl-xl pr-md py-sm text-body-sm focus:ring-2 focus:ring-primary w-64" placeholder="Search transfers..." type="text"/>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center cursor-pointer hover:bg-outline-variant transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="notifications">notifications</span>
+</div>
+</div>
+</header>
+<!-- Underlay Background Content (Blurred) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg opacity-40 select-none pointer-events-none">
+<div class="bg-white border border-outline-variant p-lg rounded-xl">
+<h3 class="font-label-sm text-label-sm uppercase tracking-wider text-outline mb-sm">Transfer Total</h3>
+<p class="font-headline-lg text-headline-lg">$14,502.00</p>
+</div>
+<div class="bg-white border border-outline-variant p-lg rounded-xl">
+<h3 class="font-label-sm text-label-sm uppercase tracking-wider text-outline mb-sm">Origin</h3>
+<p class="font-headline-lg text-headline-lg">Central Warehouse</p>
+</div>
+<div class="bg-white border border-outline-variant p-lg rounded-xl">
+<h3 class="font-label-sm text-label-sm uppercase tracking-wider text-outline mb-sm">Expected Date</h3>
+<p class="font-headline-lg text-headline-lg">Oct 24, 2023</p>
+</div>
+</div>
+<!-- Centered Confirmation Dialog Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-md bg-inverse-surface/10 backdrop-blur-sm">
+<div class="bg-white w-full max-w-2xl rounded-xl border border-outline-variant shadow-[0px_4px_12px_rgba(45,42,38,0.08)] overflow-hidden animate-in fade-in zoom-in duration-300">
+<!-- Modal Header -->
+<div class="px-xl py-lg border-b border-surface-container-highest flex justify-between items-center bg-surface-container-lowest">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Receive Stock</h2>
+<div class="flex items-center gap-xs mt-xs">
+<span class="font-label-md text-label-md text-on-surface-variant">Transfer Number:</span>
+<span class="font-label-md text-label-md font-bold text-primary px-xs bg-primary-fixed rounded">TR-8849201</span>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Modal Body -->
+<div class="p-xl space-y-lg custom-scrollbar max-h-[716px] overflow-y-auto">
+<!-- Status Checkboxes (Visual Pattern) -->
+<section class="space-y-sm">
+<h3 class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Receipt Condition</h3>
+<div class="grid grid-cols-3 gap-sm">
+<label class="flex items-center justify-center gap-sm p-md border-2 border-primary bg-primary-fixed/20 rounded-xl cursor-pointer transition-all">
+<input checked="" class="hidden" name="condition" type="radio" value="full"/>
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-md text-label-md font-bold text-primary">In Full</span>
+</label>
+<label class="flex items-center justify-center gap-sm p-md border-2 border-outline-variant hover:border-primary-fixed-dim rounded-xl cursor-pointer transition-all group">
+<input class="hidden" name="condition" type="radio" value="partial"/>
+<span class="material-symbols-outlined text-outline group-hover:text-primary-fixed-dim" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Partial</span>
+</label>
+<label class="flex items-center justify-center gap-sm p-md border-2 border-outline-variant hover:border-error-container rounded-xl cursor-pointer transition-all group">
+<input class="hidden" name="condition" type="radio" value="damaged"/>
+<span class="material-symbols-outlined text-outline group-hover:text-error" data-icon="report">report</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Damaged</span>
+</label>
+</div>
+</section>
+<!-- Product Verification Table -->
+<section class="space-y-sm">
+<h3 class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Product Verification</h3>
+<div class="border border-outline-variant rounded-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container">
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant">Product Item</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant text-right">Sent</th>
+<th class="px-md py-sm font-label-md text-label-md text-on-surface-variant text-right w-32">Received</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-md py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up studio photograph of a premium leather wallet with fine stitching details against a soft neutral background, clean minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1xoPuOskF_dEiYMS2EoGCsbC3hlqu30ijFmFfTTTkaivvZo5H3Z31yfinVUGowq9tkvgyHwjipQiuqqT7GJX44jFeSXiYJGc9dzRW14NpAz6dXYenjJeoiBq7PFuoDJHkhdDV4X2qVNBY9WCTX7sl2zCrJpIUbQEpMT5m6WhYcd9smtWPxhfG5McwReZAWV90QBf_yHVVDF6jZyex-LIIlnG6KMf5IoQI1fEBf6oG21SibF-Ahw4lRQ"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Minimalist Leather Wallet</p>
+<p class="font-label-sm text-label-sm text-outline">SKU: WAL-09-BLK</p>
+</div>
+</div>
+</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface text-right">24</td>
+<td class="px-md py-md text-right">
+<input class="w-20 bg-surface-container border-none rounded-lg px-sm py-xs text-body-md text-right font-semibold focus:ring-2 focus:ring-primary" type="number" value="24"/>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-md py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A sleek matte black ceramic coffee dripper sitting on a wooden kitchen counter, lit by soft morning sunlight, professional minimalist product photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkLww-wOG2uz-uqY2lateF24-3c7vXV-XvOimo-nSUj2csNvjY6vz6dMjO90vCP2lOfJDQRgXvMOb-QbisNofZbZ8geQqhn-2mJn9GzJU2r_LShL2Xn82PDTNq3MdIA6STsSyxLsa7jcCfj7VUUL17Lcfj7203IWVGcatL9xK1OFc9v8vIbdYAN0B7T556PVSTWHqMM3cY89hYxPivMSRqKzsdXh039K5GBZC61-XJVpdwfb2Yh19Syw"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Ceramic Brew Dripper</p>
+<p class="font-label-sm text-label-sm text-outline">SKU: COF-BRW-MAT</p>
+</div>
+</div>
+</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface text-right">12</td>
+<td class="px-md py-md text-right">
+<input class="w-20 bg-surface-container border-none rounded-lg px-sm py-xs text-body-md text-right font-semibold focus:ring-2 focus:ring-primary" type="number" value="12"/>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-md py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="High-quality linen notebook with a woven texture cover in charcoal grey, lying open on a white desk with a graphite pencil, architectural office vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzXTiHfHWHwqTL_KYkZ0Se8pP_SbxWMiF_TRjTZfNsX3nYfbn5tQxGx39jESBY8KfizO-axbst2Y2w3KUhNRNReZW9Qsy3SjDgJC-E720tFqQY9X3riVuHar2V-Jcxs37WMfSgoS3qQKPuPDVgvs0fDw8xJsu6o5J2APqdmbbet9DX5EbPNcjxhOCWp0OkGfLfCD0MAWlOtrK16uFPgnPMHRBn6pTu49gugejEesiQRJEx9pcZeqdd8Q"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Linen A5 Notebook</p>
+<p class="font-label-sm text-label-sm text-outline">SKU: STN-A5-LIN</p>
+</div>
+</div>
+</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface text-right">50</td>
+<td class="px-md py-md text-right">
+<input class="w-20 bg-surface-container border-none rounded-lg px-sm py-xs text-body-md text-right font-semibold focus:ring-2 focus:ring-primary" type="number" value="50"/>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Additional Notes -->
+<section class="space-y-sm">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-outline block">Reception Notes (Optional)</label>
+<textarea class="w-full bg-surface-container border-none rounded-xl p-md text-body-md focus:ring-2 focus:ring-primary h-24 resize-none" placeholder="Any discrepancies or damage details..."></textarea>
+</section>
+</div>
+<!-- Modal Footer -->
+<div class="px-xl py-lg bg-surface-container flex justify-end gap-md">
+<button class="px-xl py-base font-label-md text-label-md font-bold text-primary hover:bg-surface-container-highest rounded-xl transition-all border border-transparent hover:border-outline-variant">
+                        Cancel
+                    </button>
+<button class="px-xl py-base font-label-md text-label-md font-bold bg-primary text-on-primary rounded-xl shadow-sm hover:opacity-90 active:scale-95 transition-all">
+                        Confirm Receipt
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interaction for Radio buttons
+        const radioLabels = document.querySelectorAll('input[name="condition"]');
+        radioLabels.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const parentLabels = document.querySelectorAll('label');
+                parentLabels.forEach(label => {
+                    label.classList.remove('border-primary', 'bg-primary-fixed/20');
+                    label.classList.add('border-outline-variant');
+                    const icon = label.querySelector('.material-symbols-outlined');
+                    if (icon) {
+                        icon.innerText = label.getAttribute('data-original-icon') || 'radio_button_unchecked';
+                        icon.style.fontVariationSettings = "'FILL' 0";
+                    }
+                });
+
+                if (radio.checked) {
+                    const activeLabel = radio.closest('label');
+                    activeLabel.classList.add('border-primary', 'bg-primary-fixed/20');
+                    activeLabel.classList.remove('border-outline-variant');
+                    const activeIcon = activeLabel.querySelector('.material-symbols-outlined');
+                    if (activeIcon) {
+                        if (radio.value === 'full') activeIcon.innerText = 'check_circle';
+                        if (radio.value === 'partial') activeIcon.innerText = 'adjust';
+                        if (radio.value === 'damaged') activeIcon.innerText = 'report';
+                        activeIcon.style.fontVariationSettings = "'FILL' 1";
+                    }
+                }
+            });
+        });
+
+        // Setup original icons for restoration
+        document.querySelectorAll('label').forEach(label => {
+            const icon = label.querySelector('.material-symbols-outlined');
+            if (icon) {
+                label.setAttribute('data-original-icon', icon.innerText);
+            }
+        });
+    </script>
+</body></html>

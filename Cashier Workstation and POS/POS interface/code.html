@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BMS POS - Point of Sale</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#2D3B33', // Deep forest green from reference
+              accent: '#D6A36D', // Warm tan from reference
+              light: '#F5F5F3',
+              border: '#E5E7EB',
+              bg: '#F0EFEA'
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="typography">
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F0EFEA;
+    }
+  </style>
+<style data-purpose="scrollbar">
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+  </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" data-snapdom="injected-import"></head>
+<body class="p-4 lg:p-8 min-h-screen flex items-center justify-center">
+<!-- BEGIN: MainContainer -->
+<main class="w-full max-w-[1280px] bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col border border-brand-border h-[850px]">
+<!-- BEGIN: MainHeader -->
+<header class="flex items-center justify-between px-6 py-4 border-b border-brand-border bg-white">
+<div class="flex items-center space-x-8">
+<div class="text-2xl font-bold text-brand-dark leading-tight" data-purpose="logo">
+        BMS<br>POS
+      </div>
+<div class="text-sm text-gray-500 font-medium">
+        Main Store · Till 2 &nbsp;&nbsp; Shift 08:00–16:00
+      </div>
+</div>
+<div class="flex items-center space-x-6 text-sm text-gray-600">
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<span class="">Online</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="text-lg">📄</span>
+<span class="">Printer ready</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="text-lg">📥</span>
+<span class="">Drawer closed</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="text-lg">🔍</span>
+<span class="">Scanner</span>
+</div>
+<div class="w-px h-6 bg-gray-200 mx-2"></div>
+<button class="bg-brand-dark text-white w-10 h-10 rounded-full flex items-center justify-center font-bold">
+        JM
+      </button>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: NavigationBar -->
+<nav class="px-6 py-3 border-b border-brand-border flex items-center space-x-3 bg-white">
+<button class="bg-brand-dark text-white px-5 py-2.5 rounded-lg flex items-center space-x-2 font-medium">
+<span class="">🛒</span>
+<span class="">New sale</span>
+</button>
+<button class="border border-brand-border px-5 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-gray-50">
+      Resume held (2)
+    </button>
+<button class="border border-brand-border px-5 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-gray-50">
+      Returns
+    </button>
+<button class="border border-brand-border px-5 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-gray-50">
+      Receipts
+    </button>
+<button class="px-5 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-gray-50 flex items-center">
+      More <span class="ml-1 text-[10px]">▼</span>
+</button>
+</nav>
+<!-- END: NavigationBar -->
+<!-- BEGIN: LayoutWrapper -->
+<div class="flex flex-1 overflow-hidden">
+<!-- BEGIN: LeftColumn (Cart & Search) -->
+<section class="flex-1 flex flex-col border-r border-brand-border overflow-hidden">
+<div class="p-6 pb-2">
+<div class="relative mb-4">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
+<input class="w-full pl-11 pr-4 py-3 bg-[#F9F9F7] border border-gray-200 rounded-lg focus:ring-1 focus:ring-brand-dark focus:border-brand-dark outline-none" placeholder="Search product, SKU, or scan barcode" type="text">
+</div>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-4 py-1.5 bg-[#E6ECE9] text-brand-dark rounded-full text-sm font-medium cursor-pointer">Soda 500ml</span>
+<span class="px-4 py-1.5 bg-[#E6ECE9] text-brand-dark rounded-full text-sm font-medium cursor-pointer">Bread</span>
+<span class="px-4 py-1.5 bg-[#E6ECE9] text-brand-dark rounded-full text-sm font-medium cursor-pointer">Milk</span>
+<span class="px-4 py-1.5 bg-[#E6ECE9] text-brand-dark rounded-full text-sm font-medium cursor-pointer">Sugar</span>
+<span class="px-4 py-1.5 bg-[#E6ECE9] text-brand-dark rounded-full text-sm font-medium cursor-pointer">Eggs</span>
+<span class="px-4 py-1.5 bg-[#E6ECE9] text-brand-dark rounded-full text-sm font-medium cursor-pointer">Oil</span>
+</div>
+<!-- Table Header -->
+<div class="flex items-center px-6 py-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100">
+<div class="w-20">Code</div>
+<div class="flex-1 ml-4">Product Name</div>
+<div class="w-20 text-center">Qty</div>
+<div class="w-24 text-right">Price</div>
+<div class="w-24 text-right">Subtotal</div>
+<div class="w-10 ml-4"></div>
+</div>
+</div>
+<!-- Cart List Area -->
+<div class="flex-1 overflow-y-auto custom-scrollbar" data-purpose="cart-items-list" id="cart-items-list">
+<!-- Item: Soda (RECENT HIGHLIGHT) -->
+<div class="flex items-center px-6 py-4 border-b border-gray-50 group bg-[#FDF6ED] cart-row" data-price="80">
+<div class="w-20 text-xs font-medium text-gray-500">P-0042</div>
+<div class="flex-1 ml-4 font-medium text-gray-800 flex items-center">
+            Soda 500ml
+            <span class="ml-3 px-2 py-0.5 bg-brand-accent/20 text-brand-accent text-[9px] font-bold rounded uppercase">Recent</span>
+</div>
+<div class="w-20 flex justify-center">
+<input class="qty-input w-14 text-center py-1 border border-gray-200 rounded focus:ring-brand-accent focus:border-brand-accent text-sm font-semibold text-gray-700" min="1" type="number" value="2">
+</div>
+<div class="w-24 text-right font-medium text-gray-500">80.00</div>
+<div class="w-24 text-right font-bold text-gray-800 subtotal-cell">160.00</div>
+<button class="ml-4 w-10 text-gray-300 hover:text-red-500 text-xl">🗑</button>
+</div>
+<!-- Item: Milk -->
+<div class="flex items-center px-6 py-4 border-b border-gray-50 group cart-row" data-price="90">
+<div class="w-20 text-xs font-medium text-gray-500">P-0015</div>
+<div class="flex-1 ml-4 font-medium text-gray-800">Milk 500ml</div>
+<div class="w-20 flex justify-center">
+<input class="qty-input w-14 text-center py-1 border border-gray-200 rounded focus:ring-brand-accent focus:border-brand-accent text-sm font-semibold text-gray-700" min="1" type="number" value="2">
+</div>
+<div class="w-24 text-right font-medium text-gray-500">90.00</div>
+<div class="w-24 text-right font-bold text-gray-800 subtotal-cell">180.00</div>
+<button class="ml-4 w-10 text-gray-300 hover:text-red-500 text-xl">🗑</button>
+</div>
+<!-- Item: Bread -->
+<div class="flex items-center px-6 py-4 border-b border-gray-50 group cart-row" data-price="70">
+<div class="w-20 text-xs font-medium text-gray-500">P-0008</div>
+<div class="flex-1 ml-4 font-medium text-gray-800">Bread 400g</div>
+<div class="w-20 flex justify-center">
+<input class="qty-input w-14 text-center py-1 border border-gray-200 rounded focus:ring-brand-accent focus:border-brand-accent text-sm font-semibold text-gray-700" min="1" type="number" value="1">
+</div>
+<div class="w-24 text-right font-medium text-gray-500">70.00</div>
+<div class="w-24 text-right font-bold text-gray-800 subtotal-cell">70.00</div>
+<button class="ml-4 w-10 text-gray-300 hover:text-red-500 text-xl">🗑</button>
+</div>
+<!-- Item: Cooking oil -->
+<div class="flex items-center px-6 py-4 border-b border-gray-50 group cart-row" data-price="670">
+<div class="w-20 text-xs font-medium text-gray-500">P-0022</div>
+<div class="flex-1 ml-4 font-medium text-gray-800">Cooking oil 2L</div>
+<div class="w-20 flex justify-center">
+<input class="qty-input w-14 text-center py-1 border border-gray-200 rounded focus:ring-brand-accent focus:border-brand-accent text-sm font-semibold text-gray-700" min="1" type="number" value="1">
+</div>
+<div class="w-24 text-right font-medium text-gray-500">670.00</div>
+<div class="w-24 text-right font-bold text-gray-800 subtotal-cell">670.00</div>
+<button class="ml-4 w-10 text-gray-300 hover:text-red-500 text-xl">🗑</button>
+</div>
+<!-- Item: Airtime -->
+<div class="flex items-center px-6 py-4 border-b border-gray-50 group cart-row" data-price="100">
+<div class="w-20 text-xs font-medium text-gray-500">P-1099</div>
+<div class="flex-1 ml-4 font-medium text-gray-800">Airtime 100</div>
+<div class="w-20 flex justify-center">
+<input class="qty-input w-14 text-center py-1 border border-gray-200 rounded focus:ring-brand-accent focus:border-brand-accent text-sm font-semibold text-gray-700" min="1" type="number" value="1">
+</div>
+<div class="w-24 text-right font-medium text-gray-500">100.00</div>
+<div class="w-24 text-right font-bold text-gray-800 subtotal-cell">100.00</div>
+<button class="ml-4 w-10 text-gray-300 hover:text-red-500 text-xl">🗑</button>
+</div>
+<!-- Item: Sugar -->
+<div class="flex items-center px-6 py-4 border-b border-gray-100 group cart-row" data-price="120">
+<div class="w-20 text-xs font-medium text-gray-500">P-0056</div>
+<div class="flex-1 ml-4 font-medium text-gray-800">Sugar 1kg</div>
+<div class="w-20 flex justify-center">
+<input class="qty-input w-14 text-center py-1 border border-gray-200 rounded focus:ring-brand-accent focus:border-brand-accent text-sm font-semibold text-gray-700" min="1" type="number" value="1">
+</div>
+<div class="w-24 text-right font-medium text-gray-500">120.00</div>
+<div class="w-24 text-right font-bold text-gray-800 subtotal-cell">120.00</div>
+<button class="ml-4 w-10 text-gray-300 hover:text-red-500 text-xl">🗑</button>
+</div>
+</div>
+</section>
+<!-- END: LeftColumn -->
+<!-- BEGIN: RightColumn (Payment Summary) -->
+<aside class="w-[420px] p-6 flex flex-col bg-[#FCFCFB]">
+<!-- Customer Selection -->
+<div class="mb-6">
+<label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">CUSTOMER</label>
+<div class="relative">
+<select class="w-full bg-[#F5F5F3] border border-gray-200 rounded-lg py-3 px-4 appearance-none focus:ring-0 focus:border-gray-300 text-gray-700">
+<option>Walk-in customer</option>
+</select>
+<div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400">
+<span class="text-[10px]">▼</span>
+</div>
+</div>
+</div>
+<!-- Price Breakdown Card -->
+<div class="bg-brand-dark text-white rounded-xl p-6 mb-6" data-purpose="totals-display">
+<div class="flex justify-between items-start mb-2">
+<div class="text-sm opacity-80">Items total</div>
+<div class="text-right">
+<div class="text-xs opacity-70">KES</div>
+<div class="text-lg font-bold -mt-1" id="items-total-display">1,300.00</div>
+</div>
+</div>
+<div class="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
+<div class="text-sm opacity-80">Discount</div>
+<div class="text-xl">—</div>
+</div>
+<div class="mt-4">
+<div class="text-xs opacity-70 mb-1">Amount due</div>
+<div class="text-4xl font-bold">KES <span id="amount-due-display" class="">1,300.00</span></div>
+</div>
+</div>
+<!-- Primary Action Buttons -->
+<div class="space-y-3 mb-6">
+<button class="w-full bg-brand-accent hover:opacity-90 text-white py-4 rounded-xl font-bold text-xl shadow-sm transition-all active:scale-[0.98]" style="background-color: rgb(221, 161, 94);">Cash <span class="font-normal opacity-80 ml-2 text-sm uppercase tracking-wider">F2</span></button>
+<button class="w-full bg-brand-dark hover:opacity-90 text-white py-4 rounded-xl font-bold text-xl shadow-sm transition-all active:scale-[0.98]" style="background-color: rgb(129, 199, 132);">M-Pesa <span class="font-normal opacity-80 ml-2 text-sm uppercase tracking-wider">F3</span></button>
+<button class="w-full bg-brand-dark hover:opacity-90 text-white py-4 rounded-xl font-bold text-xl shadow-sm transition-all active:scale-[0.98]" style="background-color: rgb(52, 78, 65);">Card <span class="font-normal opacity-80 ml-2 text-sm uppercase tracking-wider">F4</span></button>
+</div>
+<!-- Secondary Input Boxes Placeholder -->
+<div class="grid grid-cols-1 gap-3 mb-6">
+<button class="w-full h-12 bg-brand-dark hover:opacity-90 text-white rounded-lg font-bold text-sm shadow-sm transition-all active:scale-[0.98] flex items-center justify-center space-x-2" style="background-color: rgb(30, 58, 138);"><span class="">🔀</span><span class="">Split Payment</span></button>
+<div class="grid grid-cols-2 gap-3">
+<button class="w-full h-10 border border-gray-300 rounded-lg text-gray-600 font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center space-x-2 text-xs"><span class="">⏸</span><span class="">Hold sale</span></button>
+<button class="w-full h-10 border border-red-200 text-red-500 rounded-lg font-semibold hover:bg-red-50 transition-colors flex items-center justify-center space-x-2 text-xs"><span class="">🗑</span><span class="">Clear cart</span></button>
+</div>
+</div>
+<!-- Sale Actions (Hold & Delete) -->
+
+<!-- Utility Navigation -->
+
+</aside>
+<!-- END: RightColumn -->
+</div>
+<!-- END: LayoutWrapper -->
+</main>
+<script>
+  function updateTotals() {
+    let grandTotal = 0;
+    const rows = document.querySelectorAll('.cart-row');
+    
+    rows.forEach(row => {
+      const price = parseFloat(row.getAttribute('data-price'));
+      const qtyInput = row.querySelector('.qty-input');
+      const subtotalCell = row.querySelector('.subtotal-cell');
+      
+      let qty = parseInt(qtyInput.value) || 0;
+      if (qty < 0) qty = 0;
+      
+      const subtotal = price * qty;
+      subtotalCell.textContent = subtotal.toFixed(2);
+      grandTotal += subtotal;
+    });
+
+    const formattedTotal = grandTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    document.getElementById('items-total-display').textContent = formattedTotal;
+    document.getElementById('amount-due-display').textContent = formattedTotal;
+  }
+
+  // Event delegation for quantity changes
+  document.getElementById('cart-items-list').addEventListener('input', (e) => {
+    if (e.target.classList.contains('qty-input')) {
+      updateTotals();
+    }
+  });
+
+  // Initial calculation
+  window.addEventListener('DOMContentLoaded', updateTotals);
+</script>
+
+
+</body></html>

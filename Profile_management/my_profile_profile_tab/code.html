@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BMS Portal - User Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "primary": "#082217",
+                "outline-variant": "#c2c8c2",
+                "secondary": "#835418",
+                "surface-container-low": "#f4f3f1",
+                "on-tertiary-container": "#929f7a",
+                "surface-container": "#efeeeb",
+                "on-secondary-fixed-variant": "#673d00",
+                "error": "#ba1a1a",
+                "on-surface-variant": "#424844",
+                "surface-tint": "#4a6456",
+                "on-tertiary-fixed": "#151f05",
+                "inverse-primary": "#b1cdbc",
+                "on-surface": "#1a1c1b",
+                "on-error": "#ffffff",
+                "background": "#faf9f7",
+                "on-secondary-fixed": "#2b1700",
+                "on-error-container": "#93000a",
+                "on-secondary": "#ffffff",
+                "surface": "#fcf9f1",
+                "surface-bright": "#faf9f7",
+                "surface-variant": "#e3e2e0",
+                "on-primary": "#ffffff",
+                "inverse-on-surface": "#f1f1ee",
+                "on-tertiary-fixed-variant": "#3f4b2c",
+                "inverse-surface": "#2f312f",
+                "secondary-fixed": "#ffddbb",
+                "on-tertiary": "#ffffff",
+                "on-background": "#1a1c1b",
+                "on-primary-fixed": "#062015",
+                "error-container": "#ffdad6",
+                "tertiary-fixed": "#dae8be",
+                "tertiary-fixed-dim": "#becca3",
+                "on-secondary-container": "#794c10",
+                "outline": "#727974",
+                "primary-fixed": "#cce9d8",
+                "surface-container-high": "#e9e8e6",
+                "primary-container": "#1e372b",
+                "on-primary-container": "#85a091",
+                "surface-container-lowest": "#ffffff"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "gutter": "16px",
+                "margin-desktop": "32px",
+                "margin-mobile": "16px",
+                "xl": "40px",
+                "md": "16px",
+                "xs": "4px",
+                "sm": "8px",
+                "base": "4px",
+                "lg": "24px"
+            },
+            "fontFamily": {
+                "body-md": ["Hanken Grotesk"],
+                "title-lg": ["Hanken Grotesk"],
+                "body-lg": ["Hanken Grotesk"],
+                "display-lg": ["Hanken Grotesk"],
+                "headline-md": ["Hanken Grotesk"],
+                "label-md": ["Hanken Grotesk"],
+                "display-lg-mobile": ["Hanken Grotesk"],
+                "overline-sm": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "overline-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- SideNavBar component {{DATA:COMPONENTS:COMPONENTS_9}} -->
+<aside class="hidden md:flex flex-col h-screen w-64 bg-surface-container dark:bg-primary-container shrink-0 py-lg transition-all duration-200 ease-in-out">
+<div class="flex items-center gap-sm px-lg py-md mb-lg">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="corporate_fare">corporate_fare</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-lg text-title-lg font-bold text-primary">Global Ops</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Admin Console</span>
+</div>
+</div>
+<nav class="flex-1 space-y-base overflow-y-auto">
+<a class="flex items-center gap-md px-md py-sm mx-2 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors font-label-md text-label-md active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm mx-2 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors font-label-md text-label-md active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="settings_input_component">settings_input_component</span>
+<span>Operations</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm mx-2 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors font-label-md text-label-md active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm mx-2 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-colors font-label-md text-label-md active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Reports</span>
+</a>
+<div class="my-md mx-md border-t border-outline-variant opacity-50"></div>
+<a class="flex items-center gap-md px-md py-sm mx-2 bg-secondary-container text-on-secondary-container rounded-lg font-label-md text-label-md active:scale-100 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-lg pt-lg">
+<div class="flex items-center gap-md py-sm border-t border-outline-variant">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden">
+<img alt="Alex Rivera" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3MkmZQ9R5O5n6ZSMpMX1Hqns9j5Q4rgRq7UuZZZpa5FITfCmaeXyJS2RSeMoZFj0L2XiSbEuh7VnwkUUIkdg1XrGTQ7xOufwHkpBU2WgHPRiN8af19zx7MMGg_xzh23axnEJe5CeITkYMxYvm7RkuF6T22WpG3BYdjLWl6sAIjL-JVc4l2YPgyBHV0cK7AF4PLU9RAcB__o5lOEj1-7PEj4Krmy8bWQO55lPVkakbXBq5f4bvjH0vSwXgLPsquX3fJLFSCyoEPUk"/>
+</div>
+<div class="flex flex-col">
+<span class="text-label-md font-bold text-on-surface">Alex Rivera</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider">Business Owner</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col h-screen overflow-y-auto">
+<!-- TopNavBar component {{DATA:COMPONENTS:COMPONENTS_9}} -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-16 bg-surface-container-high dark:bg-surface-container-high shrink-0 transition-all duration-200 ease-in-out">
+<div class="flex items-center gap-lg h-full">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">My Profile</h1>
+<nav class="flex gap-lg h-full pt-1">
+<a class="flex items-center h-full text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md" href="#">Profile</a>
+<a class="flex items-center h-full text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Security</a>
+<a class="flex items-center h-full text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Preferences</a>
+<a class="flex items-center h-full text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Activity</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm hover:bg-surface-variant rounded-full transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<button class="p-sm hover:bg-surface-variant rounded-full transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden ml-sm">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3MkmZQ9R5O5n6ZSMpMX1Hqns9j5Q4rgRq7UuZZZpa5FITfCmaeXyJS2RSeMoZFj0L2XiSbEuh7VnwkUUIkdg1XrGTQ7xOufwHkpBU2WgHPRiN8af19zx7MMGg_xzh23axnEJe5CeITkYMxYvm7RkuF6T22WpG3BYdjLWl6sAIjL-JVc4l2YPgyBHV0cK7AF4PLU9RAcB__o5lOEj1-7PEj4Krmy8bWQO55lPVkakbXBq5f4bvjH0vSwXgLPsquX3fJLFSCyoEPUk"/>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="flex-1 p-margin-desktop max-w-[1440px] w-full mx-auto">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-xl flex flex-col gap-xl">
+<!-- Profile Header/Photo -->
+<div class="flex flex-col md:flex-row items-center gap-xl pb-xl border-b border-outline-variant">
+<div class="relative group">
+<div class="w-32 h-32 rounded-full overflow-hidden border-4 border-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A high-quality close-up portrait of a business professional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDamQIE9NU5pF36nI7DM8QoZ5mTQ7vT_KeTXjViTQe21MtuP17xW7L_ga38ZF2xMTvVvmYFy2gkh_IVeM2qQbh1c-LHmAkkNRDjdhbyqgKdD8KFyuOE538bAWli056AmTHAGHMsK5Rxi5rw8_2-soIaRNaxXi-eJIMdUg4oWE4CbUCQ7CCyslNhxKZOgwoYvBEby5rwWNl98npNR1fCw0A36fEDWoyGGnu1gJo2CBPvFpIP8zM9_bETkdah3wM_GqmXBBvLWAuxMz4"/>
+</div>
+<button class="absolute bottom-0 right-0 w-10 h-10 bg-primary-container text-on-primary rounded-full flex items-center justify-center border-2 border-surface cursor-pointer hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="photo_camera">photo_camera</span>
+</button>
+</div>
+<div class="flex-1 text-center md:text-left">
+<div class="flex items-center justify-center md:justify-start gap-md mb-xs">
+<h2 class="text-headline-md font-headline-md text-on-surface">Alex Rivera</h2>
+<span class="px-md py-xs bg-primary-container text-on-primary-container text-label-md font-label-md rounded-full">Owner</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant">Update your photo and personal details here to manage your business identity.</p>
+</div>
+</div>
+<!-- Profile Form -->
+<form class="grid grid-cols-1 md:grid-cols-2 gap-xl" onsubmit="event.preventDefault()">
+<!-- Full Name -->
+<div class="flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-outline ml-1">Full Name</label>
+<input class="w-full px-md py-md bg-surface-container-low border border-outline-variant rounded-lg font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Enter your full name" type="text" value="Alex Rivera"/>
+</div>
+<!-- Email Address -->
+<div class="flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-outline ml-1">Email Address</label>
+<input class="w-full px-md py-md bg-surface-container-low border border-outline-variant rounded-lg font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Enter your email" type="email" value="alex.rivera@globalops.com"/>
+</div>
+<!-- Phone Number -->
+<div class="flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-outline ml-1">Phone Number</label>
+<input class="w-full px-md py-md bg-surface-container-low border border-outline-variant rounded-lg font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Enter your phone number" type="tel" value="+1 (555) 000-1234"/>
+</div>
+<!-- Branch Selection -->
+<div class="flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-outline ml-1">Branch</label>
+<div class="relative">
+<select class="w-full appearance-none px-md py-md bg-surface-container-low border border-outline-variant rounded-lg font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all cursor-pointer">
+<option>Downtown HQ</option>
+<option>Northside Distribution</option>
+<option>West End Retail</option>
+<option>Industrial Park Hub</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-outline" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Role (Read Only) -->
+<div class="flex flex-col gap-xs md:col-span-2">
+<label class="text-label-md font-label-md text-outline ml-1">Account Role</label>
+<div class="flex items-center gap-sm px-md py-md bg-surface-container-high/30 border border-outline-variant rounded-lg cursor-not-allowed">
+<span class="material-symbols-outlined text-primary" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Owner</span>
+<span class="text-label-md font-label-md text-outline italic ml-auto">Role managed by System Admin</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="md:col-span-2 pt-lg flex items-center justify-end gap-md border-t border-outline-variant">
+<button class="px-xl py-md border border-primary-container text-primary-container rounded-lg font-body-md font-semibold hover:bg-surface-container-low transition-colors active:scale-95 cursor-pointer" type="button">
+                        Cancel
+                    </button>
+<button class="px-xl py-md bg-primary-container text-on-primary rounded-lg font-body-md font-semibold hover:opacity-90 active:scale-95 transition-all cursor-pointer flex items-center gap-sm" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="save">save</span>
+                        Save Changes
+                    </button>
+</div>
+</form>
+</div>
+<!-- Informational Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mt-xl">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-sm">
+<span class="material-symbols-outlined text-primary-container" data-icon="history">history</span>
+<h3 class="font-label-md text-label-md text-on-surface">Last login</h3>
+<p class="font-headline-md text-headline-md text-primary-container">2 hours ago</p>
+<p class="text-label-md font-label-md text-outline">From IP: 192.168.1.45</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="security">security</span>
+<h3 class="font-label-md text-label-md text-on-surface">Security Score</h3>
+<p class="font-headline-md text-headline-md text-secondary">Excellent</p>
+<div class="w-full bg-outline-variant h-1 rounded-full mt-xs">
+<div class="bg-secondary w-[92%] h-full rounded-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-sm">
+<span class="material-symbols-outlined text-primary-container" data-icon="devices">devices</span>
+<h3 class="font-label-md text-label-md text-on-surface">Active Devices</h3>
+<p class="font-headline-md text-headline-md text-primary-container">3 Sessions</p>
+<p class="text-label-md font-label-md text-outline">Web, Mobile, Tablet</p>
+</div>
+</div>
+</div>
+</main>
+<script>
+    document.querySelectorAll('nav a, aside nav a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (link.getAttribute('href') === '#') {
+                e.preventDefault();
+            }
+        });
+    });
+
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.addEventListener('change', () => {
+            const saveBtn = document.querySelector('button .material-symbols-outlined[data-icon="save"]').parentElement;
+            saveBtn.classList.add('ring-2', 'ring-primary-fixed', 'ring-offset-2');
+            setTimeout(() => {
+                saveBtn.classList.remove('ring-2', 'ring-primary-fixed', 'ring-offset-2');
+            }, 2000);
+        });
+    });
+</script>
+</body></html>

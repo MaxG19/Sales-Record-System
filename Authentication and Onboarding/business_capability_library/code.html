@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BMS - Business Capability Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="../../css/components/onboarding-header.css" rel="stylesheet"/>
+<link href="../../css/components/onboarding-layout.css" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#1e372b",
+                    "primary-container": "#344e41",
+                    "on-primary": "#ffffff",
+                    "secondary": "#566342",
+                    "secondary-container": "#d7e5bb",
+                    "on-secondary-container": "#5a6745",
+                    "surface": "#fcf9f4",
+                    "surface-container": "#f0ede9",
+                    "surface-container-low": "#f6f3ee",
+                    "surface-container-high": "#eae8e3",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1c1c19",
+                    "on-surface-variant": "#424844",
+                    "outline": "#727974",
+                    "outline-variant": "#c2c8c2",
+                    "background": "#fcf9f4"
+                },
+                spacing: {
+                    "xs": "4px", "sm": "8px", "md": "16px",
+                    "lg": "24px", "xl": "32px", "2xl": "48px"
+                },
+                fontFamily: { "sans": ["Inter", "sans-serif"] },
+                fontSize: {
+                    "label-sm":  ["11px",  { lineHeight: "14px",  fontWeight: "600" }],
+                    "label-md":  ["12px",  { lineHeight: "16px",  letterSpacing: "0.05em", fontWeight: "500" }],
+                    "body-sm":   ["13px",  { lineHeight: "18px",  fontWeight: "400" }],
+                    "body-md":   ["14px",  { lineHeight: "20px",  fontWeight: "400" }],
+                    "title-md":  ["16px",  { lineHeight: "24px",  fontWeight: "600" }],
+                    "headline-md": ["24px",{ lineHeight: "32px",  fontWeight: "600" }],
+                    "headline-lg": ["32px",{ lineHeight: "40px",  letterSpacing: "-0.01em", fontWeight: "600" }]
+                }
+            }
+        }
+    }
+</script>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        vertical-align: middle;
+    }
+    /* Drawer */
+    #detailDrawer { transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); }
+    #drawerOverlay { transition: opacity 0.3s ease; }
+</style>
+</head>
+<body class="onboarding-page">
+
+<header id="onboarding-header"></header>
+
+<main class="onboarding-container onboarding-container--wide">
+
+    <!-- Back link -->
+    <div class="mb-xl">
+        <button id="back-btn" class="btn btn-link px-0">
+            <span class="material-symbols-outlined btn-icon btn-icon--back">arrow_back</span>
+            Return to Workspace Selection
+        </button>
+    </div>
+
+    <!-- Page title -->
+    <h1 class="onboarding-page-title">Business Capability Library</h1>
+    <p class="onboarding-page-desc">Explore every capability available in BMS and discover how each one supports your business.</p>
+
+    <!-- Search -->
+    <div class="relative max-w-xl mb-lg">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none">search</span>
+        <input class="w-full pl-12 pr-4 py-3 bg-white border border-outline-variant rounded-xl text-body-md focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all" placeholder="Search capabilities…" type="text" id="search-input"/>
+    </div>
+
+    <!-- Category filters -->
+    <div class="flex flex-wrap gap-2 mb-xl" id="filter-bar">
+        <button class="btn btn-primary" style="height:36px;padding:0 16px;font-size:13px;" data-filter="all">All</button>
+        <button class="btn btn-ghost"   style="height:36px;padding:0 16px;font-size:13px;" data-filter="sales">Sales</button>
+        <button class="btn btn-ghost"   style="height:36px;padding:0 16px;font-size:13px;" data-filter="products">Products</button>
+        <button class="btn btn-ghost"   style="height:36px;padding:0 16px;font-size:13px;" data-filter="inventory">Inventory</button>
+        <button class="btn btn-ghost"   style="height:36px;padding:0 16px;font-size:13px;" data-filter="suppliers">Suppliers</button>
+        <button class="btn btn-ghost"   style="height:36px;padding:0 16px;font-size:13px;" data-filter="customers">Customers</button>
+        <button class="btn btn-ghost"   style="height:36px;padding:0 16px;font-size:13px;" data-filter="employees">Employees</button>
+        <button class="btn btn-ghost"   style="height:36px;padding:0 16px;font-size:13px;" data-filter="branches">Branches</button>
+    </div>
+
+    <!-- Content: capability grid + quick facts sidebar -->
+    <div class="flex gap-xl items-start">
+
+        <!-- Capability grid -->
+        <div class="flex-1 min-w-0 space-y-xl">
+
+            <!-- Selling -->
+            <section>
+                <div class="flex items-center gap-sm mb-md">
+                    <span class="material-symbols-outlined text-primary">shopping_cart</span>
+                    <h2 class="font-title-md text-title-md text-primary">Selling</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-lg">
+                    <div class="onboarding-card onboarding-card--selectable" data-capability="pos" tabindex="0" role="checkbox" aria-checked="false">
+                        <div class="flex justify-between items-start mb-sm">
+                            <h3 class="font-title-md text-title-md text-primary">Point of Sale</h3>
+                            <span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-label-sm uppercase tracking-wider">Retail Pro</span>
+                        </div>
+                        <p class="text-body-sm text-on-surface-variant mb-md">Streamlined checkout with multi-payment support and offline resilience.</p>
+                        <div class="flex flex-wrap gap-1 mb-md">
+                            <span class="text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface-variant">Essentials</span>
+                            <span class="text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface-variant">Multi-Branch</span>
+                        </div>
+                        <button class="btn btn-ghost w-full" style="height:38px;" onclick="openDrawer()">View Details</button>
+                    </div>
+                    <div class="onboarding-card onboarding-card--selectable" data-capability="online-storefront" tabindex="0" role="checkbox" aria-checked="false">
+                        <div class="flex justify-between items-start mb-sm">
+                            <h3 class="font-title-md text-title-md text-primary">Online Storefront</h3>
+                            <span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-label-sm uppercase tracking-wider">Everything</span>
+                        </div>
+                        <p class="text-body-sm text-on-surface-variant mb-md">Sync inventory with a digital shopfront for omnichannel sales.</p>
+                        <div class="flex flex-wrap gap-1 mb-md">
+                            <span class="text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface-variant">Retail Pro</span>
+                        </div>
+                        <button class="btn btn-ghost w-full" style="height:38px;" onclick="openDrawer()">View Details</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products & Stock -->
+            <section>
+                <div class="flex items-center gap-sm mb-md">
+                    <span class="material-symbols-outlined text-primary">inventory_2</span>
+                    <h2 class="font-title-md text-title-md text-primary">Products &amp; Stock</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-lg">
+                    <div class="onboarding-card onboarding-card--selectable" data-capability="inventory" tabindex="0" role="checkbox" aria-checked="false">
+                        <div class="flex justify-between items-start mb-sm">
+                            <h3 class="font-title-md text-title-md text-primary">Inventory Tracking</h3>
+                            <span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-label-sm uppercase tracking-wider">Essentials</span>
+                        </div>
+                        <p class="text-body-sm text-on-surface-variant mb-md">Track products and inventory across your business in real-time.</p>
+                        <div class="flex flex-wrap gap-1 mb-md">
+                            <span class="text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface-variant">Retail Pro</span>
+                            <span class="text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface-variant">Everything</span>
+                        </div>
+                        <button class="btn btn-ghost w-full" style="height:38px;" onclick="openDrawer()">View Details</button>
+                    </div>
+                    <div class="onboarding-card onboarding-card--selectable" data-capability="suppliers" tabindex="0" role="checkbox" aria-checked="false">
+                        <div class="flex justify-between items-start mb-sm">
+                            <h3 class="font-title-md text-title-md text-primary">Supplier Management</h3>
+                            <span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-label-sm uppercase tracking-wider">Multi-Branch</span>
+                        </div>
+                        <p class="text-body-sm text-on-surface-variant mb-md">Manage procurement, track orders, and evaluate supplier performance.</p>
+                        <div class="flex flex-wrap gap-1 mb-md">
+                            <span class="text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface-variant">Everything</span>
+                        </div>
+                        <button class="btn btn-ghost w-full" style="height:38px;" onclick="openDrawer()">View Details</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Quick Facts sidebar -->
+        <aside class="hidden xl:block w-64 shrink-0 sticky top-24">
+            <div class="onboarding-card">
+                <h3 class="font-label-md text-label-md text-primary mb-md uppercase tracking-wider">Quick Facts</h3>
+                <div class="space-y-md">
+                    <div>
+                        <span class="text-[32px] font-bold text-primary leading-none">84</span>
+                        <p class="text-body-sm text-on-surface-variant mt-1">Total Business Capabilities</p>
+                    </div>
+                    <div class="space-y-sm pt-md border-t border-outline-variant">
+                        <div class="flex justify-between items-center">
+                            <span class="text-body-sm text-on-surface-variant">Retail Pro</span>
+                            <span class="font-bold text-primary text-body-sm">42</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+                            <div class="h-full bg-primary rounded-full" style="width:50%"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-body-sm text-on-surface-variant">Essentials</span>
+                            <span class="font-bold text-primary text-body-sm">12</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+                            <div class="h-full bg-secondary rounded-full" style="width:14%"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-body-sm text-on-surface-variant">Multi-Branch</span>
+                            <span class="font-bold text-primary text-body-sm">30</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+                            <div class="h-full bg-primary-container rounded-full" style="width:35%"></div>
+                        </div>
+                    </div>
+                    <div class="pt-md border-t border-outline-variant space-y-sm">
+                        <p id="selection-count" class="text-body-sm text-on-surface-variant">0 capabilities selected</p>
+                        <button id="continue-btn" class="btn btn-primary w-full" style="height:40px;">
+                            Continue
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- Mobile action bar -->
+    <div class="xl:hidden onboarding-actions mt-xl">
+        <p id="selection-count-mobile" class="text-body-sm text-on-surface-variant">0 capabilities selected</p>
+        <button id="continue-btn-mobile" class="btn btn-primary">Continue</button>
+    </div>
+
+</main>
+
+<!-- Detail Drawer -->
+<div class="fixed inset-y-0 right-0 w-full md:w-[480px] bg-white shadow-2xl z-[60] transform translate-x-full flex flex-col border-l border-outline-variant" id="detailDrawer">
+    <div class="p-lg border-b border-outline-variant flex items-center justify-between bg-surface-container-low">
+        <div class="flex items-center gap-md">
+            <div class="p-2 bg-primary/10 rounded-lg">
+                <span class="material-symbols-outlined text-primary">inventory_2</span>
+            </div>
+            <div>
+                <h2 class="font-title-md text-title-md text-primary">Products &amp; Stock</h2>
+                <span class="text-label-sm text-on-surface-variant uppercase tracking-wider">Capability Overview</span>
+            </div>
+        </div>
+        <button class="p-2 hover:bg-surface-container-high rounded-full transition-all" onclick="closeDrawer()">
+            <span class="material-symbols-outlined text-outline">close</span>
+        </button>
+    </div>
+    <div class="flex-1 overflow-y-auto p-lg space-y-lg">
+        <p class="text-body-md text-on-surface-variant leading-relaxed">Centralize your entire product catalog. Monitor stock levels across multiple locations, manage variations, and automate reordering to ensure you never miss a sale.</p>
+        <div>
+            <h3 class="font-label-md text-label-md text-primary mb-md flex items-center gap-sm uppercase tracking-wider">
+                <span class="material-symbols-outlined text-[18px]">verified</span> Key Features
+            </h3>
+            <ul class="space-y-sm">
+                <li class="flex items-start gap-sm"><span class="material-symbols-outlined text-primary text-[20px]">check_circle</span><span class="text-body-sm text-on-surface-variant">Bulk add products via CSV/Excel import.</span></li>
+                <li class="flex items-start gap-sm"><span class="material-symbols-outlined text-primary text-[20px]">check_circle</span><span class="text-body-sm text-on-surface-variant">Generate and print custom barcodes &amp; price tags.</span></li>
+                <li class="flex items-start gap-sm"><span class="material-symbols-outlined text-primary text-[20px]">check_circle</span><span class="text-body-sm text-on-surface-variant">Real-time low-stock alerts and email notifications.</span></li>
+                <li class="flex items-start gap-sm"><span class="material-symbols-outlined text-primary text-[20px]">check_circle</span><span class="text-body-sm text-on-surface-variant">Inter-branch inventory transfers and tracking.</span></li>
+                <li class="flex items-start gap-sm"><span class="material-symbols-outlined text-primary text-[20px]">check_circle</span><span class="text-body-sm text-on-surface-variant">History of stock adjustments with audit trails.</span></li>
+            </ul>
+        </div>
+        <div class="p-md bg-surface-container rounded-xl">
+            <h3 class="font-label-md text-label-md text-primary mb-sm">Best suited for</h3>
+            <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-white border border-outline-variant rounded-lg text-body-sm text-on-surface-variant">Supermarkets</span>
+                <span class="px-3 py-1 bg-white border border-outline-variant rounded-lg text-body-sm text-on-surface-variant">Pharmacies</span>
+                <span class="px-3 py-1 bg-white border border-outline-variant rounded-lg text-body-sm text-on-surface-variant">Boutiques</span>
+                <span class="px-3 py-1 bg-white border border-outline-variant rounded-lg text-body-sm text-on-surface-variant">Hardware Stores</span>
+            </div>
+        </div>
+        <div>
+            <h3 class="font-label-md text-label-md text-primary mb-sm uppercase tracking-wider">Workspace Inclusion</h3>
+            <div class="grid grid-cols-2 gap-sm">
+                <div class="p-sm border border-primary bg-primary/5 rounded-lg flex items-center justify-between"><span class="text-label-sm text-primary">Retail Pro</span><span class="material-symbols-outlined text-primary text-[18px]">done</span></div>
+                <div class="p-sm border border-primary bg-primary/5 rounded-lg flex items-center justify-between"><span class="text-label-sm text-primary">Everything</span><span class="material-symbols-outlined text-primary text-[18px]">done</span></div>
+                <div class="p-sm border border-outline-variant rounded-lg flex items-center justify-between opacity-50"><span class="text-label-sm text-on-surface-variant">Essentials</span><span class="material-symbols-outlined text-outline-variant text-[18px]">lock</span></div>
+                <div class="p-sm border border-outline-variant rounded-lg flex items-center justify-between opacity-50"><span class="text-label-sm text-on-surface-variant">Multi-Branch</span><span class="material-symbols-outlined text-outline-variant text-[18px]">lock</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="p-lg border-t border-outline-variant">
+        <button class="btn btn-primary w-full">Request Activation</button>
+        <p class="text-center text-label-sm text-on-surface-variant mt-sm">Managed by your organisation's Master Admin.</p>
+    </div>
+</div>
+<div class="fixed inset-0 bg-primary/20 backdrop-blur-[2px] z-[55] opacity-0 pointer-events-none transition-opacity duration-300" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+<script src="../../js/routes.js"></script>
+<script src="../../js/prototype.js"></script>
+<script src="../../js/onboarding.js"></script>
+<script src="../../js/components/onboarding-header.js"></script>
+<script src="../Controllers/business-capability-library.js"></script>
+</body>
+</html>

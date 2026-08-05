@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resume Held Sale - Supermarket POS</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-background": "#151c27",
+            "surface-dim": "#d3daea",
+            "on-secondary-fixed": "#002113",
+            "surface-container-highest": "#dce2f3",
+            "background": "#f9f9ff",
+            "on-tertiary-fixed-variant": "#454748",
+            "on-tertiary-fixed": "#191c1d",
+            "error": "#ba1a1a",
+            "secondary-fixed-dim": "#4edea3",
+            "secondary-fixed": "#6ffbbe",
+            "secondary": "#006c49",
+            "on-surface-variant": "#434655",
+            "on-primary-container": "#eeefff",
+            "on-error": "#ffffff",
+            "tertiary-container": "#6b6d6e",
+            "surface-container": "#e7eefe",
+            "outline": "#737686",
+            "error-container": "#ffdad6",
+            "on-secondary-fixed-variant": "#005236",
+            "surface-tint": "#0053db",
+            "primary-container": "#2563eb",
+            "surface": "#f9f9ff",
+            "on-secondary-container": "#00714d",
+            "on-tertiary": "#ffffff",
+            "primary-fixed-dim": "#b4c5ff",
+            "primary-fixed": "#dbe1ff",
+            "tertiary-fixed-dim": "#c5c7c8",
+            "on-secondary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-fixed-variant": "#003ea8",
+            "tertiary-fixed": "#e1e3e4",
+            "surface-bright": "#f9f9ff",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#e2e8f8",
+            "surface-variant": "#dce2f3",
+            "on-tertiary-container": "#eff0f1",
+            "inverse-surface": "#2a313d",
+            "inverse-primary": "#b4c5ff",
+            "tertiary": "#525556",
+            "primary": "#004ac6",
+            "on-primary-fixed": "#00174b",
+            "secondary-container": "#6cf8bb",
+            "on-surface": "#151c27",
+            "on-primary": "#ffffff",
+            "outline-variant": "#c3c6d7",
+            "inverse-on-surface": "#ebf1ff",
+            "surface-container-low": "#f0f3ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "stack-md": "16px",
+            "margin-page": "24px",
+            "gutter": "16px",
+            "stack-lg": "24px",
+            "touch-target-min": "48px",
+            "stack-sm": "8px"
+          },
+          "fontFamily": {
+            "numeral-xl": ["Inter"],
+            "headline-lg": ["Inter"],
+            "display-price": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "numeral-xl": ["24px", {"lineHeight": "32px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+            "display-price": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .modal-overlay {
+      background: rgba(21, 28, 39, 0.4);
+      backdrop-filter: blur(4px);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Main POS Layout (Background Layer) -->
+<div class="flex flex-col h-screen overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface-container-highest dark:bg-on-background border-b border-outline-variant dark:border-outline flex justify-between items-center w-full px-margin-page h-touch-target-min">
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-on-surface cursor-pointer">menu</span>
+<div class="flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
+<span class="text-headline-md font-headline-md font-bold text-on-surface dark:text-surface-bright">Supermarket POS</span>
+</div>
+</div>
+<div class="flex items-center gap-stack-lg">
+<div class="relative flex items-center bg-surface-container-low border border-outline-variant rounded-full px-stack-md h-10 w-96">
+<span class="material-symbols-outlined text-on-surface-variant mr-stack-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md w-full" placeholder="Search product, SKU, or scan barcode..." type="text"/>
+<span class="material-symbols-outlined text-on-surface-variant">barcode_scanner</span>
+</div>
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<div class="flex items-center gap-stack-sm bg-surface-container-high rounded-full pl-stack-sm pr-stack-md py-1 cursor-pointer">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold text-label-md">JM</div>
+<span class="text-label-md font-medium text-on-surface">Jane Mwangi</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="bg-surface dark:bg-on-background border-r border-outline-variant dark:border-outline h-full w-64 flex flex-col py-stack-lg">
+<nav class="flex-1 px-stack-sm space-y-1">
+<a class="flex items-center gap-stack-md p-stack-md bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-lg mx-2 transition-all duration-150 scale-x-105" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</a>
+<a class="flex items-center gap-stack-md p-stack-md text-on-surface-variant dark:text-outline-variant mx-2 hover:bg-surface-container-low dark:hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Sales</span>
+</a>
+<a class="flex items-center gap-stack-md p-stack-md text-on-surface-variant dark:text-outline-variant mx-2 hover:bg-surface-container-low dark:hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-stack-md p-stack-md text-on-surface-variant dark:text-outline-variant mx-2 hover:bg-surface-container-low dark:hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-stack-sm">
+<button class="w-full flex items-center justify-center gap-stack-sm bg-secondary text-white py-4 rounded-xl font-bold mb-stack-lg shadow-sm">
+<span class="material-symbols-outlined">pause_circle</span>
+            Hold Sale
+          </button>
+<a class="flex items-center gap-stack-md p-stack-md text-on-surface-variant dark:text-outline-variant mx-2 hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas Area -->
+<main class="flex-1 bg-surface-container-low p-stack-lg relative overflow-auto">
+<!-- Placeholder Grid for Content Background -->
+<div class="grid grid-cols-4 gap-stack-md opacity-20">
+<div class="h-48 bg-white border border-outline-variant rounded-xl p-stack-md"></div>
+<div class="h-48 bg-white border border-outline-variant rounded-xl p-stack-md"></div>
+<div class="h-48 bg-white border border-outline-variant rounded-xl p-stack-md"></div>
+<div class="h-48 bg-white border border-outline-variant rounded-xl p-stack-md"></div>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-on-background border-t border-outline-variant dark:border-outline flex justify-between items-center px-margin-page py-stack-sm w-full absolute bottom-0 left-0">
+<span class="text-secondary dark:text-secondary-fixed font-label-md text-label-md">Last sale: 10:42 AM • Receipt printed</span>
+<div class="flex gap-stack-lg">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary font-label-md text-label-md transition-colors" href="#">Help Center</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary font-label-md text-label-md transition-colors" href="#">Support</a>
+</div>
+<button class="bg-secondary px-stack-lg py-2 text-white rounded-lg font-bold">Proceed to Payment</button>
+</footer>
+</main>
+</div>
+</div>
+<!-- MODAL OVERLAY: Resume Held Sale (Single) -->
+<div class="fixed inset-0 modal-overlay flex items-center justify-center z-50 p-4">
+<div class="bg-white rounded-2xl w-full max-w-xl shadow-2xl border border-outline-variant flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300">
+<!-- Modal Header -->
+<header class="p-stack-lg flex justify-between items-center border-b border-outline-variant">
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Resume Held Sale</h2>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</header>
+<!-- Modal Content Body -->
+<div class="p-stack-lg space-y-stack-lg overflow-y-auto max-h-[716px]">
+<!-- Status Badge -->
+<div class="inline-flex items-center gap-stack-sm px-stack-md py-2 bg-secondary-container rounded-lg text-on-secondary-container">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-label-md font-semibold">Held 3 minutes ago</span>
+</div>
+<!-- Customer Summary -->
+<div class="flex items-center gap-stack-lg py-4">
+<div class="w-20 h-20 bg-surface-container-low border border-outline-variant rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-secondary" style="font-variation-settings: 'FILL' 0;">shopping_cart_checkout</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Walk-in Customer</h3>
+<div class="flex items-center gap-stack-sm text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-sm">inventory_2</span>
+<span class="text-body-md font-body-md">6 items</span>
+</div>
+<p class="text-secondary font-numeral-xl text-numeral-xl mt-2">KES 2,580.00</p>
+</div>
+</div>
+<!-- Transaction Details Grid -->
+<div class="space-y-4 border-t border-outline-variant pt-stack-lg">
+<div class="grid grid-cols-12 gap-y-3">
+<div class="col-span-4 text-on-surface-variant flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-sm">person</span>
+<span class="text-label-md font-label-md">Held by</span>
+</div>
+<div class="col-span-8 text-on-surface text-label-md font-semibold text-right">Jane Wanjiku</div>
+<div class="col-span-4 text-on-surface-variant flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-sm">point_of_sale</span>
+<span class="text-label-md font-label-md">Till</span>
+</div>
+<div class="col-span-8 text-on-surface text-label-md font-semibold text-right">Till 2</div>
+<div class="col-span-4 text-on-surface-variant flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span class="text-label-md font-label-md">Held on</span>
+</div>
+<div class="col-span-8 text-on-surface text-label-md font-semibold text-right">17 May 2025</div>
+<div class="col-span-4 text-on-surface-variant flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-label-md font-label-md">Time</span>
+</div>
+<div class="col-span-8 text-on-surface text-label-md font-semibold text-right">10:43 AM</div>
+<div class="col-span-4 text-on-surface-variant flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-sm">sticky_note_2</span>
+<span class="text-label-md font-label-md">Notes</span>
+</div>
+<div class="col-span-8 text-on-surface text-label-md font-semibold text-right">Customer wanted to check other items</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="space-y-stack-sm pt-stack-md border-t border-outline-variant">
+<button class="w-full bg-secondary text-white font-bold h-touch-target-min rounded-xl flex items-center justify-center gap-stack-sm active:scale-95 transition-transform hover:brightness-110">
+<span class="material-symbols-outlined">play_circle</span>
+            Resume Sale
+          </button>
+<button class="w-full border border-secondary text-secondary font-bold h-touch-target-min rounded-xl flex items-center justify-center gap-stack-sm active:scale-95 transition-transform hover:bg-secondary/5">
+<span class="material-symbols-outlined">add_circle</span>
+            Start New Sale
+          </button>
+<button class="w-full border border-error text-error font-bold h-touch-target-min rounded-xl flex items-center justify-center gap-stack-sm active:scale-95 transition-transform hover:bg-error/5">
+<span class="material-symbols-outlined">delete</span>
+            Discard Held Sale
+          </button>
+</div>
+<!-- Warning Disclaimer -->
+<div class="flex items-center justify-center gap-stack-sm text-on-surface-variant opacity-80 pt-stack-sm">
+<span class="material-symbols-outlined text-xs">info</span>
+<span class="text-label-md text-xs">Discarding will permanently remove this sale.</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+    // Logic for micro-interactions
+    document.querySelectorAll('button, a').forEach(el => {
+      el.addEventListener('mousedown', () => {
+        el.classList.add('opacity-80', 'scale-95');
+      });
+      el.addEventListener('mouseup', () => {
+        el.classList.remove('opacity-80', 'scale-95');
+      });
+      el.addEventListener('mouseleave', () => {
+        el.classList.remove('opacity-80', 'scale-95');
+      });
+    });
+
+    // Close modal logic (visual only for this demo)
+    const closeBtn = document.querySelector('button .material-symbols-outlined:contains("close")')?.parentElement;
+    if(closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            document.querySelector('.modal-overlay').style.display = 'none';
+        });
+    }
+  </script>
+</body></html>
