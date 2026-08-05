@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Employees - BMS Manager Workspace</title>
+<!-- Google Fonts: Geist & Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom Scrollbar */
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background: #e5e2dd;
+            border-radius: 10px;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f6f3ee",
+                        "on-secondary-fixed": "#002018",
+                        "outline": "#747879",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#6c392c",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e5e2dd",
+                        "surface-tint": "#586062",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#4bddb7",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#dde4e6",
+                        "outline-variant": "#c3c7c8",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f3f0eb",
+                        "on-tertiary-container": "#ce8a7b",
+                        "on-background": "#1c1c19",
+                        "tertiary-container": "#54251a",
+                        "surface-container-highest": "#e5e2dd",
+                        "tertiary-fixed-dim": "#feb5a4",
+                        "surface-bright": "#fcf9f4",
+                        "on-surface": "#1c1c19",
+                        "on-secondary-fixed-variant": "#005140",
+                        "secondary-fixed": "#6dfad2",
+                        "primary-fixed-dim": "#c1c8ca",
+                        "inverse-surface": "#31302d",
+                        "on-surface-variant": "#434749",
+                        "background": "#fcf9f4",
+                        "secondary": "#274B3D", 
+                        "primary": "#181f21",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#959c9f",
+                        "tertiary-fixed": "#ffdad2",
+                        "on-tertiary-fixed": "#360f06",
+                        "on-secondary-container": "#00725b",
+                        "surface-dim": "#dcdad5",
+                        "primary-container": "#2d3436",
+                        "surface": "#fcf9f4",
+                        "on-primary-fixed": "#161d1f",
+                        "surface-container-high": "#ebe8e3",
+                        "on-primary-fixed-variant": "#41484a",
+                        "secondary-container": "#6dfad2",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#391108",
+                        "inverse-primary": "#c1c8ca",
+                        "surface-container": "#f0ede9",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "16px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "20px",
+                        "stack-md": "24px",
+                        "stack-sm": "12px",
+                        "stack-lg": "40px",
+                        "gutter": "16px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "label-md": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "headline-sm": ["Geist"],
+                        "body-md": ["Geist"],
+                        "stat-lg": ["Geist"],
+                        "body-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "stat-lg": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden flex h-screen">
+<!-- Drawer Backdrop -->
+<div class="fixed inset-0 bg-black/40 z-[60] hidden transition-opacity duration-300" id="drawer-overlay" onclick="toggleSidebar()"></div>
+<!-- Slide-out Navigation Drawer (Icon Only) -->
+<aside class="fixed inset-y-0 left-0 z-[70] w-[280px] bg-surface border-r border-outline-variant flex flex-col transition-transform duration-300 -translate-x-full" id="sidebar"><!-- Sidebar Header -->
+<div class="p-6 flex items-center gap-3 border-b border-outline-variant w-full">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg flex items-center justify-center border border-outline-variant shrink-0">
+<span class="material-symbols-outlined text-primary">corporate_fare</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-[16px] leading-tight text-primary">Vertex Solutions</span>
+<span class="font-label-md text-[11px] text-on-surface-variant">Manager Workspace</span>
+</div>
+</div>
+<!-- Sidebar Scrollable Content -->
+<div class="flex-1 py-4 px-3 flex flex-col gap-6 w-full overflow-y-auto sidebar-scroll">
+<!-- Main Section -->
+<div>
+<p class="px-3 mb-2 font-label-md text-[11px] uppercase tracking-wider text-on-surface-variant opacity-60">Main</p>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+</nav>
+</div>
+<!-- Operations Section -->
+<div>
+<p class="px-3 mb-2 font-label-md text-[11px] uppercase tracking-wider text-on-surface-variant opacity-60">Operations</p>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">package_2</span>
+<span class="font-body-md">Products</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md">Purchase Orders</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-body-md">Suppliers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">assignment_return</span>
+<span class="font-body-md">Sales &amp; Returns</span>
+</a>
+</nav>
+</div>
+<!-- Insights Section -->
+<div>
+<p class="px-3 mb-2 font-label-md text-[11px] uppercase tracking-wider text-on-surface-variant opacity-60">Insights</p>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-secondary text-white shadow-md" href="#">
+<span class="material-symbols-outlined active-nav-fill">badge</span>
+<span class="font-body-md font-medium">Employees</span>
+</a>
+</nav>
+</div>
+<!-- Support Section -->
+<div>
+<p class="px-3 mb-2 font-label-md text-[11px] uppercase tracking-wider text-on-surface-variant opacity-60">Support</p>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-body-md">Notification Center</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-md">Help &amp; Support</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Sidebar Bottom -->
+<div class="p-3 border-t border-outline-variant flex flex-col gap-1 w-full">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-body-md">My Profile</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-error hover:bg-error-container/10 transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md">Sign Out</span>
+</a>
+</div></aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-w-0 bg-background overflow-hidden relative">
+<!-- Top App Bar -->
+<header class="h-16 bg-white border-b border-outline-variant flex items-center justify-between px-container-padding shrink-0 z-30">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container rounded-full text-on-surface transition-colors focus:outline-none" onclick="toggleSidebar()">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary tracking-tight">Vertex Solutions</h2>
+</div>
+</div>
+<!-- Header Controls -->
+<div class="flex items-center gap-6">
+<!-- Branch Selector -->
+<div class="hidden lg:flex items-center gap-2 bg-surface-container-low px-4 py-1.5 rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-container transition-colors">
+<span class="text-xs font-bold text-on-surface-variant">Main Branch</span>
+<span class="material-symbols-outlined text-sm text-outline">expand_more</span>
+</div>
+<!-- Search Bar -->
+<div class="hidden sm:flex items-center bg-surface-container-low border border-outline-variant rounded-full px-4 py-2 w-64 lg:w-96">
+<span class="material-symbols-outlined text-outline text-lg mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-outline" placeholder="Search staff, schedules..." type="text"/>
+</div>
+<!-- Notifications & Profile (Desktop Peek) -->
+<div class="flex items-center gap-4">
+<button class="relative p-2 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<div class="h-8 w-px bg-outline-variant mx-1"></div>
+<div class="hidden md:flex items-center gap-3 cursor-pointer group">
+<div class="w-9 h-9 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrt_gf_rhCOS9CpbwWlaxNipwQYYIZtHR2r__cLvHYM6ASh8aVr6qELxgTJ3Xl-_Ef0FsXiSmMPMMCWkJcRYkHrIrTQdPmF-CP7f54nJJIO1bDxOBCv2BScVGnhsE5adSIq80FBueJyINLvAZYXa8ZJPmu7XY5t_7Rs8ny0PkvLkeW5lf2TobTXyYwU6FpMSTrKbrkmZALIQAF8ABLwpqAoaBq-_CFl64Imt2rHgdVHWQhuem9I0S4Cg"/>
+</div>
+<div class="hidden lg:block text-right">
+<p class="text-sm font-bold text-on-surface leading-none">Alex Sterling</p>
+<p class="text-[10px] text-outline font-medium tracking-wide uppercase">Workspace Admin</p>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="flex-1 overflow-y-auto p-container-padding scroll-smooth">
+<!-- Breadcrumbs -->
+<div class="mb-4">
+<p class="text-xs font-bold text-outline tracking-wider uppercase">Vertex Solutions / Home</p>
+</div>
+<!-- Page Header -->
+<div class="mb-stack-lg flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h3 class="font-display-lg text-display-lg text-primary tracking-tight">Employees</h3>
+<p class="text-on-surface-variant text-body-lg">Manage staff, performance, and scheduling.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-white border border-outline-variant rounded-lg font-bold text-sm hover:bg-surface-container-low transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg">calendar_month</span>
+                    Schedules
+                </button>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-secondary text-white rounded-lg font-bold text-sm hover:opacity-90 transition-opacity shadow-lg">
+<span class="material-symbols-outlined text-lg">person_add</span>
+                    Add Employee
+                </button>
+</div>
+</div>
+<!-- KPI Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-stack-lg">
+<!-- Card 1 -->
+<div class="bg-white border border-outline-variant p-container-padding rounded-xl shadow-sm hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-container-low rounded-lg text-secondary">
+<span class="material-symbols-outlined">group</span>
+</div>
+<span class="text-[10px] font-bold text-on-secondary-container bg-secondary-container/20 px-2 py-0.5 rounded-full">+2 this month</span>
+</div>
+<p class="text-outline text-label-md uppercase tracking-wider mb-1">Total Staff</p>
+<h4 class="font-stat-lg text-stat-lg text-primary">48</h4>
+</div>
+<!-- Card 2 -->
+<div class="bg-white border border-outline-variant p-container-padding rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-container-low rounded-lg text-secondary">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+<span class="text-xs font-bold text-secondary">Live</span>
+</div>
+</div>
+<p class="text-outline text-label-md uppercase tracking-wider mb-1">Active Now</p>
+<h4 class="font-stat-lg text-stat-lg text-primary">32 <span class="text-body-md font-medium text-outline">In-shift</span></h4>
+</div>
+<!-- Card 3 -->
+<div class="bg-white border border-outline-variant p-container-padding rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-container-low rounded-lg text-secondary">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<span class="text-[10px] font-bold text-outline bg-surface-container px-2 py-0.5 rounded-full">Stable</span>
+</div>
+<p class="text-outline text-label-md uppercase tracking-wider mb-1">Avg Performance</p>
+<h4 class="font-stat-lg text-stat-lg text-primary">94%</h4>
+</div>
+<!-- Card 4 -->
+<div class="bg-white border border-outline-variant p-container-padding rounded-xl shadow-sm hover:shadow-md transition-shadow ring-1 ring-error/10">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-error-container/20 rounded-lg text-error">
+<span class="material-symbols-outlined">report</span>
+</div>
+<span class="text-[10px] font-bold text-white bg-error px-2 py-0.5 rounded-full">Action required</span>
+</div>
+<p class="text-outline text-label-md uppercase tracking-wider mb-1">Open Shifts</p>
+<h4 class="font-stat-lg text-stat-lg text-primary">6</h4>
+</div>
+</div>
+<!-- Main Layout Grid: List + Activity -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-stack-md">
+<!-- Employee Modules -->
+<div class="lg:col-span-2 space-y-gutter">
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="p-5 border-b border-outline-variant flex items-center justify-between">
+<h5 class="font-headline-sm text-headline-sm text-primary">Directory &amp; Tools</h5>
+<button class="text-secondary text-sm font-bold hover:underline">View All</button>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Module 1 -->
+<div class="p-5 hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center text-on-surface-variant group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<div>
+<h6 class="font-bold text-on-surface">Active Staff</h6>
+<p class="text-sm text-outline">View current shifts and clock-ins</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Module 2 -->
+<div class="p-5 hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center text-on-surface-variant group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">star</span>
+</div>
+<div>
+<h6 class="font-bold text-on-surface">Performance Reviews</h6>
+<p class="text-sm text-outline">Monthly appraisals and feedback</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Module 3 -->
+<div class="p-5 hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center text-on-surface-variant group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">event_note</span>
+</div>
+<div>
+<h6 class="font-bold text-on-surface">Scheduling</h6>
+<p class="text-sm text-outline">Shift rotations and time-off</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Module 4 -->
+<div class="p-5 hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center text-on-surface-variant group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">contact_page</span>
+</div>
+<div>
+<h6 class="font-bold text-on-surface">Directory</h6>
+<p class="text-sm text-outline">Contact info and role assignments</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Chart -->
+<div class="bg-white border border-outline-variant p-6 rounded-xl shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h5 class="font-bold text-on-surface">Staff Performance Trends</h5>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-secondary rounded-full"></span>
+<span class="text-xs text-outline">Attendance</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-primary rounded-full"></span>
+<span class="text-xs text-outline">KPIs</span>
+</div>
+</div>
+</div>
+<div class="h-48 w-full bg-surface-container-low rounded-lg relative overflow-hidden flex items-end px-4 gap-3">
+<div class="flex-1 bg-secondary/20 h-[40%] rounded-t transition-all hover:bg-secondary/40"></div>
+<div class="flex-1 bg-primary/10 h-[60%] rounded-t transition-all hover:bg-primary/30"></div>
+<div class="flex-1 bg-secondary/20 h-[55%] rounded-t transition-all hover:bg-secondary/40"></div>
+<div class="flex-1 bg-primary/10 h-[80%] rounded-t transition-all hover:bg-primary/30"></div>
+<div class="flex-1 bg-secondary/20 h-[70%] rounded-t transition-all hover:bg-secondary/40"></div>
+<div class="flex-1 bg-primary/10 h-[90%] rounded-t transition-all hover:bg-primary/30"></div>
+<div class="flex-1 bg-secondary/20 h-[85%] rounded-t transition-all hover:bg-secondary/40"></div>
+<div class="flex-1 bg-primary/10 h-[75%] rounded-t transition-all hover:bg-primary/30"></div>
+<div class="flex-1 bg-secondary/20 h-[65%] rounded-t transition-all hover:bg-secondary/40"></div>
+<div class="flex-1 bg-primary/10 h-[95%] rounded-t transition-all hover:bg-primary/30"></div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] text-outline font-bold uppercase px-2">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</div>
+</div>
+<!-- Recent Activity Feed -->
+<div class="space-y-gutter">
+<div class="bg-white border border-outline-variant p-5 rounded-xl shadow-sm h-full">
+<h5 class="font-bold text-on-surface mb-6 flex items-center justify-between">
+                        Recent Activity
+                        <span class="material-symbols-outlined text-outline text-lg">history</span>
+</h5>
+<div class="space-y-6 relative before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-0 before:w-px before:bg-outline-variant">
+<!-- Activity 1 -->
+<div class="relative flex gap-4">
+<div class="w-6 h-6 rounded-full bg-secondary ring-4 ring-white z-10 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[12px] active-nav-fill">login</span>
+</div>
+<div class="flex-1 -mt-1">
+<p class="text-sm font-bold text-on-surface">Sarah Jenkins clocked in</p>
+<p class="text-xs text-outline">5 mins ago • Shift: Morning Floor</p>
+</div>
+</div>
+<!-- Activity 2 -->
+<div class="relative flex gap-4">
+<div class="w-6 h-6 rounded-full bg-primary ring-4 ring-white z-10 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[12px] active-nav-fill">assignment_turned_in</span>
+</div>
+<div class="flex-1 -mt-1">
+<p class="text-sm font-bold text-on-surface">Performance Review: Mark Thompson</p>
+<p class="text-xs text-outline">Completed • Rated: 4.8/5.0 Stars</p>
+</div>
+</div>
+<!-- Activity 3 -->
+<div class="relative flex gap-4">
+<div class="w-6 h-6 rounded-full bg-secondary ring-4 ring-white z-10 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[12px] active-nav-fill">calendar_today</span>
+</div>
+<div class="flex-1 -mt-1">
+<p class="text-sm font-bold text-on-surface">New Shift Schedule Posted</p>
+<p class="text-xs text-outline">2 hours ago • Week 42 Roster</p>
+</div>
+</div>
+<!-- Activity 4 -->
+<div class="relative flex gap-4">
+<div class="w-6 h-6 rounded-full bg-error ring-4 ring-white z-10 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[12px] active-nav-fill">emergency</span>
+</div>
+<div class="flex-1 -mt-1">
+<p class="text-sm font-bold text-on-surface">Unfilled Shift Alert</p>
+<p class="text-xs text-outline">3 hours ago • Sat Night Shift</p>
+</div>
+</div>
+<!-- Activity 5 -->
+<div class="relative flex gap-4">
+<div class="w-6 h-6 rounded-full bg-outline ring-4 ring-white z-10 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[12px] active-nav-fill">person_add</span>
+</div>
+<div class="flex-1 -mt-1">
+<p class="text-sm font-bold text-on-surface">Onboarding: David Lee</p>
+<p class="text-xs text-outline">6 hours ago • Profile 90% setup</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-3 border border-outline-variant rounded-lg text-sm font-bold text-on-surface-variant hover:bg-surface-container-low transition-colors">
+                        View Full Logs
+                    </button>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-stack-lg pt-stack-md border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-4 pb-container-padding">
+<p class="text-xs text-outline font-medium tracking-wide">BMS Manager Workspace v1.0</p>
+<div class="flex items-center gap-6">
+<a class="text-xs text-outline hover:text-primary transition-colors font-bold" href="#">Privacy Policy</a>
+<a class="text-xs text-outline hover:text-primary transition-colors font-bold" href="#">Terms</a>
+<a class="text-xs text-outline hover:text-primary transition-colors font-bold" href="#">System Status</a>
+</div>
+</footer>
+</div>
+</main>
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('drawer-overlay');
+        const isOpen = !sidebar.classList.contains('-translate-x-full');
+        
+        if (isOpen) {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+            overlay.classList.remove('opacity-100');
+        } else {
+            sidebar.classList.remove('-translate-x-full');
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                overlay.classList.add('opacity-100');
+            }, 10);
+        }
+    }
+</script>
+</body></html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Generate Report | Vertex Solutions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#00725b",
+                    "surface-container-highest": "#e5e2dd",
+                    "on-secondary-fixed-variant": "#005140",
+                    "on-tertiary-fixed-variant": "#6c392c",
+                    "on-primary-fixed": "#161d1f",
+                    "error-container": "#ffdad6",
+                    "background": "#fcf9f4",
+                    "primary": "#181f21",
+                    "tertiary-fixed-dim": "#feb5a4",
+                    "inverse-surface": "#31302d",
+                    "on-primary-container": "#959c9f",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#c1c8ca",
+                    "surface": "#fcf9f4",
+                    "surface-bright": "#fcf9f4",
+                    "primary-container": "#2d3436",
+                    "on-background": "#1c1c19",
+                    "secondary": "#006b55",
+                    "primary-fixed-dim": "#c1c8ca",
+                    "surface-dim": "#dcdad5",
+                    "secondary-fixed": "#6dfad2",
+                    "secondary-container": "#6dfad2",
+                    "on-surface-variant": "#434749",
+                    "on-tertiary-container": "#ce8a7b",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#ebe8e3",
+                    "tertiary-fixed": "#ffdad2",
+                    "on-primary-fixed-variant": "#41484a",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#586062",
+                    "inverse-on-surface": "#f3f0eb",
+                    "tertiary-container": "#54251a",
+                    "outline-variant": "#c3c7c8",
+                    "tertiary": "#391108",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#dde4e6",
+                    "on-secondary-fixed": "#002018",
+                    "outline": "#747879",
+                    "surface-container-low": "#f6f3ee",
+                    "on-surface": "#1c1c19",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#360f06",
+                    "surface-variant": "#e5e2dd",
+                    "surface-container": "#f0ede9",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#4bddb7",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "12px",
+                    "stack-md": "24px",
+                    "stack-lg": "40px",
+                    "gutter": "16px",
+                    "container-padding": "20px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "body-md": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "label-md": ["Geist"],
+                    "body-lg": ["Geist"],
+                    "stat-lg": ["Geist"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "stat-lg": ["36px", {"lineHeight": "44px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        #sidebar-overlay {
+            transition: opacity 0.3s ease;
+        }
+        #sidebar {
+            transition: transform 0.3s ease;
+        }
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #181f21;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #181f21;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen overflow-hidden">
+<!-- Background Content (Reports Screen) -->
+<div class="fixed inset-0 w-full h-full filter blur-[4px] pointer-events-none opacity-40 overflow-y-auto pb-24" id="main-content">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline flex justify-between items-center px-container-padding py-base z-50">
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed p-2 hover:bg-surface-container-high transition-colors rounded-full -ml-2">
+                menu
+            </button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Vertex Solutions</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed p-2 hover:bg-surface-container-high transition-colors rounded-full">
+                notifications
+            </button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional close-up headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLs4R00cLvw2JjjSYhkL2NBel4adPWEsLtjm_RGn-DUF09_xeAfskuiqhu9x5tfiFzYtLvjF2hyr3cZNB1BmZkgnl5j0mPHEvDK62xjAJ1-xYH1mCsPfmVRfTinq8Ox6M9e9EYaGBTwfsrQT-_O3rb7X5NGgfykZ09kJavbSKWpcyK3B4sobE3EQMWPEphspqMB5Z34axNLBrRZNO7nC2MwZSXUxtWBjSr6HvaLiRdkrsYb_dcnMJdvA"/>
+</div>
+</div>
+</header>
+<main class="px-container-padding py-stack-md flex flex-col gap-stack-md">
+<!-- Header Section -->
+<section>
+<h2 class="font-display-lg text-display-lg text-primary">Reports</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">View, analyze and export business performance reports.</p>
+</section>
+<!-- Action Buttons -->
+<div class="flex gap-3 overflow-x-auto hide-scrollbar -mx-5 px-5 py-2">
+<button class="flex items-center gap-2 bg-primary text-on-primary px-5 py-3 rounded-xl font-label-md text-label-md shrink-0">
+<span class="material-symbols-outlined text-[18px]">ios_share</span> Export
+            </button>
+<button class="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant text-primary px-5 py-3 rounded-xl font-label-md text-label-md shrink-0">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span> Schedule
+            </button>
+<button class="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant text-primary px-5 py-3 rounded-xl font-label-md text-label-md shrink-0">
+<span class="material-symbols-outlined text-[18px]">add_circle</span> Generate
+            </button>
+</div>
+<!-- KPI Cards Grid -->
+<section class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-[16px] flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface-variant">Revenue</span>
+<span class="font-headline-sm text-headline-sm text-primary">$128.4k</span>
+<span class="text-[12px] font-bold text-secondary flex items-center gap-0.5"><span class="material-symbols-outlined text-[14px]">trending_up</span> +12%</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-[16px] flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface-variant">Sales</span>
+<span class="font-headline-sm text-headline-sm text-primary">1,240</span>
+<span class="text-[12px] font-bold text-secondary flex items-center gap-0.5"><span class="material-symbols-outlined text-[14px]">trending_up</span> +8%</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-[16px] flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface-variant">Gross Profit</span>
+<span class="font-headline-sm text-headline-sm text-primary">32.5%</span>
+<span class="text-[12px] font-bold text-secondary flex items-center gap-0.5"><span class="material-symbols-outlined text-[14px]">trending_up</span> +4%</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-[16px] flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface-variant">Inv. Value</span>
+<span class="font-headline-sm text-headline-sm text-primary">$420k</span>
+<span class="text-[12px] font-bold text-error flex items-center gap-0.5"><span class="material-symbols-outlined text-[14px]">trending_down</span> -2%</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-[16px] flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface-variant">Low Stock</span>
+<span class="font-headline-sm text-headline-sm text-error">24 Items</span>
+<span class="text-[12px] font-bold text-error flex items-center gap-0.5"><span class="material-symbols-outlined text-[14px] fill">error</span> Critical</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-[16px] flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface-variant">New Users</span>
+<span class="font-headline-sm text-headline-sm text-primary">184</span>
+<span class="text-[12px] font-bold text-secondary flex items-center gap-0.5"><span class="material-symbols-outlined text-[14px]">trending_up</span> +15%</span>
+</div>
+</section>
+<!-- AI Insights Card -->
+<section class="bg-[#274B3D] text-white p-5 rounded-[16px] relative overflow-hidden">
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed">auto_awesome</span>
+<h3 class="font-headline-sm text-headline-sm">AI Insights</h3>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-start gap-3 bg-white/10 p-3 rounded-lg border border-white/5">
+<span class="material-symbols-outlined text-secondary-fixed mt-0.5">insights</span>
+<p class="font-body-md text-body-md">Revenue increased by <span class="font-bold">18%</span> compared to previous window.</p>
+</div>
+<div class="flex items-start gap-3 bg-white/10 p-3 rounded-lg border border-white/5">
+<span class="material-symbols-outlined text-error-container mt-0.5">warning</span>
+<p class="font-body-md text-body-md">Inventory for <span class="font-bold">Organic Coffee Beans</span> is critical. Restock recommended.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Performance Trend Chart -->
+<section class="bg-surface-container-lowest border border-outline-variant p-5 rounded-[16px]">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-sm text-headline-sm text-primary">Performance Trend</h3>
+<span class="font-label-md text-label-md text-on-surface-variant">Last 7 Days</span>
+</div>
+<div class="h-48 w-full flex items-end justify-between gap-2 px-1">
+<div class="flex-1 bg-surface-container-high rounded-t-sm h-[40%]"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-sm h-[65%]"></div>
+<div class="flex-1 bg-primary rounded-t-sm h-[85%]"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-sm h-[55%]"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-sm h-[70%]"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-sm h-[95%]"></div>
+<div class="flex-1 bg-secondary rounded-t-sm h-[75%]"></div>
+</div>
+<div class="flex justify-between mt-4 font-label-md text-on-surface-variant text-[10px]">
+<span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
+</div>
+</section>
+<!-- Report Explorer -->
+<section class="flex flex-col gap-3">
+<h3 class="font-headline-sm text-headline-sm text-primary px-1">Report Explorer</h3>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-[16px] overflow-hidden divide-y divide-outline-variant">
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-primary">Sales Analysis</span>
+<span class="font-label-md text-[11px] text-on-surface-variant">Daily transactions &amp; trends</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full bg-surface dark:bg-surface-dim border-t border-outline-variant flex justify-around items-center py-2 px-gutter">
+<div class="flex flex-col items-center opacity-40"><span class="material-symbols-outlined">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></div>
+<div class="flex flex-col items-center opacity-40"><span class="material-symbols-outlined">shopping_cart</span><span class="font-label-md text-label-md">Orders</span></div>
+<div class="flex flex-col items-center opacity-40"><span class="material-symbols-outlined">location_on</span><span class="font-label-md text-label-md">Branches</span></div>
+<div class="flex flex-col items-center text-primary"><span class="material-symbols-outlined fill">bar_chart</span><span class="font-label-md text-label-md">Reports</span></div>
+<div class="flex flex-col items-center opacity-40"><span class="material-symbols-outlined">settings</span><span class="font-label-md text-label-md">Settings</span></div>
+</nav>
+</div>
+<!-- Modal Overlay (Active Layer) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center p-container-padding bg-black/40 backdrop-blur-[2px]" id="modal-overlay">
+<div class="bg-surface-container-lowest w-full max-w-lg rounded-2xl shadow-2xl border border-outline-variant flex flex-col max-h-[90dvh]">
+<!-- Modal Header -->
+<header class="flex items-center justify-between px-6 py-5 border-b border-outline-variant">
+<h3 class="font-headline-sm text-headline-sm text-primary">Generate New Report</h3>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-container rounded-full transition-colors" onclick="window.history.back()">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</header>
+<!-- Modal Content -->
+<form class="flex-1 overflow-y-auto p-6 space-y-6 hide-scrollbar">
+<!-- Report Template -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-widest">Report Template</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-3.5 appearance-none font-body-lg text-body-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all">
+<option>Revenue Summary</option>
+<option>Sales Performance</option>
+<option>Inventory Health</option>
+<option>Financial Overview</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+</div>
+</div>
+<!-- Data Scope -->
+<div class="space-y-3">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-widest">Data Scope</label>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 text-primary border-outline-variant focus:ring-primary transition-colors" name="scope" type="radio"/>
+<span class="font-body-lg text-body-lg text-on-surface">All Branches</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 text-primary border-outline-variant focus:ring-primary transition-colors" name="scope" type="radio"/>
+<span class="font-body-lg text-body-lg text-on-surface">Specific Region</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 text-primary border-outline-variant focus:ring-primary transition-colors" name="scope" type="radio"/>
+<span class="font-body-lg text-body-lg text-on-surface">Custom Selection</span>
+</label>
+</div>
+</div>
+<!-- Date Range -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-widest">Date Range</label>
+<div class="grid grid-cols-2 gap-4">
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-3.5 font-body-md text-body-md outline-none" type="text" value="2023-08-01"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline text-lg">calendar_today</span>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-3.5 font-body-md text-body-md outline-none" type="text" value="2023-08-31"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline text-lg">calendar_today</span>
+</div>
+</div>
+</div>
+<!-- AI Insights Toggle -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl border border-outline-variant/30">
+<div>
+<div class="font-body-lg text-body-lg font-bold">Include AI Insights</div>
+<div class="text-[12px] text-on-surface-variant">Executive summary &amp; trends</div>
+</div>
+<div class="relative inline-block w-12 h-6 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer focus:outline-none transition-all duration-300 transform translate-x-0 checked:translate-x-6 z-10" id="ai-toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-dim cursor-pointer transition-colors duration-300" for="ai-toggle"></label>
+</div>
+</div>
+<!-- File Format -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-widest">File Format</label>
+<div class="grid grid-cols-3 bg-surface-container-high p-1 rounded-xl border border-outline-variant/30">
+<button class="py-2.5 text-center rounded-lg font-label-md text-label-md bg-surface-container-lowest text-primary shadow-sm" type="button">PDF</button>
+<button class="py-2.5 text-center rounded-lg font-label-md text-label-md text-on-surface-variant" type="button">XLSX</button>
+<button class="py-2.5 text-center rounded-lg font-label-md text-label-md text-on-surface-variant" type="button">JSON</button>
+</div>
+</div>
+</form>
+<!-- Modal Footer -->
+<footer class="p-6 border-t border-outline-variant flex items-center justify-end gap-3 rounded-b-2xl">
+<button class="px-6 py-3 rounded-xl border border-outline-variant font-label-md text-label-md text-primary hover:bg-surface-container-low transition-colors" type="button">
+                Cancel
+            </button>
+<button class="px-8 py-3 rounded-xl bg-primary font-label-md text-label-md text-on-primary hover:bg-primary-container transition-all active:scale-95 shadow-sm" type="submit">
+                Generate
+            </button>
+</footer>
+</div>
+</div>
+<!-- Sidebar Drawer (Hidden by Default) -->
+<div class="fixed inset-0 bg-black/50 z-[150] opacity-0 pointer-events-none transition-opacity duration-300" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+<aside class="fixed top-0 left-0 bottom-0 w-[280px] bg-surface border-r border-outline-variant z-[160] -translate-x-full overflow-y-auto flex flex-col" id="sidebar">
+<div class="p-6 flex items-center gap-3 border-b border-outline-variant">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary">corporate_fare</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-[16px] leading-tight text-primary">Vertex Solutions</span>
+<span class="font-label-md text-[11px] text-on-surface-variant">Manager Workspace</span>
+</div>
+</div>
+<div class="flex-1 py-4 px-3 flex flex-col gap-6">
+<div>
+<p class="px-3 mb-2 font-label-md text-[11px] uppercase tracking-wider text-on-surface-variant opacity-60">Main</p>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined">dashboard</span><span class="font-body-md">Dashboard</span>
+</a>
+</nav>
+</div>
+<div>
+<p class="px-3 mb-2 font-label-md text-[11px] uppercase tracking-wider text-on-surface-variant opacity-60">Operations</p>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low" href="#"><span class="material-symbols-outlined">inventory_2</span><span class="font-body-md">Products</span></a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low" href="#"><span class="material-symbols-outlined">inventory</span><span class="font-body-md">Inventory</span></a>
+</nav>
+</div>
+<div>
+<p class="px-3 mb-2 font-label-md text-[11px] uppercase tracking-wider text-on-surface-variant opacity-60">Insights</p>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#2d3436] text-white" href="#">
+<span class="material-symbols-outlined fill">bar_chart</span><span class="font-body-md font-medium">Reports</span>
+</a>
+</nav>
+</div>
+<div>
+<p class="px-3 mb-2 font-label-md text-[11px] uppercase tracking-wider text-on-surface-variant opacity-60">Support</p>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low" href="#"><span class="material-symbols-outlined">notifications</span><span class="font-body-md">Notifications</span></a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low" href="#"><span class="material-symbols-outlined">help</span><span class="font-body-md">Help</span></a>
+</nav>
+</div>
+</div>
+<div class="p-3 border-t border-outline-variant flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low" href="#"><span class="material-symbols-outlined">account_circle</span><span class="font-body-md">Profile</span></a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-error hover:bg-error-container/10" href="#"><span class="material-symbols-outlined">logout</span><span class="font-body-md">Sign Out</span></a>
+</div>
+</aside>
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        const isClosed = sidebar.classList.contains('-translate-x-full');
+        
+        if (isClosed) {
+            sidebar.classList.remove('-translate-x-full');
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+            overlay.classList.add('opacity-100', 'pointer-events-auto');
+        } else {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            overlay.classList.remove('opacity-100', 'pointer-events-auto');
+        }
+    }
+
+    // Interactivity for File Format buttons
+    const formatButtons = document.querySelectorAll('.grid-cols-3 button');
+    formatButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            formatButtons.forEach(b => {
+                b.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+                b.classList.add('text-on-surface-variant');
+            });
+            btn.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+            btn.classList.remove('text-on-surface-variant');
+        });
+    });
+</script>
+</body></html>

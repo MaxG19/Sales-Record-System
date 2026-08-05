@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dismiss Notification Modal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#feb5a4",
+                        "secondary-container": "#6dfad2",
+                        "on-error": "#ffffff",
+                        "surface-container": "#f0ede9",
+                        "outline-variant": "#c3c7c8",
+                        "inverse-surface": "#31302d",
+                        "on-secondary-fixed-variant": "#005140",
+                        "on-secondary": "#ffffff",
+                        "outline": "#747879",
+                        "inverse-primary": "#c1c8ca",
+                        "on-secondary-fixed": "#002018",
+                        "tertiary-fixed": "#ffdad2",
+                        "secondary-fixed-dim": "#4bddb7",
+                        "on-error-container": "#93000a",
+                        "primary": "#181f21",
+                        "on-primary-fixed": "#161d1f",
+                        "on-tertiary-fixed": "#360f06",
+                        "primary-fixed": "#dde4e6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#434749",
+                        "background": "#fcf9f4",
+                        "surface-bright": "#fcf9f4",
+                        "on-secondary-container": "#00725b",
+                        "on-tertiary-container": "#ce8a7b",
+                        "surface-variant": "#e5e2dd",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f6f3ee",
+                        "surface-container-highest": "#e5e2dd",
+                        "on-tertiary-fixed-variant": "#6c392c",
+                        "inverse-on-surface": "#f3f0eb",
+                        "secondary": "#006b55",
+                        "error": "#ba1a1a",
+                        "surface": "#fcf9f4",
+                        "primary-fixed-dim": "#c1c8ca",
+                        "surface-tint": "#586062",
+                        "tertiary": "#391108",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#54251a",
+                        "secondary-fixed": "#6dfad2",
+                        "on-background": "#1c1c19",
+                        "surface-dim": "#dcdad5",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#959c9f",
+                        "surface-container-high": "#ebe8e3",
+                        "primary-container": "#2d3436",
+                        "on-surface": "#1c1c19",
+                        "on-primary-fixed-variant": "#41484a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "stack-md": "24px",
+                        "container-padding": "20px",
+                        "stack-lg": "40px",
+                        "stack-sm": "12px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-md": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "stat-lg": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-sm": ["Geist"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "stat-lg": ["36px", { "lineHeight": "44px", "fontWeight": "700" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md h-screen w-screen overflow-hidden flex flex-col relative antialiased">
+<!-- Blurred Background (Mock Dashboard) -->
+<div class="absolute inset-0 z-0 flex flex-col filter blur-sm opacity-60">
+<!-- TopAppBar (Simulated Background) -->
+<header class="bg-surface text-primary border-b border-outline-variant flex justify-between items-center px-container-padding h-16 w-full shrink-0">
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm font-bold">Executive BMS</h1>
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</header>
+<!-- Main Content Area (Simulated Background) -->
+<main class="flex-1 overflow-y-auto p-container-padding flex flex-col gap-stack-md bg-background">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-primary">Unread Notifications</h2>
+</div>
+<div class="flex flex-col gap-gutter">
+<!-- Mock Notification Item -->
+<div class="bg-surface-container-lowest border border-surface-variant rounded-lg p-container-padding flex gap-stack-sm items-start">
+<div class="bg-surface-container-highest rounded-full p-2 text-primary shrink-0">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+<div class="flex-1">
+<h3 class="font-body-lg text-body-lg text-primary font-semibold mb-1">Low Stock Alert: Branch A</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-2">Item SKU-1234 is below reorder threshold.</p>
+<span class="font-label-md text-label-md text-on-primary-container">10 mins ago</span>
+</div>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Mock Notification Item -->
+<div class="bg-surface-container-lowest border border-surface-variant rounded-lg p-container-padding flex gap-stack-sm items-start">
+<div class="bg-surface-container-highest rounded-full p-2 text-primary shrink-0">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<div class="flex-1">
+<h3 class="font-body-lg text-body-lg text-primary font-semibold mb-1">New Order Received</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-2">Order #98765 requires approval.</p>
+<span class="font-label-md text-label-md text-on-primary-container">1 hour ago</span>
+</div>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Simulated Background) -->
+<nav class="bg-surface border-t border-outline-variant flex justify-around items-center h-16 px-container-padding w-full shrink-0">
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 scale-95 active:scale-90 transition-all hover:bg-surface-container-low p-2 rounded-lg">
+<span class="material-symbols-outlined mb-1">grid_view</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 scale-95 active:scale-90 transition-all hover:bg-surface-container-low p-2 rounded-lg">
+<span class="material-symbols-outlined mb-1">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 scale-95 active:scale-90 transition-all hover:bg-surface-container-low p-2 rounded-lg">
+<span class="material-symbols-outlined mb-1">store</span>
+<span class="font-label-md text-label-md">Branches</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 scale-95 active:scale-90 transition-all hover:bg-surface-container-low p-2 rounded-lg">
+<span class="material-symbols-outlined mb-1">monitoring</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</button>
+</nav>
+</div>
+<!-- Modal Overlay -->
+<div class="absolute inset-0 z-50 flex items-center justify-center bg-inverse-surface/40 p-container-padding">
+<!-- Modal Dialog -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-surface-variant w-full max-w-sm flex flex-col relative overflow-hidden transform transition-all">
+<!-- Close Button -->
+<button aria-label="Close modal" class="absolute top-4 right-4 text-outline hover:text-primary transition-colors p-1 rounded-full hover:bg-surface-container-low focus:outline-none focus:ring-2 focus:ring-primary-fixed">
+<span class="material-symbols-outlined" style="font-size: 20px;">close</span>
+</button>
+<!-- Modal Content -->
+<div class="p-stack-md pt-stack-lg flex flex-col gap-stack-sm">
+<div class="bg-error-container text-error rounded-full w-12 h-12 flex items-center justify-center mb-2 mx-auto">
+<span class="material-symbols-outlined" style="font-size: 24px;">delete_forever</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary text-center">Dismiss Notification</h2>
+<p class="font-body-md text-body-md text-on-surface-variant text-center">
+                    Are you sure you want to dismiss this notification? This action cannot be undone.
+                </p>
+</div>
+<!-- Action Buttons -->
+<div class="p-stack-md pt-0 flex gap-gutter mt-4">
+<button class="flex-1 py-2 px-4 rounded border border-surface-variant text-primary font-label-md text-label-md hover:bg-surface-container-low transition-colors focus:outline-none focus:ring-2 focus:ring-primary-fixed">
+                    Cancel
+                </button>
+<button class="flex-1 py-2 px-4 rounded bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors focus:outline-none focus:ring-2 focus:ring-primary-fixed shadow-sm">
+                    Dismiss
+                </button>
+</div>
+</div>
+</div>
+</body></html>

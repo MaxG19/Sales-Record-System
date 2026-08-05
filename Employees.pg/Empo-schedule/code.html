@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Schedule Report</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/gh/vercel/geist-font/packages/next/dist/fonts/geist-sans/Geist-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/gh/vercel/geist-font/packages/next/dist/fonts/geist-sans/Geist-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/gh/vercel/geist-font/packages/next/dist/fonts/geist-sans/Geist-SemiBold.woff2') format('woff2');
+            font-weight: 600;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/gh/vercel/geist-font/packages/next/dist/fonts/geist-sans/Geist-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: #fcf9f4;
+            color: #1c1c19;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#006b55",
+                    "on-surface-variant": "#434749",
+                    "on-primary-fixed": "#161d1f",
+                    "surface-container-low": "#f6f3ee",
+                    "surface-container": "#f0ede9",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#005140",
+                    "on-tertiary-container": "#ce8a7b",
+                    "surface-variant": "#e5e2dd",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#4bddb7",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "primary": "#181f21",
+                    "on-tertiary-fixed-variant": "#6c392c",
+                    "surface-container-highest": "#e5e2dd",
+                    "outline": "#747879",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#1c1c19",
+                    "secondary-fixed": "#6dfad2",
+                    "surface-dim": "#dcdad5",
+                    "on-tertiary-fixed": "#360f06",
+                    "on-secondary-fixed": "#002018",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#feb5a4",
+                    "secondary-container": "#6dfad2",
+                    "surface-container-high": "#ebe8e3",
+                    "on-primary-container": "#959c9f",
+                    "on-background": "#1c1c19",
+                    "tertiary": "#391108",
+                    "on-primary-fixed-variant": "#41484a",
+                    "tertiary-fixed": "#ffdad2",
+                    "outline-variant": "#c3c7c8",
+                    "inverse-surface": "#31302d",
+                    "inverse-primary": "#c1c8ca",
+                    "surface": "#fcf9f4",
+                    "tertiary-container": "#54251a",
+                    "surface-bright": "#fcf9f4",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#c1c8ca",
+                    "background": "#fcf9f4",
+                    "primary-container": "#2d3436",
+                    "on-secondary-container": "#00725b",
+                    "inverse-on-surface": "#f3f0eb",
+                    "surface-tint": "#586062",
+                    "primary-fixed": "#dde4e6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "stack-md": "24px",
+                    "gutter": "16px",
+                    "stack-lg": "40px",
+                    "stack-sm": "12px",
+                    "container-padding": "20px"
+            },
+            "fontFamily": {
+                    "label-md": [
+                            "Geist"
+                    ],
+                    "headline-md": [
+                            "Geist"
+                    ],
+                    "display-lg": [
+                            "Geist"
+                    ],
+                    "body-md": [
+                            "Geist"
+                    ],
+                    "body-lg": [
+                            "Geist"
+                    ],
+                    "stat-lg": [
+                            "Geist"
+                    ],
+                    "headline-sm": [
+                            "Geist"
+                    ]
+            },
+            "fontSize": {
+                    "label-md": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "stat-lg": [
+                            "36px",
+                            {
+                                    "lineHeight": "44px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-sm": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen relative overflow-hidden">
+<!-- Screen Content Background (Simulated) -->
+<div class="h-full w-full flex flex-col blur-sm opacity-50">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim flex justify-between items-center px-container-padding h-16 w-full border-b border-outline-variant dark:border-outline z-40 fixed top-0 w-full transition-colors duration-200">
+<button class="text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-surface-container-highest p-2 rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">Vertex Solutions</h1>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant bg-surface-container-high">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A professional headshot of a business executive in a well-lit modern office setting. The style is highly realistic, corporate, and minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA17TJRjBd7RzKum_UVwt4byRbpcQJJV0hPDeMagEK8Gr1FtgEoFoYi_kQgZEUlKybvGqJeQ46yNYQAJAaazEtpheiCauZRvJg6qvu9ze4iuOmK_UtWgQeJqUgYn3IZNQIFS2DMb8FKbgihhW_4yVaOoB2v1mjw67kxTC-T3QTJR-vznFLg18GLI7j3fyDueUA5QyWov_Ea2k-3pjrS5rWQsVZHNwvuLc8NI16NYyM9lkbmxKj4ah-IzQ"/>
+</div>
+</header>
+<main class="mt-16 p-container-padding">
+<h2 class="font-headline-md text-headline-md mb-stack-md text-primary">Employees</h2>
+<!-- Simulated background content -->
+<div class="space-y-stack-sm">
+<div class="h-20 bg-surface-container-lowest border border-surface-variant rounded-DEFAULT"></div>
+<div class="h-20 bg-surface-container-lowest border border-surface-variant rounded-DEFAULT"></div>
+<div class="h-20 bg-surface-container-lowest border border-surface-variant rounded-DEFAULT"></div>
+</div>
+</main>
+</div>
+<!-- Modal Backdrop -->
+<div class="fixed inset-0 bg-primary/40 backdrop-blur-sm z-50 flex items-center justify-center p-container-padding">
+<!-- Modal Content (Card) -->
+<div class="bg-surface-container-lowest border border-surface-variant rounded-lg w-full max-w-[400px] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] overflow-hidden flex flex-col">
+<!-- Modal Header -->
+<div class="px-container-padding py-stack-md border-b border-surface-variant bg-surface-container-low flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-primary m-0">Schedule Report</h2>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Modal Body -->
+<div class="p-container-padding flex-1 overflow-y-auto space-y-stack-md">
+<!-- Frequency Options -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-stack-sm uppercase">Frequency</label>
+<div class="space-y-2">
+<label class="flex items-center p-3 border border-surface-variant rounded-DEFAULT cursor-pointer hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+<input checked="" class="text-secondary focus:ring-secondary mr-3 w-4 h-4 border-outline-variant" name="frequency" type="radio"/>
+<span class="font-body-md text-body-md text-primary">Daily</span>
+</label>
+<label class="flex items-center p-3 border border-surface-variant rounded-DEFAULT cursor-pointer hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+<input class="text-secondary focus:ring-secondary mr-3 w-4 h-4 border-outline-variant" name="frequency" type="radio"/>
+<span class="font-body-md text-body-md text-primary">Weekly</span>
+</label>
+<label class="flex items-center p-3 border border-surface-variant rounded-DEFAULT cursor-pointer hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+<input class="text-secondary focus:ring-secondary mr-3 w-4 h-4 border-outline-variant" name="frequency" type="radio"/>
+<span class="font-body-md text-body-md text-primary">Monthly</span>
+</label>
+</div>
+</div>
+<!-- Delivery Method -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-stack-sm uppercase">Delivery Method</label>
+<div class="space-y-2">
+<label class="flex items-center p-3 border border-surface-variant rounded-DEFAULT cursor-pointer hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+<input checked="" class="rounded text-secondary focus:ring-secondary mr-3 w-4 h-4 border-outline-variant" type="checkbox"/>
+<span class="font-body-md text-body-md text-primary flex-1">Email</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">mail</span>
+</label>
+<label class="flex items-center p-3 border border-surface-variant rounded-DEFAULT cursor-pointer hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+<input class="rounded text-secondary focus:ring-secondary mr-3 w-4 h-4 border-outline-variant" type="checkbox"/>
+<span class="font-body-md text-body-md text-primary flex-1">System Notification</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">notifications</span>
+</label>
+</div>
+</div>
+<!-- Date/Time Picker -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-stack-sm uppercase">Start Time</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">schedule</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 border border-surface-variant rounded-DEFAULT bg-[#F1EDE8] focus:bg-surface-container-lowest focus:ring-secondary focus:border-secondary font-body-md text-body-md text-primary transition-colors" type="time" value="09:00"/>
+</div>
+</div>
+</div>
+<!-- Modal Footer (Actions) -->
+<div class="p-container-padding border-t border-surface-variant bg-surface-container-lowest flex justify-end gap-3">
+<button class="px-6 py-2 border border-surface-variant text-primary font-label-md text-label-md rounded-DEFAULT hover:bg-surface-container-low transition-colors">
+                    Cancel
+                </button>
+<button class="px-6 py-2 bg-primary text-on-primary font-label-md text-label-md rounded-DEFAULT hover:bg-primary-container transition-colors shadow-sm">
+                    Schedule
+                </button>
+</div>
+</div>
+</div>
+</body></html>
