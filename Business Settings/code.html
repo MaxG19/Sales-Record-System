@@ -1,0 +1,383 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Pro-Ops - Business Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#4edea3",
+                        "primary-fixed": "#d3e7db",
+                        "on-surface": "#151c27",
+                        "secondary-container": "#6cf8bb",
+                        "tertiary-container": "#252829",
+                        "inverse-on-surface": "#ebf1ff",
+                        "background": "#f9f9ff",
+                        "on-surface-variant": "#424844",
+                        "surface-container-highest": "#dce2f3",
+                        "on-tertiary-fixed": "#191c1d",
+                        "surface-dim": "#d3daea",
+                        "primary-fixed-dim": "#b7cbbf",
+                        "tertiary": "#111314",
+                        "error-container": "#ffdad6",
+                        "outline": "#737874",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "surface-bright": "#f9f9ff",
+                        "surface-tint": "#506259",
+                        "on-primary-fixed-variant": "#394b42",
+                        "primary": "#06160f",
+                        "error": "#ba1a1a",
+                        "primary-container": "#1a2b23",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#8d8f90",
+                        "surface-container": "#e7eefe",
+                        "surface-container-high": "#e2e8f8",
+                        "on-background": "#151c27",
+                        "inverse-primary": "#b7cbbf",
+                        "tertiary-fixed": "#e1e3e4",
+                        "secondary": "#006c49",
+                        "surface": "#f9f9ff",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-secondary-container": "#00714d",
+                        "outline-variant": "#c2c8c3",
+                        "surface-variant": "#dce2f3",
+                        "inverse-surface": "#2a313d",
+                        "surface-container-low": "#f0f3ff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#002113",
+                        "on-primary-fixed": "#0e1f17",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#809388"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "margin-page": "40px",
+                        "sidebar-width": "260px",
+                        "sidebar-collapsed-width": "80px",
+                        "stack-lg": "32px",
+                        "gutter": "24px",
+                        "stack-md": "16px",
+                        "container-max-width": "1200px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "label-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-xl": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-xl": ["30px", { "lineHeight": "38px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .sidebar-expanded {
+            width: 260px;
+        }
+        
+        .sidebar-collapsed {
+            width: 80px;
+        }
+
+        .sidebar-collapsed .sidebar-text {
+            display: none;
+        }
+        
+        .sidebar-collapsed .sidebar-header-text {
+            display: none;
+        }
+        
+        .sidebar-collapsed .sidebar-icon-container {
+            justify-content: center;
+        }
+        
+        .sidebar-collapsed .sidebar-section-title {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full py-stack-md space-y-1 bg-surface-container-lowest text-on-surface border-r border-outline-variant sidebar-expanded transition-all duration-300 shrink-0 z-20" id="sidebar">
+<!-- Header -->
+<div class="px-6 mb-8 mt-2 flex items-center justify-between">
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center justify-center" id="menu-toggle">
+<span class="material-symbols-outlined text-xl">menu</span>
+</button>
+<div class="sidebar-header-text text-headline-xl font-headline-xl font-bold text-primary dark:text-primary-fixed ml-2 flex-1">Owner Workspace</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 overflow-y-auto px-4 space-y-6">
+<!-- MAIN Section -->
+<div>
+<div class="px-2 mb-2 sidebar-section-title">
+<span class="text-[10px] font-label-sm uppercase tracking-wider text-on-surface-variant/60 font-bold">Main</span>
+</div>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors sidebar-icon-container" href="#" title="Dashboard">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+<span class="font-label-md sidebar-text">Dashboard</span>
+</a>
+</div>
+</div>
+<!-- OPERATIONS Section -->
+<div>
+<div class="px-2 mb-2 sidebar-section-title">
+<span class="text-[10px] font-label-sm uppercase tracking-wider text-on-surface-variant/60 font-bold">Operations</span>
+</div>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors sidebar-icon-container" href="#" title="Products">
+<span class="material-symbols-outlined text-lg">inventory_2</span>
+<span class="font-label-md sidebar-text">Products</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors sidebar-icon-container" href="#" title="Inventory">
+<span class="material-symbols-outlined text-lg">inventory</span>
+<span class="font-label-md sidebar-text">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors sidebar-icon-container" href="#" title="Purchase Orders">
+<span class="material-symbols-outlined text-lg">shopping_cart</span>
+<span class="font-label-md sidebar-text">Purchase Orders</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors sidebar-icon-container" href="#" title="Suppliers">
+<span class="material-symbols-outlined text-lg">local_shipping</span>
+<span class="font-label-md sidebar-text">Suppliers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors sidebar-icon-container" href="#" title="Customers">
+<span class="material-symbols-outlined text-lg">group</span>
+<span class="font-label-md sidebar-text">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors sidebar-icon-container" href="#" title="Sales &amp; Returns">
+<span class="material-symbols-outlined text-lg">assignment_return</span>
+<span class="font-label-md sidebar-text">Sales &amp; Returns</span>
+</a>
+</div>
+</div>
+<!-- INSIGHTS Section -->
+<div>
+<div class="px-2 mb-2 sidebar-section-title">
+<span class="text-[10px] font-label-sm uppercase tracking-wider text-on-surface-variant/60 font-bold">Insights</span>
+</div>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors sidebar-icon-container" href="#" title="Reports">
+<span class="material-symbols-outlined text-lg">bar_chart</span>
+<span class="font-label-md sidebar-text">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors sidebar-icon-container" href="#" title="Business Insights">
+<span class="material-symbols-outlined text-lg">analytics</span>
+<span class="font-label-md sidebar-text">Business Insights</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors sidebar-icon-container" href="#" title="Business Performance">
+<span class="material-symbols-outlined text-lg">speed</span>
+<span class="font-label-md sidebar-text">Business Performance</span>
+</a>
+</div>
+</div>
+<!-- PEOPLE Section -->
+<div>
+<div class="px-2 mb-2 sidebar-section-title">
+<span class="text-[10px] font-label-sm uppercase tracking-wider text-on-surface-variant/60 font-bold">People</span>
+</div>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors sidebar-icon-container" href="#" title="Employees">
+<span class="material-symbols-outlined text-lg">person</span>
+<span class="font-label-md sidebar-text">Employees</span>
+</a>
+</div>
+</div>
+<!-- ADMINISTRATION Section -->
+<div>
+<div class="px-2 mb-2 sidebar-section-title">
+<span class="text-[10px] font-label-sm uppercase tracking-wider text-on-surface-variant/60 font-bold">Administration</span>
+</div>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 bg-primary-container text-on-primary-container rounded-lg mx-2 transition-transform duration-150 sidebar-icon-container" href="#" title="Business Settings">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-md sidebar-text">Business Settings</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Footer Links -->
+<div class="px-4 mt-auto pt-6 border-t border-outline-variant/30 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors sidebar-icon-container" href="#" title="My Profile">
+<span class="material-symbols-outlined text-lg">account_circle</span>
+<span class="font-label-md sidebar-text">My Profile</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-error hover:bg-error-container/20 transition-colors sidebar-icon-container" href="#" title="Sign Out">
+<span class="material-symbols-outlined text-lg">logout</span>
+<span class="font-label-md sidebar-text">Sign Out</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden bg-background">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-6 py-3 bg-surface border-b border-outline-variant z-10">
+<div class="flex-1 flex items-center justify-end gap-6">
+<!-- Branch Selector Moved Here -->
+<div class="flex items-center gap-3 p-2 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-colors cursor-pointer mr-auto max-w-[200px]">
+<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center font-label-sm text-on-surface-variant font-bold">
+                    HQ
+                </div>
+<div class="flex-1 truncate">
+<div class="font-label-md text-on-surface truncate">Main Branch</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">unfold_more</span>
+</div>
+<!-- Search -->
+<div class="relative max-w-md w-full ml-auto">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant/60 text-lg">search</span>
+</div>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-body-md focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all" placeholder="Search settings..." type="text">
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-4 border-l border-outline-variant/50 pl-6">
+<button class="relative p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/30 hover:ring-2 hover:ring-secondary/50 transition-all">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a business executive in a modern office setting. Clear lighting, corporate attire, shallow depth of field. High quality, photorealistic, optimistic mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkf-uVNfzHVc71DBPZJHdNChF-5G77mpiXhH0iNAJsD9X66eHFqLM9NQTGnqSJhjjT3RM0mXlL5V2krVB2ubWzlY96o8J5DyqFkNRafzFG4cxIiqRdaX6VYeyQ9Jd74X59BEpSoSyDgdmX_WcDoaTKNQFxp3mYzVG4IB16Zf-xRvZHjkn8P6u6lDMGBjQP3B-Zy6053gt3Iffje__H_EJor3ILUMYd80YEWKDkmTEzW7i1zB3_jCNE">
+</button>
+</div>
+</div>
+</header>
+<!-- Page Content Canvas -->
+<main class="flex-1 overflow-y-auto transition-all duration-300">
+<div class="max-w-container-max-width mx-auto px-margin-page py-stack-lg">
+<!-- Page Header -->
+<div class="mb-8">
+<h1 class="text-headline-xl font-headline-xl text-on-surface mb-2">Settings</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Manage your business profile, branches, users, integrations and operational preferences.</p>
+</div>
+<!-- Sub-Navigation Tabs -->
+<div class="flex gap-8 border-b border-outline-variant/30 mb-8 overflow-x-auto hide-scrollbar">
+<button class="px-1 py-4 text-primary font-label-md font-bold border-b-2 border-secondary whitespace-nowrap">General Information</button>
+<button class="px-1 py-4 text-on-surface-variant hover:text-primary transition-colors font-label-md whitespace-nowrap">Users &amp; Roles</button>
+<button class="px-1 py-4 text-on-surface-variant hover:text-primary transition-colors font-label-md whitespace-nowrap">Tax &amp; Finance</button>
+<button class="px-1 py-4 text-on-surface-variant hover:text-primary transition-colors font-label-md whitespace-nowrap">POS Configuration</button>
+<button class="px-1 py-4 text-on-surface-variant hover:text-primary transition-colors font-label-md whitespace-nowrap">Inventory</button>
+<button class="px-1 py-4 text-on-surface-variant hover:text-primary transition-colors font-label-md whitespace-nowrap">Purchasing</button>
+<button class="px-1 py-4 text-on-surface-variant hover:text-primary transition-colors font-label-md whitespace-nowrap">Customers</button>
+<button class="px-1 py-4 text-on-surface-variant hover:text-primary transition-colors font-label-md whitespace-nowrap">Integrations</button>
+<button class="px-1 py-4 text-on-surface-variant hover:text-primary transition-colors font-label-md whitespace-nowrap">Security</button>
+</div>
+<!-- Content Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-gutter shadow-sm">
+<h2 class="text-headline-sm font-headline-sm text-on-surface mb-8">Business Information</h2>
+<!-- Logo Upload -->
+<div class="flex items-start gap-6 pb-8 border-b border-outline-variant/30 mb-8">
+<div class="w-24 h-24 rounded-lg bg-surface-container-low border border-dashed border-outline-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-3xl">add_photo_alternate</span>
+</div>
+<div class="pt-2">
+<h3 class="text-label-md font-label-md text-on-surface mb-1">Company Logo</h3>
+<p class="text-body-md font-body-md text-on-surface-variant/70 mb-4">Recommended size: 256x256px. Max 2MB.</p>
+<button class="px-4 py-2 border border-outline-variant rounded text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors">Upload Image</button>
+</div>
+</div>
+<!-- Form Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-gutter gap-y-6 mb-8">
+<!-- Business Name -->
+<div class="flex flex-col gap-stack-sm">
+<label class="text-label-md font-label-md text-on-surface">Business Name</label>
+<input class="h-11 px-3 bg-surface-container-lowest border border-outline-variant rounded text-body-md focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" placeholder="Enter business name" type="text">
+</div>
+<!-- Business Type -->
+<div class="flex flex-col gap-stack-sm">
+<label class="text-label-md font-label-md text-on-surface">Business Type</label>
+<div class="relative">
+<select class="h-11 w-full pl-3 pr-10 appearance-none bg-surface-container-lowest border border-outline-variant rounded text-body-md focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors">
+<option>Retail - General Merchandise</option>
+<option>Food &amp; Beverage</option>
+<option>Services</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Registration Number -->
+<div class="flex flex-col gap-stack-sm">
+<label class="text-label-md font-label-md text-on-surface">Registration Number</label>
+<input class="h-11 px-3 bg-surface-container-lowest border border-outline-variant rounded text-body-md focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" placeholder="Enter registration number" type="text">
+</div>
+<!-- Tax PIN / VAT ID -->
+<div class="flex flex-col gap-stack-sm">
+<label class="text-label-md font-label-md text-on-surface">Tax PIN / VAT ID</label>
+<input class="h-11 px-3 bg-surface-container-lowest border border-outline-variant rounded text-body-md focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" type="text" value="TX-4402911">
+</div>
+</div>
+<!-- Actions -->
+<div class="flex justify-end gap-4 pt-6 border-t border-outline-variant/30">
+<button class="px-6 py-2.5 rounded border border-outline-variant text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors">
+                            Discard Changes
+                        </button>
+<button class="px-6 py-2.5 rounded bg-primary text-on-primary text-label-md font-label-md hover:bg-primary/90 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                            Save Changes
+                        </button>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="flex justify-end gap-stack-lg px-margin-page py-stack-md border-t border-outline-variant/30 bg-transparent mt-auto">
+<span class="text-body-md font-body-md text-on-surface-variant mr-auto">© 2024 Pro-Ops Management</span>
+<a class="text-body-md font-body-md text-on-surface-variant/60 hover:text-primary transition-colors opacity-100 hover:opacity-80" href="#">Privacy Policy</a>
+<a class="text-body-md font-body-md text-on-surface-variant/60 hover:text-primary transition-colors opacity-100 hover:opacity-80" href="#">Terms of Service</a>
+</footer>
+</main>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        
+        menuToggle.addEventListener('click', function() {
+            if (sidebar.classList.contains('sidebar-expanded')) {
+                sidebar.classList.remove('sidebar-expanded');
+                sidebar.classList.add('sidebar-collapsed');
+            } else {
+                sidebar.classList.remove('sidebar-collapsed');
+                sidebar.classList.add('sidebar-expanded');
+            }
+        });
+    });
+</script>
+
+
+</body></html>
