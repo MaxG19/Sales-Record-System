@@ -37,61 +37,64 @@ const ROUTES = {
         "/Dashboards/Manager%20Dashboard/code.html",
 
     products:
-        "/Products/products/code.html",
+        "/Products/Products%20page/code.html",
 
     inventory:
-        "/Inventory/code.html",
+        "/Inventory/inventory_manager_workspace/code.html",
 
     purchaseOrders:
-        "/Purchase/purchases_workspace_finalized_layout/code.html",
+        "/Purchase/purchase%20orders/purchase_orders/code.html",
 
     suppliers:
         "/Supplier/suppliers_workspace/code.html",
 
     customers:
-        "/Customer%20Management/customer_management_list_view/code.html",
+        "/Customer%20Management/code.html",
 
     sales:
-        "/Sales/sales_workspace/code.html",
+        "/Sales/code.html",
 
     reports:
-        "/Sales/reports_overview_workspace/code.html",
+        "/Reports-pg/code.html",
 
     employees:
-        "/Users/users_workspace/code.html",
+        "/Employees.pg/code.html",
 
     notifications:
-        "/Business%20Settings/Settings_notifications/code.html",
+        "/Notification-centre/code.html",
 
     help:
-        "/System%20Support%20Screens/empty_states_library/code.html",
+        "/Help$support-pg/code.html",
 
     profile:
-        "/Profile_management/my_profile_profile_tab/code.html",
+        "/My-profile-pg/code.html",
+
+    categories:
+        "/category_management/categories_workspace/code.html",
 
     addProduct:
-        "/Products/products/code.html",
+        "/Products/new%20products/code.html",
 
     receiveGoods:
-        "/Purchase/purchases_workspace_finalized_layout/code.html",
+        "/Purchase/purchase%20orders/purchase_orders/code.html",
 
     createPurchaseOrder:
-        "/Purchase/purchases_new_purchase_order_centered_modal_refined/code.html",
+        "/Purchase/purchase%20orders/new_purchase_order_modal/code.html",
 
     stockCount:
-        "/Inventory/code.html",
+        "/Inventory/inventory_manager_workspace/code.html",
 
     adjustStock:
-        "/Inventory/code.html",
+        "/Inventory/adjust_stock_modal_inventory_workspace_benchmark_aligned/code.html",
 
     processReturns:
-        "/Sales/sales_process_refund_modal/code.html",
+        "/Sales/code.html",
 
     branchSelection:
         "/Branch%20Management/code.html",
 
     search:
-        "/System%20Support%20Screens/empty_states_library/code.html"
+        "/Dashboards/Manager%20Dashboard/code.html"
 
 };
 

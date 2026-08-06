@@ -1,0 +1,273 @@
+<!--
+==================================================
+BMS Prototype v1.0
+Shared Component: Manager Sidebar
+Source of Truth
+Do not edit inside module pages.
+==================================================
+-->
+<!--
+==================================================
+BMS Prototype v1.0
+Shared Component: Manager Sidebar
+Source of Truth
+Owner: James Warren
+==================================================
+-->
+
+<aside id="sidebar"
+    class="w-[280px] bg-white border-r border-outline-variant flex flex-col fixed h-screen z-40 overflow-y-auto">
+
+    <!-- Logo -->
+    <div class="p-gutter flex items-center gap-3 mb-4 logo-container">
+
+        <button id="menu-toggle"
+            class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all flex items-center justify-center shrink-0">
+
+            <span class="material-symbols-outlined">
+                menu
+            </span>
+
+        </button>
+
+        <div class="logo-text">
+
+            <h1 class="font-bold text-lg text-primary leading-tight">
+                Manager Workspace
+            </h1>
+
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-grow px-4 space-y-1 mt-4">
+
+        <!-- MAIN -->
+        <div
+            class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mb-2 nav-section-title">
+            Main
+        </div>
+
+        <a id="nav-dashboard"
+            href="../Dashboards/Manager Dashboard/code.html"
+            data-page="dashboard"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container sidebar-active nav-item">
+
+            <span class="material-symbols-outlined text-[20px]">
+                dashboard
+            </span>
+
+            <span class="text-sm font-medium nav-text">
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <!-- OPERATIONS -->
+        <div
+            class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mb-2 mt-12 nav-section-title">
+            Operations
+        </div>
+
+        <a id="nav-products"
+            href="../Products/code.html"
+            data-page="products"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item">
+
+            <span class="material-symbols-outlined text-[20px]">
+                inventory_2
+            </span>
+
+            <span class="nav-text text-sm font-medium">
+                Products
+            </span>
+
+        </a>
+
+        <a id="nav-inventory"
+            href="../Inventory/code.html"
+            data-page="inventory"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item">
+
+            <span class="material-symbols-outlined text-[20px]">
+                shelves
+            </span>
+
+            <span class="nav-text text-sm font-medium">
+                Inventory
+            </span>
+
+        </a>
+
+        <a id="nav-purchase-orders"
+            href="../Purchase/code.html"
+            data-page="purchase-orders"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item">
+
+            <span class="material-symbols-outlined text-[20px]">
+                shopping_cart
+            </span>
+
+            <span class="nav-text text-sm font-medium">
+                Purchase Orders
+            </span>
+
+        </a>
+
+        <a id="nav-suppliers"
+            href="../Supplier/code.html"
+            data-page="suppliers"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item">
+
+            <span class="material-symbols-outlined text-[20px]">
+                local_shipping
+            </span>
+
+            <span class="nav-text text-sm font-medium">
+                Suppliers
+            </span>
+
+        </a>
+
+        <a id="nav-customers"
+            href="../Customer Management/code.html"
+            data-page="customers"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item">
+
+            <span class="material-symbols-outlined text-[20px]">
+                groups
+            </span>
+
+            <span class="nav-text text-sm font-medium">
+                Customers
+            </span>
+
+        </a>
+
+        <a id="nav-sales"
+            href="../Sales/code.html"
+            data-page="sales"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item">
+
+            <span class="material-symbols-outlined text-[20px]">
+                swap_horizontal_circle
+            </span>
+
+            <span class="nav-text text-sm font-medium">
+                Sales & Returns
+            </span>
+
+        </a>
+
+        <!-- INSIGHTS -->
+        <div
+            class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mb-2 mt-12 nav-section-title">
+            Insights
+        </div>
+
+        <a id="nav-reports"
+            href="../Reports-pg/code.html"
+            data-page="reports"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item">
+
+            <span class="material-symbols-outlined text-[20px]">
+                bar_chart
+            </span>
+
+            <span class="nav-text text-sm font-medium">
+                Reports
+            </span>
+
+        </a>
+
+        <a id="nav-employees"
+            href="../Employees.pg/code.html"
+            data-page="employees"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item">
+
+            <span class="material-symbols-outlined text-[20px]">
+                badge
+            </span>
+
+            <span class="nav-text text-sm font-medium">
+                Employees
+            </span>
+
+        </a>
+
+        <!-- SUPPORT -->
+        <div
+            class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mb-2 mt-12 nav-section-title">
+            Support
+        </div>
+
+        <a id="nav-notifications"
+            href="../Notification-centre/code.html"
+            data-page="notifications"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item">
+
+            <span class="material-symbols-outlined text-[20px]">
+                notifications
+            </span>
+
+            <span class="nav-text text-sm font-medium">
+                Notification Centre
+            </span>
+
+        </a>
+
+        <a id="nav-help"
+            href="../Help$Support-pg/code.html"
+            data-page="help"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item">
+
+            <span class="material-symbols-outlined text-[20px]">
+                help
+            </span>
+
+            <span class="nav-text text-sm font-medium">
+                Help & Support
+            </span>
+
+        </a>
+
+    </nav>
+
+    <!-- Bottom -->
+    <div class="p-gutter border-t border-outline-variant mt-auto">
+
+        <a id="nav-profile"
+            href="../Profile_management/code.html"
+            data-page="profile"
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container mb-1 nav-item">
+
+            <span class="material-symbols-outlined text-[20px]">
+                person
+            </span>
+
+            <span class="nav-text text-sm font-medium">
+                My Profile
+            </span>
+
+        </a>
+
+        <a id="nav-logout"
+            href="#"
+            data-page="logout"
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-error hover:bg-error-container/20 nav-item">
+
+            <span class="material-symbols-outlined text-[20px]">
+                logout
+            </span>
+
+            <span class="nav-text text-sm font-medium">
+                Sign Out
+            </span>
+
+        </a>
+
+    </div>
+
+</aside>
