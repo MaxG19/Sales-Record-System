@@ -1,198 +1,252 @@
-<!DOCTYPE html><html class="light" lang="en"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Sales &amp; Returns - Manager Workspace</title>
+<!DOCTYPE html><html class="light" lang="en">
+   <head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sales and Returns | Manager Workspace</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
-                    colors: {
-                        "surface-container-high": "#dce9ff",
-                        "secondary-container": "#dadedb",
-                        "inverse-on-surface": "#eaf1ff",
-                        "on-tertiary-container": "#d4aaab",
-                        "secondary-fixed": "#dfe3e1",
-                        "on-secondary-container": "#5d6260",
-                        "on-error": "#ffffff",
-                        "on-tertiary-fixed-variant": "#5e3f40",
-                        "on-secondary": "#ffffff",
-                        "on-secondary-fixed-variant": "#434846",
-                        "error": "#ba1a1a",
-                        "background": "#f8f9ff",
+                    "colors": {
+                        "primary": "#344e41",
                         "on-primary": "#ffffff",
-                        "surface-dim": "#cbdbf5",
-                        "surface-container": "#e5eeff",
-                        "on-secondary-fixed": "#181d1b",
-                        "tertiary": "#442829",
-                        "on-surface": "#0b1c30",
-                        "surface-container-highest": "#d3e4fe",
-                        "outline": "#727973",
-                        "tertiary-container": "#5d3e3f",
-                        "surface-variant": "#d3e4fe",
-                        "on-error-container": "#93000a",
-                        "surface-bright": "#f8f9ff",
-                        "primary-fixed": "#cee9d7",
-                        "surface-container-low": "#eff4ff",
-                        "on-primary-fixed-variant": "#354c3f",
-                        "primary-fixed-dim": "#b3cdbc",
-                        "inverse-surface": "#213145",
-                        "on-tertiary": "#ffffff",
-                        "inverse-primary": "#b3cdbc",
-                        "outline-variant": "#c2c8c2",
-                        "secondary-fixed-dim": "#c3c7c5",
-                        "on-surface-variant": "#424844",
+                        "background": "#faf9f7",
+                        "surface": "#ffffff",
+                        "surface-container": "#f4f3f1",
                         "surface-container-lowest": "#ffffff",
-                        "tertiary-fixed": "#ffdada",
-                        "primary-container": "#344b3e",
-                        "tertiary-fixed-dim": "#e7bcbd",
+                        "surface-container-low": "#f4f3f1",
+                        "surface-container-high": "#e9e8e6",
+                        "outline-variant": "#e3e2e0",
+                        "on-surface": "#1a1c1b",
+                        "on-surface-variant": "#424844",
+                        "error": "#ba1a1a",
                         "error-container": "#ffdad6",
-                        "on-tertiary-fixed": "#2d1416",
-                        "primary": "#1e3428",
-                        "secondary": "#5b5f5d",
-                        "surface-tint": "#4c6456",
-                        "on-background": "#0b1c30",
-                        "surface": "#f8f9ff",
-                        "on-primary-container": "#a0baaa",
-                        "on-primary-fixed": "#092015"
+                        "secondary-container": "#d7e5bb",
+                        "on-secondary-container": "#5a6745",
                     },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
+                    "borderRadius": {
+                        "DEFAULT": "8px",
+                        "lg": "12px",
+                        "xl": "16px",
                     },
-                    spacing: {
-                        "sidebar-width": "260px",
-                        "header-height": "72px",
-                        "margin-mobile": "16px",
+                    "spacing": {
                         "gutter": "24px",
-                        "stack-md": "16px",
-                        "stack-sm": "8px",
-                        "stack-lg": "32px"
-                    },
-                    fontFamily: {
-                        "body-lg": ["Hanken Grotesk"],
-                        "label-sm": ["Hanken Grotesk"],
-                        "display-lg": ["Hanken Grotesk"],
-                        "headline-sm": ["Hanken Grotesk"],
-                        "label-bold": ["Hanken Grotesk"],
-                        "headline-md": ["Hanken Grotesk"],
-                        "headline-md-mobile": ["Hanken Grotesk"],
-                        "body-md": ["Hanken Grotesk"]
-                    },
-                    fontSize: {
-                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "500" }],
-                        "label-sm": ["11px", { lineHeight: "14px", fontWeight: "500" }],
-                        "display-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
-                        "headline-sm": ["18px", { lineHeight: "24px", fontWeight: "600" }],
-                        "label-bold": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
-                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
-                        "headline-md-mobile": ["20px", { lineHeight: "28px", fontWeight: "600" }],
-                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }]
+                        "md": "24px",
+                        "sm": "16px",
+                        "margin-desktop": "48px",
                     }
-                }
-            }
+                },
+            },
         }
     </script>
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
         }
-        .material-symbols-outlined.fill {
-            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        body {
+            background-color: #faf9f7;
+            font-family: 'Inter', sans-serif;
         }
+        .nav-item.sidebar-active {
+            background-color: #344E41;
+        }
+        .nav-item.sidebar-active,
+        .nav-item.sidebar-active span,
+        .nav-item.sidebar-active .nav-text {
+            color: white !important;
+        }
+        #sidebar {
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #main-content {
+            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .sidebar-collapsed {
+            width: 80px !important;
+        }
+        .sidebar-collapsed .nav-text,
+        .sidebar-collapsed .nav-section-title,
+        .sidebar-collapsed .logo-text {
+            display: none;
+        }
+        .sidebar-collapsed .nav-item {
+            justify-content: center;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .sidebar-collapsed .logo-container {
+            padding-left: 0;
+            padding-right: 0;
+            justify-content: center;
+        }
+        .content-expanded {
+            margin-left: 80px !important;
+        }
+        .active-pill { @apply bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider; }
+        .inactive-pill { @apply bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider; }
     </style>
 </head>
-<body class="bg-background text-on-background font-body-md min-h-screen antialiased flex overflow-hidden">
-<!-- Application Shell: SideNavBar -->
-<nav class="hidden md:flex flex-col h-screen py-6 bg-surface-container-lowest border-r border-outline-variant fixed left-0 top-0 h-full w-[260px] z-30">
-<!-- Brand Logo Area -->
-<div class="px-6 mb-8 flex items-center gap-3">
-<span class="material-symbols-outlined text-3xl text-primary">menu</span>
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Manager</span>
-<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Workspace</span>
+<body
+    data-page="sales"
+    class="bg-background text-on-surface flex min-h-screen">
+<!-- Sidebar -->
+<aside class="w-[280px] bg-white border-r border-outline-variant flex flex-col fixed h-screen z-40 overflow-y-auto" id="sidebar">
+<div class="p-gutter flex items-center gap-3 mb-4 logo-container">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all flex items-center justify-center shrink-0" id="menu-toggle">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="logo-text">
+<h1 class="font-bold text-lg text-primary leading-tight">Manager Workspace</h1>
 </div>
 </div>
-<!-- Navigation Links -->
-<div class="flex-1 overflow-y-auto px-2 space-y-1">
-<div class="px-4 py-2 mt-2 mb-1">
-<span class="text-label-bold font-label-bold text-outline uppercase tracking-wider">Main</span>
-</div>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-variant transition-colors duration-200 rounded-lg mx-2" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="">Dashboard</span>
-</a>
-<div class="px-4 py-2 mt-4 mb-1">
-<span class="text-label-bold font-label-bold text-outline uppercase tracking-wider">Operations</span>
-</div>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-variant transition-colors duration-200 rounded-lg mx-2" href="#">
-<span class="material-symbols-outlined">inventory_2</span>
-<span class="">Products</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-variant transition-colors duration-200 rounded-lg mx-2" href="#">
-<span class="material-symbols-outlined">warehouse</span>
-<span class="">Inventory</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-variant transition-colors duration-200 rounded-lg mx-2" href="#">
-<span class="material-symbols-outlined">shopping_cart</span>
-<span class="">Purchase Orders</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-variant transition-colors duration-200 rounded-lg mx-2" href="#">
-<span class="material-symbols-outlined">local_shipping</span>
-<span class="">Suppliers</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-variant transition-colors duration-200 rounded-lg mx-2" href="#">
-<span class="material-symbols-outlined">groups</span>
-<span class="">Customers</span>
-</a>
-<!-- Active Item: Sales & Returns -->
-<a class="flex items-center gap-3 px-4 py-3 bg-primary text-on-primary rounded-lg mx-2" href="#">
-<span class="material-symbols-outlined fill">sell</span>
-<span class="font-bold">Sales &amp; Returns</span>
-</a>
-<div class="px-4 py-2 mt-4 mb-1">
-<span class="text-label-bold font-label-bold text-outline uppercase tracking-wider">Insights</span>
-</div>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-variant transition-colors duration-200 rounded-lg mx-2" href="#">
-<span class="material-symbols-outlined">analytics</span>
-<span class="">Reports</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-variant transition-colors duration-200 rounded-lg mx-2" href="#">
-<span class="material-symbols-outlined">badge</span>
-<span class="">Employees</span>
-</a>
-<div class="px-4 py-2 mt-4 mb-1">
-<span class="text-label-bold font-label-bold text-outline uppercase tracking-wider">Support</span>
-</div>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-variant transition-colors duration-200 rounded-lg mx-2" href="#">
-<span class="material-symbols-outlined">notifications</span>
-<span class="">Notification Center</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-variant transition-colors duration-200 rounded-lg mx-2" href="#">
-<span class="material-symbols-outlined">help</span>
-<span class="">Help &amp; Support</span>
-</a>
-</div>
-<!-- Footer Actions -->
-<div class="mt-auto px-2 pt-4 border-t border-outline-variant">
-<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-variant transition-colors duration-200 rounded-lg mx-2" href="#">
-<span class="material-symbols-outlined">person</span>
-<span class="">My Profile</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-error hover:bg-error-container transition-colors duration-200 rounded-lg mx-2" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="">Sign Out</span>
-</a>
-</div>
+<nav class="flex-grow px-4 space-y-1 mt-4">
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mb-2 nav-section-title">
+        Main
+    </div>
+
+    <a id="nav-dashboard"
+       data-page="dashboard"
+       href="../Dashboards/Manager Dashboard/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+        <span class="text-sm font-medium nav-text">Dashboard</span>
+
+    </a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mt-8 mb-2 nav-section-title">
+        Operations
+    </div>
+
+    <a id="nav-products"
+       data-page="products"
+       href="../Products/Products page/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">inventory_2</span>
+        <span class="text-sm font-medium nav-text">Products</span>
+
+    </a>
+
+    <a id="nav-inventory"
+       data-page="inventory"
+       href="../Inventory/inventory_manager_workspace/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">warehouse</span>
+        <span class="text-sm font-medium nav-text">Inventory</span>
+
+    </a>
+
+    <a id="nav-purchase-orders"
+       data-page="purchase-orders"
+       href="../Purchase/purchase orders/purchase_orders/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+        <span class="text-sm font-medium nav-text">Purchase Orders</span>
+
+    </a>
+
+    <a id="nav-suppliers"
+       data-page="suppliers"
+       href="../Supplier/suppliers_workspace/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">local_shipping</span>
+        <span class="text-sm font-medium nav-text">Suppliers</span>
+
+    </a>
+
+    <a id="nav-customers"
+       data-page="customers"
+       href="../Customer Management/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">groups</span>
+        <span class="text-sm font-medium nav-text">Customers</span>
+
+    </a>
+
+    <a
+       id="nav-sales"
+       class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all sidebar-active nav-item"
+       href="../Sales/code.html"
+       data-page="sales">
+
+        <span class="material-symbols-outlined text-[20px]">point_of_sale</span>
+        <span class="text-sm font-medium nav-text">Sales &amp; Returns</span>
+
+    </a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mt-8 mb-2 nav-section-title">
+        Insights
+    </div>
+
+    <a id="nav-reports"
+       data-page="reports"
+       href="../Reports-pg/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">bar_chart</span>
+        <span class="text-sm font-medium nav-text">Reports</span>
+
+    </a>
+
+    <a id="nav-employees"
+       data-page="employees"
+       href="../Employees.pg/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">badge</span>
+        <span class="text-sm font-medium nav-text">Employees</span>
+
+    </a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mt-8 mb-2 nav-section-title">
+        Support
+    </div>
+
+    <a id="nav-notifications"
+       data-page="notifications"
+       href="../Notification-centre/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">notifications</span>
+        <span class="text-sm font-medium nav-text">Notification Center</span>
+
+    </a>
+
+    <a id="nav-help"
+       data-page="help"
+       href="../Help$support-pg/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">help</span>
+        <span class="text-sm font-medium nav-text">Help &amp; Support</span>
+
+    </a>
+
 </nav>
+<div class="p-gutter border-t border-outline-variant mt-auto">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container mb-1 nav-item"
+   href="../My-profile-pg/code.html">
+<span class="material-symbols-outlined text-[20px] shrink-0">person</span>
+<span class="text-sm font-medium nav-text">My Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-error hover:bg-error-container/20 nav-item" href="../SignOut/code.html">
+<span class="material-symbols-outlined text-[20px] shrink-0">logout</span>
+<span class="text-sm font-medium nav-text">Sign Out</span>
+</a>
+</div>
+</aside>
 <!-- Main Content Wrapper -->
-<div class="flex-1 flex flex-col md:ml-[260px] max-w-full md:max-w-[calc(100%-260px)] h-screen overflow-hidden">
+<div class="flex-1 flex flex-col md:ml-[280px] max-w-full md:max-w-[calc(100%-280px)] h-screen overflow-hidden">
 <!-- Application Shell: TopNavBar -->
 <header class="flex items-center justify-between px-6 w-full h-[72px] bg-surface-container-lowest border-b border-outline-variant shrink-0 z-20">
 <!-- Left: Branch Selector -->
@@ -706,4 +760,8 @@
 </div>
 
 
+<script src="../js/routes.js"></script>
+<script src="../js/prototype.js"></script>
+<script src="../js/navigation.js"></script>
+<script src="../js/components/manager-shell.js"></script>
 </body></html>
