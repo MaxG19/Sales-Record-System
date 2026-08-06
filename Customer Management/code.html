@@ -159,106 +159,190 @@
         body { font-family: 'Hanken Grotesk', sans-serif; }
       </style>
 </head>
-<body class="bg-surface h-full flex overflow-hidden">
-<!-- SideNavBar -->
-<aside class="fixed h-full w-[260px] left-0 top-0 bg-surface-container-lowest border-r border-outline-variant flex flex-col z-50">
-<div class="px-6 py-6 flex items-center gap-3">
-<span class="material-symbols-outlined text-[32px] text-primary" data-icon="menu">menu</span>
-<div class="flex flex-col">
-<span class="text-headline-sm font-headline-sm font-bold text-on-surface">BMS</span>
-<span class="text-label-sm font-label-sm text-secondary">Manager Workspace</span>
+<body
+    data-page="customers"
+    class="bg-background text-on-surface flex min-h-screen">
+<!-- Sidebar -->
+<aside class="w-[280px] bg-white border-r border-outline-variant flex flex-col fixed h-screen z-40 overflow-y-auto" id="sidebar">
+<div class="p-gutter flex items-center gap-3 mb-4 logo-container">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all flex items-center justify-center shrink-0" id="menu-toggle">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="logo-text">
+<h1 class="font-bold text-lg text-primary leading-tight">Manager Workspace</h1>
 </div>
 </div>
-<div class="flex-1 overflow-y-auto px-4 py-4 space-y-1">
-<span class="text-label-caps font-label-caps text-outline px-4 mb-2 block uppercase">Main</span>
-<a class="text-secondary hover:text-primary hover:bg-surface-container flex items-center px-4 py-3 transition-colors rounded-lg mb-4" href="#">
-<span class="material-symbols-outlined mr-3" data-icon="dashboard">dashboard</span>
-<span class="text-body-md font-body-md">Dashboard</span>
+<nav class="flex-grow px-4 space-y-1 mt-4">
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mb-2 nav-section-title">
+        Main
+    </div>
+
+    <a id="nav-dashboard"
+       data-page="dashboard"
+       href="../Dashboards/Manager Dashboard/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+        <span class="text-sm font-medium nav-text">Dashboard</span>
+
+    </a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mt-8 mb-2 nav-section-title">
+        Operations
+    </div>
+
+    <a id="nav-products"
+       data-page="products"
+       href="../Products/Products page/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">inventory_2</span>
+        <span class="text-sm font-medium nav-text">Products</span>
+
+    </a>
+
+    <a id="nav-inventory"
+       data-page="inventory"
+       href="../Inventory/inventory_manager_workspace/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">warehouse</span>
+        <span class="text-sm font-medium nav-text">Inventory</span>
+
+    </a>
+
+    <a id="nav-purchase-orders"
+       data-page="purchase-orders"
+       href="../Purchase/purchase orders/purchase_orders/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+        <span class="text-sm font-medium nav-text">Purchase Orders</span>
+
+    </a>
+
+    <a id="nav-suppliers"
+       data-page="suppliers"
+       href="../Supplier/suppliers_workspace/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">local_shipping</span>
+        <span class="text-sm font-medium nav-text">Suppliers</span>
+
+    </a>
+
+    <a id="nav-customers"
+       data-page="customers"
+       href="../Customer Management/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">groups</span>
+        <span class="text-sm font-medium nav-text">Customers</span>
+
+    </a>
+
+    <a id="nav-sales"
+       data-page="sales"
+       href="../Sales/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">point_of_sale</span>
+        <span class="text-sm font-medium nav-text">Sales &amp; Returns</span>
+
+    </a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mt-8 mb-2 nav-section-title">
+        Insights
+    </div>
+
+    <a id="nav-reports"
+       data-page="reports"
+       href="../Reports-pg/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">bar_chart</span>
+        <span class="text-sm font-medium nav-text">Reports</span>
+
+    </a>
+
+    <a id="nav-employees"
+       data-page="employees"
+       href="../Employees.pg/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">badge</span>
+        <span class="text-sm font-medium nav-text">Employees</span>
+
+    </a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mt-8 mb-2 nav-section-title">
+        Support
+    </div>
+
+    <a id="nav-notifications"
+       data-page="notifications"
+       href="../Notification-centre/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">notifications</span>
+        <span class="text-sm font-medium nav-text">Notification Center</span>
+
+    </a>
+
+    <a id="nav-help"
+       data-page="help"
+       href="../Help$support-pg/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">help</span>
+        <span class="text-sm font-medium nav-text">Help &amp; Support</span>
+
+    </a>
+
+</nav>
+<div class="p-gutter border-t border-outline-variant mt-auto">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container mb-1 nav-item"
+   href="../My-profile-pg/code.html">
+<span class="material-symbols-outlined text-[20px] shrink-0">person</span>
+<span class="text-sm font-medium nav-text">My Profile</span>
 </a>
-<span class="text-label-caps font-label-caps text-outline px-4 mb-2 block uppercase">Operations</span>
-<a class="text-secondary hover:text-primary hover:bg-surface-container flex items-center px-4 py-3 transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined mr-3" data-icon="inventory_2">inventory_2</span>
-<span class="text-body-md font-body-md">Products</span>
-</a>
-<a class="text-secondary hover:text-primary hover:bg-surface-container flex items-center px-4 py-3 transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined mr-3" data-icon="warehouse">warehouse</span>
-<span class="text-body-md font-body-md">Inventory</span>
-</a>
-<a class="text-secondary hover:text-primary hover:bg-surface-container flex items-center px-4 py-3 transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined mr-3" data-icon="shopping_cart">shopping_cart</span>
-<span class="text-body-md font-body-md">Purchase Orders</span>
-</a>
-<a class="text-secondary hover:text-primary hover:bg-surface-container flex items-center px-4 py-3 transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined mr-3" data-icon="local_shipping">local_shipping</span>
-<span class="text-body-md font-body-md">Suppliers</span>
-</a>
-<a class="bg-primary text-on-primary rounded-lg flex items-center px-4 py-3 shadow-[0_2px_10px_rgba(0,0,0,0.04)] my-1 scale-[0.99] transition-transform duration-150" href="#">
-<span class="material-symbols-outlined mr-3" data-icon="groups">groups</span>
-<span class="text-body-md font-body-md font-medium">Customers</span>
-</a>
-<a class="text-secondary hover:text-primary hover:bg-surface-container flex items-center px-4 py-3 transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined mr-3" data-icon="assignment_return">assignment_return</span>
-<span class="text-body-md font-body-md">Sales &amp; Returns</span>
-</a>
-<div class="mt-6">
-<span class="text-label-caps font-label-caps text-outline px-4 mb-2 block uppercase">Insights</span>
-<a class="text-secondary hover:text-primary hover:bg-surface-container flex items-center px-4 py-3 transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined mr-3" data-icon="assessment">assessment</span>
-<span class="text-body-md font-body-md">Reports</span>
-</a>
-<a class="text-secondary hover:text-primary hover:bg-surface-container flex items-center px-4 py-3 transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined mr-3" data-icon="badge">badge</span>
-<span class="text-body-md font-body-md">Employees</span>
-</a>
-</div>
-<div class="mt-6">
-<span class="text-label-caps font-label-caps text-outline px-4 mb-2 block uppercase">Support</span>
-<a class="text-secondary hover:text-primary hover:bg-surface-container flex items-center px-4 py-3 transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined mr-3" data-icon="notifications">notifications</span>
-<span class="text-body-md font-body-md">Notification Center</span>
-</a>
-<a class="text-secondary hover:text-primary hover:bg-surface-container flex items-center px-4 py-3 transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined mr-3" data-icon="help">help</span>
-<span class="text-body-md font-body-md">Help &amp; Support</span>
-</a>
-</div>
-</div>
-<div class="px-4 py-6 border-t border-outline-variant mt-auto">
-<a class="text-secondary hover:text-primary hover:bg-surface-container flex items-center px-4 py-3 transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined mr-3" data-icon="person">person</span>
-<span class="text-body-md font-body-md">My Profile</span>
-</a>
-<a class="text-error hover:bg-surface-container flex items-center px-4 py-3 transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined mr-3" data-icon="logout">logout</span>
-<span class="text-body-md font-body-md">Sign Out</span>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-error hover:bg-error-container/20 nav-item" href="../SignOut/code.html">
+<span class="material-symbols-outlined text-[20px] shrink-0">logout</span>
+<span class="text-sm font-medium nav-text">Sign Out</span>
 </a>
 </div>
 </aside>
 <!-- Main Content Wrapper -->
-<div class="flex-1 flex flex-col ml-[260px] h-full overflow-hidden">
-<!-- TopNavBar -->
-<header class="bg-surface sticky top-0 right-0 z-40 border-b border-outline-variant flex items-center justify-between h-16 px-8 shrink-0 w-full">
-<div class="flex items-center gap-6 flex-1">
-<button class="flex items-center gap-2 bg-surface-container-low hover:bg-surface-container px-3 py-2 rounded-lg transition-colors border border-outline-variant">
-<span class="text-body-md font-body-md text-on-surface">Main Branch</span>
-<span class="material-symbols-outlined text-outline" data-icon="expand_more">expand_more</span>
+<div class="flex-1 flex flex-col ml-[280px] h-full overflow-hidden">
+<!-- Topbar -->
+<header class="h-16 bg-white border-b border-outline-variant flex items-center justify-between px-gutter sticky top-0 z-30">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative">
+<button class="flex items-center gap-2 bg-surface-container px-4 py-1.5 rounded-lg text-sm border border-outline-variant/30 hover:border-primary/30 transition-all">
+<span class="">Main Branch</span>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
 </button>
-<div class="relative max-w-xl flex-1">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
-<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-body-md font-body-md text-on-surface focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest transition-colors placeholder:text-outline" placeholder="Search products, customers, suppliers or orders..." type="text">
+</div>
+<div class="relative w-full max-w-md ml-4">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container border-none rounded-lg text-sm focus:ring-1 focus:ring-primary transition-all" placeholder="Search products, customers, suppliers or orders..." type="text"/>
 </div>
 </div>
-<div class="flex items-center gap-6">
-<button class="relative text-on-surface-variant hover:bg-surface-container-high rounded-full p-2 transition-colors">
-<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-surface-container-lowest"></span>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full relative transition-all">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
 </button>
-<div class="flex items-center gap-3">
-<div class="text-right hidden sm:block">
-<div class="text-label-sm font-label-sm font-bold text-on-surface">Alex Chen</div>
-<div class="text-label-sm font-label-sm text-secondary">Manager</div>
+<div class="h-8 w-[1px] bg-outline-variant mx-1"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right">
+<p class="text-xs font-bold leading-none">Alex Chen</p>
+<p class="text-[10px] text-on-surface-variant font-medium">Manager</p>
 </div>
-<img alt="Alex Chen" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="Professional headshot of a diverse manager with a friendly expression in a corporate setting, soft lighting, 4k resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgRdd4OrcamvvZDhOD8-C9smfTyoj9zN6VZ3huhoqD6GBXUuRGirlgPMybzxt0Uk3Y5y7NYFa-P7gxAEPaOILaAS9yMWfYjoEDbQ4-N93o18HReeR96LTJwnXPMwfj8ggn1d-fCfgynWb-RU_c-8LbGHDqCcwwKzOGTEY6SWNJ9LHr3X3d3VbPJufojEiwfgPeCdUocJjIZZGeEbLZ6OeIQ20kTS7en7cnEACC1JbKnuPKCxvTrns">
+<div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold overflow-hidden border border-outline-variant">
+<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5ZvsGsbydSbV85jPaOR7Nb3mGNLME7ZBwdEVe2YEADOI7FUHmRNCzvpiJ1z1E4qpj0evqqCfviYVf-CG-s4mOGViZhXwT7zSwjIzEtpVTrbS3m_fzBpamES2PH79dGPtQGWIMP026ABh-NE3kzwBwynnu6Dwa0vBePk6XFppP2U1yB8TxdY-nPPPPHsJjhA16GXfpGtYEeRb0JZKy5NVMapBVy8mlGzzS1oXIPAX_J-n6sN2mNS07wg"/>
+</div>
 </div>
 </div>
 </header>
@@ -598,4 +682,10 @@
 </div>
 <div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-[70] flex items-center justify-center p-4 hidden" id="archive-customer-modal"><div class="bg-surface-container-lowest rounded-xl shadow-xl w-full max-w-md flex flex-col"><div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center"><h2 class="text-headline-sm font-headline-sm text-on-surface">Archive Customer?</h2><button class="text-secondary hover:text-primary p-1 rounded-md transition-colors" onclick="document.getElementById('archive-customer-modal').classList.add('hidden')"><span class="material-symbols-outlined" data-icon="close">close</span></button></div><div class="p-6"><p class="text-body-md font-body-md text-on-surface-variant">Are you sure you want to archive Elena Smith? This will hide their profile from the active customer list but preserve their purchase history.</p></div><div class="px-6 py-4 border-t border-outline-variant flex justify-end gap-3 bg-surface-container-low/30 rounded-b-xl"><button class="px-4 py-2 border border-outline-variant text-on-surface text-body-md font-body-md rounded-lg hover:bg-surface-container transition-colors" onclick="document.getElementById('archive-customer-modal').classList.add('hidden')">Cancel</button><button class="px-4 py-2 bg-[#FFF9C4] text-[#F57F17] text-body-md font-body-md rounded-lg shadow-sm hover:bg-[#FFF59D] transition-colors border border-[#FFF59D]">Archive</button></div></div></div>
 
+<script src="../js/routes.js"></script>
+<script src="../js/prototype.js"></script>
+<script src="../js/navigation.js"></script>
+<script src="../js/components/manager-shell.js"></script>
+<!-- Customer controller -->
+<script src="./customer.js"></script>
 </body></html>
