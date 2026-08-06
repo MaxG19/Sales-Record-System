@@ -147,73 +147,141 @@
 </div>
 </div>
 <nav class="flex-grow px-4 space-y-1 mt-4">
-<div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mb-2 nav-section-title">Main</div>
-<a
-    id="nav-dashboard"
-    class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container sidebar-active nav-item"
-    href="../Dashboards/Manager Dashboard/code.html"
-    data-page="dashboard">
-<span class="material-symbols-outlined text-[20px] shrink-0">dashboard</span>
-<span class="text-sm font-medium nav-text">Dashboard</span>
-</a>
-<div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mb-2 mt-12 nav-section-title">Operations</div>
-<a
-    id="nav-products"
-    class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item"
-    href="../Products/code.html"
-    data-page="products">
-<span class="material-symbols-outlined text-[20px] shrink-0">inventory_2</span>
-<span class="text-sm font-medium nav-text">Products</span>
-</a>
-<a
-    id="nav-inventory"
-    class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item"
-    href="../Inventory/code.html"
-    data-page="inventory">
-<span class="material-symbols-outlined text-[20px] shrink-0">shelves</span>
-<span class="text-sm font-medium nav-text">Inventory</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item" href="#">
-<span class="material-symbols-outlined text-[20px] shrink-0">shopping_cart</span>
-<span class="text-sm font-medium nav-text">Purchase Orders</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item" href="#">
-<span class="material-symbols-outlined text-[20px] shrink-0">local_shipping</span>
-<span class="text-sm font-medium nav-text">Suppliers</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item" href="#">
-<span class="material-symbols-outlined text-[20px] shrink-0">groups</span>
-<span class="text-sm font-medium nav-text">Customers</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item" href="#">
-<span class="material-symbols-outlined text-[20px] shrink-0">swap_horizontal_circle</span>
-<span class="text-sm font-medium nav-text">Sales &amp; Returns</span>
-</a>
-<div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mb-2 mt-12 nav-section-title">Insights</div>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item" href="#">
-<span class="material-symbols-outlined text-[20px] shrink-0">bar_chart</span>
-<span class="text-sm font-medium nav-text">Reports</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item" href="#">
-<span class="material-symbols-outlined text-[20px] shrink-0">badge</span>
-<span class="text-sm font-medium nav-text">Employees</span>
-</a>
-<div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mb-2 mt-12 nav-section-title">Support</div>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item" href="#">
-<span class="material-symbols-outlined text-[20px] shrink-0">notifications</span>
-<span class="text-sm font-medium nav-text">Notification Center</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container nav-item" href="#">
-<span class="material-symbols-outlined text-[20px] shrink-0">help</span>
-<span class="text-sm font-medium nav-text">Help &amp; Support</span>
-</a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mb-2 nav-section-title">
+        Main
+    </div>
+
+    <a id="nav-dashboard"
+       data-page="dashboard"
+       href="../../Dashboards/Manager Dashboard/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+        <span class="text-sm font-medium nav-text">Dashboard</span>
+
+    </a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mt-8 mb-2 nav-section-title">
+        Operations
+    </div>
+
+    <a id="nav-products"
+       data-page="products"
+       href="../../Products/Products page/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">inventory_2</span>
+        <span class="text-sm font-medium nav-text">Products</span>
+
+    </a>
+
+    <a id="nav-inventory"
+       data-page="inventory"
+       href="../../Inventory/inventory_manager_workspace/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">warehouse</span>
+        <span class="text-sm font-medium nav-text">Inventory</span>
+
+    </a>
+
+    <a id="nav-purchase-orders"
+       data-page="purchase-orders"
+       href="../../Purchase/purchase_orders/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+        <span class="text-sm font-medium nav-text">Purchase Orders</span>
+
+    </a>
+
+    <a id="nav-suppliers"
+       data-page="suppliers"
+       href="../../Supplier/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">local_shipping</span>
+        <span class="text-sm font-medium nav-text">Suppliers</span>
+
+    </a>
+
+    <a id="nav-customers"
+       data-page="customers"
+       href="../../Customer Management/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">groups</span>
+        <span class="text-sm font-medium nav-text">Customers</span>
+
+    </a>
+
+    <a id="nav-sales"
+       data-page="sales"
+       href="../../Sales/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">point_of_sale</span>
+        <span class="text-sm font-medium nav-text">Sales &amp; Returns</span>
+
+    </a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mt-8 mb-2 nav-section-title">
+        Insights
+    </div>
+
+    <a id="nav-reports"
+       data-page="reports"
+       href="../../Reports-pg/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">bar_chart</span>
+        <span class="text-sm font-medium nav-text">Reports</span>
+
+    </a>
+
+    <a id="nav-employees"
+       data-page="employees"
+       href="../../Employees.pg/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">badge</span>
+        <span class="text-sm font-medium nav-text">Employees</span>
+
+    </a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mt-8 mb-2 nav-section-title">
+        Support
+    </div>
+
+    <a id="nav-notifications"
+       data-page="notifications"
+       href="../../Notification-centre/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">notifications</span>
+        <span class="text-sm font-medium nav-text">Notification Center</span>
+
+    </a>
+
+    <a id="nav-help"
+       data-page="help"
+       href="../../Help$support-pg/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">help</span>
+        <span class="text-sm font-medium nav-text">Help &amp; Support</span>
+
+    </a>
+
 </nav>
 <div class="p-gutter border-t border-outline-variant mt-auto">
-<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container mb-1 nav-item" href="#">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container mb-1 nav-item"
+   href="../../My-profile-pg/code.html">
 <span class="material-symbols-outlined text-[20px] shrink-0">person</span>
 <span class="text-sm font-medium nav-text">My Profile</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-error hover:bg-error-container/20 nav-item" href="#">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-error hover:bg-error-container/20 nav-item" href="../../SignOut/code.html">
 <span class="material-symbols-outlined text-[20px] shrink-0">logout</span>
 <span class="text-sm font-medium nav-text">Sign Out</span>
 </a>
