@@ -1,6 +1,7 @@
 <!DOCTYPE html>
+
 <html class="light" lang="en">
-<head>
+    <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Products | Manager Workspace</title>
@@ -91,7 +92,9 @@
         .inactive-pill { @apply bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider; }
     </style>
 </head>
-<body data-page="products" class="bg-background text-on-surface flex min-h-screen">
+<body
+    data-page="products"
+    class="bg-background text-on-surface flex min-h-screen">
 <!-- Sidebar -->
 <aside class="w-[280px] bg-white border-r border-outline-variant flex flex-col fixed h-screen z-40 overflow-y-auto" id="sidebar">
 <div class="p-gutter flex items-center gap-3 mb-4 logo-container">
@@ -124,7 +127,7 @@
 
     <a id="nav-products"
        data-page="products"
-       href="../../Products/Products page/code.html"
+       href="../new products/code.html"
        class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
 
         <span class="material-symbols-outlined text-[20px]">inventory_2</span>
@@ -144,7 +147,7 @@
 
     <a id="nav-purchase-orders"
        data-page="purchase-orders"
-       href="../../Purchase/purchase orders/purchase_orders/code.html"
+       href="../../Purchase/purchase_orders/code.html"
        class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
 
         <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
@@ -154,7 +157,7 @@
 
     <a id="nav-suppliers"
        data-page="suppliers"
-       href="../../Supplier/suppliers_workspace/code.html"
+       href="../../Supplier/code.html"
        class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
 
         <span class="material-symbols-outlined text-[20px]">local_shipping</span>
@@ -232,24 +235,24 @@
 
 </nav>
 <div class="p-gutter border-t border-outline-variant mt-auto">
-<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container mb-1 nav-item" href="../../My-profile-pg/code.html" id="nav-profile">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container mb-1 nav-item"
+   href="../../My-profile-pg/code.html">
 <span class="material-symbols-outlined text-[20px] shrink-0">person</span>
 <span class="text-sm font-medium nav-text">My Profile</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-error hover:bg-error-container/20 nav-item" href="../../SignOut/code.html" id="nav-logout">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-error hover:bg-error-container/20 nav-item" href="../../SignOut/code.html">
 <span class="material-symbols-outlined text-[20px] shrink-0">logout</span>
 <span class="text-sm font-medium nav-text">Sign Out</span>
 </a>
 </div>
 </aside>
-
 <!-- Main Content -->
 <div class="ml-[280px] flex-grow flex flex-col min-h-screen" id="main-content">
 <!-- Topbar -->
 <header class="h-16 bg-white border-b border-outline-variant flex items-center justify-between px-gutter sticky top-0 z-30">
 <div class="flex items-center gap-4 flex-1">
 <div class="relative">
-<button id="header-branch-select" class="flex items-center gap-2 bg-surface-container px-4 py-1.5 rounded-lg text-sm border border-outline-variant/30 hover:border-primary/30 transition-all">
+<button class="flex items-center gap-2 bg-surface-container px-4 py-1.5 rounded-lg text-sm border border-outline-variant/30 hover:border-primary/30 transition-all">
 <span class="">Main Branch</span>
 <span class="material-symbols-outlined text-[18px]">expand_more</span>
 </button>
@@ -260,14 +263,14 @@
 </div>
 </div>
 <div class="flex items-center gap-4">
-<button id="header-notification-btn" class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full relative transition-all">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full relative transition-all">
 <span class="material-symbols-outlined">notifications</span>
 <span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
 </button>
 <div class="h-8 w-[1px] bg-outline-variant mx-1"></div>
-<div id="header-avatar-btn" class="flex items-center gap-3 cursor-pointer group">
+<div class="flex items-center gap-3 cursor-pointer group">
 <div class="text-right">
-<p class="text-xs font-bold leading-none" id="header-user-name">Alex Chen</p>
+<p class="text-xs font-bold leading-none">Alex Chen</p>
 <p class="text-[10px] text-on-surface-variant font-medium">Manager</p>
 </div>
 <div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold overflow-hidden border border-outline-variant">
@@ -276,8 +279,7 @@
 </div>
 </div>
 </header>
-
-<!-- Page Main Content -->
+<!-- Main Product Content -->
 <main class="p-gutter overflow-y-auto">
 <!-- Page Header -->
 <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-md">
@@ -470,10 +472,8 @@
 </footer>
 </main>
 </div>
-
 <script src="../../js/routes.js"></script>
 <script src="../../js/prototype.js"></script>
 <script src="../../js/navigation.js"></script>
 <script src="../../js/components/manager-shell.js"></script>
-</body>
-</html>
+</body></html>

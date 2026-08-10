@@ -1,48 +1,9 @@
-<!DOCTYPE html>
-<html class="light" lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Inventory | Manager Workspace</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "primary": "#344e41",
-                        "on-primary": "#ffffff",
-                        "background": "#faf9f7",
-                        "surface": "#ffffff",
-                        "surface-container": "#f4f3f1",
-                        "surface-container-lowest": "#ffffff",
-                        "surface-container-low": "#f4f3f1",
-                        "surface-container-high": "#e9e8e6",
-                        "outline-variant": "#e3e2e0",
-                        "on-surface": "#1a1c1b",
-                        "on-surface-variant": "#424844",
-                        "error": "#ba1a1a",
-                        "error-container": "#ffdad6",
-                        "secondary-container": "#d7e5bb",
-                        "on-secondary-container": "#5a6745",
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "8px",
-                        "lg": "12px",
-                        "xl": "16px",
-                    },
-                    "spacing": {
-                        "gutter": "24px",
-                        "md": "24px",
-                        "sm": "16px",
-                        "margin-desktop": "48px",
-                    }
-                },
-            },
-        }
-    </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -52,14 +13,20 @@
             background-color: #faf9f7;
             font-family: 'Inter', sans-serif;
         }
+        .card-shadow {
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
         .nav-item.sidebar-active {
-            background-color: #344E41;
-        }
-        .nav-item.sidebar-active,
-        .nav-item.sidebar-active span,
-        .nav-item.sidebar-active .nav-text {
-            color: white !important;
-        }
+    background-color: #344E41;
+}
+
+.nav-item.sidebar-active,
+.nav-item.sidebar-active span,
+.nav-item.sidebar-active .nav-text {
+    color: white !important;
+}
+        
+        /* Retractable Sidebar Styles from SCREEN_13 */
         #sidebar {
             transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -87,12 +54,45 @@
         .content-expanded {
             margin-left: 80px !important;
         }
-        .active-pill { @apply bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider; }
-        .inactive-pill { @apply bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #c2c8c2; border-radius: 10px; }
     </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#344e41",
+                        "on-primary": "#ffffff",
+                        "background": "#faf9f7",
+                        "surface": "#ffffff",
+                        "surface-container": "#f4f3f1",
+                        "outline-variant": "#e3e2e0",
+                        "on-surface": "#1a1c1b",
+                        "on-surface-variant": "#424844",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#d7e5bb",
+                    },
+                    borderRadius: {
+                        "DEFAULT": "8px",
+                        "lg": "12px",
+                        "xl": "16px",
+                    },
+                    spacing: {
+                        "gutter": "24px",
+                        "md": "24px",
+                        "sm": "16px",
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body data-page="inventory" class="bg-background text-on-surface flex min-h-screen">
-<!-- Sidebar -->
+<!-- Sidebar (Shell from SCREEN_13) -->
 <aside class="w-[280px] bg-white border-r border-outline-variant flex flex-col fixed h-screen z-40 overflow-y-auto" id="sidebar">
 <div class="p-gutter flex items-center gap-3 mb-4 logo-container">
 <button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all flex items-center justify-center shrink-0" id="menu-toggle">
@@ -232,52 +232,50 @@
 
 </nav>
 <div class="p-gutter border-t border-outline-variant mt-auto">
-<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container mb-1 nav-item" href="../../My-profile-pg/code.html" id="nav-profile">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container mb-1 nav-item" href="../../My-profile-pg/code.html">
 <span class="material-symbols-outlined text-[20px] shrink-0">person</span>
 <span class="text-sm font-medium nav-text">My Profile</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-error hover:bg-error-container/20 nav-item" href="../../SignOut/code.html" id="nav-logout">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-error hover:bg-error-container/20 nav-item" href="../../SignOut/code.html">
 <span class="material-symbols-outlined text-[20px] shrink-0">logout</span>
 <span class="text-sm font-medium nav-text">Sign Out</span>
 </a>
 </div>
 </aside>
-
 <!-- Main Content -->
 <div class="ml-[280px] flex-grow flex flex-col min-h-screen" id="main-content">
-<!-- Topbar -->
+<!-- Topbar (Shell from SCREEN_13) -->
 <header class="h-16 bg-white border-b border-outline-variant flex items-center justify-between px-gutter sticky top-0 z-30">
 <div class="flex items-center gap-4 flex-1">
 <div class="relative">
-<button id="header-branch-select" class="flex items-center gap-2 bg-surface-container px-4 py-1.5 rounded-lg text-sm border border-outline-variant/30 hover:border-primary/30 transition-all">
+<button class="flex items-center gap-2 bg-surface-container px-4 py-1.5 rounded-lg text-sm border border-outline-variant/30 hover:border-primary/30 transition-all">
 <span class="">Main Branch</span>
 <span class="material-symbols-outlined text-[18px]">expand_more</span>
 </button>
 </div>
 <div class="relative w-full max-w-md ml-4">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
-<input class="w-full pl-10 pr-4 py-2 bg-surface-container border-none rounded-lg text-sm focus:ring-1 focus:ring-primary transition-all" placeholder="Search products, customers, suppliers or orders..." type="text"/>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container border-none rounded-lg text-sm focus:ring-1 focus:ring-primary transition-all" placeholder="Search products, SKUs, or batches..." type="text">
 </div>
 </div>
 <div class="flex items-center gap-4">
-<button id="header-notification-btn" class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full relative transition-all">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full relative transition-all">
 <span class="material-symbols-outlined">notifications</span>
 <span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
 </button>
 <div class="h-8 w-[1px] bg-outline-variant mx-1"></div>
-<div id="header-avatar-btn" class="flex items-center gap-3 cursor-pointer group">
+<div class="flex items-center gap-3 cursor-pointer group">
 <div class="text-right">
-<p class="text-xs font-bold leading-none" id="header-user-name">Alex Chen</p>
-<p class="text-[10px] text-on-surface-variant font-medium">Manager</p>
+<p class="text-xs font-bold leading-none">Sarah Jenkins</p>
+<p class="text-[10px] text-on-surface-variant font-medium">Operations Lead</p>
 </div>
 <div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold overflow-hidden border border-outline-variant">
-<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5ZvsGsbydSbV85jPaOR7Nb3mGNLME7ZBwdEVe2YEADOI7FUHmRNCzvpiJ1z1E4qpj0evqqCfviYVf-CG-s4mOGViZhXwT7zSwjIzEtpVTrbS3m_fzBpamES2PH79dGPtQGWIMP026ABh-NE3kzwBwynnu6Dwa0vBePk6XFppP2U1yB8TxdY-nPPPPHsJjhA16GXfpGtYEeRb0JZKy5NVMapBVy8mlGzzS1oXIPAX_J-n6sN2mNS07wg"/>
+<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcaUbUoHlUJE24-05INVkxq-s6gR8CnTB4ZvOmuo-NjGrCnbsxVo_0pP8ajuNnDCpNAhaFNVDKppu0EIGUej9-6d95tTdxAHEhwQBMiqhRxhSJ91Reej_6ztnXe-ydQeK1DXMB8_-bP49gzmte_wJET5WkE_sg3AWUjEaCoc0EDDLEeP2zhtItpVfGACiX_vGzXBheE_LXHcCs8T9EbMrk3Rno784KF9wOeLeLktfi0QlcQroW5vswVA">
 </div>
 </div>
 </div>
 </header>
-
-<!-- Page Main Content -->
+<!-- Page Canvas (Layout rhythm from SCREEN_13) -->
 <main class="p-gutter overflow-y-auto">
 <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
 <div>
@@ -518,10 +516,45 @@
 </footer>
 </main>
 </div>
+<script>
+        // Retractable Sidebar Toggle Logic (copied from SCREEN_13)
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('main-content');
+        const menuToggle = document.getElementById('menu-toggle');
 
-<script src="../../js/routes.js"></script>
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-collapsed');
+            mainContent.classList.toggle('content-expanded');
+        });
+
+        // Search Filter Simulation
+        const searchInput = document.querySelector('input[placeholder="Search product..."]');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(term) ? '' : 'none';
+            });
+        });
+
+        // Hover and click micro-interactions
+        document.querySelectorAll('button, a').forEach(elem => {
+            elem.addEventListener('mousedown', () => {
+                elem.classList.add('scale-95');
+            });
+            elem.addEventListener('mouseup', () => {
+                elem.classList.remove('scale-95');
+            });
+            elem.addEventListener('mouseleave', () => {
+                elem.classList.remove('scale-95');
+            });
+        });
+    </script>
+    <script src="../../js/routes.js"></script>
 <script src="../../js/prototype.js"></script>
 <script src="../../js/navigation.js"></script>
 <script src="../../js/components/manager-shell.js"></script>
-</body>
-</html>
+
+
+</body></html>

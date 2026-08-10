@@ -1,22 +1,9 @@
 /**
  * Manager Dashboard Controller
  *
- * Establishes the navigation hub for the Manager Workspace.
- *
- * Lifecycle:
- * DOMContentLoaded
- * ↓
- * Cache DOM
- * ↓
- * Load State (via app.getState())
- * ↓
- * Guard
- * ↓
- * Bind Events
- * ↓
- * Render (Highlight active sidebar item → Update breadcrumb → Display business name → Display current branch)
- * ↓
- * Navigate (via app.go())
+ * Coordinates dashboard-specific metric card clicks, quick actions, and alerts,
+ * while delegating shell components (sidebar, top header, notification drawer,
+ * profile dropdown, sign out modal) to ManagerShell.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -27,36 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Cache DOM
     // -------------------------
     const elements = {
-        // Sidebar Navigation
-        sidebar: document.getElementById("sidebar"),
-        navDashboard: document.getElementById("nav-dashboard"),
-        navProducts: document.getElementById("nav-products"),
-        navInventory: document.getElementById("nav-inventory"),
-        navPurchaseOrders: document.getElementById("nav-purchase-orders"),
-        navSuppliers: document.getElementById("nav-suppliers"),
-        navCustomers: document.getElementById("nav-customers"),
-        navSales: document.getElementById("nav-sales"),
-        navReports: document.getElementById("nav-reports"),
-        navEmployees: document.getElementById("nav-employees"),
-        navNotifications: document.getElementById("nav-notifications"),
-        navHelp: document.getElementById("nav-help"),
-        navProfile: document.getElementById("nav-profile"),
-        navLogout: document.getElementById("nav-logout"),
-
-        // Header Shell Controls
-        headerBusinessName: document.getElementById("header-business-name"),
-        headerBranchSelect: document.getElementById("header-branch-select"),
-        headerSearchForm: document.getElementById("header-search-form"),
-        headerSearchInput: document.getElementById("header-search-input"),
-        headerNotificationBtn: document.getElementById("header-notification-btn"),
-        headerAvatarBtn: document.getElementById("header-avatar-btn"),
-        headerUserName: document.getElementById("header-user-name"),
-
-        // Breadcrumbs & Titles
-        breadcrumbContainer: document.getElementById("breadcrumb-container"),
-        dashboardTitle: document.getElementById("dashboard-title"),
-        dashboardSubtitle: document.getElementById("dashboard-subtitle"),
-
         // Quick Actions
         qaAddProduct: document.getElementById("qa-add-product"),
         qaReceiveGoods: document.getElementById("qa-receive-goods"),
@@ -65,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         qaAdjustStock: document.getElementById("qa-adjust-stock"),
         qaProcessReturns: document.getElementById("qa-process-returns"),
 
-        // Dashboard Module Cards
+        // Dashboard Metric Cards
         cardProducts: document.getElementById("card-products"),
         cardInventory: document.getElementById("card-inventory"),
         cardPurchaseOrders: document.getElementById("card-purchase-orders"),
@@ -74,6 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
         cardSales: document.getElementById("card-sales"),
         cardReports: document.getElementById("card-reports"),
         cardEmployees: document.getElementById("card-employees"),
+
+        // Priority / Metric Summary Cards
+        kpiGrossProfit: document.getElementById("kpi-gross-profit"),
+        kpiRevenue: document.getElementById("kpi-revenue"),
+        kpiLiabilities: document.getElementById("kpi-liabilities"),
+        kpiLowStock: document.getElementById("kpi-low-stock"),
 
         // Needs Attention Alerts
         alertLowStock: document.getElementById("alert-low-stock"),
@@ -109,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // -------------------------
     function checkGuards() {
         if (DEBUG) {
-            console.log("Dashboard Controller initialized. Business state:", state.business);
+            console.log("Manager Dashboard Controller ready.");
         }
     }
 
@@ -119,58 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Bind Events
     // -------------------------
     function bindEvents() {
-        // Sidebar Navigation
-        bindRoute(elements.navDashboard, "dashboard");
-        bindRoute(elements.navProducts, "products");
-        bindRoute(elements.navInventory, "inventory");
-        bindRoute(elements.navPurchaseOrders, "purchaseOrders");
-        bindRoute(elements.navSuppliers, "suppliers");
-        bindRoute(elements.navCustomers, "customers");
-        bindRoute(elements.navSales, "sales");
-        
-        // Permission-guarded sidebar items
-        bindPermissionRoute(elements.navReports, "reports", state.permissions.canViewReports);
-        bindPermissionRoute(elements.navEmployees, "employees", state.permissions.canViewEmployees);
-
-        bindRoute(elements.navNotifications, "notifications");
-        bindRoute(elements.navHelp, "help");
-        bindRoute(elements.navProfile, "profile");
-
-        if (elements.navLogout) {
-            elements.navLogout.addEventListener("click", (e) => {
-                e.preventDefault();
-                handleSignOut();
-            });
-        }
-
-        // Header Shell Interactions
-        if (elements.headerNotificationBtn) {
-            elements.headerNotificationBtn.addEventListener("click", () => app.go("notifications"));
-        }
-        if (elements.headerAvatarBtn) {
-            elements.headerAvatarBtn.addEventListener("click", () => app.go("profile"));
-        }
-        if (elements.headerBranchSelect) {
-            elements.headerBranchSelect.addEventListener("change", (e) => {
-                const selectedBranch = e.target.value;
-                app.setState(STORAGE.BRANCH, selectedBranch);
-                app.go("branchSelection");
-            });
-        }
-        if (elements.headerSearchForm) {
-            elements.headerSearchForm.addEventListener("submit", (e) => {
-                e.preventDefault();
-                app.go("search");
-            });
-        } else if (elements.headerSearchInput) {
-            elements.headerSearchInput.addEventListener("keydown", (e) => {
-                if (e.key === "Enter") {
-                    e.preventDefault();
-                    app.go("search");
-                }
-            });
-        }
-
         // Quick Actions
         bindRoute(elements.qaAddProduct, "addProduct");
         bindRoute(elements.qaReceiveGoods, "receiveGoods");
@@ -179,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
         bindRoute(elements.qaAdjustStock, "adjustStock");
         bindRoute(elements.qaProcessReturns, "processReturns");
 
-        // Module Cards
+        // Module Overview Cards
         bindRoute(elements.cardProducts, "products");
         bindRoute(elements.cardInventory, "inventory");
         bindRoute(elements.cardPurchaseOrders, "purchaseOrders");
@@ -188,6 +99,12 @@ document.addEventListener("DOMContentLoaded", () => {
         bindRoute(elements.cardSales, "sales");
         bindPermissionRoute(elements.cardReports, "reports", state.permissions.canViewReports);
         bindPermissionRoute(elements.cardEmployees, "employees", state.permissions.canViewEmployees);
+
+        // KPI Summary Metric Tiles
+        bindRoute(elements.kpiGrossProfit, "reports");
+        bindRoute(elements.kpiRevenue, "sales");
+        bindRoute(elements.kpiLiabilities, "suppliers");
+        bindRoute(elements.kpiLowStock, "inventory");
 
         // Needs Attention Alerts
         bindRoute(elements.alertLowStock, "inventory");
@@ -224,56 +141,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function handleSignOut() {
-        if (DEBUG) console.log("Signing out user...");
-        app.clearOnboarding();
-        app.remove(STORAGE.USER);
-        app.go("login");
-    }
-
     // -------------------------
-    // Render
+    // Render Dashboard Specifics
     // -------------------------
     function render() {
-        renderSidebarActive();
-        renderBreadcrumbs();
-        renderBusinessShellInfo();
-    }
-
-    function renderSidebarActive() {
-        const sidebarLinks = document.querySelectorAll("#sidebar nav a");
-        sidebarLinks.forEach(link => {
-            link.classList.remove("sidebar-active");
-            link.classList.add("text-on-surface-variant");
-        });
-        if (elements.navDashboard) {
-            elements.navDashboard.classList.add("sidebar-active");
-            elements.navDashboard.classList.remove("text-on-surface-variant");
+        const titleEl = document.getElementById("dashboard-title");
+        if (titleEl && state.user?.name) {
+            titleEl.textContent = `Welcome back, ${state.user.name}`;
         }
     }
 
-    function renderBreadcrumbs() {
-        if (!elements.breadcrumbContainer) return;
-        elements.breadcrumbContainer.innerHTML = `
-            <span class="text-primary font-bold">Dashboard</span>
-        `;
-    }
-
-    function renderBusinessShellInfo() {
-        if (elements.headerBusinessName && state.business?.name) {
-            elements.headerBusinessName.textContent = state.business.name;
-        }
-        if (elements.headerUserName && state.user?.name) {
-            elements.headerUserName.textContent = state.user.name;
-        }
-        if (elements.dashboardTitle && state.user?.name) {
-            elements.dashboardTitle.textContent = `Welcome back, ${state.user.name}`;
-        }
-    }
-
-    // -------------------------
-    // Initialize Lifecycle
-    // -------------------------
+    // Initialize
     bindEvents();
     render();
 
