@@ -1,0 +1,334 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Help &amp; Support | BMS Branches</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed": "#002018",
+                    "on-primary-fixed-variant": "#41484a",
+                    "on-secondary-container": "#00725b",
+                    "on-primary-container": "#959c9f",
+                    "secondary-fixed": "#6dfad2",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#feb5a4",
+                    "primary-fixed": "#dde4e6",
+                    "on-secondary-fixed-variant": "#005140",
+                    "surface-variant": "#e5e2dd",
+                    "surface-bright": "#fcf9f4",
+                    "on-tertiary-fixed-variant": "#6c392c",
+                    "surface-container-low": "#f6f3ee",
+                    "surface-container": "#f0ede9",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#31302d",
+                    "error": "#ba1a1a",
+                    "surface": "#fcf9f4",
+                    "tertiary": "#391108",
+                    "primary-container": "#2d3436",
+                    "on-surface-variant": "#434749",
+                    "inverse-on-surface": "#f3f0eb",
+                    "surface-dim": "#dcdad5",
+                    "secondary": "#006b55",
+                    "primary": "#181f21",
+                    "outline-variant": "#c3c7c8",
+                    "on-surface": "#1c1c19",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#161d1f",
+                    "surface-container-highest": "#e5e2dd",
+                    "surface-container-high": "#ebe8e3",
+                    "inverse-primary": "#c1c8ca",
+                    "on-secondary": "#ffffff",
+                    "background": "#fcf9f4",
+                    "tertiary-fixed": "#ffdad2",
+                    "secondary-fixed-dim": "#4bddb7",
+                    "surface-tint": "#586062",
+                    "outline": "#747879",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#360f06",
+                    "on-tertiary-container": "#ce8a7b",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "24px",
+                    "container-padding": "20px",
+                    "stack-lg": "40px",
+                    "gutter": "16px",
+                    "stack-sm": "12px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "headline-sm": ["Geist"],
+                    "label-md": ["Geist"],
+                    "stat-lg": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "body-md": ["Geist"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "stat-lg": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; background-color: #FAF7F2; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .drawer-transition {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
+            opacity: 0;
+        }
+        .faq-item.active .faq-content {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 12px;
+        }
+        .faq-item.active .faq-chevron {
+            transform: rotate(180deg);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased">
+<!-- Top Navigation Shell -->
+<header class="bg-surface sticky top-0 z-40 border-b border-outline-variant flex justify-between items-center px-container-padding h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="p-2 -ml-2 text-primary hover:bg-surface-container-high transition-colors duration-200 rounded-full" onclick="toggleDrawer()">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">Vertex Solutions</span>
+</div>
+<div class="flex items-center gap-stack-sm">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a corporate manager in a high-end office setting, featuring soft natural lighting, neutral tones, and a clean, minimalist background that complements a sophisticated business UI design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhBNnY0LDiAYk72TN8N3_kdbJhgEgEhBKZnWT0M89dcff-UmievymZFwAb0-QT1EKt2DjU2TMU12PWlkkusePEJkSWY7Dmp_W3aVk2xTy4MtiUSSvKqXY_Auf1Ja55iX7ERf8EQb7zuv_U0Gp3lbLeja9uAKdYtF1S6lWmjYiQ0piG5qh44W0Wsv3X8Xr6Ol01aq4TsUOXuQWurHAxy1Gs9YgeWxMHekRZeSuvdxwpgnDylKqNJXLEJA">
+</div>
+</div>
+</header>
+<!-- Slide-out Navigation Drawer -->
+<div class="fixed inset-0 bg-primary/20 backdrop-blur-sm z-50 hidden transition-opacity duration-300 opacity-0" id="drawer-overlay" onclick="toggleDrawer()"></div>
+<aside class="fixed top-0 left-0 h-full w-72 shadow-lg z-50 drawer-transition -translate-x-full flex flex-col p-0 bg-surface text-on-surface" id="drawer"><div class="p-6 mb-4 flex items-center gap-3">
+    <div class="w-10 h-10 bg-surface-container-high flex items-center justify-center rounded-lg"><span class="material-symbols-outlined text-primary">grid_view</span></div>
+    <div><p class="font-headline-sm text-headline-sm font-bold text-primary">Manager</p><p class="font-headline-sm text-headline-sm font-bold text-primary">Workspace</p></div>
+</div>
+
+<nav class="flex-1 overflow-y-auto px-4 space-y-6"><div><p class="px-3 mb-2 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Main</p><div class="space-y-1"><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#"><span class="material-symbols-outlined">dashboard</span><span class="font-body-md text-body-md">Dashboard</span></a></div></div><div><p class="px-3 mb-2 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Operations</p><div class="space-y-1"><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#"><span class="material-symbols-outlined">package_2</span><span class="font-body-md text-body-md">Products</span></a><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#"><span class="material-symbols-outlined">inventory</span><span class="font-body-md text-body-md">Inventory</span></a><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#"><span class="material-symbols-outlined">shopping_cart</span><span class="font-body-md text-body-md">Purchase Orders</span></a><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#"><span class="material-symbols-outlined">local_shipping</span><span class="font-body-md text-body-md">Suppliers</span></a><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#"><span class="material-symbols-outlined">group</span><span class="font-body-md text-body-md">Customers</span></a><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#"><span class="material-symbols-outlined">sync_alt</span><span class="font-body-md text-body-md">Sales &amp; Returns</span></a></div></div><div><p class="px-3 mb-2 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Insights</p><div class="space-y-1"><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#"><span class="material-symbols-outlined">assessment</span><span class="font-body-md text-body-md">Reports</span></a><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#"><span class="material-symbols-outlined">badge</span><span class="font-body-md text-body-md">Employees</span></a></div></div><div><p class="px-3 mb-2 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Support</p><div class="space-y-1"><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#"><span class="material-symbols-outlined">notifications</span><span class="font-body-md text-body-md">Notification Center</span></a><a class="flex items-center gap-3 px-3 py-2 bg-secondary text-white font-bold rounded-lg" href="#"><span class="material-symbols-outlined">help</span><span class="font-body-md text-body-md">Help &amp; Support</span></a></div></div></nav>
+
+<div class="p-4 mt-auto border-t border-outline-variant"><div class="space-y-1"><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#"><span class="material-symbols-outlined">person</span><span class="font-body-md text-body-md">My Profile</span></a><a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#"><span class="material-symbols-outlined">logout</span><span class="font-body-md text-body-md">Sign Out</span></a></div></div></aside>
+<!-- Main Content Canvas -->
+<main class="max-w-5xl mx-auto px-container-padding py-stack-lg pb-24">
+<!-- Hero Section -->
+<div class="text-center mb-stack-lg space-y-stack-sm">
+<h1 class="font-display-lg text-display-lg text-primary">Help &amp; Support</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">
+                Find answers, browse tutorials, or contact our support team. We're here to help you optimize your workspace operations.
+            </p>
+<!-- Prominent Search Bar -->
+<div class="max-w-2xl mx-auto mt-8 relative">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm font-body-md text-body-md outline-none" placeholder="Search help articles, guides, and FAQs..." type="text">
+</div>
+</div>
+<!-- Help Categories Grid -->
+<section class="mb-stack-lg">
+<h2 class="font-headline-md text-headline-md text-primary mb-gutter">Browse by Category</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<a class="bg-surface-container-lowest border border-outline-variant p-gutter rounded-xl hover:shadow-md transition-all group" href="#">
+<div class="w-12 h-12 bg-surface-container-high rounded-lg flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Getting Started</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Setup guides and first steps for new users.</p>
+</a>
+<a class="bg-surface-container-lowest border border-outline-variant p-gutter rounded-xl hover:shadow-md transition-all group" href="#">
+<div class="w-12 h-12 bg-surface-container-high rounded-lg flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Account &amp; Billing</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your subscription and payment methods.</p>
+</a>
+<a class="bg-surface-container-lowest border border-outline-variant p-gutter rounded-xl hover:shadow-md transition-all group" href="#">
+<div class="w-12 h-12 bg-surface-container-high rounded-lg flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Orders &amp; Shipping</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Track shipments and manage branch inventory.</p>
+</a>
+<a class="bg-surface-container-lowest border border-outline-variant p-gutter rounded-xl hover:shadow-md transition-all group" href="#">
+<div class="w-12 h-12 bg-surface-container-high rounded-lg flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">report_problem</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Technical Issues</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Troubleshooting and reporting system bugs.</p>
+</a>
+</div>
+</section>
+<!-- Contact Options -->
+<section class="mb-stack-lg bg-primary-container text-white rounded-2xl p-stack-md flex flex-col md:flex-row items-center justify-between gap-stack-md">
+<div class="space-y-base">
+<h2 class="font-headline-md text-headline-md">Still need help?</h2>
+<p class="font-body-lg text-on-primary-container">Our support team is available 24/7 to assist you with any inquiries.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-stack-sm">
+<button class="flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-lg font-bold hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">chat</span>
+                    Live Chat
+                </button>
+<button class="flex items-center gap-2 border border-white/30 text-white px-6 py-3 rounded-lg font-bold hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">mail</span>
+                    Email Support
+                </button>
+<button class="flex items-center gap-2 border border-white/30 text-white px-6 py-3 rounded-lg font-bold hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">call</span>
+                    Phone Support
+                </button>
+</div>
+</section>
+<!-- FAQ Section -->
+<section>
+<div class="flex items-center justify-between mb-gutter">
+<h2 class="font-headline-md text-headline-md text-primary">Frequently Asked Questions</h2>
+<a class="text-secondary font-label-md text-label-md flex items-center gap-1 hover:underline" href="#">
+                    View all FAQs <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="space-y-4">
+<!-- FAQ Item 1 -->
+<div class="faq-item bg-surface-container-lowest border border-outline-variant rounded-xl p-4 cursor-pointer transition-colors hover:bg-surface-container-low" onclick="toggleFaq(this)">
+<div class="flex items-center justify-between">
+<h4 class="font-body-lg text-body-lg font-bold text-primary">How do I update my branch inventory?</h4>
+<span class="material-symbols-outlined faq-chevron transition-transform duration-300">expand_more</span>
+</div>
+<div class="faq-content">
+<p class="font-body-md text-body-md text-on-surface-variant">You can update branch inventory by navigating to the "Products" tab in your sidebar, selecting the specific product, and adjusting the stock levels for each location. Changes are synced in real-time across all dashboard views.</p>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="faq-item bg-surface-container-lowest border border-outline-variant rounded-xl p-4 cursor-pointer transition-colors hover:bg-surface-container-low" onclick="toggleFaq(this)">
+<div class="flex items-center justify-between">
+<h4 class="font-body-lg text-body-lg font-bold text-primary">Where can I download my monthly sales report?</h4>
+<span class="material-symbols-outlined faq-chevron transition-transform duration-300">expand_more</span>
+</div>
+<div class="faq-content">
+<p class="font-body-md text-body-md text-on-surface-variant">Monthly reports are generated on the 1st of every month. Go to "Reports" &gt; "Financials" and click the download icon next to the relevant month. Reports are available in PDF and CSV formats.</p>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="faq-item bg-surface-container-lowest border border-outline-variant rounded-xl p-4 cursor-pointer transition-colors hover:bg-surface-container-low" onclick="toggleFaq(this)">
+<div class="flex items-center justify-between">
+<h4 class="font-body-lg text-body-lg font-bold text-primary">Can I manage multiple workspaces with one login?</h4>
+<span class="material-symbols-outlined faq-chevron transition-transform duration-300">expand_more</span>
+</div>
+<div class="faq-content">
+<p class="font-body-md text-body-md text-on-surface-variant">Yes, if you have enterprise permissions. You can switch between workspaces by clicking the "Workspace" header in the navigation drawer and selecting "Switch Account."</p>
+</div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="faq-item bg-surface-container-lowest border border-outline-variant rounded-xl p-4 cursor-pointer transition-colors hover:bg-surface-container-low" onclick="toggleFaq(this)">
+<div class="flex items-center justify-between">
+<h4 class="font-body-lg text-body-lg font-bold text-primary">What should I do if a transaction is pending for too long?</h4>
+<span class="material-symbols-outlined faq-chevron transition-transform duration-300">expand_more</span>
+</div>
+<div class="faq-content">
+<p class="font-body-md text-body-md text-on-surface-variant">Pending transactions usually resolve within 15 minutes. If it exceeds 2 hours, please check your network connection or contact Technical Support using the "Live Chat" button above with the Transaction ID.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell (Mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center h-16 px-gutter bg-surface border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-40" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-40" href="#">
+<span class="material-symbols-outlined">store</span>
+<span class="font-label-md text-label-md">Branches</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-40" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Products</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</nav>
+<script>
+        function toggleDrawer() {
+            const drawer = document.getElementById('drawer');
+            const overlay = document.getElementById('drawer-overlay');
+            const isOpen = !drawer.classList.contains('-translate-x-full');
+
+            if (isOpen) {
+                drawer.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+                overlay.classList.remove('opacity-100');
+                overlay.classList.add('opacity-0');
+            } else {
+                drawer.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => {
+                    overlay.classList.remove('opacity-0');
+                    overlay.classList.add('opacity-100');
+                }, 10);
+            }
+        }
+
+        function toggleFaq(element) {
+            const isActive = element.classList.contains('active');
+            
+            // Close other FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Toggle current
+            if (!isActive) {
+                element.classList.add('active');
+            }
+        }
+    </script>
+
+
+
+
+</body></html>

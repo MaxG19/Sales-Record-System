@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Purchase Orders | Manager Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#344e41",
+                        "on-primary": "#ffffff",
+                        "background": "#faf9f7",
+                        "surface": "#ffffff",
+                        "surface-container": "#f4f3f1",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f4f3f1",
+                        "surface-container-high": "#e9e8e6",
+                        "outline-variant": "#e3e2e0",
+                        "on-surface": "#1a1c1b",
+                        "on-surface-variant": "#424844",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#d7e5bb",
+                        "on-secondary-container": "#5a6745",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "8px",
+                        "lg": "12px",
+                        "xl": "16px",
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "md": "24px",
+                        "sm": "16px",
+                        "margin-desktop": "48px",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #faf9f7;
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-item.sidebar-active {
+            background-color: #344E41;
+        }
+        .nav-item.sidebar-active,
+        .nav-item.sidebar-active span,
+        .nav-item.sidebar-active .nav-text {
+            color: white !important;
+        }
+        #sidebar {
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #main-content {
+            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .sidebar-collapsed {
+            width: 80px !important;
+        }
+        .sidebar-collapsed .nav-text,
+        .sidebar-collapsed .nav-section-title,
+        .sidebar-collapsed .logo-text {
+            display: none;
+        }
+        .sidebar-collapsed .nav-item {
+            justify-content: center;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .sidebar-collapsed .logo-container {
+            padding-left: 0;
+            padding-right: 0;
+            justify-content: center;
+        }
+        .content-expanded {
+            margin-left: 80px !important;
+        }
+        .active-pill { @apply bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider; }
+        .inactive-pill { @apply bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider; }
+    </style>
+</head>
+<body
+    data-page="products"
+    class="bg-background text-on-surface flex min-h-screen">
+<!-- Sidebar -->
+<aside class="w-[280px] bg-white border-r border-outline-variant flex flex-col fixed h-screen z-40 overflow-y-auto" id="sidebar">
+<div class="p-gutter flex items-center gap-3 mb-4 logo-container">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all flex items-center justify-center shrink-0" id="menu-toggle">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="logo-text">
+<h1 class="font-bold text-lg text-primary leading-tight">Manager Workspace</h1>
+</div>
+</div>
+<nav class="flex-grow px-4 space-y-1 mt-4">
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mb-2 nav-section-title">
+        Main
+    </div>
+
+    <a id="nav-dashboard"
+       data-page="dashboard"
+       href="../../Dashboards/Manager Dashboard/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+        <span class="text-sm font-medium nav-text">Dashboard</span>
+
+    </a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mt-8 mb-2 nav-section-title">
+        Operations
+    </div>
+
+    <a id="nav-products"
+       data-page="products"
+       href="../new products/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">inventory_2</span>
+        <span class="text-sm font-medium nav-text">Products</span>
+
+    </a>
+
+    <a id="nav-inventory"
+       data-page="inventory"
+       href="../../Inventory/inventory_manager_workspace/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">warehouse</span>
+        <span class="text-sm font-medium nav-text">Inventory</span>
+
+    </a>
+
+    <a id="nav-purchase-orders"
+       data-page="purchase-orders"
+       href="../../Purchase/purchase_orders/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+        <span class="text-sm font-medium nav-text">Purchase Orders</span>
+
+    </a>
+
+    <a id="nav-suppliers"
+       data-page="suppliers"
+       href="../../Supplier/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">local_shipping</span>
+        <span class="text-sm font-medium nav-text">Suppliers</span>
+
+    </a>
+
+    <a id="nav-customers"
+       data-page="customers"
+       href="../../Customer Management/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">groups</span>
+        <span class="text-sm font-medium nav-text">Customers</span>
+
+    </a>
+
+    <a id="nav-sales"
+       data-page="sales"
+       href="../../Sales/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">point_of_sale</span>
+        <span class="text-sm font-medium nav-text">Sales &amp; Returns</span>
+
+    </a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mt-8 mb-2 nav-section-title">
+        Insights
+    </div>
+
+    <a id="nav-reports"
+       data-page="reports"
+       href="../../Reports-pg/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">bar_chart</span>
+        <span class="text-sm font-medium nav-text">Reports</span>
+
+    </a>
+
+    <a id="nav-employees"
+       data-page="employees"
+       href="../../Employees.pg/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">badge</span>
+        <span class="text-sm font-medium nav-text">Employees</span>
+
+    </a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mt-8 mb-2 nav-section-title">
+        Support
+    </div>
+
+    <a id="nav-notifications"
+       data-page="notifications"
+       href="../../Notification-centre/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">notifications</span>
+        <span class="text-sm font-medium nav-text">Notification Center</span>
+
+    </a>
+
+    <a id="nav-help"
+       data-page="help"
+       href="../../Help$support-pg/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">help</span>
+        <span class="text-sm font-medium nav-text">Help &amp; Support</span>
+
+    </a>
+
+</nav>
+<div class="p-gutter border-t border-outline-variant mt-auto">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container mb-1 nav-item"
+   href="../../My-profile-pg/code.html">
+<span class="material-symbols-outlined text-[20px] shrink-0">person</span>
+<span class="text-sm font-medium nav-text">My Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-error hover:bg-error-container/20 nav-item" href="../../SignOut/code.html">
+<span class="material-symbols-outlined text-[20px] shrink-0">logout</span>
+<span class="text-sm font-medium nav-text">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<div class="ml-[280px] flex-grow flex flex-col min-h-screen" id="main-content">
+<!-- Topbar -->
+<header class="h-16 bg-white border-b border-outline-variant flex items-center justify-between px-gutter sticky top-0 z-30">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative">
+<button class="flex items-center gap-2 bg-surface-container px-4 py-1.5 rounded-lg text-sm border border-outline-variant/30 hover:border-primary/30 transition-all">
+<span class="">Main Branch</span>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</div>
+<div class="relative w-full max-w-md ml-4">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container border-none rounded-lg text-sm focus:ring-1 focus:ring-primary transition-all" placeholder="Search products, customers, suppliers or orders..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full relative transition-all">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-1"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right">
+<p class="text-xs font-bold leading-none">Alex Chen</p>
+<p class="text-[10px] text-on-surface-variant font-medium">Manager</p>
+</div>
+<div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold overflow-hidden border border-outline-variant">
+<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5ZvsGsbydSbV85jPaOR7Nb3mGNLME7ZBwdEVe2YEADOI7FUHmRNCzvpiJ1z1E4qpj0evqqCfviYVf-CG-s4mOGViZhXwT7zSwjIzEtpVTrbS3m_fzBpamES2PH79dGPtQGWIMP026ABh-NE3kzwBwynnu6Dwa0vBePk6XFppP2U1yB8TxdY-nPPPPHsJjhA16GXfpGtYEeRb0JZKy5NVMapBVy8mlGzzS1oXIPAX_J-n6sN2mNS07wg"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Product Content -->
+<main class="flex-1 overflow-y-auto"></main><!-- Top Nav Bar -->
+<div class="p-6 space-y-6 max-w-[1440px] mx-auto">
+<!-- Summary KPI Cards -->
+
+<!-- Filters & Navigation Tabs -->
+<div class="space-y-4">
+
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-1 items-center gap-2 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-body-sm transition-all" placeholder="Search PO#, Supplier, or Product..." type="text">
+</div>
+
+</div>
+<div class="flex items-center gap-3">
+<select class="px-4 py-2 border border-outline-variant rounded-lg bg-surface-container-lowest text-on-surface-variant font-label-md focus:ring-primary focus:border-primary outline-none">
+<option>Status: All</option>
+<option>Draft</option>
+<option>Submitted</option>
+<option>Confirmed</option>
+</select>
+<select class="px-4 py-2 border border-outline-variant rounded-lg bg-surface-container-lowest text-on-surface-variant font-label-md focus:ring-primary focus:border-primary outline-none">
+<option>Supplier: All</option>
+</select>
+<select class="px-4 py-2 border border-outline-variant rounded-lg bg-surface-container-lowest text-on-surface-variant font-label-md focus:ring-primary focus:border-primary outline-none">
+<option>Priority: Normal</option>
+<option>High</option>
+<option>Low</option>
+</select>
+</div>
+<button class="flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md hover:bg-primary/90 transition-all active:scale-95 shadow-sm"><span class="material-symbols-outlined text-[20px]">add</span><span class="">New Purchase Order</span></button></div>
+</div>
+<!-- Table Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_2px_4px_rgba(45,42,38,0.05)] overflow-hidden">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant"><tr class="bg-surface-container/20 border-b border-outline-variant"><th class="py-4 px-6 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">PO Number</th><th class="py-4 px-6 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Supplier</th><th class="py-4 px-6 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Order Date</th><th class="py-4 px-6 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Expected Delivery</th><th class="py-4 px-6 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Status</th><th class="py-4 px-6 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Items</th><th class="py-4 px-6 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Total Cost</th><th class="py-4 px-6 w-10"></th></tr></thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Row 1: Completed -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-primary font-bold font-label-md">PO-2023-8941</span>
+<span class="text-[10px] text-on-surface-variant uppercase">REF: OPS-441</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-secondary-container/20 flex items-center justify-center text-[10px] font-bold text-secondary">GL</div>
+<span class="text-on-surface font-body-sm">Global Logistics Ltd.</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">Oct 24, 2023</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">Oct 28, 2023</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide bg-primary/10 text-primary border border-primary/20">Completed</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">12 SKUs</td>
+<td class="px-6 py-4 text-primary font-bold font-label-md">$14,250.00</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Partially Received -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-primary font-bold font-label-md">PO-2023-9002</span>
+<span class="text-[10px] text-on-surface-variant uppercase">REF: SUP-102</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-primary-container/10 flex items-center justify-center text-[10px] font-bold text-primary">SC</div>
+<span class="text-on-surface font-body-sm">Steel Corp Inc.</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">Oct 25, 2023</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">Nov 02, 2023</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide bg-secondary-container text-on-secondary-container border border-secondary/20">Partially Received</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">42 SKUs</td>
+<td class="px-6 py-4 text-primary font-bold font-label-md">$8,940.00</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Submitted -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-primary font-bold font-label-md">PO-2023-9115</span>
+<span class="text-[10px] text-on-surface-variant uppercase">REF: INV-990</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-tertiary-container/10 flex items-center justify-center text-[10px] font-bold text-tertiary">NV</div>
+<span class="text-on-surface font-body-sm">Novo Tech Solutions</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">Oct 26, 2023</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">Nov 05, 2023</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide bg-primary-fixed text-on-primary-fixed border border-primary-fixed-dim">Submitted</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">8 SKUs</td>
+<td class="px-6 py-4 text-primary font-bold font-label-md">$1,200.50</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Awaiting Delivery -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-primary font-bold font-label-md">PO-2023-9221</span>
+<span class="text-[10px] text-on-surface-variant uppercase">REF: LOG-331</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-on-secondary-fixed-variant/10 flex items-center justify-center text-[10px] font-bold text-on-secondary-fixed-variant">BC</div>
+<span class="text-on-surface font-body-sm">Blue Chip Components</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">Oct 27, 2023</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">Oct 30, 2023</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide bg-inverse-primary text-primary border border-primary-container/20">Awaiting Delivery</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">156 SKUs</td>
+<td class="px-6 py-4 text-primary font-bold font-label-md">$52,400.00</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 5: Draft -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-primary font-bold font-label-md">PO-2023-9304</span>
+<span class="text-[10px] text-on-surface-variant uppercase">REF: TBD</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-outline-variant/30 flex items-center justify-center text-[10px] font-bold text-outline">MP</div>
+<span class="text-on-surface font-body-sm">Mainland Partners</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">Oct 28, 2023</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">--</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide bg-surface-variant text-on-surface-variant border border-outline-variant">Draft</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">2 SKUs</td>
+<td class="px-6 py-4 text-primary font-bold font-label-md">$450.00</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer/Pagination -->
+<div class="px-6 py-4 bg-surface-container-low flex items-center justify-between border-t border-outline-variant">
+<span class="text-on-surface-variant text-body-sm font-label-md">Showing 1 to 5 of 142 orders</span>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 border border-outline-variant rounded bg-surface-container-lowest text-on-surface-variant hover:bg-surface hover:text-primary transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm align-middle">chevron_left</span>
+</button>
+<button class="px-3 py-1 bg-primary text-on-primary rounded font-label-md text-sm">1</button>
+<button class="px-3 py-1 border border-outline-variant rounded bg-surface-container-lowest text-on-surface-variant hover:bg-surface hover:text-primary transition-all">2</button>
+<button class="px-3 py-1 border border-outline-variant rounded bg-surface-container-lowest text-on-surface-variant hover:bg-surface hover:text-primary transition-all">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="px-3 py-1 border border-outline-variant rounded bg-surface-container-lowest text-on-surface-variant hover:bg-surface hover:text-primary transition-all">29</button>
+<button class="px-3 py-1 border border-outline-variant rounded bg-surface-container-lowest text-on-surface-variant hover:bg-surface hover:text-primary transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm align-middle">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Contextual Help / Insights (Asymmetric Layout Addition) -->
+</div>
+</main>
+</div>
+<script src="../../../js/routes.js"></script>
+<script src="../../../js/prototype.js"></script>
+<script src="../../../js/navigation.js"></script>
+<script src="../../../js/components/manager-shell.js"></script>
+</body></html>

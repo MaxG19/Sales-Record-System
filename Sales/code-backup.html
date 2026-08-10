@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html class="light" lang="en">
-<head>
+<!DOCTYPE html><html class="light" lang="en">
+   <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sales & Returns | Manager Workspace</title>
+<title>Sales and Returns | Manager Workspace</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -91,7 +90,9 @@
         .inactive-pill { @apply bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider; }
     </style>
 </head>
-<body data-page="sales" class="bg-background text-on-surface flex min-h-screen">
+<body
+    data-page="sales"
+    class="bg-background text-on-surface flex min-h-screen">
 <!-- Sidebar -->
 <aside class="w-[280px] bg-white border-r border-outline-variant flex flex-col fixed h-screen z-40 overflow-y-auto" id="sidebar">
 <div class="p-gutter flex items-center gap-3 mb-4 logo-container">
@@ -172,10 +173,11 @@
 
     </a>
 
-    <a id="nav-sales"
-       data-page="sales"
+    <a
+       id="nav-sales"
+       class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all sidebar-active nav-item"
        href="../Sales/code.html"
-       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+       data-page="sales">
 
         <span class="material-symbols-outlined text-[20px]">point_of_sale</span>
         <span class="text-sm font-medium nav-text">Sales &amp; Returns</span>
@@ -232,53 +234,55 @@
 
 </nav>
 <div class="p-gutter border-t border-outline-variant mt-auto">
-<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container mb-1 nav-item" href="../My-profile-pg/code.html" id="nav-profile">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container mb-1 nav-item"
+   href="../My-profile-pg/code.html">
 <span class="material-symbols-outlined text-[20px] shrink-0">person</span>
 <span class="text-sm font-medium nav-text">My Profile</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-error hover:bg-error-container/20 nav-item" href="../SignOut/code.html" id="nav-logout">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-error hover:bg-error-container/20 nav-item" href="../SignOut/code.html">
 <span class="material-symbols-outlined text-[20px] shrink-0">logout</span>
 <span class="text-sm font-medium nav-text">Sign Out</span>
 </a>
 </div>
 </aside>
-
-<!-- Main Content -->
-<div class="ml-[280px] flex-grow flex flex-col min-h-screen" id="main-content">
-<!-- Topbar -->
-<header class="h-16 bg-white border-b border-outline-variant flex items-center justify-between px-gutter sticky top-0 z-30">
-<div class="flex items-center gap-4 flex-1">
-<div class="relative">
-<button id="header-branch-select" class="flex items-center gap-2 bg-surface-container px-4 py-1.5 rounded-lg text-sm border border-outline-variant/30 hover:border-primary/30 transition-all">
-<span class="">Main Branch</span>
-<span class="material-symbols-outlined text-[18px]">expand_more</span>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-[280px] max-w-full md:max-w-[calc(100%-280px)] h-screen overflow-hidden">
+<!-- Application Shell: TopNavBar -->
+<header class="flex items-center justify-between px-6 w-full h-[72px] bg-surface-container-lowest border-b border-outline-variant shrink-0 z-20">
+<!-- Left: Branch Selector -->
+<div class="flex items-center">
+<button class="flex items-center gap-2 bg-[#F1F5F2] hover:bg-surface-variant transition-colors px-4 py-2 rounded-lg text-sm font-medium">
+                    Main Branch
+                    <span class="material-symbols-outlined text-lg">expand_more</span>
 </button>
 </div>
-<div class="relative w-full max-w-md ml-4">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
-<input class="w-full pl-10 pr-4 py-2 bg-surface-container border-none rounded-lg text-sm focus:ring-1 focus:ring-primary transition-all" placeholder="Search products, customers, suppliers or orders..." type="text"/>
+<!-- Middle: Search Bar -->
+<div class="flex-1 max-w-2xl px-6">
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 bg-[#F1F5F2] border-transparent rounded-lg text-sm placeholder-outline focus:border-primary focus:bg-white focus:ring-1 focus:ring-primary transition-colors" placeholder="Search products, customers, suppliers or orders..." type="text">
 </div>
 </div>
+<!-- Right: Actions & Profile -->
 <div class="flex items-center gap-4">
-<button id="header-notification-btn" class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full relative transition-all">
+<button class="relative p-2 text-secondary hover:bg-surface-variant rounded-full transition-colors">
 <span class="material-symbols-outlined">notifications</span>
 <span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
 </button>
-<div class="h-8 w-[1px] bg-outline-variant mx-1"></div>
-<div id="header-avatar-btn" class="flex items-center gap-3 cursor-pointer group">
-<div class="text-right">
-<p class="text-xs font-bold leading-none" id="header-user-name">Alex Chen</p>
-<p class="text-[10px] text-on-surface-variant font-medium">Manager</p>
+<div class="h-8 w-px bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+<div class="text-right hidden sm:block">
+<div class="text-sm font-bold text-on-surface">Alex Chen</div>
+<div class="text-xs text-secondary">Manager</div>
 </div>
-<div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold overflow-hidden border border-outline-variant">
-<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5ZvsGsbydSbV85jPaOR7Nb3mGNLME7ZBwdEVe2YEADOI7FUHmRNCzvpiJ1z1E4qpj0evqqCfviYVf-CG-s4mOGViZhXwT7zSwjIzEtpVTrbS3m_fzBpamES2PH79dGPtQGWIMP026ABh-NE3kzwBwynnu6Dwa0vBePk6XFppP2U1yB8TxdY-nPPPPHsJjhA16GXfpGtYEeRb0JZKy5NVMapBVy8mlGzzS1oXIPAX_J-n6sN2mNS07wg"/>
-</div>
+<img alt="Alex Chen" class="h-10 w-10 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot portrait of a confident Asian male manager in his 30s. He is wearing a smart-casual dark blue blazer over a light shirt. The background is a slightly blurred, modern bright office space with soft natural lighting coming from large windows. The mood is approachable yet authoritative, fitting a clean corporate UI style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKpU89indh3hKb-S89ZB8flKd2wsLQUPrNgEO-Tq1xoAnlS10Oqf6zK61SO3xlh06m19bAUDLgJZxOY6Wtwt4zmaFSjipBzDDW2dewEQKV-_ZJ1BJs2poExwqKTFVOGY3J90z6ey3jrMb2NzVvNOBlrFxl1_O8B4uaewvYw1rJCEHfi4fCwROtV7cNoNap9NlOiFEMZ3RK2Y8xi2a_iYVy57uXFUR4dv6kKc3PrMjPhvf30UxWlimcgg">
 </div>
 </div>
 </header>
-
-<!-- Page Main Content -->
-<main class="p-gutter overflow-y-auto">
+<!-- Main Workspace Area -->
+<main class="flex-1 overflow-y-auto bg-background p-6 lg:p-8">
 <div class="max-w-[1440px] mx-auto flex flex-col gap-6">
 <!-- Page Header -->
 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-2">
@@ -505,10 +509,259 @@
 </footer>
 </main>
 </div>
+<!-- OVERLAYS & MODALS -->
+<!-- Right Drawer: Sale Details Preview -->
+<div class="fixed inset-y-0 right-0 w-[480px] bg-surface-container-lowest shadow-[-10px_0_25px_rgba(0,0,0,0.05)] transform transition-transform duration-300 ease-in-out z-50 flex flex-col border-l border-outline-variant translate-x-full" id="details-drawer">
+<!-- Drawer Header -->
+<div class="px-6 py-5 border-b border-outline-variant flex items-center justify-between bg-surface-bright">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-1">Transaction Details</h2>
+<div class="flex items-center gap-2 text-sm text-secondary">
+<span class="">#TRX-8902</span>
+<span class="w-1 h-1 rounded-full bg-outline"></span>
+<span class="">Today, 2:45 PM</span>
+</div>
+</div>
+<button class="p-2 text-outline hover:bg-surface-variant rounded-full transition-colors" onclick="document.getElementById('details-drawer').classList.add('translate-x-full')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Drawer Content -->
+<div class="flex-1 overflow-y-auto p-6 flex flex-col gap-6 bg-background">
+<!-- Info Cards -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant shadow-sm">
+<div class="text-xs text-secondary font-label-bold uppercase tracking-wider mb-1">Customer</div>
+<div class="font-medium text-on-surface">Walk-in Customer</div>
+<div class="text-sm text-outline mt-1">No email provided</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant shadow-sm">
+<div class="text-xs text-secondary font-label-bold uppercase tracking-wider mb-1">Cashier</div>
+<div class="font-medium text-on-surface flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-[10px] font-bold">SJ</div>
+                        Sarah J.
+                    </div>
+<div class="text-sm text-outline mt-1">Register 02</div>
+</div>
+</div>
+<!-- Items Table -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="px-4 py-3 bg-[#F8FAFC] border-b border-outline-variant text-sm font-bold text-on-surface">
+                    Purchased Items (3)
+                </div>
+<table class="w-full text-left text-sm">
+<thead class="text-xs text-secondary uppercase font-label-bold border-b border-outline-variant bg-[#F8FAFC]">
+<tr>
+<th class="px-4 py-2 font-bold">Item</th>
+<th class="px-4 py-2 font-bold text-center">Qty</th>
+<th class="px-4 py-2 font-bold text-right">Price</th>
+<th class="px-4 py-2 font-bold text-right">Total</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr>
+<td class="px-4 py-3">
+<div class="font-medium text-on-surface">Premium Office Chair</div>
+<div class="text-xs text-outline">SKU: OC-9921</div>
+</td>
+<td class="px-4 py-3 text-center">1</td>
+<td class="px-4 py-3 text-right">$120.00</td>
+<td class="px-4 py-3 text-right font-medium">$120.00</td>
+</tr>
+<tr>
+<td class="px-4 py-3">
+<div class="font-medium text-on-surface">Ergonomic Mousepad</div>
+<div class="text-xs text-outline">SKU: EM-102</div>
+</td>
+<td class="px-4 py-3 text-center">2</td>
+<td class="px-4 py-3 text-right">$15.00</td>
+<td class="px-4 py-3 text-right font-medium">$30.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Payment Summary -->
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant shadow-sm">
+<div class="space-y-3 text-sm">
+<div class="flex justify-between text-secondary">
+<span class="">Subtotal</span>
+<span class="">$150.00</span>
+</div>
+<div class="flex justify-between text-secondary">
+<span class="">Discount (Staff 10%)</span>
+<span class="text-error">-$15.00</span>
+</div>
+<div class="flex justify-between text-secondary">
+<span class="">Tax (7%)</span>
+<span class="">$10.50</span>
+</div>
+<div class="pt-3 border-t border-outline-variant flex justify-between items-center">
+<span class="font-bold text-on-surface text-base">Total Paid</span>
+<span class="font-bold text-on-surface text-lg">$145.50</span>
+</div>
+</div>
+<div class="mt-4 p-3 bg-[#F1F5F2] rounded-lg flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span>
+<div class="text-sm">
+<div class="font-medium text-on-surface">Payment Successful</div>
+<div class="text-secondary text-xs mt-0.5">Visa ending in 4242 • Auth: 09812A</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Drawer Footer Actions -->
+<div class="p-4 border-t border-outline-variant bg-surface-container-lowest flex gap-3">
+<button class="flex-1 px-4 py-2.5 border border-outline-variant text-on-surface hover:bg-surface-variant rounded-lg text-sm font-medium transition-colors">
+                Print Receipt
+            </button>
+<button class="flex-1 px-4 py-2.5 bg-primary text-on-primary hover:bg-surface-tint rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2" onclick="document.getElementById('return-modal').classList.remove('hidden'); document.getElementById('details-drawer').classList.add('translate-x-full');">
+<span class="material-symbols-outlined text-[18px]">assignment_return</span>
+                Start Return
+            </button>
+</div>
+</div>
+<!-- Centered Modal: Process Return -->
+<div class="fixed inset-0 z-[60] hidden" id="return-modal">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-[#0B1C30]/40 backdrop-blur-sm transition-opacity" onclick="this.parentElement.classList.add('hidden')"></div>
+<!-- Modal Content -->
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl bg-surface-container-lowest rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.08)] flex flex-col max-h-[90vh] overflow-hidden border border-outline-variant">
+<!-- Header -->
+<div class="px-6 py-4 border-b border-outline-variant flex items-center justify-between bg-surface-bright">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-error-container text-error flex items-center justify-center">
+<span class="material-symbols-outlined">assignment_return</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Process Return</h2>
+<p class="text-xs text-secondary">Receipt #TRX-8902</p>
+</div>
+</div><div class="flex flex-col gap-1 ml-6 pl-6 border-l border-outline-variant"><label class="text-label-sm font-label-sm text-secondary uppercase tracking-wider">Verify Receipt</label><div class="relative"><div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span class="material-symbols-outlined text-outline text-[18px]">receipt</span></div><input type="text" class="block w-48 pl-9 pr-3 py-1.5 bg-[#F1F5F2] border-transparent rounded-lg text-sm placeholder-outline focus:border-primary focus:bg-white focus:ring-1 focus:ring-primary transition-colors" placeholder="Enter Receipt #" value="#TRX-8902"></div></div>
+<button class="p-2 text-outline hover:bg-surface-variant rounded-full transition-colors" onclick="document.getElementById('return-modal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Body -->
+<div class="p-6 overflow-y-auto bg-background flex flex-col gap-6">
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-4 flex gap-4 text-sm">
+<span class="material-symbols-outlined text-primary">info</span>
+<p class="text-on-surface">Select the quantity to return for each item and specify a reason. The refund total will calculate automatically.</p>
+</div>
+<!-- Return Items Table -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<table class="w-full text-left text-sm">
+<thead class="bg-[#F8FAFC] text-xs text-secondary uppercase font-label-bold border-b border-outline-variant">
+<tr>
+<th class="px-4 py-3">Item Details</th>
+<th class="px-4 py-3 text-center">Purchased</th>
+<th class="px-4 py-3 text-center">Return Qty</th>
+<th class="px-4 py-3 w-48">Reason</th>
+<th class="px-4 py-3 text-right">Refund</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr>
+<td class="px-4 py-4">
+<div class="font-medium text-on-surface">Premium Office Chair</div>
+<div class="text-xs text-outline">SKU: OC-9921 • $120.00/ea</div>
+</td>
+<td class="px-4 py-4 text-center text-secondary">1</td>
+<td class="px-4 py-4 text-center">
+<div class="flex items-center justify-center gap-2">
+<button class="w-6 h-6 rounded-md bg-surface-variant text-outline flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+<span class="font-medium text-on-surface w-4 text-center">1</span>
+<button class="w-6 h-6 rounded-md bg-surface-variant text-outline flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+</td>
+<td class="px-4 py-4">
+<select class="w-full bg-[#F1F5F2] border-transparent rounded-lg text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary py-1.5 px-2">
+<option>Defective / Damaged</option>
+<option>Changed Mind</option>
+<option>Wrong Item</option>
+</select>
+</td>
+<td class="px-4 py-4 text-right font-medium text-on-surface">$120.00</td>
+</tr>
+<tr class="opacity-60 bg-gray-50">
+<td class="px-4 py-4">
+<div class="font-medium text-on-surface">Ergonomic Mousepad</div>
+<div class="text-xs text-outline">SKU: EM-102 • $15.00/ea</div>
+</td>
+<td class="px-4 py-4 text-center text-secondary">2</td>
+<td class="px-4 py-4 text-center">
+<div class="flex items-center justify-center gap-2">
+<button class="w-6 h-6 rounded-md bg-surface-variant text-outline flex items-center justify-center cursor-not-allowed"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+<span class="font-medium text-on-surface w-4 text-center">0</span>
+<button class="w-6 h-6 rounded-md bg-surface-variant text-on-surface flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+</td>
+<td class="px-4 py-4">
+<select class="w-full bg-[#F1F5F2] border-transparent rounded-lg text-sm text-outline py-1.5 px-2" disabled="">
+<option>Select Reason</option>
+</select>
+</td>
+<td class="px-4 py-4 text-right font-medium text-outline">$0.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Refund Options & Summary -->
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-4">
+<div class="text-sm font-bold text-on-surface">Refund Method</div>
+<label class="flex items-start gap-3 p-3 border border-primary bg-primary-fixed-dim/10 rounded-lg cursor-pointer">
+<input checked="" class="mt-0.5 text-primary focus:ring-primary" name="refund_method" type="radio">
+<div>
+<div class="text-sm font-medium text-on-surface">Original Payment Method</div>
+<div class="text-xs text-secondary mt-1">Visa ending in 4242 (Takes 2-3 business days)</div>
+</div>
+</label>
+<label class="flex items-start gap-3 p-3 border border-outline-variant hover:border-outline rounded-lg cursor-pointer transition-colors">
+<input class="mt-0.5 text-primary focus:ring-primary" name="refund_method" type="radio">
+<div>
+<div class="text-sm font-medium text-on-surface">Store Credit</div>
+<div class="text-xs text-secondary mt-1">Instant digital gift card issuance</div>
+</div>
+</label>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant shadow-sm self-start">
+<div class="text-sm font-bold text-on-surface mb-3">Refund Summary</div>
+<div class="space-y-2 text-sm mb-4 border-b border-outline-variant pb-4">
+<div class="flex justify-between text-secondary">
+<span class="">Items Subtotal</span>
+<span class="">$120.00</span>
+</div>
+<div class="flex justify-between text-secondary">
+<span class="">Tax Refunded</span>
+<span class="">$8.40</span>
+</div>
+<div class="flex justify-between text-secondary">
+<span class="">Restocking Fee</span>
+<span class="">$0.00</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-bold text-on-surface text-base">Total to Refund</span>
+<span class="font-bold text-error text-xl">$128.40</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="px-6 py-4 border-t border-outline-variant bg-surface-container-lowest flex justify-end gap-3">
+<button class="px-5 py-2.5 border border-outline-variant text-on-surface hover:bg-surface-variant rounded-lg text-sm font-medium transition-colors" onclick="document.getElementById('return-modal').classList.add('hidden')">
+                    Cancel
+                </button>
+<button class="px-5 py-2.5 bg-error text-on-error hover:bg-error/90 rounded-lg text-sm font-medium transition-colors shadow-sm">
+                    Confirm Refund $128.40
+                </button>
+</div>
+</div>
+</div>
+
 
 <script src="../js/routes.js"></script>
 <script src="../js/prototype.js"></script>
 <script src="../js/navigation.js"></script>
 <script src="../js/components/manager-shell.js"></script>
-</body>
-</html>
+</body></html>

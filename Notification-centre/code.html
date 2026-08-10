@@ -1,231 +1,284 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
+<html class="light" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Notification Center - Vertex Solutions</title>
+<title>Notification Center | Manager Workspace</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#344e41",
+                        "on-primary": "#ffffff",
+                        "background": "#faf9f7",
+                        "surface": "#ffffff",
+                        "surface-container": "#f4f3f1",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f4f3f1",
+                        "surface-container-high": "#e9e8e6",
+                        "outline-variant": "#e3e2e0",
+                        "on-surface": "#1a1c1b",
+                        "on-surface-variant": "#424844",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#d7e5bb",
+                        "on-secondary-container": "#5a6745",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "8px",
+                        "lg": "12px",
+                        "xl": "16px",
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "md": "24px",
+                        "sm": "16px",
+                        "margin-desktop": "48px",
+                    }
+                },
+            },
+        }
+    </script>
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             vertical-align: middle;
         }
-        .scrollbar-hide::-webkit-scrollbar {
+        body {
+            background-color: #faf9f7;
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-item.sidebar-active {
+            background-color: #344E41;
+        }
+        .nav-item.sidebar-active,
+        .nav-item.sidebar-active span,
+        .nav-item.sidebar-active .nav-text {
+            color: white !important;
+        }
+        #sidebar {
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #main-content {
+            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .sidebar-collapsed {
+            width: 80px !important;
+        }
+        .sidebar-collapsed .nav-text,
+        .sidebar-collapsed .nav-section-title,
+        .sidebar-collapsed .logo-text {
             display: none;
         }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        .sidebar-collapsed .nav-item {
+            justify-content: center;
+            padding-left: 0;
+            padding-right: 0;
         }
+        .sidebar-collapsed .logo-container {
+            padding-left: 0;
+            padding-right: 0;
+            justify-content: center;
+        }
+        .content-expanded {
+            margin-left: 80px !important;
+        }
+        .active-pill { @apply bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider; }
+        .inactive-pill { @apply bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider; }
     </style>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "secondary": "#006b55",
-                    "inverse-primary": "#c1c8ca",
-                    "on-secondary": "#ffffff",
-                    "primary-container": "#2d3436",
-                    "error-container": "#ffdad6",
-                    "surface-tint": "#586062",
-                    "inverse-on-surface": "#f3f0eb",
-                    "tertiary-container": "#54251a",
-                    "tertiary-fixed-dim": "#feb5a4",
-                    "on-tertiary-container": "#ce8a7b",
-                    "on-primary-fixed-variant": "#41484a",
-                    "tertiary": "#391108",
-                    "on-primary": "#ffffff",
-                    "inverse-surface": "#31302d",
-                    "surface-dim": "#dcdad5",
-                    "primary-fixed-dim": "#c1c8ca",
-                    "primary-fixed": "#dde4e6",
-                    "on-tertiary": "#ffffff",
-                    "on-surface-variant": "#434749",
-                    "surface-container": "#f0ede9",
-                    "secondary-fixed": "#6dfad2",
-                    "on-surface": "#1c1c19",
-                    "secondary-container": "#6dfad2",
-                    "surface-container-lowest": "#ffffff",
-                    "error": "#ba1a1a",
-                    "on-error": "#ffffff",
-                    "tertiary-fixed": "#ffdad2",
-                    "secondary-fixed-dim": "#4bddb7",
-                    "on-secondary-fixed-variant": "#005140",
-                    "on-primary-fixed": "#161d1f",
-                    "on-background": "#1c1c19",
-                    "background": "#fcf9f4",
-                    "surface-container-highest": "#e5e2dd",
-                    "on-error-container": "#93000a",
-                    "on-tertiary-fixed": "#360f06",
-                    "on-secondary-fixed": "#002018",
-                    "on-secondary-container": "#00725b",
-                    "primary": "#181f21",
-                    "surface-variant": "#e5e2dd",
-                    "surface": "#fcf9f4",
-                    "surface-container-high": "#ebe8e3",
-                    "outline-variant": "#c3c7c8",
-                    "on-primary-container": "#959c9f",
-                    "outline": "#747879",
-                    "on-tertiary-fixed-variant": "#6c392c",
-                    "surface-bright": "#fcf9f4",
-                    "surface-container-low": "#f6f3ee"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "stack-lg": "40px",
-                    "stack-md": "24px",
-                    "stack-sm": "12px",
-                    "gutter": "16px",
-                    "container-padding": "20px",
-                    "base": "8px"
-            },
-            "fontFamily": {
-                    "stat-lg": ["Geist"],
-                    "headline-sm": ["Geist"],
-                    "body-md": ["Geist"],
-                    "display-lg": ["Geist"],
-                    "body-lg": ["Geist"],
-                    "label-md": ["Geist"],
-                    "headline-md": ["Geist"]
-            },
-            "fontSize": {
-                    "stat-lg": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
-                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
-            }
-          },
-        },
-      }
-    </script>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
 </head>
-<body class="bg-background text-on-background font-body-md min-h-screen">
-<!-- Off-canvas Navigation Drawer -->
-<div class="fixed inset-0 z-[60] pointer-events-none transition-opacity duration-300 opacity-0 bg-primary/20 backdrop-blur-sm" id="drawer">
-<div class="absolute left-0 top-0 h-full w-4/5 max-w-[300px] bg-surface shadow-xl transform -translate-x-full transition-transform duration-300 ease-in-out pointer-events-auto flex flex-col" id="drawer-content">
-<!-- Drawer Header -->
-<div class="px-container-padding py-stack-md flex items-center gap-base">
-<span class="material-symbols-outlined text-secondary text-[24px]">token</span>
-<h2 class="font-headline-sm text-headline-sm text-primary">Vertex Solutions</h2>
+<body data-page="notifications" class="bg-background text-on-surface flex min-h-screen">
+<!-- Sidebar -->
+<aside class="w-[280px] bg-white border-r border-outline-variant flex flex-col fixed h-screen z-40 overflow-y-auto" id="sidebar">
+<div class="p-gutter flex items-center gap-3 mb-4 logo-container">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all flex items-center justify-center shrink-0" id="menu-toggle">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="logo-text">
+<h1 class="font-bold text-lg text-primary leading-tight">Manager Workspace</h1>
 </div>
-<!-- Drawer Menu -->
-<nav class="flex-1 overflow-y-auto px-base py-base space-y-stack-sm scrollbar-hide"><!-- MAIN -->
-<div>
-<p class="px-gutter py-2 font-label-md text-label-md text-on-surface-variant/60 uppercase tracking-widest">Main</p>
-<nav class="flex flex-col gap-1">
-<a class="flex items-center gap-4 px-gutter py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-body-md">Dashboard</span>
-</a>
-</nav>
 </div>
-<!-- OPERATIONS -->
-<div>
-<p class="px-gutter py-2 font-label-md text-label-md text-on-surface-variant/60 uppercase tracking-widest">Operations</p>
-<nav class="flex flex-col gap-1">
-<a class="flex items-center gap-4 px-gutter py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined">package_2</span>
-<span class="font-body-md">Products</span>
-</a>
-<a class="flex items-center gap-4 px-gutter py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined">inventory_2</span>
-<span class="font-body-md">Inventory</span>
-</a>
-<a class="flex items-center gap-4 px-gutter py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined">payments</span>
-<span class="font-body-md">Purchase Orders</span>
-</a>
-<a class="flex items-center gap-4 px-gutter py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined">local_shipping</span>
-<span class="font-body-md">Suppliers</span>
-</a>
-<a class="flex items-center gap-4 px-gutter py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined">group</span>
-<span class="font-body-md">Customers</span>
-</a>
-<a class="flex items-center gap-4 px-gutter py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined">assignment_return</span>
-<span class="font-body-md">Sales &amp; Returns</span>
-</a>
+<nav class="flex-grow px-4 space-y-1 mt-4">
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mb-2 nav-section-title">
+        Main
+    </div>
+
+    <a id="nav-dashboard"
+       data-page="dashboard"
+       href="../Dashboards/Manager Dashboard/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+        <span class="text-sm font-medium nav-text">Dashboard</span>
+
+    </a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mt-8 mb-2 nav-section-title">
+        Operations
+    </div>
+
+    <a id="nav-products"
+       data-page="products"
+       href="../Products/Products page/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">inventory_2</span>
+        <span class="text-sm font-medium nav-text">Products</span>
+
+    </a>
+
+    <a id="nav-inventory"
+       data-page="inventory"
+       href="../Inventory/inventory_manager_workspace/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">warehouse</span>
+        <span class="text-sm font-medium nav-text">Inventory</span>
+
+    </a>
+
+    <a id="nav-purchase-orders"
+       data-page="purchase-orders"
+       href="../Purchase/purchase orders/purchase_orders/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+        <span class="text-sm font-medium nav-text">Purchase Orders</span>
+
+    </a>
+
+    <a id="nav-suppliers"
+       data-page="suppliers"
+       href="../Supplier/suppliers_workspace/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">local_shipping</span>
+        <span class="text-sm font-medium nav-text">Suppliers</span>
+
+    </a>
+
+    <a id="nav-customers"
+       data-page="customers"
+       href="../Customer Management/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">groups</span>
+        <span class="text-sm font-medium nav-text">Customers</span>
+
+    </a>
+
+    <a id="nav-sales"
+       data-page="sales"
+       href="../Sales/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">point_of_sale</span>
+        <span class="text-sm font-medium nav-text">Sales &amp; Returns</span>
+
+    </a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mt-8 mb-2 nav-section-title">
+        Insights
+    </div>
+
+    <a id="nav-reports"
+       data-page="reports"
+       href="../Reports-pg/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">bar_chart</span>
+        <span class="text-sm font-medium nav-text">Reports</span>
+
+    </a>
+
+    <a id="nav-employees"
+       data-page="employees"
+       href="../Employees.pg/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">badge</span>
+        <span class="text-sm font-medium nav-text">Employees</span>
+
+    </a>
+
+    <div class="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest px-4 mt-8 mb-2 nav-section-title">
+        Support
+    </div>
+
+    <a id="nav-notifications"
+       data-page="notifications"
+       href="../Notification-centre/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">notifications</span>
+        <span class="text-sm font-medium nav-text">Notification Center</span>
+
+    </a>
+
+    <a id="nav-help"
+       data-page="help"
+       href="../Help$support-pg/code.html"
+       class="nav-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-on-surface-variant hover:bg-surface-container">
+
+        <span class="material-symbols-outlined text-[20px]">help</span>
+        <span class="text-sm font-medium nav-text">Help &amp; Support</span>
+
+    </a>
+
 </nav>
+<div class="p-gutter border-t border-outline-variant mt-auto">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container mb-1 nav-item" href="../My-profile-pg/code.html" id="nav-profile">
+<span class="material-symbols-outlined text-[20px] shrink-0">person</span>
+<span class="text-sm font-medium nav-text">My Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-error hover:bg-error-container/20 nav-item" href="../SignOut/code.html" id="nav-logout">
+<span class="material-symbols-outlined text-[20px] shrink-0">logout</span>
+<span class="text-sm font-medium nav-text">Sign Out</span>
+</a>
 </div>
-<!-- INSIGHTS -->
-<div>
-<p class="px-gutter py-2 font-label-md text-label-md text-on-surface-variant/60 uppercase tracking-widest">Insights</p>
-<nav class="flex flex-col gap-1">
-<a class="flex items-center gap-4 px-gutter py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined">assessment</span>
-<span class="font-body-md">Reports</span>
-</a>
-<a class="flex items-center gap-4 px-gutter py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined">badge</span>
-<span class="font-body-md">Employees</span>
-</a>
-</nav>
-</div>
-<!-- SUPPORT -->
-<div>
-<p class="px-gutter py-2 font-label-md text-label-md text-on-surface-variant/60 uppercase tracking-widest">Support</p>
-<nav class="flex flex-col gap-1">
-<a class="flex items-center gap-4 px-gutter py-3 rounded-lg bg-primary-container text-on-primary-container font-semibold transition-colors" href="#">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
-<span class="font-body-md">Notification Center</span>
-</a>
-<a class="flex items-center gap-4 px-gutter py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined">help</span>
-<span class="font-body-md">Help &amp; Support</span>
-</a>
-</nav>
-</div><div><p class="px-gutter py-2 font-label-md text-label-md text-on-surface-variant/60 uppercase tracking-widest">Account</p><nav class="flex flex-col gap-1"><a class="flex items-center gap-4 px-gutter py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined">person</span>
-<span class="font-body-md">My Profile</span>
-</a><a class="flex items-center gap-4 px-gutter py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#"><span class="material-symbols-outlined">logout</span><span class="font-body-md">Sign Out</span></a></nav></div></nav>
-<div class="p-container-padding border-t border-outline-variant">
-<button class="flex items-center gap-4 text-on-surface-variant font-label-md" onclick="toggleDrawer()">
-<span class="material-symbols-outlined">chevron_left</span>
-<span class="">Collapse Drawer</span>
+</aside>
+
+<!-- Main Content -->
+<div class="ml-[280px] flex-grow flex flex-col min-h-screen" id="main-content">
+<!-- Topbar -->
+<header class="h-16 bg-white border-b border-outline-variant flex items-center justify-between px-gutter sticky top-0 z-30">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative">
+<button id="header-branch-select" class="flex items-center gap-2 bg-surface-container px-4 py-1.5 rounded-lg text-sm border border-outline-variant/30 hover:border-primary/30 transition-all">
+<span class="">Main Branch</span>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
 </button>
 </div>
+<div class="relative w-full max-w-md ml-4">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container border-none rounded-lg text-sm focus:ring-1 focus:ring-primary transition-all" placeholder="Search products, customers, suppliers or orders..." type="text"/>
 </div>
 </div>
-<!-- Top App Bar -->
-<header class="w-full sticky top-0 z-50 bg-surface border-b border-outline-variant flex justify-between items-center px-container-padding py-base h-16">
 <div class="flex items-center gap-4">
-<button class="p-2 -ml-2 rounded-full hover:bg-surface-container-high transition-colors active:opacity-80" onclick="toggleDrawer()">
-<span class="material-symbols-outlined text-on-surface-variant">menu</span>
+<button id="header-notification-btn" class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full relative transition-all">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
 </button>
-<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Vertex Solutions</h1>
+<div class="h-8 w-[1px] bg-outline-variant mx-1"></div>
+<div id="header-avatar-btn" class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right">
+<p class="text-xs font-bold leading-none" id="header-user-name">Alex Chen</p>
+<p class="text-[10px] text-on-surface-variant font-medium">Manager</p>
 </div>
-<div class="flex items-center gap-2">
-<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors relative">
-<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
-<span class="absolute top-2 right-2 w-2 h-2 bg-secondary rounded-full ring-2 ring-surface"></span>
-</button>
-<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant ml-2 cursor-pointer transition-transform active:scale-95">
-<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a high-level executive woman with warm lighting and a neutral grey background, representing modern corporate leadership. She is wearing a dark, sophisticated blazer. The image has a clean, high-contrast aesthetic with sharp details and soft bokeh, perfectly fitting a minimalist premium business interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLcqcTh_eTgCXeWqY95g53UWXVo_g1sUi26XXsh-sTWbep_FMG-VPiTtLCrbFrsFZoi1STItpqVMn9N7nYTKbPW9ofZlvxfSLHJZ34w3VMDcgQrSVH-QK9ZKrkxlc0K1rK6BApJEHX7e9r1ob_5hWO5XivrJKB4M5Uikh0D4iZ9j8u0GA2JXhPRAu_lpkTSCbqFoPK_dC-kRqdnKjIFPHHoLzqGJn6Uc7kRjHsQM-AnAnHDg03_Gip5w"/>
+<div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold overflow-hidden border border-outline-variant">
+<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5ZvsGsbydSbV85jPaOR7Nb3mGNLME7ZBwdEVe2YEADOI7FUHmRNCzvpiJ1z1E4qpj0evqqCfviYVf-CG-s4mOGViZhXwT7zSwjIzEtpVTrbS3m_fzBpamES2PH79dGPtQGWIMP026ABh-NE3kzwBwynnu6Dwa0vBePk6XFppP2U1yB8TxdY-nPPPPHsJjhA16GXfpGtYEeRb0JZKy5NVMapBVy8mlGzzS1oXIPAX_J-n6sN2mNS07wg"/>
+</div>
 </div>
 </div>
 </header>
-<!-- Main Content Area -->
-<main class="max-w-2xl mx-auto px-container-padding py-stack-md">
+
+<!-- Page Main Content -->
+<main class="p-gutter overflow-y-auto">
 <!-- Page Header -->
 <div class="flex justify-between items-start mb-stack-md">
 <div class="flex-1">
@@ -332,58 +385,11 @@
             </button>
 </div>
 </main>
-<!-- Bottom Navigation Bar (Mobile Primary View) -->
-<nav class="fixed bottom-0 w-full z-50 bg-surface border-t border-outline-variant py-2 px-gutter flex justify-around items-center h-16 md:hidden">
-<button class="flex flex-col items-center justify-center text-on-surface-variant/40 hover:text-primary transition-all active:scale-95">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</button>
-<button class="flex flex-col items-center justify-center text-on-surface-variant/40 hover:text-primary transition-all active:scale-95">
-<span class="material-symbols-outlined">shopping_cart</span>
-<span class="font-label-md text-label-md">Orders</span>
-</button>
-<button class="flex flex-col items-center justify-center text-on-surface-variant/40 hover:text-primary transition-all active:scale-95">
-<span class="material-symbols-outlined">location_on</span>
-<span class="font-label-md text-label-md">Branches</span>
-</button>
-<button class="flex flex-col items-center justify-center text-on-surface-variant/40 hover:text-primary transition-all active:scale-95">
-<span class="material-symbols-outlined">bar_chart</span>
-<span class="font-label-md text-label-md">Reports</span>
-</button>
-<button class="flex flex-col items-center justify-center text-primary font-bold opacity-100 hover:text-primary transition-all active:scale-95">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</button>
-</nav>
-<!-- Script for Drawer Interaction -->
-<script>
-        function toggleDrawer() {
-            const drawer = document.getElementById('drawer');
-            const content = document.getElementById('drawer-content');
-            
-            if (drawer.classList.contains('opacity-0')) {
-                // Open
-                drawer.classList.remove('opacity-0', 'pointer-events-none');
-                drawer.classList.add('opacity-100');
-                content.classList.remove('-translate-x-full');
-            } else {
-                // Close
-                drawer.classList.add('opacity-0', 'pointer-events-none');
-                drawer.classList.remove('opacity-100');
-                content.classList.add('-translate-x-full');
-            }
-        }
+</div>
 
-        // Close drawer on click outside content
-        document.getElementById('drawer').addEventListener('click', (e) => {
-            if (e.target.id === 'drawer') toggleDrawer();
-        });
-
-        // Simple Ripple/Active Effect for Buttons
-        document.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('mousedown', () => btn.classList.add('scale-95'));
-            btn.addEventListener('mouseup', () => btn.classList.remove('scale-95'));
-            btn.addEventListener('mouseleave', () => btn.classList.remove('scale-95'));
-        });
-    </script>
-</body></html>
+<script src="../js/routes.js"></script>
+<script src="../js/prototype.js"></script>
+<script src="../js/navigation.js"></script>
+<script src="../js/components/manager-shell.js"></script>
+</body>
+</html>
