@@ -11,8 +11,10 @@
 
         init() {
             this.injectOverlays();
+            this.bindSidebarToggle();
             this.bindSidebarLinks();
             this.bindHeaderControls();
+            this.bindActionButtons();
             this.bindNotificationDrawer();
             this.bindProfileDropdown();
             this.bindSignOutModal();
@@ -127,6 +129,60 @@
         },
 
         // -----------------------------------------------------------------
+        // Sidebar Toggle (Retractable Sidebar)
+        // -----------------------------------------------------------------
+        bindSidebarToggle() {
+            const toggleBtn = document.getElementById("menu-toggle");
+            const sidebar = document.getElementById("sidebar");
+            const mainContent = document.getElementById("main-content");
+
+            // Restore saved collapse state
+            const isCollapsed = localStorage.getItem("bms_sidebar_collapsed") === "true";
+            if (isCollapsed && sidebar && mainContent) {
+                sidebar.classList.add("sidebar-collapsed");
+                mainContent.classList.add("content-expanded");
+            }
+
+            if (toggleBtn && sidebar && mainContent) {
+                toggleBtn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const currentlyCollapsed = sidebar.classList.toggle("sidebar-collapsed");
+                    mainContent.classList.toggle("content-expanded");
+                    localStorage.setItem("bms_sidebar_collapsed", currentlyCollapsed ? "true" : "false");
+                });
+            }
+        },
+
+        // -----------------------------------------------------------------
+        // Relative Route Navigation Helper
+        // -----------------------------------------------------------------
+        getRelativePath(routeKey) {
+            if (window.ROUTES && window.ROUTES[routeKey]) {
+                const rawPath = window.ROUTES[routeKey];
+                if (rawPath.startsWith("http://") || rawPath.startsWith("https://")) {
+                    return rawPath;
+                }
+                const scripts = document.querySelectorAll("script[src*='routes.js']");
+                let prefix = "";
+                if (scripts.length > 0) {
+                    prefix = scripts[0].getAttribute("src").replace(/js\/routes\.js$/, "");
+                }
+                return prefix + rawPath.replace(/^\//, "");
+            }
+            return "#";
+        },
+
+        navigateTo(routeKey) {
+            const relPath = this.getRelativePath(routeKey);
+            if (relPath && relPath !== "#") {
+                window.location.href = relPath;
+            } else if (window.app && typeof window.app.go === "function") {
+                window.app.go(routeKey);
+            }
+        },
+
+        // -----------------------------------------------------------------
         // Sidebar Navigation
         // -----------------------------------------------------------------
         bindSidebarLinks() {
@@ -151,7 +207,7 @@
                 if (el) {
                     el.addEventListener("click", (e) => {
                         e.preventDefault();
-                        app.go(routeKey);
+                        this.navigateTo(routeKey);
                     });
                 }
             });
@@ -171,9 +227,9 @@
         bindHeaderControls() {
             const branchSelect = document.getElementById("header-branch-select");
             if (branchSelect) {
-                branchSelect.addEventListener("change", (e) => {
-                    app.setState(STORAGE.BRANCH, e.target.value);
-                    app.go("branchSelection");
+                branchSelect.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    this.navigateTo("branchSelection");
                 });
             }
 
@@ -181,7 +237,7 @@
             if (searchForm) {
                 searchForm.addEventListener("submit", (e) => {
                     e.preventDefault();
-                    app.go("search");
+                    this.navigateTo("search");
                 });
             }
 
@@ -200,6 +256,90 @@
                     this.toggleProfileDropdown();
                 });
             }
+        },
+
+        // -----------------------------------------------------------------
+        // Action Button Wiring (Modals and Sub-Pages)
+        // -----------------------------------------------------------------
+        bindActionButtons() {
+            document.querySelectorAll("button, a").forEach(el => {
+                if (el.dataset.route) {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        this.navigateTo(el.dataset.route);
+                    });
+                    return;
+                }
+
+                const text = (el.textContent || "").trim().toLowerCase();
+
+                if (text.includes("new product") || text.includes("add product")) {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        this.navigateTo("newProductModal");
+                    });
+                }
+                else if (text.includes("adjust stock") || text.includes("stock adjustment")) {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        this.navigateTo("adjustStock");
+                    });
+                }
+                else if (text.includes("move stock") || text.includes("transfer stock") || text.includes("new transfer")) {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        this.navigateTo("moveStockModal");
+                    });
+                }
+                else if (text.includes("new purchase order") || text.includes("create po") || text.includes("create purchase order")) {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        this.navigateTo("createPurchaseOrder");
+                    });
+                }
+                else if (text.includes("add supplier") || text.includes("new supplier")) {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        this.navigateTo("supplierModal");
+                    });
+                }
+                else if (text.includes("pos workstation") || text.includes("cashier pos") || text.includes("new sale")) {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        this.navigateTo("posInterface");
+                    });
+                }
+                else if (text.includes("export report") || (text === "export" && !el.closest("form") && !el.closest("table"))) {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        this.navigateTo("exportReports");
+                    });
+                }
+                else if (text.includes("schedule report") || text.includes("schedule reports")) {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        this.navigateTo("scheduleReports");
+                    });
+                }
+                else if (text.includes("add employee") || text.includes("new employee")) {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        this.navigateTo("addEmployee");
+                    });
+                }
+                else if (text.includes("employee schedule") || text.includes("shift schedule")) {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        this.navigateTo("employeeSchedule");
+                    });
+                }
+                else if (text.includes("add category") || text.includes("new category")) {
+                    el.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        this.navigateTo("addCategoryModal");
+                    });
+                }
+            });
         },
 
         // -----------------------------------------------------------------

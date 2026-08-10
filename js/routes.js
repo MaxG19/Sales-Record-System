@@ -94,7 +94,34 @@ const ROUTES = {
         "/Branch%20Management/code.html",
 
     search:
-        "/Dashboards/Manager%20Dashboard/code.html"
+        "/Dashboards/Manager%20Dashboard/code.html",
+
+    newProductModal:
+        "/Products/new%20products%20modal/code.html",
+
+    moveStockModal:
+        "/Inventory/move_stock_modal_inventory_workspace_benchmark_aligned/code.html",
+
+    supplierModal:
+        "/Supplier/supplier_modal/code.html",
+
+    addEmployee:
+        "/Employees.pg/Add-Employees/code.html",
+
+    employeeSchedule:
+        "/Employees.pg/Empo-schedule/code.html",
+
+    exportReports:
+        "/Reports-pg/Export-page/code.html",
+
+    scheduleReports:
+        "/Reports-pg/schedule-reports-pg/code.html",
+
+    posInterface:
+        "/Cashier%20Workstation%20and%20POS/POS%20interface/code.html",
+
+    addCategoryModal:
+        "/category_management/add_category_modal_overlay/code.html"
 
 };
 
