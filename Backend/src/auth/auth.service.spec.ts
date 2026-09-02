@@ -93,6 +93,10 @@ describe('AuthService', () => {
     sendEmailVerificationEmail: jest.fn(),
   };
 
+  const authenticationRateLimitService = {
+    checkLogin: jest.fn(),
+  };
+
   beforeEach(() => {
     jest.clearAllMocks();
     passwordPolicyService.validate.mockImplementation(() => undefined);
@@ -103,16 +107,18 @@ describe('AuthService', () => {
     );
 
     notificationService.sendEmailVerificationEmail.mockResolvedValue(undefined);
+    authenticationRateLimitService.checkLogin.mockResolvedValue(undefined);
 
     service = new AuthService(
       prisma as never,
-      passwordHashService,
-      passwordPolicyService,
+      passwordHashService as never,
+      passwordPolicyService as never,
       refreshTokenService as never,
       accessTokenService as never,
       sessionRevocationService as never,
       emailVerificationService as never,
       notificationService as never,
+      authenticationRateLimitService as never,
     );
   });
 
@@ -333,10 +339,13 @@ describe('AuthService', () => {
 
     accessTokenService.generate.mockResolvedValue('access-token');
 
-    const result = await service.login({
-      email: 'john@example.com',
-      password: 'StrongPassword!123',
-    });
+    const result = await service.login(
+      {
+        email: 'john@example.com',
+        password: 'StrongPassword!123',
+      },
+      '127.0.0.1',
+    );
 
     expect(refreshTokenService.createSession).toHaveBeenCalledWith(
       'identity-id',
@@ -374,10 +383,13 @@ describe('AuthService', () => {
     passwordHashService.verify.mockResolvedValue(true);
 
     await expect(
-      service.login({
-        email: 'john@example.com',
-        password: 'StrongPassword!123',
-      }),
+      service.login(
+        {
+          email: 'john@example.com',
+          password: 'StrongPassword!123',
+        },
+        '127.0.0.1',
+      ),
     ).rejects.toThrow(UnauthorizedException);
 
     expect(passwordHashService.verify).toHaveBeenCalledWith(
@@ -403,10 +415,13 @@ describe('AuthService', () => {
     passwordHashService.verify.mockResolvedValue(false);
 
     await expect(
-      service.login({
-        email: 'john@example.com',
-        password: 'WrongPassword!123',
-      }),
+      service.login(
+        {
+          email: 'john@example.com',
+          password: 'WrongPassword!123',
+        },
+        '127.0.0.1',
+      ),
     ).rejects.toThrow(UnauthorizedException);
 
     expect(passwordHashService.verify).toHaveBeenCalledWith(
@@ -431,10 +446,13 @@ describe('AuthService', () => {
     passwordHashService.verify.mockResolvedValue(false);
 
     await expect(
-      service.login({
-        email: 'john@example.com',
-        password: 'WrongPassword!123',
-      }),
+      service.login(
+        {
+          email: 'john@example.com',
+          password: 'WrongPassword!123',
+        },
+        '127.0.0.1',
+      ),
     ).rejects.toThrow(UnauthorizedException);
 
     expect(refreshTokenService.createSession).not.toHaveBeenCalled();
@@ -445,14 +463,72 @@ describe('AuthService', () => {
     prisma.identity.findUnique.mockResolvedValue(null);
 
     await expect(
-      service.login({
-        email: 'unknown@example.com',
-        password: 'StrongPassword!123',
-      }),
+      service.login(
+        {
+          email: 'unknown@example.com',
+          password: 'StrongPassword!123',
+        },
+        '127.0.0.1',
+      ),
     ).rejects.toThrow(UnauthorizedException);
 
     expect(refreshTokenService.createSession).not.toHaveBeenCalled();
     expect(accessTokenService.generate).not.toHaveBeenCalled();
+  });
+
+  it('should check the login rate limit before looking up the identity', async () => {
+    const callOrder: string[] = [];
+
+    authenticationRateLimitService.checkLogin.mockImplementation(
+      async () => {
+        callOrder.push('rate-limit');
+      },
+    );
+
+    prisma.identity.findUnique.mockImplementation(async () => {
+      callOrder.push('identity-lookup');
+      return null;
+    });
+
+    await expect(
+      service.login(
+        {
+          email: 'User@Example.com',
+          password: 'StrongPassword!123',
+        },
+        '127.0.0.1',
+      ),
+    ).rejects.toThrow(UnauthorizedException);
+
+    expect(callOrder).toEqual([
+      'rate-limit',
+      'identity-lookup',
+    ]);
+
+    expect(
+      authenticationRateLimitService.checkLogin,
+    ).toHaveBeenCalledWith(
+      'user@example.com',
+      '127.0.0.1',
+    );
+  });
+
+  it('should stop login when the rate limit is exceeded', async () => {
+    authenticationRateLimitService.checkLogin.mockRejectedValue(
+      new Error('Rate limit exceeded'),
+    );
+
+    await expect(
+      service.login(
+        {
+          email: 'user@example.com',
+          password: 'StrongPassword!123',
+        },
+        '127.0.0.1',
+      ),
+    ).rejects.toThrow('Rate limit exceeded');
+
+    expect(prisma.identity.findUnique).not.toHaveBeenCalled();
   });
 
   it('should revoke the authenticated session through SessionRevocationService', async () => {

@@ -6,6 +6,7 @@ import { PasswordHashService } from './password-hash.service';
 import { PasswordPolicyService } from './password-policy.service';
 import { SessionRevocationService } from './session-revocation.service';
 import { PasswordRecoveryRateLimitService } from './password-recovery.rate-limit.service';
+import { AuthenticationRateLimitService } from './authentication-rate-limit.service';
 
 const RESET_TOKEN_BYTES = 32;
 const RESET_TOKEN_TTL_MS = 60 * 60 * 1000;
@@ -19,6 +20,7 @@ export class PasswordRecoveryService {
     private readonly passwordPolicyService: PasswordPolicyService,
     private readonly sessionRevocationService: SessionRevocationService,
     private readonly passwordRecoveryRateLimitService: PasswordRecoveryRateLimitService,
+    private readonly authenticationRateLimitService: AuthenticationRateLimitService,
   ) {}
 
   generateResetToken(): string {
@@ -29,7 +31,10 @@ export class PasswordRecoveryService {
     return createHash('sha256').update(token, 'utf8').digest('hex');
   }
 
-  async requestReset(email: string): Promise<{
+  async requestReset(
+    email: string,
+    ip: string,
+  ): Promise<{
     message: string;
   }> {
     const normalizedEmail = email.trim().toLowerCase();

@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { createHash, randomBytes } from 'node:crypto';
 import { PrismaService } from '../database/prisma/prisma.service';
 import { NotificationService } from '../common/notifications/notification.service';
-import { EmailVerificationRateLimitService } from './email-verification.rate-limit.service';
+import { AuthenticationRateLimitService } from './authentication-rate-limit.service';
 
 const VERIFICATION_TOKEN_BYTES = 32;
 const VERIFICATION_TOKEN_TTL_MS = 24 * 60 * 60 * 1000;
@@ -12,7 +12,7 @@ export class EmailVerificationService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly notificationService: NotificationService,
-    private readonly emailVerificationRateLimitService: EmailVerificationRateLimitService,
+    private readonly authenticationRateLimitService: AuthenticationRateLimitService,
   ) {}
 
   generateVerificationToken(): string {
@@ -39,13 +39,17 @@ export class EmailVerificationService {
     return token;
   }
 
-  async requestVerification(email: string): Promise<{
+  async requestVerification(
+    email: string,
+    ip: string,
+  ): Promise<{
     message: string;
   }> {
     const normalizedEmail = email.trim().toLowerCase();
 
-    await this.emailVerificationRateLimitService.checkRequestLimit(
+    await this.authenticationRateLimitService.checkVerification(
       normalizedEmail,
+      ip,
     );
 
     const identity = await this.prisma.identity.findUnique({

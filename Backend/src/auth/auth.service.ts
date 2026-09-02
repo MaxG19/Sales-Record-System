@@ -13,6 +13,7 @@ import { EmailVerificationService } from './email-verification.service';
 import { NotificationService } from '../common/notifications/notification.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
+import { AuthenticationRateLimitService } from './authentication-rate-limit.service';
 
 @Injectable()
 export class AuthService {
@@ -25,6 +26,7 @@ export class AuthService {
     private readonly sessionRevocationService: SessionRevocationService,
     private readonly emailVerificationService: EmailVerificationService,
     private readonly notificationService: NotificationService,
+    private readonly authenticationRateLimitService: AuthenticationRateLimitService,
   ) {}
 
   async register(dto: RegisterDto) {
@@ -84,8 +86,10 @@ export class AuthService {
 
     return identity;
   }
-  async login(dto: LoginDto) {
+  async login(dto: LoginDto, ip: string) {
     const email = dto.email.trim().toLowerCase();
+
+    await this.authenticationRateLimitService.checkLogin(email, ip);
 
     const identity = await this.prisma.identity.findUnique({
       where: {

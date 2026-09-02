@@ -90,10 +90,6 @@ describe('EmailVerificationService', () => {
     };
   };
 
-  const emailVerificationTokenUpdateManyMock: jest.MockedFunction<
-    (args: UpdateVerificationTokenArgs) => Promise<UpdateManyResult>
-  > = jest.fn();
-
   const identityUpdateManyMock: jest.MockedFunction<
     (args: UpdateIdentityArgs) => Promise<UpdateManyResult>
   > = jest.fn();
@@ -115,6 +111,8 @@ describe('EmailVerificationService', () => {
   const requestAuditLogCreateMock: jest.MockedFunction<
     (args: CreateRequestAuditLogArgs) => Promise<AuditLogCreateResult>
   > = jest.fn();
+
+  const emailVerificationTokenUpdateManyMock = jest.fn();
 
   const transactionClient = {
     emailVerificationToken: {
@@ -150,14 +148,14 @@ describe('EmailVerificationService', () => {
     sendEmailVerificationEmail: jest.fn(),
   };
 
-  const emailVerificationRateLimitService = {
-    checkRequestLimit: jest.fn(),
+  const authenticationRateLimitService = {
+    checkVerification: jest.fn(),
   };
 
   beforeEach(() => {
     jest.clearAllMocks();
 
-    emailVerificationRateLimitService.checkRequestLimit.mockResolvedValue(
+    authenticationRateLimitService.checkVerification.mockResolvedValue(
       undefined,
     );
 
@@ -178,7 +176,7 @@ describe('EmailVerificationService', () => {
     service = new EmailVerificationService(
       prisma as never,
       notificationService as never,
-      emailVerificationRateLimitService as never,
+      authenticationRateLimitService as never,
     );
   });
 
@@ -299,11 +297,11 @@ describe('EmailVerificationService', () => {
     it('should normalize the email before checking the rate limit', async () => {
       identityFindUniqueMock.mockResolvedValue(null);
 
-      await service.requestVerification('  JOHN@EXAMPLE.COM  ');
+      await service.requestVerification('  JOHN@EXAMPLE.COM  ', '127.0.0.1');
 
       expect(
-        emailVerificationRateLimitService.checkRequestLimit,
-      ).toHaveBeenCalledWith('john@example.com');
+        authenticationRateLimitService.checkVerification,
+      ).toHaveBeenCalledWith('john@example.com', '127.0.0.1');
     });
 
     it('should check the rate limit before looking up the identity', async () => {
@@ -311,9 +309,10 @@ describe('EmailVerificationService', () => {
 
       const callOrder: string[] = [];
 
-      emailVerificationRateLimitService.checkRequestLimit.mockImplementation(
+      authenticationRateLimitService.checkVerification.mockImplementation(
         () => {
           callOrder.push('rate-limit');
+          return Promise.resolve();
         },
       );
 
@@ -322,7 +321,7 @@ describe('EmailVerificationService', () => {
         return null;
       });
 
-      await service.requestVerification('john@example.com');
+      await service.requestVerification('john@example.com', '127.0.0.1');
 
       expect(callOrder).toEqual(['rate-limit', 'identity-lookup']);
     });
@@ -330,7 +329,10 @@ describe('EmailVerificationService', () => {
     it('should return the generic response for a nonexistent account', async () => {
       identityFindUniqueMock.mockResolvedValue(null);
 
-      const result = await service.requestVerification('john@example.com');
+      const result = await service.requestVerification(
+        'john@example.com',
+        '127.0.0.1',
+      );
 
       expect(result).toEqual({
         message: genericMessage,
@@ -340,7 +342,7 @@ describe('EmailVerificationService', () => {
     it('should not send a verification email for a nonexistent account', async () => {
       identityFindUniqueMock.mockResolvedValue(null);
 
-      await service.requestVerification('john@example.com');
+      await service.requestVerification('john@example.com', '127.0.0.1');
 
       expect(
         notificationService.sendEmailVerificationEmail,
@@ -354,7 +356,10 @@ describe('EmailVerificationService', () => {
     it('should return the generic response for an already-verified account', async () => {
       identityFindUniqueMock.mockResolvedValue(verifiedIdentity);
 
-      const result = await service.requestVerification('john@example.com');
+      const result = await service.requestVerification(
+        'john@example.com',
+        '127.0.0.1',
+      );
 
       expect(result).toEqual({
         message: genericMessage,
@@ -364,7 +369,7 @@ describe('EmailVerificationService', () => {
     it('should not create or send a verification token for an already-verified account', async () => {
       identityFindUniqueMock.mockResolvedValue(verifiedIdentity);
 
-      await service.requestVerification('john@example.com');
+      await service.requestVerification('john@example.com', '127.0.0.1');
 
       expect(createVerificationTokenMock).not.toHaveBeenCalled();
 
@@ -378,7 +383,7 @@ describe('EmailVerificationService', () => {
     it('should create a verification token for an unverified account', async () => {
       identityFindUniqueMock.mockResolvedValue(unverifiedIdentity);
 
-      await service.requestVerification('john@example.com');
+      await service.requestVerification('john@example.com', '127.0.0.1');
 
       expect(createVerificationTokenMock).toHaveBeenCalledTimes(1);
 
@@ -397,7 +402,7 @@ describe('EmailVerificationService', () => {
         .spyOn(service, 'createVerificationToken')
         .mockResolvedValue('verification-token');
 
-      await service.requestVerification('john@example.com');
+      await service.requestVerification('john@example.com', '127.0.0.1');
 
       expect(
         notificationService.sendEmailVerificationEmail,
@@ -414,7 +419,7 @@ describe('EmailVerificationService', () => {
         .spyOn(service, 'createVerificationToken')
         .mockResolvedValue('verification-token');
 
-      await service.requestVerification('john@example.com');
+      await service.requestVerification('john@example.com', '127.0.0.1');
 
       expect(requestAuditLogCreateMock).toHaveBeenCalledWith({
         data: {
@@ -448,7 +453,7 @@ describe('EmailVerificationService', () => {
         return Promise.resolve();
       });
 
-      await service.requestVerification('john@example.com');
+      await service.requestVerification('john@example.com', '127.0.0.1');
 
       expect(callOrder).toEqual(['create-token', 'send-email']);
     });
@@ -459,12 +464,10 @@ describe('EmailVerificationService', () => {
         HttpStatus.TOO_MANY_REQUESTS,
       );
 
-      emailVerificationRateLimitService.checkRequestLimit.mockRejectedValue(
-        error,
-      );
+      authenticationRateLimitService.checkVerification.mockRejectedValue(error);
 
       await expect(
-        service.requestVerification('john@example.com'),
+        service.requestVerification('john@example.com', '127.0.0.1'),
       ).rejects.toThrow('Too many email verification requests');
 
       expect(identityFindUniqueMock).not.toHaveBeenCalled();
@@ -486,7 +489,7 @@ describe('EmailVerificationService', () => {
       notificationService.sendEmailVerificationEmail.mockRejectedValue(error);
 
       await expect(
-        service.requestVerification('john@example.com'),
+        service.requestVerification('john@example.com', '127.0.0.1'),
       ).rejects.toThrow('Notification service unavailable');
 
       expect(

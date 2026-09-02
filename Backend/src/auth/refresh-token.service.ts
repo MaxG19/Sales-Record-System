@@ -4,6 +4,7 @@ import { PrismaService } from '../database/prisma/prisma.service';
 import { AccessTokenService } from './access-token.service';
 import { SessionPolicyService } from './session-policy.service';
 import { SessionRevocationService } from './session-revocation.service';
+import { AuthenticationRateLimitService } from './authentication-rate-limit.service';
 
 const REFRESH_TOKEN_BYTES = 32;
 const REFRESH_TOKEN_TTL_MS = 7 * 24 * 60 * 60 * 1000;
@@ -15,6 +16,7 @@ export class RefreshTokenService {
     private readonly accessTokenService: AccessTokenService,
     private readonly sessionPolicyService: SessionPolicyService,
     private readonly sessionRevocationService: SessionRevocationService,
+    private readonly authenticationRateLimitService: AuthenticationRateLimitService,
   ) {}
   generateToken(): string {
     return randomBytes(REFRESH_TOKEN_BYTES).toString('base64url');
@@ -126,10 +128,18 @@ export class RefreshTokenService {
     };
   }
 
-  async rotateToken(refreshToken: string): Promise<{
+  async rotateToken(
+    refreshToken: string,
+    ip: string,
+  ): Promise<{
     accessToken: string;
     refreshToken: string;
   }> {
+    await this.authenticationRateLimitService.checkRefresh(
+      refreshToken,
+      ip,
+    );
+
     const session = await this.validateToken(refreshToken);
     const now = new Date();
     const oldHash = this.hashToken(refreshToken);

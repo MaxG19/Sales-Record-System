@@ -11,6 +11,33 @@ export const envValidationSchema = Joi.object({
 
   REDIS_URL: Joi.string().required(),
 
+  AUTH_RATE_LIMIT_LOGIN_MAX: Joi.number().integer().min(1).default(5),
+  AUTH_RATE_LIMIT_LOGIN_WINDOW_SECONDS: Joi.number()
+    .integer()
+    .min(1)
+    .default(900),
+
+  AUTH_RATE_LIMIT_RECOVERY_MAX: Joi.number().integer().min(1).default(5),
+  AUTH_RATE_LIMIT_RECOVERY_WINDOW_SECONDS: Joi.number()
+    .integer()
+    .min(1)
+    .default(900),
+
+  AUTH_RATE_LIMIT_VERIFICATION_MAX: Joi.number().integer().min(1).default(5),
+  AUTH_RATE_LIMIT_VERIFICATION_WINDOW_SECONDS: Joi.number()
+    .integer()
+    .min(1)
+    .default(900),
+
+  AUTH_RATE_LIMIT_REFRESH_MAX: Joi.number().integer().min(1).default(30),
+  AUTH_RATE_LIMIT_REFRESH_WINDOW_SECONDS: Joi.number()
+    .integer()
+    .min(1)
+    .default(900),
+
+  AUTH_RATE_LIMIT_IP_MAX: Joi.number().integer().min(1).default(30),
+  AUTH_RATE_LIMIT_IP_WINDOW_SECONDS: Joi.number().integer().min(1).default(900),
+
   JWT_ACCESS_PRIVATE_KEY_PATH: Joi.string().required(),
   JWT_ACCESS_PUBLIC_KEY_PATH: Joi.string().required(),
   JWT_ACCESS_ISSUER: Joi.string().required(),

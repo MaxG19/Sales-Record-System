@@ -12,6 +12,7 @@ import { AccessTokenGuard } from './guards/access-token.guard';
 import type { AuthenticatedRequest } from './guards/access-token.guard';
 import { InvitationService } from './invitation.service';
 import { AcceptInvitationDto } from './dto/accept-invitation.dto';
+import type { Request } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -28,13 +29,19 @@ export class AuthController {
   }
 
   @Post('login')
-  async login(@Body() dto: LoginDto) {
-    return this.authService.login(dto);
+  async login(@Body() dto: LoginDto, @Req() request: Request) {
+    return this.authService.login(dto, request.ip ?? 'unknown');
   }
 
   @Post('forgot-password')
-  async forgotPassword(@Body() dto: ForgotPasswordDto) {
-    return this.passwordRecoveryService.requestReset(dto.email);
+  async forgotPassword(
+    @Body() dto: ForgotPasswordDto,
+    @Req() request: Request,
+  ) {
+    return this.passwordRecoveryService.requestReset(
+      dto.email,
+      request.ip ?? 'unknown',
+    );
   }
 
   @Post('reset-password')

@@ -119,13 +119,19 @@ describe('RefreshTokenService', () => {
     revoke: jest.fn(),
   };
 
+  const authenticationRateLimitService = {
+    checkRefresh: jest.fn(),
+  };
+
   beforeEach(() => {
     jest.clearAllMocks();
+    authenticationRateLimitService.checkRefresh.mockResolvedValue(undefined);
     service = new RefreshTokenService(
       prisma as never,
       accessTokenService as never,
       sessionPolicyService as never,
       sessionRevocationService as never,
+      authenticationRateLimitService as never,
     );
   });
 
@@ -254,7 +260,10 @@ describe('RefreshTokenService', () => {
     updateManyMock.mockResolvedValue({ count: 1 });
     generateAccessTokenMock.mockResolvedValue(newAccessToken);
 
-    const result = await service.rotateToken(oldRefreshToken);
+    const result = await service.rotateToken(
+      oldRefreshToken,
+      '127.0.0.1',
+    );
 
     expect(result.accessToken).toBe(newAccessToken);
     expect(result.refreshToken).toBeDefined();
@@ -281,10 +290,61 @@ describe('RefreshTokenService', () => {
     expect(updateCall.data.lastActiveAt).toBeInstanceOf(Date);
   });
 
+  it('should check the refresh rate limit before validating the token', async () => {
+    findFirstMock.mockResolvedValue(null);
+
+    const callOrder: string[] = [];
+
+    authenticationRateLimitService.checkRefresh.mockImplementation(
+      async () => {
+        callOrder.push('rate-limit');
+      },
+    );
+
+    findFirstMock.mockImplementation(async () => {
+      callOrder.push('token-validation');
+      return null;
+    });
+
+    await expect(
+      service.rotateToken('refresh-token', '127.0.0.1'),
+    ).rejects.toThrow(UnauthorizedException);
+
+    expect(callOrder).toEqual([
+      'rate-limit',
+      'token-validation',
+    ]);
+
+    expect(
+      authenticationRateLimitService.checkRefresh,
+    ).toHaveBeenCalledWith(
+      'refresh-token',
+      '127.0.0.1',
+    );
+  });
+
+  it('should stop rotation when the rate limit is exceeded', async () => {
+    const error = new Error('Rate limit exceeded');
+
+    authenticationRateLimitService.checkRefresh.mockRejectedValue(
+      error,
+    );
+
+    await expect(
+      service.rotateToken('refresh-token', '127.0.0.1'),
+    ).rejects.toThrow('Rate limit exceeded');
+
+    expect(findFirstMock).not.toHaveBeenCalled();
+    expect(updateManyMock).not.toHaveBeenCalled();
+    expect(generateAccessTokenMock).not.toHaveBeenCalled();
+  });
+
   it('should reject rotation when the refresh token is invalid', async () => {
     findFirstMock.mockResolvedValue(null);
 
-    await expect(service.rotateToken('invalid-refresh-token')).rejects.toThrow(
+    await expect(
+      service.rotateToken('invalid-refresh-token', '127.0.0.1'),
+    ).rejects.toThrow(
       UnauthorizedException,
     );
 
@@ -368,7 +428,9 @@ describe('RefreshTokenService', () => {
     sessionPolicyService.isIdle.mockReturnValue(true);
     sessionRevocationService.revoke.mockResolvedValue(undefined);
 
-    await expect(service.rotateToken('refresh-token')).rejects.toThrow(
+    await expect(
+      service.rotateToken('refresh-token', '127.0.0.1'),
+    ).rejects.toThrow(
       UnauthorizedException,
     );
 
@@ -386,7 +448,10 @@ describe('RefreshTokenService', () => {
     updateManyMock.mockResolvedValue({ count: 0 });
 
     await expect(
-      service.rotateToken('already-used-refresh-token'),
+      service.rotateToken(
+        'already-used-refresh-token',
+        '127.0.0.1',
+      ),
     ).rejects.toThrow(UnauthorizedException);
 
     expect(generateAccessTokenMock).not.toHaveBeenCalled();

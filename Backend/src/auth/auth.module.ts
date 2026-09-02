@@ -15,6 +15,7 @@ import { PasswordRecoveryRateLimitModule } from './password-recovery-rate-limit.
 import { EmailVerificationService } from './email-verification.service';
 import { InvitationService } from './invitation.service';
 import { EmailVerificationRateLimitModule } from './email-verification.rate-limit.module';
+import { AuthenticationRateLimitModule } from './authentication-rate-limit.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { EmailVerificationRateLimitModule } from './email-verification.rate-limi
     NotificationModule,
     PasswordRecoveryRateLimitModule,
     EmailVerificationRateLimitModule,
+    AuthenticationRateLimitModule,
   ],
   controllers: [AuthController],
   providers: [
