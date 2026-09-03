@@ -138,6 +138,10 @@ describe('PasswordRecoveryService', () => {
     checkRequestLimit: jest.fn(),
   };
 
+  const authenticationRateLimitService = {
+    checkRecovery: jest.fn(),
+  };
+
   const transaction = jest.fn();
 
   const prisma = {
@@ -170,6 +174,8 @@ describe('PasswordRecoveryService', () => {
       undefined,
     );
 
+    authenticationRateLimitService.checkRecovery.mockResolvedValue(undefined);
+
     transaction.mockImplementation(
       async (callback: (tx: typeof prisma) => Promise<void>): Promise<void> =>
         callback(prisma),
@@ -177,11 +183,12 @@ describe('PasswordRecoveryService', () => {
 
     service = new PasswordRecoveryService(
       prisma as never,
-      notificationService,
+      notificationService as never,
       passwordHashService,
       passwordPolicyService,
       sessionRevocationService as never,
       passwordRecoveryRateLimitService as never,
+      authenticationRateLimitService as never,
     );
   });
 
@@ -224,7 +231,9 @@ describe('PasswordRecoveryService', () => {
 
       sendPasswordResetEmailMock.mockResolvedValue(undefined);
 
-      await expect(service.requestReset('user@example.com')).resolves.toEqual({
+      await expect(
+        service.requestReset('user@example.com', '127.0.0.1'),
+      ).resolves.toEqual({
         message:
           'If an account exists for that email, password reset instructions have been sent.',
       });
@@ -261,7 +270,7 @@ describe('PasswordRecoveryService', () => {
       identityFindUniqueMock.mockResolvedValue(null);
 
       await expect(
-        service.requestReset('missing@example.com'),
+        service.requestReset('missing@example.com', '127.0.0.1'),
       ).resolves.toEqual({
         message:
           'If an account exists for that email, password reset instructions have been sent.',
@@ -275,7 +284,7 @@ describe('PasswordRecoveryService', () => {
     it('should normalize email addresses before lookup', async () => {
       identityFindUniqueMock.mockResolvedValue(null);
 
-      await service.requestReset(' USER@Example.COM ');
+      await service.requestReset(' USER@Example.COM ', '127.0.0.1');
 
       expect(identityFindUniqueMock).toHaveBeenCalledWith({
         where: {
@@ -294,11 +303,12 @@ describe('PasswordRecoveryService', () => {
         undefined,
       );
 
-      await service.requestReset('USER@example.com');
+      await service.requestReset('USER@example.com', '127.0.0.1');
 
-      expect(
-        passwordRecoveryRateLimitService.checkRequestLimit,
-      ).toHaveBeenCalledWith('user@example.com');
+      expect(authenticationRateLimitService.checkRecovery).toHaveBeenCalledWith(
+        'user@example.com',
+        '127.0.0.1',
+      );
 
       expect(identityFindUniqueMock).toHaveBeenCalled();
     });
@@ -309,14 +319,15 @@ describe('PasswordRecoveryService', () => {
       );
       identityFindUniqueMock.mockResolvedValue(null);
 
-      await service.requestReset(' USER@Example.COM ');
+      await service.requestReset(' USER@Example.COM ', '127.0.0.1');
+
+      expect(authenticationRateLimitService.checkRecovery).toHaveBeenCalledWith(
+        'user@example.com',
+        '127.0.0.1',
+      );
 
       expect(
-        passwordRecoveryRateLimitService.checkRequestLimit,
-      ).toHaveBeenCalledWith('user@example.com');
-
-      expect(
-        passwordRecoveryRateLimitService.checkRequestLimit.mock
+        authenticationRateLimitService.checkRecovery.mock
           .invocationCallOrder[0],
       ).toBeLessThan(identityFindUniqueMock.mock.invocationCallOrder[0]);
     });
@@ -324,13 +335,13 @@ describe('PasswordRecoveryService', () => {
     it('should stop the reset request when the rate limit is exceeded', async () => {
       const rateLimitError = new Error('Too many requests');
 
-      passwordRecoveryRateLimitService.checkRequestLimit.mockRejectedValue(
+      authenticationRateLimitService.checkRecovery.mockRejectedValue(
         rateLimitError,
       );
 
-      await expect(service.requestReset('user@example.com')).rejects.toThrow(
-        rateLimitError,
-      );
+      await expect(
+        service.requestReset('user@example.com', '127.0.0.1'),
+      ).rejects.toThrow(rateLimitError);
 
       expect(identityFindUniqueMock).not.toHaveBeenCalled();
       expect(passwordResetCreateMock).not.toHaveBeenCalled();

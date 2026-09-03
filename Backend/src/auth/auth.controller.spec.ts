@@ -1,3 +1,4 @@
+import type { Request } from 'express';
 import { AuthController } from './auth.controller';
 import type { AuthenticatedRequest } from './guards/access-token.guard';
 
@@ -69,10 +70,26 @@ describe('AuthController', () => {
 
     authService.login.mockResolvedValue(expectedResult);
 
-    const result = await controller.login(dto);
+    const result = await controller.login(dto, { ip: '127.0.0.1' } as Request);
 
-    expect(authService.login).toHaveBeenCalledWith(dto);
+    expect(authService.login).toHaveBeenCalledWith(dto, '127.0.0.1');
     expect(result).toEqual(expectedResult);
+  });
+
+  it('should pass the client IP to AuthService', async () => {
+    const dto = {
+      email: 'user@example.com',
+      password: 'StrongPassword!123',
+    };
+
+    authService.login.mockResolvedValue({
+      accessToken: 'access-token',
+      refreshToken: 'refresh-token',
+    });
+
+    await controller.login(dto, { ip: '192.168.1.10' } as Request);
+
+    expect(authService.login).toHaveBeenCalledWith(dto, '192.168.1.10');
   });
 
   it('should delegate logout using the authenticated identity and session', async () => {
@@ -160,10 +177,13 @@ describe('AuthController', () => {
         email: 'user@example.com',
       };
 
-      const result = await controller.forgotPassword(dto);
+      const result = await controller.forgotPassword(dto, {
+        ip: '127.0.0.1',
+      } as Request);
 
       expect(passwordRecoveryService.requestReset).toHaveBeenCalledWith(
         'user@example.com',
+        '127.0.0.1',
       );
 
       expect(result).toEqual({
@@ -178,13 +198,14 @@ describe('AuthController', () => {
       passwordRecoveryService.requestReset.mockRejectedValue(error);
 
       await expect(
-        controller.forgotPassword({
-          email: 'user@example.com',
-        }),
+        controller.forgotPassword({ email: 'user@example.com' }, {
+          ip: '127.0.0.1',
+        } as Request),
       ).rejects.toThrow(error);
 
       expect(passwordRecoveryService.requestReset).toHaveBeenCalledWith(
         'user@example.com',
+        '127.0.0.1',
       );
     });
   });
@@ -257,9 +278,7 @@ describe('AuthController', () => {
       emailVerificationService.verifyEmail.mockRejectedValue(error);
 
       await expect(
-        controller.verifyEmail({
-          token: 'verification-token',
-        }),
+        controller.verifyEmail({ token: 'verification-token' }),
       ).rejects.toThrow(error);
 
       expect(emailVerificationService.verifyEmail).toHaveBeenCalledWith(

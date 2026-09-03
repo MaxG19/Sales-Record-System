@@ -1,8 +1,4 @@
-import {
-  HttpException,
-  HttpStatus,
-  Injectable,
-} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { createHash } from 'node:crypto';
 import { RedisService } from '../common/redis/redis.service';
@@ -23,9 +19,7 @@ export class AuthenticationRateLimitService {
   }
 
   private hash(value: string): string {
-    return createHash('sha256')
-      .update(value, 'utf8')
-      .digest('hex');
+    return createHash('sha256').update(value, 'utf8').digest('hex');
   }
 
   async checkLogin(email: string, ip: string): Promise<void> {
@@ -76,9 +70,7 @@ export class AuthenticationRateLimitService {
 
     await this.checkLimit(
       `auth:verification:email:${this.hash(normalizedEmail)}`,
-      this.configService.getOrThrow<number>(
-        'AUTH_RATE_LIMIT_VERIFICATION_MAX',
-      ),
+      this.configService.getOrThrow<number>('AUTH_RATE_LIMIT_VERIFICATION_MAX'),
       this.configService.getOrThrow<number>(
         'AUTH_RATE_LIMIT_VERIFICATION_WINDOW_SECONDS',
       ),
@@ -93,17 +85,12 @@ export class AuthenticationRateLimitService {
     );
   }
 
-  async checkRefresh(
-    refreshToken: string,
-    ip: string,
-  ): Promise<void> {
+  async checkRefresh(refreshToken: string, ip: string): Promise<void> {
     const normalizedIp = this.normalizeIp(ip);
 
     await this.checkLimit(
       `auth:refresh:token:${this.hash(refreshToken)}`,
-      this.configService.getOrThrow<number>(
-        'AUTH_RATE_LIMIT_REFRESH_MAX',
-      ),
+      this.configService.getOrThrow<number>('AUTH_RATE_LIMIT_REFRESH_MAX'),
       this.configService.getOrThrow<number>(
         'AUTH_RATE_LIMIT_REFRESH_WINDOW_SECONDS',
       ),

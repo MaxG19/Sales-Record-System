@@ -39,8 +39,9 @@ export class PasswordRecoveryService {
   }> {
     const normalizedEmail = email.trim().toLowerCase();
 
-    await this.passwordRecoveryRateLimitService.checkRequestLimit(
+    await this.authenticationRateLimitService.checkRecovery(
       normalizedEmail,
+      ip,
     );
 
     const identity = await this.prisma.identity.findUnique({

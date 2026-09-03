@@ -57,19 +57,6 @@ describe('EmailVerificationService', () => {
     id: string;
   };
 
-  type UpdateVerificationTokenArgs = {
-    where: {
-      id: string;
-      usedAt: null;
-      expiresAt: {
-        gt: Date;
-      };
-    };
-    data: {
-      usedAt: Date;
-    };
-  };
-
   type UpdateIdentityArgs = {
     where: {
       id: string;
@@ -604,22 +591,49 @@ describe('EmailVerificationService', () => {
 
       expect(prisma.$transaction).toHaveBeenCalledTimes(1);
 
-      const tokenUpdateCall =
-        transactionClient.emailVerificationToken.updateMany.mock.calls[0]?.[0];
+      type TokenUpdateArgs = {
+        where: {
+          id: string;
+          usedAt: null;
+          expiresAt: {
+            gt: Date;
+          };
+        };
+        data: {
+          usedAt: Date;
+        };
+      };
+
+      const tokenUpdateCalls = transactionClient.emailVerificationToken
+        .updateMany.mock.calls as unknown as TokenUpdateArgs[][];
+
+      const tokenUpdateCall = tokenUpdateCalls[0]?.[0];
 
       expect(tokenUpdateCall).toBeDefined();
-      expect(tokenUpdateCall.where.id).toBe('verification-token-id');
-      expect(tokenUpdateCall.where.usedAt).toBeNull();
-      expect(tokenUpdateCall.where.expiresAt.gt).toBeInstanceOf(Date);
-      expect(tokenUpdateCall.data.usedAt).toBeInstanceOf(Date);
+      expect(tokenUpdateCall?.where.id).toBe('verification-token-id');
+      expect(tokenUpdateCall?.where.usedAt).toBeNull();
+      expect(tokenUpdateCall?.where.expiresAt.gt).toBeInstanceOf(Date);
+      expect(tokenUpdateCall?.data.usedAt).toBeInstanceOf(Date);
 
-      const identityUpdateCall =
-        transactionClient.identity.updateMany.mock.calls[0]?.[0];
+      type IdentityUpdateArgs = {
+        where: {
+          id: string;
+          emailVerifiedAt: null;
+        };
+        data: {
+          emailVerifiedAt: Date;
+        };
+      };
+
+      const identityUpdateCalls = transactionClient.identity.updateMany.mock
+        .calls as unknown as IdentityUpdateArgs[][];
+
+      const identityUpdateCall = identityUpdateCalls[0]?.[0];
 
       expect(identityUpdateCall).toBeDefined();
-      expect(identityUpdateCall.where.id).toBe('identity-id');
-      expect(identityUpdateCall.where.emailVerifiedAt).toBeNull();
-      expect(identityUpdateCall.data.emailVerifiedAt).toBeInstanceOf(Date);
+      expect(identityUpdateCall?.where.id).toBe('identity-id');
+      expect(identityUpdateCall?.where.emailVerifiedAt).toBeNull();
+      expect(identityUpdateCall?.data.emailVerifiedAt).toBeInstanceOf(Date);
 
       expect(transactionClient.auditLog.create).toHaveBeenCalledWith({
         data: {

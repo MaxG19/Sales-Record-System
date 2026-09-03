@@ -111,8 +111,8 @@ describe('AuthService', () => {
 
     service = new AuthService(
       prisma as never,
-      passwordHashService as never,
-      passwordPolicyService as never,
+      passwordHashService,
+      passwordPolicyService,
       refreshTokenService as never,
       accessTokenService as never,
       sessionRevocationService as never,
@@ -479,15 +479,14 @@ describe('AuthService', () => {
   it('should check the login rate limit before looking up the identity', async () => {
     const callOrder: string[] = [];
 
-    authenticationRateLimitService.checkLogin.mockImplementation(
-      async () => {
-        callOrder.push('rate-limit');
-      },
-    );
+    authenticationRateLimitService.checkLogin.mockImplementation(() => {
+      callOrder.push('rate-limit');
+      return Promise.resolve();
+    });
 
-    prisma.identity.findUnique.mockImplementation(async () => {
+    prisma.identity.findUnique.mockImplementation(() => {
       callOrder.push('identity-lookup');
-      return null;
+      return Promise.resolve(null);
     });
 
     await expect(
@@ -500,14 +499,9 @@ describe('AuthService', () => {
       ),
     ).rejects.toThrow(UnauthorizedException);
 
-    expect(callOrder).toEqual([
-      'rate-limit',
-      'identity-lookup',
-    ]);
+    expect(callOrder).toEqual(['rate-limit', 'identity-lookup']);
 
-    expect(
-      authenticationRateLimitService.checkLogin,
-    ).toHaveBeenCalledWith(
+    expect(authenticationRateLimitService.checkLogin).toHaveBeenCalledWith(
       'user@example.com',
       '127.0.0.1',
     );

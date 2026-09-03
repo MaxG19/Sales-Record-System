@@ -1,36 +1,21 @@
-import {
-  Injectable,
-  Logger,
-  OnModuleDestroy,
-  OnModuleInit,
-} from '@nestjs/common';
+import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import Redis from 'ioredis';
 
 @Injectable()
 export class RedisService implements OnModuleInit, OnModuleDestroy {
-  private readonly logger = new Logger(RedisService.name);
   private readonly client: Redis;
 
   constructor(private readonly configService: ConfigService) {
-    const redisUrl = this.configService.getOrThrow<string>('REDIS_URL');
-
-    this.client = new Redis(redisUrl);
+    this.client = new Redis(this.configService.getOrThrow<string>('REDIS_URL'));
   }
 
-  async onModuleInit(): Promise<void> {
-    try {
-      await this.client.ping();
-      this.logger.log('Redis connection established');
-    } catch (error) {
-      this.logger.error('Redis connection failed', error);
-      throw error;
-    }
+  onModuleInit() {
+    return this.client.ping();
   }
 
-  async onModuleDestroy(): Promise<void> {
-    await this.client.quit();
-    this.logger.log('Redis connection closed');
+  onModuleDestroy() {
+    return this.client.quit();
   }
 
   async get(key: string): Promise<string | null> {
@@ -38,41 +23,31 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
   }
 
   async set(key: string, value: string, ttlSeconds?: number): Promise<void> {
-    if (ttlSeconds) {
+    if (ttlSeconds !== undefined) {
       await this.client.set(key, value, 'EX', ttlSeconds);
-      return;
+    } else {
+      await this.client.set(key, value);
     }
-
-    await this.client.set(key, value);
   }
 
-  async incrementWithExpiry(
-  key: string,
-  ttlSeconds: number,
-): Promise<number> {
-  const result = await this.client.eval(
-    `
-      local count = redis.call('INCR', KEYS[1])
-
-      if count == 1 then
-        redis.call('EXPIRE', KEYS[1], ARGV[1])
-      end
-
-      return count
-    `,
-    1,
-    key,
-    ttlSeconds,
-  );
-
-  return Number(result);
-}
-
-  async delete(key: string): Promise<void> {
+  async del(key: string): Promise<void> {
     await this.client.del(key);
   }
 
-  async ping(): Promise<string> {
-    return this.client.ping();
+  async incrementWithExpiry(key: string, ttlSeconds: number): Promise<number> {
+    const result = await this.client.eval(
+      `
+      local count = redis.call('INCR', KEYS[1])
+      if count == 1 then
+        redis.call('EXPIRE', KEYS[1], ARGV[1])
+      end
+      return count
+      `,
+      1,
+      key,
+      ttlSeconds,
+    );
+
+    return Number(result);
   }
 }

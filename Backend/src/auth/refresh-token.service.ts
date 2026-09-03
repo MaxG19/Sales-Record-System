@@ -135,10 +135,7 @@ export class RefreshTokenService {
     accessToken: string;
     refreshToken: string;
   }> {
-    await this.authenticationRateLimitService.checkRefresh(
-      refreshToken,
-      ip,
-    );
+    await this.authenticationRateLimitService.checkRefresh(refreshToken, ip);
 
     const session = await this.validateToken(refreshToken);
     const now = new Date();
